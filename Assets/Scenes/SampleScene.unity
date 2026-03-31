@@ -242,6 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: apple
   highlightColor: {r: 1, g: 0.85, b: 0.2, a: 1}
+  hoverDelay: 1
 --- !u!1 &37982872
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,6 +545,7 @@ MonoBehaviour:
   itemRowPrefab: {fileID: 4109296871485434817, guid: e10e1a7123b7d6c449fa041b030bf9b4, type: 3}
   listParent: {fileID: 1215221083}
   translationTooltip: {fileID: 425482241}
+  hoverDelay: 1
 --- !u!114 &130889919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,6 +593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5b725b9cc74ce488bbc2a4fdeea6ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listUI: {fileID: 130889918}
 --- !u!1 &193107200
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,6 +989,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: carrot
   highlightColor: {r: 1, g: 0.85, b: 0.2, a: 1}
+  hoverDelay: 1
 --- !u!1 &302058734
 GameObject:
   m_ObjectHideFlags: 0
@@ -1799,6 +1803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: onion
   highlightColor: {r: 1, g: 0.85, b: 0.2, a: 1}
+  hoverDelay: 1
 --- !u!65 &444785070
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2277,6 +2282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: pear
   highlightColor: {r: 1, g: 0.85, b: 0.2, a: 1}
+  hoverDelay: 1
 --- !u!65 &865578431
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2710,6 +2716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: cheese
   highlightColor: {r: 1, g: 0.85, b: 0.2, a: 1}
+  hoverDelay: 1
 --- !u!65 &955613089
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2999,6 +3006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: tomato
   highlightColor: {r: 1, g: 0.85, b: 0.2, a: 1}
+  hoverDelay: 1
 --- !u!1 &1077788852
 GameObject:
   m_ObjectHideFlags: 0
@@ -3122,6 +3130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: milk
   highlightColor: {r: 1, g: 0.85, b: 0.2, a: 1}
+  hoverDelay: 1
 --- !u!1 &1109233968
 GameObject:
   m_ObjectHideFlags: 0
@@ -3158,7 +3167,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 189.21, y: 40.22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1109233970
 MonoBehaviour:
@@ -3398,6 +3407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: bread
   highlightColor: {r: 1, g: 0.85, b: 0.2, a: 1}
+  hoverDelay: 1
 --- !u!1 &1194331994
 GameObject:
   m_ObjectHideFlags: 0
@@ -3771,6 +3781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: meat
   highlightColor: {r: 1, g: 0.85, b: 0.2, a: 1}
+  hoverDelay: 1
 --- !u!1 &1438177226
 GameObject:
   m_ObjectHideFlags: 0

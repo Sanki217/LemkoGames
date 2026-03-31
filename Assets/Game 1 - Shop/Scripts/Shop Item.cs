@@ -8,7 +8,12 @@ public class ShopItem : MonoBehaviour
     Color originalColor;
 
     [Header("Highlight")]
-    public Color highlightColor = new Color(1f, 0.85f, 0.2f); // golden yellow
+    public Color highlightColor = new Color(1f, 0.85f, 0.2f);
+    public float hoverDelay = 1f;
+
+    float hoverTimer = 0f;
+    bool isHovering = false;
+    bool tooltipShown = false;
 
     void Awake()
     {
@@ -17,16 +22,34 @@ public class ShopItem : MonoBehaviour
             originalColor = rend.material.color;
     }
 
+    void Update()
+    {
+        if (isHovering && !tooltipShown)
+        {
+            hoverTimer += Time.deltaTime;
+            if (hoverTimer >= hoverDelay)
+            {
+                tooltipShown = true;
+                if (rend != null)
+                    rend.material.color = highlightColor;
+                ShopGameManager.Instance.ShowItemTooltip(itemID, transform.position);
+            }
+        }
+    }
+
     void OnMouseEnter()
     {
-        if (rend != null)
-            rend.material.color = highlightColor;
-
-        ShopGameManager.Instance.ShowItemTooltip(itemID, transform.position);
+        isHovering = true;
+        hoverTimer = 0f;
+        tooltipShown = false;
     }
 
     void OnMouseExit()
     {
+        isHovering = false;
+        hoverTimer = 0f;
+        tooltipShown = false;
+
         if (rend != null)
             rend.material.color = originalColor;
 

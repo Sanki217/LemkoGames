@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using System.Collections;
 using System.Collections.Generic;
 
 public class ShoppingListUI : MonoBehaviour
@@ -10,12 +11,16 @@ public class ShoppingListUI : MonoBehaviour
     public Transform listParent;
 
     [Header("Translation Tooltip")]
-    public TMP_Text translationTooltip; // a TMP text that appears next to hovered list item
+    public TMP_Text translationTooltip;
+    public float hoverDelay = 1f;
 
     Dictionary<string, TMP_Text> rows = new();
+    Coroutine pendingTooltip;
 
+    List<ShopItemData> currentItems = new();
     public void Populate(List<ShopItemData> items)
     {
+        currentItems = items;
         foreach (Transform child in listParent)
             Destroy(child.gameObject);
         rows.Clear();
@@ -27,39 +32,71 @@ public class ShoppingListUI : MonoBehaviour
             txt.text = item.lemko;
             rows[item.itemID] = txt;
 
-            // Add hover listener
             var trigger = row.AddComponent<EventTrigger>();
-            var itemRef = item; // capture for lambda
+            var itemRef = item;
 
             var enterEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
-            enterEntry.callback.AddListener(_ => ShowTranslation(itemRef, txt));
+            enterEntry.callback.AddListener(_ => OnRowEnter(itemRef, txt));
             trigger.triggers.Add(enterEntry);
 
             var exitEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
-            exitEntry.callback.AddListener(_ => HideTranslation());
+            exitEntry.callback.AddListener(_ => OnRowExit());
             trigger.triggers.Add(exitEntry);
         }
 
         HideTranslation();
     }
 
+    void OnRowEnter(ShopItemData item, TMP_Text sourceText)
+    {
+        if (pendingTooltip != null)
+            StopCoroutine(pendingTooltip);
+        pendingTooltip = StartCoroutine(DelayedShowTranslation(item, sourceText));
+    }
+
+    void OnRowExit()
+    {
+        if (pendingTooltip != null)
+        {
+            StopCoroutine(pendingTooltip);
+            pendingTooltip = null;
+        }
+        HideTranslation();
+    }
+
+    IEnumerator DelayedShowTranslation(ShopItemData item, TMP_Text sourceText)
+    {
+        yield return new WaitForSeconds(hoverDelay);
+        ShowTranslation(item, sourceText);
+    }
+
     void ShowTranslation(ShopItemData item, TMP_Text sourceText)
     {
         if (translationTooltip == null) return;
 
-        // Show English and Polish translation
-        string lang1 = item.english;
-        string lang2 = item.polish;
-        translationTooltip.text = $"{lang1}  /  {lang2}";
+        translationTooltip.text = $"{item.english}  /  {item.polish}";
 
-        // Position tooltip next to the hovered list row
+        // Force layout update so we know the tooltip's real width
+        Canvas.ForceUpdateCanvases();
+
         var tooltipRect = translationTooltip.rectTransform;
         var sourceRect = sourceText.rectTransform;
 
-        // Place it to the right of the list item in the same canvas space
-        tooltipRect.position = sourceRect.position + new Vector3(sourceRect.rect.width + 10f, 0f, 0f);
+        // Place to the LEFT of the list item
+        float tooltipWidth = tooltipRect.rect.width;
+        tooltipRect.position = sourceRect.position + new Vector3(-tooltipWidth - 10f, 0f, 0f);
 
         translationTooltip.gameObject.SetActive(true);
+    }
+
+    public void RefreshLanguage()
+    {
+        foreach (var kvp in rows)
+        {
+            var item = currentItems.Find(i => i.itemID == kvp.Key);
+            if (item != null)
+                kvp.Value.text = GameSettings.GetName(item);
+        }
     }
 
     void HideTranslation()
