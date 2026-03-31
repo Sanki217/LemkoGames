@@ -36,9 +36,10 @@ public class ShopGameManager : MonoBehaviour
         gameActive = true;
         gameOverPanel.SetActive(false);
 
+        int randomSize = Random.Range(4, 8); // 4 to 7 inclusive (Range max is exclusive)
         shoppingList = database.items
             .OrderBy(_ => Random.value)
-            .Take(listSize)
+            .Take(randomSize)
             .ToList();
 
         listUI.Populate(shoppingList);
