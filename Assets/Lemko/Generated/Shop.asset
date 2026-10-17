@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be24576d2883d154f997e9f235ec26c9, type: 3}
+  m_Name: Shop
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.ShopDefinition
+  products:
+  - {fileID: 11400000, guid: 5f8092898e462a64aa95b71aa6d9efd8, type: 2}
+  - {fileID: 11400000, guid: 933fd9538864b0641be8c25431966080, type: 2}
+  - {fileID: 11400000, guid: 27de6f5bfe1948b4bafc7fbfeafcfe58, type: 2}
+  - {fileID: 11400000, guid: c4a504b77f84d564f8d176bd4bcbd7ea, type: 2}
+  - {fileID: 11400000, guid: d0e028e80113a0046bf1275f26471d0f, type: 2}
+  - {fileID: 11400000, guid: e29b23ab94b01b04eb175772542bc16d, type: 2}
+  - {fileID: 11400000, guid: 0e0984467f34cab46b9339acc7f179cb, type: 2}
+  - {fileID: 11400000, guid: 55b01de48ba93a24c8633b84d8fecdf0, type: 2}
+  taskCount: 5
+  startingLives: 5
