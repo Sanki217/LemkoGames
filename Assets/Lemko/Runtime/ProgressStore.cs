@@ -14,6 +14,7 @@ namespace Lemko
         public int lastMistakes;
         public int lastShopPoints;
         public int bestShopPoints;
+        public int lastShopHints;
         public List<string> encountered = new List<string>();
     }
     public static class ProgressStore
@@ -26,6 +27,7 @@ namespace Lemko
                 var data = JsonUtility.FromJson<ProgressData>(json);
                 if (data == null || data.version != 1 || data.shopCompletions < 0) return new ProgressData();
                 if (data.encountered == null) data.encountered = new List<string>();
+                data.encountered=data.encountered.Select(VocabularyIdMigration.Convert).Where(id=>!string.IsNullOrEmpty(id)).Distinct().ToList();
                 return data;
             }
             catch (Exception) { return new ProgressData(); }

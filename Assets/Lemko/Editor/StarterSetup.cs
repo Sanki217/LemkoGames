@@ -44,7 +44,7 @@ namespace Lemko.Editor
             if (File.Exists(ScenePath)) { Debug.Log("Starter scene already exists; preserved. Open " + ScenePath); return; }
             if (!Application.isBatchMode && !EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
             if (!AssetDatabase.LoadAssetAtPath<ShopDefinition>(VocabularyImporter.Root + "/Shop.asset"))
-                VocabularyImporter.Import("Content/Starter");
+                VocabularyImporter.Import(Directory.Exists("Content/CSV") ? "Content/CSV" : "Content/Starter");
             if (!HasTmpResources) { ImportTmpResources(Create); return; }
             font = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/Lemko/Fonts/LemkoFont.asset");
             if (!font)
@@ -55,7 +55,7 @@ namespace Lemko.Editor
                 AssetDatabase.CreateAsset(font, "Assets/Lemko/Fonts/LemkoFont.asset");
                 AssetDatabase.AddObjectToAsset(font.material, font);
                 foreach (var texture in font.atlasTextures) AssetDatabase.AddObjectToAsset(texture, font);
-                var characters = File.ReadAllText("Content/family_vocabulary_draft.csv") + File.ReadAllText("Content/Starter/vocabulary_master.csv") + "ąćęłńóśźżĄĆĘŁŃÓŚŹŻABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789[]:!?/-.,";
+                var characters = string.Concat(Directory.GetFiles("Content", "*.csv", SearchOption.AllDirectories).Select(File.ReadAllText)) + "ąćęłńóśźżĄĆĘŁŃÓŚŹŻABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789[]:!?/-.,";
                 if (!font.TryAddCharacters(new string(characters.Where(c => !char.IsControl(c)).Distinct().ToArray()), out string missing))
                     throw new InvalidOperationException("Font lacks characters: " + missing);
                 EditorUtility.SetDirty(font);
@@ -163,3 +163,4 @@ namespace Lemko.Editor
         }
     }
 }
+

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f42738d6755b44ebdccadb2944e44b, type: 3}
+  m_Name: food_sugar
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
+  id: food_sugar
+  lemko: "\u0446\u0443\u043A\u0454\u0440"
+  polish: cukier
+  english: sugar
+  sprite: {fileID: 21300000, guid: ec3d62c820b2e564d8d945aa30ad1eaf, type: 3}
+  pronunciation: {fileID: 0}
+  tags:
+  - shop
+  - food
+  verified: 0
+  notes: 
+  spriteId: sprite_sugar
+  audioId: audio_sugar
+  translations:
+  - language: lemko
+    text: "\u0446\u0443\u043A\u0454\u0440"
+  - language: pl
+    text: cukier
+  - language: en
+    text: sugar

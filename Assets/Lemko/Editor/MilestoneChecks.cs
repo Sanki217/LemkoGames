@@ -51,7 +51,7 @@ namespace Lemko.Editor
             Check(shop && shop.Validate() == null,"imported Shop is solvable");
             string asset = VocabularyImporter.Root + "/Vocabulary/demo_apple.asset";
             var guid = AssetDatabase.AssetPathToGUID(asset); var reference = AssetDatabase.LoadAssetAtPath<VocabularyEntry>(asset);
-            VocabularyImporter.Import("Content/Starter");
+            VocabularyImporter.Import(Directory.Exists("Content/CSV/Archive/Starter") ? "Content/CSV/Archive/Starter" : "Content/Starter");
             Check(guid == AssetDatabase.AssetPathToGUID(asset) && reference == AssetDatabase.LoadAssetAtPath<VocabularyEntry>(asset),"reimport preserves GUID and object reference");
             var before = File.ReadAllBytes(StarterSetup.ScenePath);
             StarterSetup.Create();
@@ -62,3 +62,4 @@ namespace Lemko.Editor
         }
     }
 }
+

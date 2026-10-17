@@ -37,7 +37,7 @@ namespace Lemko.Editor
                     Check(SceneManager.GetActiveScene().name=="Shop","Shop navigation");
                     var views=session.shopController.worldRoot.GetComponentsInChildren<WordView>();
                     Check(views.Length==8,"eight displayed products from large pool");
-                    var correct=views.Where(v=>session.shopController.shoppingList.text.Contains(v.Entry.lemko)).ToArray();
+                    var targetIds=session.shopController.listRoot.GetComponentsInChildren<HintPointer>().Select(h=>h.entry.id).ToArray(); var correct=views.Where(v=>targetIds.Contains(v.Entry.id)).ToArray();
                     var wrong=views.Except(correct).ToArray(); Check(correct.Length==5 && wrong.Length==3,"solvable round");
                     int lives=session.Lives;
                     wrong[0].Select(); wrong[0].Select(); Check(session.Lives==lives-1,"duplicate wrong selection");

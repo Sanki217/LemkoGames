@@ -23,6 +23,7 @@ namespace Lemko.Editor
                 if (!entry.sprite || !entry.pronunciation || !entry.verified)
                 { Debug.LogWarning("Missing optional art/audio or unverified language: " + entry.id,entry); warnings++; }
                 string characters = (entry.lemko ?? "") + (entry.polish ?? "") + (entry.english ?? "");
+                characters += string.Concat((entry.translations ?? System.Array.Empty<VocabularyEntry.LocalizedText>()).Select(t => t.text));
                 if (!font.HasCharacters(characters, out uint[] missing, true, true))
                 { Debug.LogError("Font missing Unicode code points for " + entry.id + ": " + string.Join(",",missing),entry); errors++; }
             }
@@ -33,3 +34,4 @@ namespace Lemko.Editor
         }
     }
 }
+

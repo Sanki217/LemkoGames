@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f42738d6755b44ebdccadb2944e44b, type: 3}
+  m_Name: food_plums
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
+  id: food_plums
+  lemko: "\u0441\u043B\u0438\u0432\u043A\u044B"
+  polish: "\u015Bliwki"
+  english: plums
+  sprite: {fileID: 21300000, guid: 15f9d6acbd03f8f48b117d0e9370785b, type: 3}
+  pronunciation: {fileID: 0}
+  tags:
+  - shop
+  - food
+  verified: 0
+  notes: 
+  spriteId: sprite_plums
+  audioId: audio_plums
+  translations:
+  - language: lemko
+    text: "\u0441\u043B\u0438\u0432\u043A\u044B"
+  - language: pl
+    text: "\u015Bliwki"
+  - language: en
+    text: plums

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f42738d6755b44ebdccadb2944e44b, type: 3}
+  m_Name: food_beans
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
+  id: food_beans
+  lemko: "\u0444\u0456\u0437\u043E\u043B\u044F"
+  polish: fasola
+  english: beans
+  sprite: {fileID: 21300000, guid: 6c9872f8289de1f4396ec73d40307324, type: 3}
+  pronunciation: {fileID: 0}
+  tags:
+  - shop
+  - food
+  verified: 0
+  notes: 
+  spriteId: sprite_beans
+  audioId: audio_beans
+  translations:
+  - language: lemko
+    text: "\u0444\u0456\u0437\u043E\u043B\u044F"
+  - language: pl
+    text: fasola
+  - language: en
+    text: beans

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7896149233659331999}
   - component: {fileID: 666237841928192142}
   - component: {fileID: 6583673913050287683}
+  - component: {fileID: 7519452640301053439}
   m_Layer: 0
   m_Name: WorldWord
   m_TagString: Untagged
@@ -106,6 +107,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.8, y: 1.65}
   m_EdgeRadius: 0
+--- !u!114 &7519452640301053439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220674354003777720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0b20d6a19d41bd4b8d121319375943b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.HintPointer
+  entry: {fileID: 0}
+  tooltip: {fileID: 0}
 --- !u!1 &3002829256689735041
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3660096223519095388
 RectTransform:
   m_ObjectHideFlags: 0

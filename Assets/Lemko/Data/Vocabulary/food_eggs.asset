@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f42738d6755b44ebdccadb2944e44b, type: 3}
+  m_Name: food_eggs
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
+  id: food_eggs
+  lemko: "\u044F\u0439\u0446\u044F"
+  polish: jajka
+  english: eggs
+  sprite: {fileID: 21300000, guid: 21474d0bf606fa640b23497adf54625e, type: 3}
+  pronunciation: {fileID: 0}
+  tags:
+  - shop
+  - food
+  verified: 0
+  notes: 
+  spriteId: sprite_eggs
+  audioId: audio_eggs
+  translations:
+  - language: lemko
+    text: "\u044F\u0439\u0446\u044F"
+  - language: pl
+    text: jajka
+  - language: en
+    text: eggs

@@ -29,6 +29,7 @@ namespace Lemko
         static void ResetSession() { sharedProgress=null; sharedLives=0; sharedPractice=false; }
         void Start()
         {
+            tooltip.Revealed+=RecordHint;
             if(sharedProgress==null) { sharedProgress=ProgressStore.Load(); sharedLives=shop.startingLives; }
             ApplyPreferences();
             if(useSeparateScenes && SceneManager.GetActiveScene().name=="Shop") OpenShop();
@@ -38,15 +39,16 @@ namespace Lemko
         {
             string progress=shopController ? shopController.ProgressLabel : "Village learning";
             hud.text=(Practice ? "Practice - unlimited lives" : "Lives: "+Lives)+"  |  "+progress;
-            if(shopController) hud.text+="\nPoints: "+shopController.Points+"  |  Next correct: x"+shopController.NextMultiplier;
+            if(shopController) hud.text+="\nPoints: "+shopController.Points+"  |  Next: x"+shopController.NextMultiplier+"  |  Hints used: "+shopController.HintsUsed;
         }
+        void RecordHint() { if(shopController) shopController.RecordHint(); }
         public void ToggleMute() { Progress.muted=!Progress.muted; ApplyPreferences(); ProgressStore.Save(Progress); }
         public void ToggleLanguage() { Progress.english=!Progress.english; ApplyPreferences(); tooltip.Hide(); ProgressStore.Save(Progress); }
         void ApplyPreferences()
         {
             tooltip.English=Progress.english; audioService.SetMuted(Progress.muted);
             muteButton.GetComponentInChildren<TMP_Text>().text=Progress.muted ? "Audio: off" : "Audio: on";
-            languageButton.GetComponentInChildren<TMP_Text>().text=Progress.english ? "Hints: English" : "Hints: Polski";
+            languageButton.GetComponentInChildren<TMP_Text>().text=Progress.english ? "Hints: English" : "Hints: Polish";
         }
         static void Hide(GameObject panel) { if(panel) panel.SetActive(false); }
         void Clear()
@@ -96,18 +98,19 @@ namespace Lemko
         public void Finish(bool complete)
         {
             var correct=shopController.Correct; var mistakes=shopController.Mistakes; int points=shopController.Points;
+            int hints=shopController.HintsUsed; Progress.lastShopHints=hints;
             if(complete) Progress.shopCompletions++;
             Progress.lastCorrect=correct; Progress.lastMistakes=mistakes; Progress.lastShopPoints=points;
             Progress.bestShopPoints=Mathf.Max(Progress.bestShopPoints,points); ProgressStore.Save(Progress);
             Clear(); resultsPanel.SetActive(true);
             results.text=(complete ? "Shopping complete!" : "Attempt finished")+"\nPoints: "+points+"  |  Best: "+Progress.bestShopPoints
-                +"\nCorrect: "+correct+"  |  Mistakes: "+mistakes+"\n"+(Practice ? "Practice session" : "Lives remaining: "+Lives);
+                +"\nCorrect: "+correct+"  |  Mistakes: "+mistakes+"  |  Hints used: "+hints+"\n"+(Practice ? "Practice session" : "Lives remaining: "+Lives);
             RefreshHud();
         }
         public void FreshAttempt() { sharedLives=shop.startingLives; sharedPractice=false; OpenShop(); }
         public void StartPractice() { sharedPractice=true; OpenShop(); }
         void OnApplicationPause(bool paused) { if(paused && Progress!=null) ProgressStore.Save(Progress); }
         void OnApplicationQuit() { if(Progress!=null) ProgressStore.Save(Progress); }
-        void OnDestroy() { if(tooltip) tooltip.Hide(); if(audioService) audioService.Stop(); }
+        void OnDestroy() { if(tooltip) { tooltip.Revealed-=RecordHint; tooltip.Hide(); } if(audioService) audioService.Stop(); }
     }
 }

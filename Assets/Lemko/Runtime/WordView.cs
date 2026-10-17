@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 namespace Lemko
 {
-    public sealed class WordView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+    public sealed class WordView : MonoBehaviour, IPointerClickHandler
     {
         public VocabularyEntry entry;
         public TMP_Text label;
@@ -20,6 +20,7 @@ namespace Lemko
         public GameObject worldSpeaker;
         public Vector2 pictureBounds = new Vector2(1.5f, 1.65f);
         bool submitted;
+        HintPointer hint;
         [SerializeField] Color idleColor = new Color(.39f, .53f, .39f);
         Action<WordView> selected;
         public VocabularyEntry Entry => entry;
@@ -30,7 +31,8 @@ namespace Lemko
             if (tooltip) tooltip.Hide(this);
             entry = word; tooltip = tips; audioService = audio; selected = onSelect;
             submitted = false;
-            label.text = word ? word.lemko : "Missing word";
+            hint=GetComponent<HintPointer>(); if(!hint) hint=gameObject.AddComponent<HintPointer>(); hint.Bind(word,tips);
+            if(label) { label.text = word ? word.lemko : "Missing word"; label.gameObject.SetActive(!worldPicture); }
             if (picture) {
                 picture.sprite = word ? word.sprite : null;
                 picture.color = word && word.sprite ? Color.white : new Color(.75f, .82f, .69f);
@@ -50,16 +52,14 @@ namespace Lemko
         }
         public void Select() { if (entry && !submitted && (!selectButton || selectButton.interactable)) selected?.Invoke(this); }
         public void Speak() { if (entry && audioService) audioService.Play(entry.pronunciation); }
-        public void OnPointerClick(PointerEventData e) { if (worldPicture && e.button == PointerEventData.InputButton.Left) Select(); }
+        public void OnPointerClick(PointerEventData e) { if (worldPicture && e.button == PointerEventData.InputButton.Left && (!hint || !hint.BlocksSelection)) Select(); }
         public void Mark(bool correct)
         {
             submitted = true;
             if(selectButton) { selectButton.interactable = false; selectButton.image.color = correct ? new Color(.15f, .45f, .25f) : new Color(.6f, .2f, .15f); }
             if(worldPicture) worldPicture.color = correct ? new Color(.5f,1f,.5f) : new Color(1f,.4f,.4f);
-            label.text = (correct ? "OK: " : "Try another: ") + entry.lemko;
+            if(label && !worldPicture) label.text = (correct ? "OK: " : "Try another: ") + entry.lemko;
         }
-        public void OnPointerEnter(PointerEventData e) { if (entry && tooltip) tooltip.Show(this, entry, e.position); }
-        public void OnPointerExit(PointerEventData e) { if (tooltip) tooltip.Hide(this); }
-        void OnDisable() { if (tooltip) tooltip.Hide(this); selected = null; }
+        void OnDisable() { if (tooltip && hint) tooltip.Hide(hint); selected = null; }
     }
 }

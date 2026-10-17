@@ -38,7 +38,7 @@ namespace Lemko.Editor
             foreach(var name in new[]{"StarterSetup","VocabularyImporter","CsvTable","ContentValidator","MilestoneChecks","WorldShopSetup"}) Move("Assets/Editor/"+name+".cs","Assets/Lemko/Editor/"+name+".cs");
             AssetDatabase.SaveAssets();
             if(File.Exists(ScenePath)) { Debug.Log("2D scene preserved: " + ScenePath); return; }
-            string carrotPath = "Assets/Lemko/Art/Sprites/Products/demo_carrot.png";
+            string carrotPath = "Assets/Lemko/Sprites/Products/sprite_carrot.png";
             var importer = (TextureImporter)AssetImporter.GetAtPath(carrotPath);
             if(!importer) throw new InvalidOperationException("Missing supplied carrot: " + carrotPath);
             importer.textureType = TextureImporterType.Sprite; importer.spriteImportMode = SpriteImportMode.Single;
@@ -80,7 +80,7 @@ namespace Lemko.Editor
         }
         static Sprite Placeholder()
         {
-            const string path = "Assets/Lemko/Art/Sprites/Products/placeholder.png";
+            const string path = "Assets/Lemko/Sprites/Placeholders/Products/sprite_missing.png";
             if(!File.Exists(path)) {
                 var texture = new Texture2D(8,8); texture.SetPixels(Enumerable.Repeat(Color.white,64).ToArray()); texture.Apply();
                 File.WriteAllBytes(path,texture.EncodeToPNG()); UnityEngine.Object.DestroyImmediate(texture); AssetDatabase.ImportAsset(path);

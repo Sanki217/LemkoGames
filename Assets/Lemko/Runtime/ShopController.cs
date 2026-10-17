@@ -15,6 +15,12 @@ namespace Lemko
         public Transform[] productSlots;
         public TMP_Text shoppingList, feedback;
         public Button finishButton;
+        [Header("Interactive shopping list")]
+        public RectTransform listRoot;
+        public TMP_Text listRowPrefab;
+        readonly List<TMP_Text> listRows=new List<TMP_Text>();
+        public int HintsUsed { get; private set; }
+        public void RecordHint() { if(round!=null) { HintsUsed++; session.RefreshHud(); } }
         readonly List<WordView> views = new List<WordView>();
         List<VocabularyEntry> targets;
         ShopRound round;
@@ -28,7 +34,7 @@ namespace Lemko
         public string ProgressLabel => active ? "Shopping list: " + Correct + "/" + round.Total : "Village learning";
         public void Begin(GameSession owner)
         {
-            Close(); session = owner; score = new ShopScore();
+            Close(); session = owner; score = new ShopScore(); HintsUsed=0;
             var error = definition.Validate();
             if (error != null) { feedback.text = error; return; }
             if (worldRoot && (productSlots == null || productSlots.Length < Mathf.Min(definition.displayedProductCount,definition.products.Count))) {
@@ -49,7 +55,11 @@ namespace Lemko
                 session.Encounter(word);
             }
             ProgressStore.Save(session.Progress);
-            feedback.text = "Choose each product on the list. Hover for translation; Play gives pronunciation when available.";
+            if(listRoot && listRowPrefab) foreach(var word in targets) {
+                var row=Instantiate(listRowPrefab,listRoot); row.gameObject.SetActive(true);
+                row.GetComponent<HintPointer>().Bind(word,session.tooltip); listRows.Add(row);
+            }
+            feedback.text = "Choose the pictures. Hover over a word or picture for 3 seconds to use a hint.";
             finishButton.gameObject.SetActive(false); UpdateList();
         }
         static void Shuffle<T>(List<T> items)
@@ -73,7 +83,13 @@ namespace Lemko
             UpdateList(); session.RefreshHud();
             if (round.Complete) { active = false; finishButton.gameObject.SetActive(true); feedback.text = "Everything collected! View your results."; }
         }
-        void UpdateList() => shoppingList.text = definition.shoppingListTitle + "\n\n" + string.Join("\n", targets.Select(w => (round.IsComplete(w.id) ? "[OK] " : "[  ] ") + w.lemko));
+        void UpdateList()
+        {
+            if(listRoot && listRowPrefab) {
+                shoppingList.text=definition.shoppingListTitle;
+                for(int i=0;i<targets.Count;i++) listRows[i].text=(round.IsComplete(targets[i].id) ? "[OK] " : "[  ] ")+targets[i].lemko;
+            } else shoppingList.text=definition.shoppingListTitle+"\n\n"+string.Join("\n",targets.Select(w=>(round.IsComplete(w.id) ? "[OK] " : "[  ] ")+w.lemko));
+        }
         public void Complete() { if (round != null && round.Complete && session) session.Finish(true); }
         public void Close()
         {
@@ -82,6 +98,7 @@ namespace Lemko
             targets = null;
             foreach (var view in views) if (view) { view.gameObject.SetActive(false); Destroy(view.gameObject); }
             views.Clear();
+            foreach(var row in listRows) if(row) { row.gameObject.SetActive(false); Destroy(row.gameObject); } listRows.Clear();
             if(worldRoot) worldRoot.gameObject.SetActive(false);
             if (session) { session.tooltip.Hide(); session.audioService.Stop(); }
         }

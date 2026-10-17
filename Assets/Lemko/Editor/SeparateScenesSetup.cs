@@ -22,7 +22,7 @@ namespace Lemko.Editor
             Directory.CreateDirectory(Folder); AssetDatabase.Refresh();
             var shop=AssetDatabase.LoadAssetAtPath<ShopDefinition>(VocabularyImporter.Root+"/Shop.asset");
             shop.displayedProductCount=8; shop.shoppingListTitle="Што треба купити:"; EditorUtility.SetDirty(shop);
-            VocabularyImporter.Import("Content/Shop");
+            VocabularyImporter.Import("Content/CSV");
             if(!File.Exists(VillagePath)) MakeVillage();
             string shopPath=Folder+"/Shop.unity";
             if(!File.Exists(shopPath)) MakeShop(shopPath);
@@ -95,7 +95,7 @@ namespace Lemko.Editor
             var old=ProgressStore.Parse("{\"version\":1,\"shopCompletions\":2}"); Check(old.bestShopPoints==0 && old.shopCompletions==2,"old save compatibility");
             var shop=AssetDatabase.LoadAssetAtPath<ShopDefinition>(VocabularyImporter.Root+"/Shop.asset");
             Check(shop.Validate()==null && shop.products.Count==47,"47 word pool");
-            Check(shop.products.All(w=>w.id.StartsWith("shop_") && !w.lemko.Contains("[DEMO]")),"real source content");
+            Check(shop.products.All(w=>w.id.StartsWith("food_") && !w.lemko.Contains("[DEMO]")),"real source content");
             var paths=new[]{VillagePath}.Concat(Activities.Select(n=>Folder+"/"+n+".unity"));
             foreach(var path in paths) {
                 var scene=EditorSceneManager.OpenScene(path,OpenSceneMode.Single);

@@ -9,8 +9,8 @@ namespace Lemko.Editor
 {
     public static class PlaceholderArtSetup
     {
-        public const string Root="Assets/Lemko/Art/Placeholders";
-        [MenuItem("Lemko/Art/Apply simple placeholder art (preserve assigned sprites)")]
+        public const string Root="Assets/Lemko/Sprites/Placeholders";
+        [MenuItem("Lemko/Legacy/Apply backgrounds to combined scene")]
         public static void Apply()
         {
             if(!Application.isBatchMode && !EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
@@ -27,7 +27,7 @@ namespace Lemko.Editor
             foreach(var name in new[]{"apple","pear","bread","cheese","egg","milk","water"}) {
                 var entry=AssetDatabase.LoadAssetAtPath<VocabularyEntry>(VocabularyImporter.Root+"/Vocabulary/demo_"+name+".asset");
                 if(entry && !entry.sprite) {
-                    entry.sprite=AssetDatabase.LoadAssetAtPath<Sprite>(Root+"/Products/ph_"+name+".png");
+                    entry.sprite=AssetDatabase.LoadAssetAtPath<Sprite>(Root+"/Products/sprite_"+name+".png");
                     EditorUtility.SetDirty(entry);
                 }
             }
@@ -61,3 +61,4 @@ namespace Lemko.Editor
         }
     }
 }
+

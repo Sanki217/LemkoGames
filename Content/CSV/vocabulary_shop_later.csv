@@ -1,0 +1,30 @@
+﻿id,text_lemko,text_pl,text_en,sprite_id,audio_id,tags,verified,notes,source_level
+food_parsley,натина,nać pietruszki,parsley,sprite_parsley,audio_parsley,shop|food,false,,2
+food_strawberries,великы ягоды,truskawki,strawberries,sprite_strawberries,audio_strawberries,shop|food,false,,2
+food_blueberries,яфыры,jagody,blueberries,sprite_blueberries,audio_blueberries,shop|food,false,,2
+food_blackberries,чорниці,jeżyny,blackberries,sprite_blackberries,audio_blackberries,shop|food,false,,2
+food_fava_bean,біб,bób,fava bean,sprite_fava_bean,audio_fava_bean,shop|food,false,,2
+food_horseradish,хрін,chrzan,horseraddish,sprite_horseradish,audio_horseradish,shop|food,false,,2
+food_turnip,ріпа,rzepa,turnip,sprite_turnip,audio_turnip,shop|food,false,,2
+food_radish,редковця,rzodkiewka,radish,sprite_radish,audio_radish,shop|food,false,,2
+food_mushrooms,губы,grzyby,mushrooms,sprite_mushrooms,audio_mushrooms,shop|food,false,wszystkie grzyby prócz prawdziwków!,2
+food_porcini_mushrooms,грибы,prawdziwki,porcini mushrooms,sprite_porcini_mushrooms,audio_porcini_mushrooms,shop|food,false,tylko prawdziwki,2
+food_rosemary,розмария,rozmaryn,rosemary,sprite_rosemary,audio_rosemary,shop|food,false,,2
+food_marjoram,маєран,majeranek,marjoram,sprite_marjoram,audio_marjoram,shop|food,false,,2
+food_yeast,дріжджы,drożdże,yeast,sprite_yeast,audio_yeast,shop|food,false,,3
+food_gooseberry,ґіґацкы,agrest,gooseberry,sprite_gooseberry,audio_gooseberry,shop|food,false,,3
+food_currant,винничкы,porzeczki,currant,sprite_currant,audio_currant,shop|food,false,,3
+food_buckwheat_groats,татарка,kasza gryczana,buckwheat groats,sprite_buckwheat_groats,audio_buckwheat_groats,shop|food,false,,3
+food_lentil,ленча,soczewica,lentil,sprite_lentil,audio_lentil,shop|food,false,,3
+food_chive,цибы,szczypior,chive,sprite_chive,audio_chive,shop|food,false,,3
+food_chives,зрізуванец,szczypiorek,chives,sprite_chives,audio_chives,shop|food,false,,3
+food_corn,тендериця,kukurydza,corn,sprite_corn,audio_corn,shop|food,false,,3
+food_walnuts,олосковы оріхы,orzechy włoskie,walnuts,sprite_walnuts,audio_walnuts,shop|food,false,,3
+food_hazelnuts,лісковы оріхы,orzechy laskowe,hazelnuts,sprite_hazelnuts,audio_hazelnuts,shop|food,false,,3
+food_bay_leaf,бобковий листок,liść laurowy,bay leaf,sprite_bay_leaf,audio_bay_leaf,shop|food,false,,3
+food_aspic,студенина,galareta,aspic (meat jelly),sprite_aspic,audio_aspic,shop|food,false,"taka mięsna, z jajkiem i dodatkami",3
+food_apple_pie,ябчаник,jabłecznik,apple pie,sprite_apple_pie,audio_apple_pie,shop|food,false,,3
+food_poppy_seed_cake,маковник,makowiec,poppy seed cake,sprite_poppy_seed_cake,audio_poppy_seed_cake,shop|food,false,,3
+food_challah,плетінка,chałka,challah,sprite_challah,audio_challah,shop|food,false,,3
+food_canned_herring,следзі в бляшанці,śledzie w puszce,canned herring,sprite_canned_herring,audio_canned_herring,shop|food,false,,3
+food_barley_groats,ярчана каша,kasza jęczmienna,barley groats,sprite_barley_groats,audio_barley_groats,shop|food,false,,3

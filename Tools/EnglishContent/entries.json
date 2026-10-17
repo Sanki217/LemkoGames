@@ -1,0 +1,688 @@
+{
+  "entries": [
+    {
+      "oldId": "shop_chleb",
+      "id": "food_bread",
+      "slug": "bread",
+      "spriteId": "sprite_bread",
+      "audioId": "audio_bread",
+      "oldSpritePath": "Assets/Lemko/Art/Placeholders/Products/ph_bread.png",
+      "active": true
+    },
+    {
+      "oldId": "shop_maslo",
+      "id": "food_butter",
+      "slug": "butter",
+      "spriteId": "sprite_butter",
+      "audioId": "audio_butter",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_jajka",
+      "id": "food_eggs",
+      "slug": "eggs",
+      "spriteId": "sprite_eggs",
+      "audioId": "audio_eggs",
+      "oldSpritePath": "Assets/Lemko/Art/Placeholders/Products/ph_egg.png",
+      "active": true
+    },
+    {
+      "oldId": "shop_mleko",
+      "id": "food_milk",
+      "slug": "milk",
+      "spriteId": "sprite_milk",
+      "audioId": "audio_milk",
+      "oldSpritePath": "Assets/Lemko/Art/Placeholders/Products/ph_milk.png",
+      "active": true
+    },
+    {
+      "oldId": "shop_mieso",
+      "id": "food_meat",
+      "slug": "meat",
+      "spriteId": "sprite_meat",
+      "audioId": "audio_meat",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_maka",
+      "id": "food_flour",
+      "slug": "flour",
+      "spriteId": "sprite_flour",
+      "audioId": "audio_flour",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_ser",
+      "id": "food_cheese",
+      "slug": "cheese",
+      "spriteId": "sprite_cheese",
+      "audioId": "audio_cheese",
+      "oldSpritePath": "Assets/Lemko/Art/Placeholders/Products/ph_cheese.png",
+      "active": true
+    },
+    {
+      "oldId": "shop_smietana",
+      "id": "food_cream",
+      "slug": "cream",
+      "spriteId": "sprite_cream",
+      "audioId": "audio_cream",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_woda",
+      "id": "food_water",
+      "slug": "water",
+      "spriteId": "sprite_water",
+      "audioId": "audio_water",
+      "oldSpritePath": "Assets/Lemko/Art/Placeholders/Products/ph_water.png",
+      "active": true
+    },
+    {
+      "oldId": "shop_herbata",
+      "id": "food_tea",
+      "slug": "tea",
+      "spriteId": "sprite_tea",
+      "audioId": "audio_tea",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_kawa",
+      "id": "food_coffee",
+      "slug": "coffee",
+      "spriteId": "sprite_coffee",
+      "audioId": "audio_coffee",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_olej",
+      "id": "food_oil",
+      "slug": "oil",
+      "spriteId": "sprite_oil",
+      "audioId": "audio_oil",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_ocet",
+      "id": "food_vinegar",
+      "slug": "vinegar",
+      "spriteId": "sprite_vinegar",
+      "audioId": "audio_vinegar",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_makaron",
+      "id": "food_pasta",
+      "slug": "pasta",
+      "spriteId": "sprite_pasta",
+      "audioId": "audio_pasta",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_szynka",
+      "id": "food_ham",
+      "slug": "ham",
+      "spriteId": "sprite_ham",
+      "audioId": "audio_ham",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_kielbasa",
+      "id": "food_sausage",
+      "slug": "sausage",
+      "spriteId": "sprite_sausage",
+      "audioId": "audio_sausage",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_ryba",
+      "id": "food_fish",
+      "slug": "fish",
+      "spriteId": "sprite_fish",
+      "audioId": "audio_fish",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_maliny",
+      "id": "food_raspberries",
+      "slug": "raspberries",
+      "spriteId": "sprite_raspberries",
+      "audioId": "audio_raspberries",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_jablka",
+      "id": "food_apples",
+      "slug": "apples",
+      "spriteId": "sprite_apples",
+      "audioId": "audio_apples",
+      "oldSpritePath": "Assets/Lemko/Art/Placeholders/Products/ph_apple.png",
+      "active": true
+    },
+    {
+      "oldId": "shop_gruszki",
+      "id": "food_pears",
+      "slug": "pears",
+      "spriteId": "sprite_pears",
+      "audioId": "audio_pears",
+      "oldSpritePath": "Assets/Lemko/Art/Placeholders/Products/ph_pear.png",
+      "active": true
+    },
+    {
+      "oldId": "shop_sliwki",
+      "id": "food_plums",
+      "slug": "plums",
+      "spriteId": "sprite_plums",
+      "audioId": "audio_plums",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_cytryna",
+      "id": "food_lemon",
+      "slug": "lemon",
+      "spriteId": "sprite_lemon",
+      "audioId": "audio_lemon",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_wisnie",
+      "id": "food_sour_cherries",
+      "slug": "sour_cherries",
+      "spriteId": "sprite_sour_cherries",
+      "audioId": "audio_sour_cherries",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_czeresnie",
+      "id": "food_sweet_cherries",
+      "slug": "sweet_cherries",
+      "spriteId": "sprite_sweet_cherries",
+      "audioId": "audio_sweet_cherries",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_winogrono",
+      "id": "food_grapes",
+      "slug": "grapes",
+      "spriteId": "sprite_grapes",
+      "audioId": "audio_grapes",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_ziemniaki",
+      "id": "food_potatoes",
+      "slug": "potatoes",
+      "spriteId": "sprite_potatoes",
+      "audioId": "audio_potatoes",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_buraki",
+      "id": "food_beetroots",
+      "slug": "beetroots",
+      "spriteId": "sprite_beetroots",
+      "audioId": "audio_beetroots",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_fasola",
+      "id": "food_beans",
+      "slug": "beans",
+      "spriteId": "sprite_beans",
+      "audioId": "audio_beans",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_groch",
+      "id": "food_peas",
+      "slug": "peas",
+      "spriteId": "sprite_peas",
+      "audioId": "audio_peas",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_kapusta",
+      "id": "food_cabbage",
+      "slug": "cabbage",
+      "spriteId": "sprite_cabbage",
+      "audioId": "audio_cabbage",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_salata",
+      "id": "food_lettuce",
+      "slug": "lettuce",
+      "spriteId": "sprite_lettuce",
+      "audioId": "audio_lettuce",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_papryka",
+      "id": "food_bell_pepper",
+      "slug": "bell_pepper",
+      "spriteId": "sprite_bell_pepper",
+      "audioId": "audio_bell_pepper",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_ogorki",
+      "id": "food_cucumbers",
+      "slug": "cucumbers",
+      "spriteId": "sprite_cucumbers",
+      "audioId": "audio_cucumbers",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_marchew",
+      "id": "food_carrot",
+      "slug": "carrot",
+      "spriteId": "sprite_carrot",
+      "audioId": "audio_carrot",
+      "oldSpritePath": "Assets/Lemko/Art/Sprites/Products/demo_carrot.png",
+      "active": true
+    },
+    {
+      "oldId": "shop_pietruszka",
+      "id": "food_parsley_root",
+      "slug": "parsley_root",
+      "spriteId": "sprite_parsley_root",
+      "audioId": "audio_parsley_root",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_czosnek",
+      "id": "food_garlic",
+      "slug": "garlic",
+      "spriteId": "sprite_garlic",
+      "audioId": "audio_garlic",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_cebula",
+      "id": "food_onion",
+      "slug": "onion",
+      "spriteId": "sprite_onion",
+      "audioId": "audio_onion",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_dynia",
+      "id": "food_pumpkin",
+      "slug": "pumpkin",
+      "spriteId": "sprite_pumpkin",
+      "audioId": "audio_pumpkin",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_sol",
+      "id": "food_salt",
+      "slug": "salt",
+      "spriteId": "sprite_salt",
+      "audioId": "audio_salt",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_pieprz",
+      "id": "food_black_pepper",
+      "slug": "black_pepper",
+      "spriteId": "sprite_black_pepper",
+      "audioId": "audio_black_pepper",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_cukier",
+      "id": "food_sugar",
+      "slug": "sugar",
+      "spriteId": "sprite_sugar",
+      "audioId": "audio_sugar",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_mieta",
+      "id": "food_mint",
+      "slug": "mint",
+      "spriteId": "sprite_mint",
+      "audioId": "audio_mint",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_piwo",
+      "id": "food_beer",
+      "slug": "beer",
+      "spriteId": "sprite_beer",
+      "audioId": "audio_beer",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_wodka",
+      "id": "food_vodka",
+      "slug": "vodka",
+      "spriteId": "sprite_vodka",
+      "audioId": "audio_vodka",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_pomidor",
+      "id": "food_tomato",
+      "slug": "tomato",
+      "spriteId": "sprite_tomato",
+      "audioId": "audio_tomato",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_bulki",
+      "id": "food_buns",
+      "slug": "buns",
+      "spriteId": "sprite_buns",
+      "audioId": "audio_buns",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_rogalik",
+      "id": "food_croissant",
+      "slug": "croissant",
+      "spriteId": "sprite_croissant",
+      "audioId": "audio_croissant",
+      "oldSpritePath": "",
+      "active": true
+    },
+    {
+      "oldId": "shop_nac_pietruszki",
+      "id": "food_parsley",
+      "slug": "parsley",
+      "spriteId": "sprite_parsley",
+      "audioId": "audio_parsley",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_truskawki",
+      "id": "food_strawberries",
+      "slug": "strawberries",
+      "spriteId": "sprite_strawberries",
+      "audioId": "audio_strawberries",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_jagody",
+      "id": "food_blueberries",
+      "slug": "blueberries",
+      "spriteId": "sprite_blueberries",
+      "audioId": "audio_blueberries",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_jezyny",
+      "id": "food_blackberries",
+      "slug": "blackberries",
+      "spriteId": "sprite_blackberries",
+      "audioId": "audio_blackberries",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_bob",
+      "id": "food_fava_bean",
+      "slug": "fava_bean",
+      "spriteId": "sprite_fava_bean",
+      "audioId": "audio_fava_bean",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_chrzan",
+      "id": "food_horseradish",
+      "slug": "horseradish",
+      "spriteId": "sprite_horseradish",
+      "audioId": "audio_horseradish",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_rzepa",
+      "id": "food_turnip",
+      "slug": "turnip",
+      "spriteId": "sprite_turnip",
+      "audioId": "audio_turnip",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_rzodkiewka",
+      "id": "food_radish",
+      "slug": "radish",
+      "spriteId": "sprite_radish",
+      "audioId": "audio_radish",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_grzyby",
+      "id": "food_mushrooms",
+      "slug": "mushrooms",
+      "spriteId": "sprite_mushrooms",
+      "audioId": "audio_mushrooms",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_prawdziwki",
+      "id": "food_porcini_mushrooms",
+      "slug": "porcini_mushrooms",
+      "spriteId": "sprite_porcini_mushrooms",
+      "audioId": "audio_porcini_mushrooms",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_rozmaryn",
+      "id": "food_rosemary",
+      "slug": "rosemary",
+      "spriteId": "sprite_rosemary",
+      "audioId": "audio_rosemary",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_majeranek",
+      "id": "food_marjoram",
+      "slug": "marjoram",
+      "spriteId": "sprite_marjoram",
+      "audioId": "audio_marjoram",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_drozdze",
+      "id": "food_yeast",
+      "slug": "yeast",
+      "spriteId": "sprite_yeast",
+      "audioId": "audio_yeast",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_agrest",
+      "id": "food_gooseberry",
+      "slug": "gooseberry",
+      "spriteId": "sprite_gooseberry",
+      "audioId": "audio_gooseberry",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_porzeczki",
+      "id": "food_currant",
+      "slug": "currant",
+      "spriteId": "sprite_currant",
+      "audioId": "audio_currant",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_kasza_gryczana",
+      "id": "food_buckwheat_groats",
+      "slug": "buckwheat_groats",
+      "spriteId": "sprite_buckwheat_groats",
+      "audioId": "audio_buckwheat_groats",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_soczewica",
+      "id": "food_lentil",
+      "slug": "lentil",
+      "spriteId": "sprite_lentil",
+      "audioId": "audio_lentil",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_szczypior",
+      "id": "food_chive",
+      "slug": "chive",
+      "spriteId": "sprite_chive",
+      "audioId": "audio_chive",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_szczypiorek",
+      "id": "food_chives",
+      "slug": "chives",
+      "spriteId": "sprite_chives",
+      "audioId": "audio_chives",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_kukurydza",
+      "id": "food_corn",
+      "slug": "corn",
+      "spriteId": "sprite_corn",
+      "audioId": "audio_corn",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_orzechy_wloskie",
+      "id": "food_walnuts",
+      "slug": "walnuts",
+      "spriteId": "sprite_walnuts",
+      "audioId": "audio_walnuts",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_orzechy_laskowe",
+      "id": "food_hazelnuts",
+      "slug": "hazelnuts",
+      "spriteId": "sprite_hazelnuts",
+      "audioId": "audio_hazelnuts",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_lisc_laurowy",
+      "id": "food_bay_leaf",
+      "slug": "bay_leaf",
+      "spriteId": "sprite_bay_leaf",
+      "audioId": "audio_bay_leaf",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_galareta",
+      "id": "food_aspic",
+      "slug": "aspic",
+      "spriteId": "sprite_aspic",
+      "audioId": "audio_aspic",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_jablecznik",
+      "id": "food_apple_pie",
+      "slug": "apple_pie",
+      "spriteId": "sprite_apple_pie",
+      "audioId": "audio_apple_pie",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_makowiec",
+      "id": "food_poppy_seed_cake",
+      "slug": "poppy_seed_cake",
+      "spriteId": "sprite_poppy_seed_cake",
+      "audioId": "audio_poppy_seed_cake",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_chalka",
+      "id": "food_challah",
+      "slug": "challah",
+      "spriteId": "sprite_challah",
+      "audioId": "audio_challah",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_sledzie_w_puszce",
+      "id": "food_canned_herring",
+      "slug": "canned_herring",
+      "spriteId": "sprite_canned_herring",
+      "audioId": "audio_canned_herring",
+      "oldSpritePath": "",
+      "active": false
+    },
+    {
+      "oldId": "shop_kasza_jeczmienna",
+      "id": "food_barley_groats",
+      "slug": "barley_groats",
+      "spriteId": "sprite_barley_groats",
+      "audioId": "audio_barley_groats",
+      "oldSpritePath": "",
+      "active": false
+    }
+  ]
+}
