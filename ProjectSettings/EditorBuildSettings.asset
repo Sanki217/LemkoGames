@@ -5,6 +5,33 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 1
+    path: Assets/Lemko/Scenes/Village.unity
+    guid: 63f83dfbc57e97c49a524306ee07a194
+  - enabled: 1
+    path: Assets/Lemko/Scenes/Activities/Shop.unity
+    guid: 993d576bd955de44baf2321857fd7d16
+  - enabled: 1
+    path: Assets/Lemko/Scenes/Activities/FamilyTree.unity
+    guid: 3a5d76b61338c62448d09465bfca81d4
+  - enabled: 1
+    path: Assets/Lemko/Scenes/Activities/Farm.unity
+    guid: ef3b782db04a3a2448fc8594ce39b4d4
+  - enabled: 1
+    path: Assets/Lemko/Scenes/Activities/House.unity
+    guid: f7c634d1907f26543aab243b0effe3a8
+  - enabled: 1
+    path: Assets/Lemko/Scenes/Activities/Memory.unity
+    guid: 781d314f713f8e44f8fa80e5cc1849e2
+  - enabled: 1
+    path: Assets/Lemko/Scenes/Activities/Numbers.unity
+    guid: 8f6948bc6ac70b646952fe96d3009dd9
+  - enabled: 1
+    path: Assets/Lemko/Scenes/Activities/Alphabet.unity
+    guid: 8913ee6ea046f034781aa5a802a1001c
+  - enabled: 1
+    path: Assets/Lemko/Scenes/Activities/Weather.unity
+    guid: 896c240ac9b0b144f9b81ef044181d41
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05

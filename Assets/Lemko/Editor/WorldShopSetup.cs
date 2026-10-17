@@ -113,7 +113,7 @@ namespace Lemko.Editor
             if(!session || !session.shopController.worldRoot) throw new Exception("Open the 2D scene before validation.");
             if(session.shop.Validate()!=null) throw new Exception(session.shop.Validate());
             if(session.shopController.worldRoot.GetComponentInParent<Canvas>()) throw new Exception("World products must be outside Canvas.");
-            if(session.shopController.productSlots.Length < session.shop.products.Count) throw new Exception("Insufficient product slots.");
+            if(session.shopController.productSlots.Length < Mathf.Min(session.shop.displayedProductCount, session.shop.products.Count)) throw new Exception("Insufficient product slots.");
             if(!session.shopController.wordPrefab.GetComponent<Collider2D>() || !session.shopController.wordPrefab.worldPicture) throw new Exception("World prefab missing collider or sprite.");
             foreach(var root in session.gameObject.scene.GetRootGameObjects()) foreach(var t in root.GetComponentsInChildren<Transform>(true))
                 if(GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(t.gameObject)>0) throw new Exception("Missing script: " + t.name);

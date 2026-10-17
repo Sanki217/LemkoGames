@@ -20,20 +20,24 @@ namespace Lemko
         ShopRound round;
         GameSession session;
         bool active;
+        ShopScore score = new ShopScore();
+        public int Points => score.Points;
+        public int NextMultiplier => score.NextMultiplier;
         public int Correct => round?.Correct ?? 0;
         public int Mistakes => round?.Mistakes ?? 0;
         public string ProgressLabel => active ? "Shopping list: " + Correct + "/" + round.Total : "Village learning";
         public void Begin(GameSession owner)
         {
-            Close(); session = owner;
+            Close(); session = owner; score = new ShopScore();
             var error = definition.Validate();
             if (error != null) { feedback.text = error; return; }
-            if (worldRoot && (productSlots == null || productSlots.Length < definition.products.Count)) {
+            if (worldRoot && (productSlots == null || productSlots.Length < Mathf.Min(definition.displayedProductCount,definition.products.Count))) {
                 feedback.text = "Add one scene product slot for every configured product."; return;
             }
             if(worldRoot) worldRoot.gameObject.SetActive(true);
             var products = new List<VocabularyEntry>(definition.products);
             Shuffle(products);
+            products = products.Take(definition.displayedProductCount).ToList();
             targets = products.Take(definition.taskCount).ToList();
             round = new ShopRound(targets.Select(w => w.id), products.Select(w => w.id));
             Shuffle(products); active = true;
@@ -45,7 +49,7 @@ namespace Lemko
                 session.Encounter(word);
             }
             ProgressStore.Save(session.Progress);
-            feedback.text = "Choose each product on the list. Hover for translation; speaker plays available audio.\nDEVELOPMENT CONTENT - not verified Lemko.";
+            feedback.text = "Choose each product on the list. Hover for translation; Play gives pronunciation when available.";
             finishButton.gameObject.SetActive(false); UpdateList();
         }
         static void Shuffle<T>(List<T> items)
@@ -57,6 +61,7 @@ namespace Lemko
             if (!active || !session.CanAnswer) return;
             var result = round.Select(view.Entry.id);
             if (result == SelectionResult.Ignored) return;
+            int awarded = score.Apply(result);
             view.Mark(result == SelectionResult.Correct);
             if (result == SelectionResult.Incorrect)
             {
@@ -64,11 +69,11 @@ namespace Lemko
                 session.Wrong();
                 if (!active) return;
             }
-            else feedback.text = "Correct! Product checked off.";
+            else feedback.text = "Correct! +" + awarded + " points. Next correct answer: x" + score.NextMultiplier;
             UpdateList(); session.RefreshHud();
             if (round.Complete) { active = false; finishButton.gameObject.SetActive(true); feedback.text = "Everything collected! View your results."; }
         }
-        void UpdateList() => shoppingList.text = "SHOPPING LIST\n\n" + string.Join("\n", targets.Select(w => (round.IsComplete(w.id) ? "[OK] " : "[  ] ") + w.lemko));
+        void UpdateList() => shoppingList.text = definition.shoppingListTitle + "\n\n" + string.Join("\n", targets.Select(w => (round.IsComplete(w.id) ? "[OK] " : "[  ] ") + w.lemko));
         public void Complete() { if (round != null && round.Complete && session) session.Finish(true); }
         public void Close()
         {

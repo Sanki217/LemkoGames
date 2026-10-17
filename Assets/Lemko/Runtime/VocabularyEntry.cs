@@ -13,6 +13,7 @@ namespace Lemko
         public AudioClip pronunciation;
         public string[] tags;
         public bool verified;
+        [TextArea] public string notes;
         public string Translation(bool useEnglish) => useEnglish ? english : polish;
     }
 }

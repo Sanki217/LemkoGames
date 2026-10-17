@@ -12,6 +12,8 @@ namespace Lemko
         public int shopCompletions;
         public int lastCorrect;
         public int lastMistakes;
+        public int lastShopPoints;
+        public int bestShopPoints;
         public List<string> encountered = new List<string>();
     }
     public static class ProgressStore

@@ -13,13 +13,54 @@ MonoBehaviour:
   m_Name: Shop
   m_EditorClassIdentifier: Assembly-CSharp::Lemko.ShopDefinition
   products:
-  - {fileID: 11400000, guid: 5f8092898e462a64aa95b71aa6d9efd8, type: 2}
-  - {fileID: 11400000, guid: 933fd9538864b0641be8c25431966080, type: 2}
-  - {fileID: 11400000, guid: 27de6f5bfe1948b4bafc7fbfeafcfe58, type: 2}
-  - {fileID: 11400000, guid: c4a504b77f84d564f8d176bd4bcbd7ea, type: 2}
-  - {fileID: 11400000, guid: d0e028e80113a0046bf1275f26471d0f, type: 2}
-  - {fileID: 11400000, guid: e29b23ab94b01b04eb175772542bc16d, type: 2}
-  - {fileID: 11400000, guid: 0e0984467f34cab46b9339acc7f179cb, type: 2}
-  - {fileID: 11400000, guid: 55b01de48ba93a24c8633b84d8fecdf0, type: 2}
+  - {fileID: 11400000, guid: 0c21f33f8bacdfe4fbb579fa9c352022, type: 2}
+  - {fileID: 11400000, guid: 172602e836fd62145a0221b5b44d7066, type: 2}
+  - {fileID: 11400000, guid: 85e78b75e95582f4695abec611d114db, type: 2}
+  - {fileID: 11400000, guid: 4eba51f64d83e9345b43b1e425c397d8, type: 2}
+  - {fileID: 11400000, guid: 43d68031a5357f14787cc4b3813ed98b, type: 2}
+  - {fileID: 11400000, guid: 31341a3013dd4774598a2dc8d6528826, type: 2}
+  - {fileID: 11400000, guid: eca4af749b54d314da9b6d4aa410db7e, type: 2}
+  - {fileID: 11400000, guid: 58589d0d402364046a9768f74c605134, type: 2}
+  - {fileID: 11400000, guid: 08675176221f5874f9016f1a5dbbdd5c, type: 2}
+  - {fileID: 11400000, guid: c5455ccc6ae44284f90fbf0fe03a1d22, type: 2}
+  - {fileID: 11400000, guid: eafccd1feba7bb34384d604f0cb11c98, type: 2}
+  - {fileID: 11400000, guid: 793bdadd894352e488c62df0890c276e, type: 2}
+  - {fileID: 11400000, guid: a49bda6d057fb3e4f81588c0c90b1f86, type: 2}
+  - {fileID: 11400000, guid: d0b5a6767eb21ac42bd3fc8c2abd385a, type: 2}
+  - {fileID: 11400000, guid: fde9362ced3ed4b45954c51973f4c2ba, type: 2}
+  - {fileID: 11400000, guid: bc8e8a903d0b21740ab315f53c99d63b, type: 2}
+  - {fileID: 11400000, guid: beb2b8d50e383c1489db2dda48c3d4db, type: 2}
+  - {fileID: 11400000, guid: d3a904d580d90af46870929917be0333, type: 2}
+  - {fileID: 11400000, guid: 240c4e6a033b86f43925295014da8429, type: 2}
+  - {fileID: 11400000, guid: 7f7425a801041b34aae9da532cd40c67, type: 2}
+  - {fileID: 11400000, guid: 9223f4c38c0eb1b4897b60f983ba193d, type: 2}
+  - {fileID: 11400000, guid: 8bab49bb08c66b14bb6047d3cdb187a3, type: 2}
+  - {fileID: 11400000, guid: 63a84ad09bddc7141bfb7a520fdddd16, type: 2}
+  - {fileID: 11400000, guid: 1ef4fd15ebd1a8b48b48396a66fbd986, type: 2}
+  - {fileID: 11400000, guid: 00844702c70414542bd95ea8d8d111ea, type: 2}
+  - {fileID: 11400000, guid: f549df68b621e9748828d0f95cbadc11, type: 2}
+  - {fileID: 11400000, guid: f0ca508db76c9ea48990eced1cac1ce1, type: 2}
+  - {fileID: 11400000, guid: 05800b07a05fa0c4985b33da204f5947, type: 2}
+  - {fileID: 11400000, guid: b3137af69cf3695438be1834e036463e, type: 2}
+  - {fileID: 11400000, guid: 5f98a815011407f489ef1dcec0589606, type: 2}
+  - {fileID: 11400000, guid: 1719229ab5f798640b4a2cf8373917fd, type: 2}
+  - {fileID: 11400000, guid: c0bb363db127f064997f95df19deabdb, type: 2}
+  - {fileID: 11400000, guid: 39eac639e16382840be27516f052caa2, type: 2}
+  - {fileID: 11400000, guid: 7a033cc1c0165f54b9c435b5f94daaba, type: 2}
+  - {fileID: 11400000, guid: 45ca71dd57e6b584f826bad74b605c2a, type: 2}
+  - {fileID: 11400000, guid: b2b56eecf67020845847e8cc80e701d7, type: 2}
+  - {fileID: 11400000, guid: afbce6c478e65e04d8fd6c7ed4ca7819, type: 2}
+  - {fileID: 11400000, guid: c86f10b4d721ba84eb7dd67dd32648a0, type: 2}
+  - {fileID: 11400000, guid: c127f1d316969514991cb0a9a0277775, type: 2}
+  - {fileID: 11400000, guid: af93baa57b53493409df098d3a3d4fed, type: 2}
+  - {fileID: 11400000, guid: 01dc28e7de8fb964fab9825c075ef824, type: 2}
+  - {fileID: 11400000, guid: 782cb2cc2ff3ec74fb64cf82475cd6d1, type: 2}
+  - {fileID: 11400000, guid: 2e7b01f42d678fb45b145d753f806b1d, type: 2}
+  - {fileID: 11400000, guid: 58eb4a17b0d328249b86d93bdf55f291, type: 2}
+  - {fileID: 11400000, guid: fd56e0bdcb442434db0c88d555160f6d, type: 2}
+  - {fileID: 11400000, guid: 5bb4b06d00a660f4992d6de58109f97f, type: 2}
+  - {fileID: 11400000, guid: dfd8e303c562e264cb02d282004c733d, type: 2}
   taskCount: 5
   startingLives: 5
+  displayedProductCount: 8
+  shoppingListTitle: "\u0428\u0442\u043E \u0442\u0440\u0435\u0431\u0430 \u043A\u0443\u043F\u0438\u0442\u0438:"

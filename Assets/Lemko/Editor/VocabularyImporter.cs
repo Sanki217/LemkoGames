@@ -32,7 +32,8 @@ namespace Lemko.Editor
             if (shopIds.Count != shopIds.Distinct().Count() || shopIds.Any(id => !ids.Contains(id))) throw new FormatException("Duplicate or unknown Shop vocabulary ID.");
             var existingShop = AssetDatabase.LoadAssetAtPath<ShopDefinition>(Root + "/Shop.asset");
             int taskCount = existingShop ? existingShop.taskCount : 5;
-            if (shopIds.Count < taskCount + 1 || shopIds.Count > 12) throw new FormatException("Shop requires task count + 1 to 12 products.");
+            if (shopIds.Count < taskCount + 1) throw new FormatException("Shop requires at least task count + 1 products in its pool.");
+            if(existingShop && (existingShop.displayedProductCount < taskCount+1 || existingShop.displayedProductCount > 12)) throw new FormatException("Invalid displayed product count.");
             // Resolve all explicit keys before mutating any assets. Blank keys retain hand-assigned references.
             var sprites = rows.ToDictionary(r => r["id"], r => Resolve<Sprite>(r["sprite_key"]));
             var clips = rows.ToDictionary(r => r["id"], r => Resolve<AudioClip>(r["audio_key"]));
@@ -46,6 +47,7 @@ namespace Lemko.Editor
                 Undo.RecordObject(entry, "Import word");
                 entry.id = r["id"]; entry.lemko = r["lemko"]; entry.polish = r["polish"]; entry.english = r["english"];
                 entry.tags = r["tags"].Split('|'); entry.verified = bool.Parse(r["verified"]);
+                if(r.TryGetValue("notes",out var notes)) entry.notes=notes;
                 if (sprites[entry.id]) entry.sprite = sprites[entry.id];
                 if (clips[entry.id]) entry.pronunciation = clips[entry.id];
                 if (!entry.sprite || !entry.pronunciation || !entry.verified) Debug.LogWarning("Development warning: " + entry.id + " missing art/audio or unverified language.", entry);

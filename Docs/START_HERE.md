@@ -168,3 +168,8 @@ Build through **Lemko > Build Windows 2D Shop**. The build scene list is explici
 
 See [Placeholder art and learning design](PLACEHOLDERS_AND_LEARNING.md). The current Unity scene has seven additional product pictures and Shop/village backgrounds under Assets/Lemko/Art/Placeholders. Test in Unity; the older standalone build has not been updated, as requested.
 
+
+## Current entry scene and authored Shop content
+
+Start from **Assets/Lemko/Scenes/Village.unity**. Each activity now has a separate scene under Scenes/Activities; Shop is playable and the other seven are placeholders. This supersedes the earlier one-scene recommendation. See [Shop CSV, scoring and scenes](../Content/Shop/README.md) for the 47-word active pool, points/multiplier and CSV authoring instructions. No difficulty feature or new build was added.
+

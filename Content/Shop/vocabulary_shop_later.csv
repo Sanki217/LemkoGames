@@ -1,0 +1,30 @@
+﻿id,lemko,polish,english,sprite_key,audio_key,tags,verified,notes,source_level
+shop_nac_pietruszki,натина,nać pietruszki,parsley,,,shop|food,false,,2
+shop_truskawki,великы ягоды,truskawki,strawberries,,,shop|food,false,,2
+shop_jagody,яфыры,jagody,blueberries,,,shop|food,false,,2
+shop_jezyny,чорниці,jeżyny,blackberries,,,shop|food,false,,2
+shop_bob,біб,bób,fava bean,,,shop|food,false,,2
+shop_chrzan,хрін,chrzan,horseraddish,,,shop|food,false,,2
+shop_rzepa,ріпа,rzepa,turnip,,,shop|food,false,,2
+shop_rzodkiewka,редковця,rzodkiewka,radish,,,shop|food,false,,2
+shop_grzyby,губы,grzyby,mushrooms,,,shop|food,false,wszystkie grzyby prócz prawdziwków!,2
+shop_prawdziwki,грибы,prawdziwki,porcini mushrooms,,,shop|food,false,tylko prawdziwki,2
+shop_rozmaryn,розмария,rozmaryn,rosemary,,,shop|food,false,,2
+shop_majeranek,маєран,majeranek,marjoram,,,shop|food,false,,2
+shop_drozdze,дріжджы,drożdże,yeast,,,shop|food,false,,3
+shop_agrest,ґіґацкы,agrest,gooseberry,,,shop|food,false,,3
+shop_porzeczki,винничкы,porzeczki,currant,,,shop|food,false,,3
+shop_kasza_gryczana,татарка,kasza gryczana,buckwheat groats,,,shop|food,false,,3
+shop_soczewica,ленча,soczewica,lentil,,,shop|food,false,,3
+shop_szczypior,цибы,szczypior,chive,,,shop|food,false,,3
+shop_szczypiorek,зрізуванец,szczypiorek,chives,,,shop|food,false,,3
+shop_kukurydza,тендериця,kukurydza,corn,,,shop|food,false,,3
+shop_orzechy_wloskie,олосковы оріхы,orzechy włoskie,walnuts,,,shop|food,false,,3
+shop_orzechy_laskowe,лісковы оріхы,orzechy laskowe,hazelnuts,,,shop|food,false,,3
+shop_lisc_laurowy,бобковий листок,liść laurowy,bay leaf,,,shop|food,false,,3
+shop_galareta,студенина,galareta,aspic (meat jelly),,,shop|food,false,"taka mięsna, z jajkiem i dodatkami",3
+shop_jablecznik,ябчаник,jabłecznik,apple pie,,,shop|food,false,,3
+shop_makowiec,маковник,makowiec,poppy seed cake,,,shop|food,false,,3
+shop_chalka,плетінка,chałka,challah,,,shop|food,false,,3
+shop_sledzie_w_puszce,следзі в бляшанці,śledzie w puszce,canned herring,,,shop|food,false,,3
+shop_kasza_jeczmienna,ярчана каша,kasza jęczmienna,barley groats,,,shop|food,false,,3

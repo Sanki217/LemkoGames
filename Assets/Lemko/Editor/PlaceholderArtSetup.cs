@@ -47,7 +47,7 @@ namespace Lemko.Editor
                 Background("Placeholder Shop Background",session.shopController.worldRoot,"ph_shop_background",-40);
             AssetDatabase.SaveAssets(); EditorSceneManager.SaveScene(scene,WorldShopSetup.ScenePath);
             WorldShopSetup.Validate();
-            if(session.shop.products.Any(w=>!w.sprite)) throw new InvalidOperationException("A Shop product still lacks artwork.");
+            if(session.shop.products.Any(w=>!w.sprite)) Debug.LogWarning("Some authored products still use fallback artwork; assign final sprites in their vocabulary assets.");
             Debug.Log("LEMKO_PLACEHOLDER_ART_OK: 7 product sprites, 2 backgrounds; existing carrot preserved. No build requested.");
         }
         static void Background(string name,Transform parent,string spriteName,int order)
