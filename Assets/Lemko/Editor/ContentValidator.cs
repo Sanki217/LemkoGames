@@ -12,7 +12,7 @@ namespace Lemko.Editor
         {
             int errors = 0, warnings = 0;
             var database = AssetDatabase.LoadAssetAtPath<VocabularyDatabase>(VocabularyImporter.Root + "/VocabularyDatabase.asset");
-            var font = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(VocabularyImporter.Root + "/LemkoFont.asset");
+            var font = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/Lemko/Fonts/LemkoFont.asset");
             if (!database || !font) { Debug.LogError("Generate starter assets first; vocabulary database or font missing."); return; }
             var ids = new HashSet<string>();
             foreach (var entry in database.entries)

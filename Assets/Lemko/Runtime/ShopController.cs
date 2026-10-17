@@ -10,6 +10,9 @@ namespace Lemko
         public ShopDefinition definition;
         public WordView wordPrefab;
         public RectTransform productRoot;
+        [Header("Scene products (optional; overrides UI product root)")]
+        public Transform worldRoot;
+        public Transform[] productSlots;
         public TMP_Text shoppingList, feedback;
         public Button finishButton;
         readonly List<WordView> views = new List<WordView>();
@@ -25,6 +28,10 @@ namespace Lemko
             Close(); session = owner;
             var error = definition.Validate();
             if (error != null) { feedback.text = error; return; }
+            if (worldRoot && (productSlots == null || productSlots.Length < definition.products.Count)) {
+                feedback.text = "Add one scene product slot for every configured product."; return;
+            }
+            if(worldRoot) worldRoot.gameObject.SetActive(true);
             var products = new List<VocabularyEntry>(definition.products);
             Shuffle(products);
             targets = products.Take(definition.taskCount).ToList();
@@ -32,7 +39,8 @@ namespace Lemko
             Shuffle(products); active = true;
             foreach (var word in products)
             {
-                var view = Instantiate(wordPrefab, productRoot); views.Add(view);
+                var parent = worldRoot ? productSlots[views.Count] : productRoot;
+                var view = Instantiate(wordPrefab, parent); views.Add(view);
                 view.Bind(word, session.tooltip, session.audioService, Select);
                 session.Encounter(word);
             }
@@ -69,6 +77,7 @@ namespace Lemko
             targets = null;
             foreach (var view in views) if (view) { view.gameObject.SetActive(false); Destroy(view.gameObject); }
             views.Clear();
+            if(worldRoot) worldRoot.gameObject.SetActive(false);
             if (session) { session.tooltip.Hide(); session.audioService.Stop(); }
         }
         void OnDisable() => Close();

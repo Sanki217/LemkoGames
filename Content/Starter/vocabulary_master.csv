@@ -1,0 +1,9 @@
+id,lemko,polish,english,sprite_key,audio_key,tags,verified
+demo_apple,[DEMO] Apple,jabłko,apple,,,shop|placeholder,false
+demo_bread,[DEMO] Bread,chleb,bread,,,shop|placeholder,false
+demo_milk,[DEMO] Milk,mleko,milk,,,shop|placeholder,false
+demo_cheese,[DEMO] Cheese,ser,cheese,,,shop|placeholder,false
+demo_carrot,[DEMO] Carrot,marchew,carrot,,,shop|placeholder,false
+demo_water,[DEMO] Water,woda,water,,,shop|placeholder,false
+demo_pear,[DEMO] Pear,gruszka,pear,,,shop|placeholder,false
+demo_egg,[DEMO] Egg,jajko,egg,,,shop|placeholder,false

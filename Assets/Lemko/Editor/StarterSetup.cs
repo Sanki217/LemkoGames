@@ -14,7 +14,7 @@ namespace Lemko.Editor
 {
     public static class StarterSetup
     {
-        public const string ScenePath = VocabularyImporter.Root + "/LemkoVillage.unity";
+        public const string ScenePath = "Assets/Lemko/Scenes/LemkoVillageUI.unity";
         static TMP_FontAsset font;
         public static bool HasTmpResources => Resources.Load<TMP_Settings>("TMP Settings") != null;
         public static void ImportTmpResources(Action continuation)
@@ -36,7 +36,7 @@ namespace Lemko.Editor
                 EditorApplication.delayCall += () => continuation();
             };
             EditorApplication.update += waitForImport;
-            UnityEditor.AssetPackage.Package.Import(package, false);
+            AssetDatabase.ImportPackage(package, false);
         }
         [MenuItem("Lemko/Create starter scene (preserve existing)")]
         public static void Create()
@@ -46,13 +46,13 @@ namespace Lemko.Editor
             if (!AssetDatabase.LoadAssetAtPath<ShopDefinition>(VocabularyImporter.Root + "/Shop.asset"))
                 VocabularyImporter.Import("Content/Starter");
             if (!HasTmpResources) { ImportTmpResources(Create); return; }
-            font = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(VocabularyImporter.Root + "/LemkoFont.asset");
+            font = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/Lemko/Fonts/LemkoFont.asset");
             if (!font)
             {
                 var source = AssetDatabase.LoadAssetAtPath<Font>("Assets/Lemko/Fonts/Roboto-Regular.ttf");
                 font = TMP_FontAsset.CreateFontAsset(source, 48, 6, UnityEngine.TextCore.LowLevel.GlyphRenderMode.SDFAA, 2048, 2048);
                 font.atlasPopulationMode = AtlasPopulationMode.Dynamic;
-                AssetDatabase.CreateAsset(font, VocabularyImporter.Root + "/LemkoFont.asset");
+                AssetDatabase.CreateAsset(font, "Assets/Lemko/Fonts/LemkoFont.asset");
                 AssetDatabase.AddObjectToAsset(font.material, font);
                 foreach (var texture in font.atlasTextures) AssetDatabase.AddObjectToAsset(texture, font);
                 var characters = File.ReadAllText("Content/family_vocabulary_draft.csv") + File.ReadAllText("Content/Starter/vocabulary_master.csv") + "ąćęłńóśźżĄĆĘŁŃÓŚŹŻABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789[]:!?/-.,";
@@ -121,7 +121,7 @@ namespace Lemko.Editor
         }
         static WordView CreateWordPrefab(Transform root)
         {
-            string path = VocabularyImporter.Root + "/WordView.prefab";
+            string path = "Assets/Lemko/Prefabs/Words/UIWord.prefab";
             var existing = AssetDatabase.LoadAssetAtPath<GameObject>(path); if (existing) return existing.GetComponent<WordView>();
             var rect = Rect(root,"WordView",new Vector2(190,130),Vector2.zero);
             var view = rect.gameObject.AddComponent<WordView>();

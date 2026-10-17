@@ -1,0 +1,46 @@
+﻿id,lemko,polish,english,sprite_key,audio_key,tags,verified,notes,review
+family_001,я,ja,,,,family|basic,false,,Needs language review and English
+family_002,матір,matka,,,,family|basic,false,мама - mama,Needs language review and English
+family_003,отец,ojciec,,,,family|basic,false,няньо - tato,Needs language review and English
+family_004,баба,babcia,,,,family|basic,false,,Needs language review and English
+family_005,дідо,dziadek,,,,family|basic,false,,Needs language review and English
+family_006,тета,ciocia,,,,family|basic,false,,Needs language review and English
+family_007,уйко,wujek,,,,family|basic,false,,Needs language review and English
+family_008,стрыко,stryjek,,,,family|basic,false,brat ojca,Needs language review and English
+family_009,брат,brat,,,,family|basic,false,,Needs language review and English
+family_010,сестра,siostra,,,,family|basic,false,,Needs language review and English
+family_011,брат / кузин,kuzyn,,,,family|basic,false,,Choose preferred form
+family_012,сестра / кузинка,kuzynka,,,,family|basic,false,,Choose preferred form
+family_013,прадідо,pradziadek,,,,family|basic,false,,Needs language review and English
+family_014,прабаба,prababcia,,,,family|basic,false,,Needs language review and English
+family_015,сын,syn,,,,family|basic,false,,Needs language review and English
+family_016,дівка,córka,,,,family|basic,false,,Needs language review and English
+family_017,муж,mąż,,,,family|basic,false,,Needs language review and English
+family_018,жена,żona,,,,family|basic,false,,Needs language review and English
+family_019,родиче,rodzice,,,,family|basic,false,,Needs language review and English
+family_020,дідове,dziadkowie,,,,family|basic,false,,Needs language review and English
+family_021,дітина,dziecko,,,,family|basic,false,,Needs language review and English
+family_022,діти,dzieci,,,,family|basic,false,,Needs language review and English
+family_023,внукы,wnukowie,,,,family|basic,false,,Needs language review and English
+family_024,внучка,wnuczka,,,,family|basic,false,,Needs language review and English
+family_025,внук,wnuk,,,,family|basic,false,,Needs language review and English
+family_026,стрына,stryjenka,,,,family|advanced,false,żona stryjka,Needs language review and English
+family_027,уйчына,wujenka,,,,family|advanced,false,żona wujka,Needs language review and English
+family_028,матір жены / женина матір,teściowa (matka żony),,,,family|advanced,false,,Choose preferred form
+family_029,матір мужа / мужова матір,teściowa (matka męża),,,,family|advanced,false,,Choose preferred form
+family_030,отец жены / женин отец,teść (ojciec żony),,,,family|advanced,false,,Choose preferred form
+family_031,отец мужа / мужів отец,teść (ojciec męża),,,,family|advanced,false,,Choose preferred form
+family_032,братанок,bratanek,,,,family|advanced,false,,Needs language review and English
+family_033,сестренец,siostrzeniec,,,,family|advanced,false,,Needs language review and English
+family_034,братаниця,bratanica,,,,family|advanced,false,,Needs language review and English
+family_035,сестрениця,siostrzenica,,,,family|advanced,false,,Needs language review and English
+family_036,невіста,synowa,,,,family|advanced,false,,Needs language review and English
+family_037,зят,zięć,,,,family|advanced,false,,Needs language review and English
+family_038,сваха,swatowa (teściowa dla teściowej),,,,family|advanced,false,,Needs language review and English
+family_039,сват,swat (teść dla teścia),,,,family|advanced,false,,Needs language review and English
+family_040,братова,bratowa,,,,family|advanced,false,,Needs language review and English
+family_041,брат жены / женин брат,szwagier (brat żony),,,,family|advanced,false,,Choose preferred form
+family_042,брат мужа / мужів брат,szwagier (brat męża),,,,family|advanced,false,,Choose preferred form
+family_043,муж сестры / сестрин муж,szwagier (mąż siostry),,,,family|advanced,false,,Choose preferred form
+family_044,сестра жены / женина сестра,szwagierka (siostra żony),,,,family|advanced,false,,Choose preferred form
+family_045,сестра мужа / мужова сестра,szwagierka (siostra męża),,,,family|advanced,false,,Choose preferred form

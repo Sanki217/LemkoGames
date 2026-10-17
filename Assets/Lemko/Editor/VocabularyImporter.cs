@@ -9,7 +9,7 @@ namespace Lemko.Editor
 {
     public static class VocabularyImporter
     {
-        public const string Root = "Assets/Lemko/Generated";
+        public const string Root = "Assets/Lemko/Data";
         [MenuItem("Lemko/Import vocabulary and Shop CSV...")]
         public static void Choose()
         {

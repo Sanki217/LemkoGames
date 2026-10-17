@@ -1,0 +1,3 @@
+task_id,vocabulary_id,reference_person_id,accepted_person_ids,difficulty
+family_mother,family_002,you,mother,basic
+family_grandmother,family_004,you,maternal_grandmother|paternal_grandmother,basic
