@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58f24f17399a0e641a0a400c1aebb79d, type: 3}
+  m_Name: FamilyTree(Clone)(Clone)
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.ActivityDefinition
+  kind: 2
+  tasksPerSession: 5
+  pool:
+  - {fileID: 11400000, guid: bb2f760b9f245df44a5a3c5424e4faab, type: 2}
+  - {fileID: 11400000, guid: 0549c55bba8b71e44afcd2721ff8a4a8, type: 2}
+  - {fileID: 11400000, guid: bb461b385668d2d479b70214ea7fced0, type: 2}
+  - {fileID: 11400000, guid: 86f0de69e71cfa14bb526eb2c8d9e81c, type: 2}
+  - {fileID: 11400000, guid: 5e331e944af1e0c4c9bac5f26e0421f8, type: 2}
+  tasks:
+  - id: mother
+    word: {fileID: 11400000, guid: bb2f760b9f245df44a5a3c5424e4faab, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople:
+    - mother
+  - id: father
+    word: {fileID: 11400000, guid: 0549c55bba8b71e44afcd2721ff8a4a8, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople:
+    - father
+  - id: grandmother
+    word: {fileID: 11400000, guid: bb461b385668d2d479b70214ea7fced0, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople:
+    - grandmother
+  - id: brother
+    word: {fileID: 11400000, guid: 86f0de69e71cfa14bb526eb2c8d9e81c, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople:
+    - brother
+  - id: sister
+    word: {fileID: 11400000, guid: 5e331e944af1e0c4c9bac5f26e0421f8, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople:
+    - sister
+  rooms: []
+  referencePerson: you
+  people:
+  - id: grandmother
+    appearance: {fileID: 11400000, guid: bb461b385668d2d479b70214ea7fced0, type: 2}
+    position: {x: -4, y: 1.4}
+    parentId: 
+    secondParentId: 
+  - id: grandfather
+    appearance: {fileID: 11400000, guid: bbc44a6af1c9f124686e2243735ec8fb, type: 2}
+    position: {x: 0, y: 1.4}
+    parentId: 
+    secondParentId: 
+  - id: mother
+    appearance: {fileID: 11400000, guid: bb2f760b9f245df44a5a3c5424e4faab, type: 2}
+    position: {x: -2, y: -0.3}
+    parentId: grandmother
+    secondParentId: 
+  - id: father
+    appearance: {fileID: 11400000, guid: 0549c55bba8b71e44afcd2721ff8a4a8, type: 2}
+    position: {x: 3, y: -0.3}
+    parentId: grandfather
+    secondParentId: 
+  - id: you
+    appearance: {fileID: 11400000, guid: 61f2d7fc377beb24082ebd5d0575889f, type: 2}
+    position: {x: 0, y: -2.3}
+    parentId: mother
+    secondParentId: father
+  - id: brother
+    appearance: {fileID: 11400000, guid: 86f0de69e71cfa14bb526eb2c8d9e81c, type: 2}
+    position: {x: -4, y: -2.3}
+    parentId: mother
+    secondParentId: father
+  - id: sister
+    appearance: {fileID: 11400000, guid: 5e331e944af1e0c4c9bac5f26e0421f8, type: 2}
+    position: {x: 4, y: -2.3}
+    parentId: father
+    secondParentId: mother
+  pairs: 4
+  revealSeconds: 1
+  maxLetters: 10
+  extraLetters: 

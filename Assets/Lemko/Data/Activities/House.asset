@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58f24f17399a0e641a0a400c1aebb79d, type: 3}
+  m_Name: House(Clone)(Clone)
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.ActivityDefinition
+  kind: 1
+  tasksPerSession: 5
+  pool:
+  - {fileID: 11400000, guid: 36cae511a74eba84ab6f2d12a127ee92, type: 2}
+  - {fileID: 11400000, guid: 78e31d0042f57d44aa282b7183663f4c, type: 2}
+  - {fileID: 11400000, guid: df0045a52743e2948a5f06a12801bb81, type: 2}
+  tasks:
+  - id: chair_kitchen
+    word: {fileID: 11400000, guid: 36cae511a74eba84ab6f2d12a127ee92, type: 2}
+    context: {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: bed_bedroom
+    word: {fileID: 11400000, guid: 78e31d0042f57d44aa282b7183663f4c, type: 2}
+    context: {fileID: 11400000, guid: 1c86c99dbd2871d4ab4c9de970c7f534, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: table_kitchen
+    word: {fileID: 11400000, guid: df0045a52743e2948a5f06a12801bb81, type: 2}
+    context: {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: chair_bedroom
+    word: {fileID: 11400000, guid: 36cae511a74eba84ab6f2d12a127ee92, type: 2}
+    context: {fileID: 11400000, guid: 1c86c99dbd2871d4ab4c9de970c7f534, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: table_bedroom
+    word: {fileID: 11400000, guid: df0045a52743e2948a5f06a12801bb81, type: 2}
+    context: {fileID: 11400000, guid: 1c86c99dbd2871d4ab4c9de970c7f534, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  rooms:
+  - {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+  - {fileID: 11400000, guid: 1c86c99dbd2871d4ab4c9de970c7f534, type: 2}
+  referencePerson: you
+  people: []
+  pairs: 4
+  revealSeconds: 1
+  maxLetters: 10
+  extraLetters: 

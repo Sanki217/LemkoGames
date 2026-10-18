@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f42738d6755b44ebdccadb2944e44b, type: 3}
+  m_Name: number_2
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
+  id: number_2
+  lemko: '[DEMO: 2]'
+  polish: 2
+  english: 2
+  sprite: {fileID: 21300000, guid: 3dfa8cf9f72d51140911d926ccd042c1, type: 3}
+  pronunciation: {fileID: 0}
+  tags:
+  - prototype
+  verified: 0
+  notes: 'Placeholder only: replace with verified Lemko.'
+  spriteId: sprite_number_2
+  audioId: audio_number_2
+  translations:
+  - language: lemko
+    text: '[DEMO: 2]'
+  - language: pl
+    text: 2
+  - language: en
+    text: 2

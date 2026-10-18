@@ -1,0 +1,6 @@
+﻿task_id,vocabulary_id,room_id
+chair_kitchen,furniture_chair,room_kitchen
+bed_bedroom,furniture_bed,room_bedroom
+table_kitchen,furniture_table,room_kitchen
+chair_bedroom,furniture_chair,room_bedroom
+table_bedroom,furniture_table,room_bedroom

@@ -1,0 +1,6 @@
+﻿task_id,vocabulary_id,character_id,min_temperature,max_temperature,request
+warm_sun,weather_sunny,family_you,18,27,Demo request: sunny and warm (18–27 °C).
+cool_rain,weather_rainy,family_mother,5,14,Demo request: rain and cool air (5–14 °C).
+cold_snow,weather_snowy,family_brother,-12,0,Demo request: snow and frost (-12–0 °C).
+mild_sun,weather_sunny,family_sister,12,20,Demo request: mild sunshine (12–20 °C).
+rain_walk,weather_rainy,family_father,10,18,Demo request: rain for a walk (10–18 °C).

@@ -46,3 +46,26 @@ food_vodka,палюнка,wódka,vodka,sprite_vodka,audio_vodka,shop|food,false,
 food_tomato,помідор,pomidor,tomato,sprite_tomato,audio_tomato,shop|food,false,
 food_buns,булкы,bułki,buns,sprite_buns,audio_buns,shop|food,false,??
 food_croissant,рогалик,rogalik,croissant,sprite_croissant,audio_croissant,shop|food,false,
+animal_cow,[DEMO: cow],krowa,cow,sprite_animal_cow,audio_animal_cow,prototype,false,Placeholder only: replace with verified Lemko.
+animal_pig,[DEMO: pig],świnia,pig,sprite_animal_pig,audio_animal_pig,prototype,false,Placeholder only: replace with verified Lemko.
+animal_sheep,[DEMO: sheep],owca,sheep,sprite_animal_sheep,audio_animal_sheep,prototype,false,Placeholder only: replace with verified Lemko.
+furniture_chair,[DEMO: chair],krzesło,chair,sprite_furniture_chair,audio_furniture_chair,prototype,false,Placeholder only: replace with verified Lemko.
+furniture_bed,[DEMO: bed],łóżko,bed,sprite_furniture_bed,audio_furniture_bed,prototype,false,Placeholder only: replace with verified Lemko.
+furniture_table,[DEMO: table],stół,table,sprite_furniture_table,audio_furniture_table,prototype,false,Placeholder only: replace with verified Lemko.
+room_kitchen,[DEMO: kitchen],kuchnia,kitchen,sprite_room_kitchen,audio_room_kitchen,prototype,false,Placeholder only: replace with verified Lemko.
+room_bedroom,[DEMO: bedroom],sypialnia,bedroom,sprite_room_bedroom,audio_room_bedroom,prototype,false,Placeholder only: replace with verified Lemko.
+family_you,я,ja,you,sprite_family_you,audio_family_you,family,false,Supplied family CSV; language review required.
+family_mother,матір,matka,mother,sprite_family_mother,audio_family_mother,family,false,Supplied family CSV; language review required.
+family_father,отец,ojciec,father,sprite_family_father,audio_family_father,family,false,Supplied family CSV; language review required.
+family_grandmother,баба,babcia,grandmother,sprite_family_grandmother,audio_family_grandmother,family,false,Supplied family CSV; language review required.
+family_grandfather,дідо,dziadek,grandfather,sprite_family_grandfather,audio_family_grandfather,family,false,Supplied family CSV; language review required.
+family_brother,брат,brat,brother,sprite_family_brother,audio_family_brother,family,false,Supplied family CSV; language review required.
+family_sister,сестра,siostra,sister,sprite_family_sister,audio_family_sister,family,false,Supplied family CSV; language review required.
+weather_sunny,[DEMO: sunny],słonecznie,sunny,sprite_weather_sunny,audio_weather_sunny,prototype,false,Placeholder only: replace with verified Lemko.
+weather_rainy,[DEMO: rainy],deszczowo,rainy,sprite_weather_rainy,audio_weather_rainy,prototype,false,Placeholder only: replace with verified Lemko.
+weather_snowy,[DEMO: snowy],śnieżnie,snowy,sprite_weather_snowy,audio_weather_snowy,prototype,false,Placeholder only: replace with verified Lemko.
+number_1,[DEMO: 1],1,1,sprite_number_1,audio_number_1,prototype,false,Placeholder only: replace with verified Lemko.
+number_2,[DEMO: 2],2,2,sprite_number_2,audio_number_2,prototype,false,Placeholder only: replace with verified Lemko.
+number_3,[DEMO: 3],3,3,sprite_number_3,audio_number_3,prototype,false,Placeholder only: replace with verified Lemko.
+number_4,[DEMO: 4],4,4,sprite_number_4,audio_number_4,prototype,false,Placeholder only: replace with verified Lemko.
+number_5,[DEMO: 5],5,5,sprite_number_5,audio_number_5,prototype,false,Placeholder only: replace with verified Lemko.

@@ -178,7 +178,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'House
 
-    Preview scene'
+    Enter'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 39d22a1856cdf2f4c87a712818b811b5, type: 2}
   m_sharedMaterial: {fileID: 3336654666399450746, guid: 39d22a1856cdf2f4c87a712818b811b5, type: 2}
@@ -454,7 +454,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Family Tree
 
-    Preview scene'
+    Enter'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 39d22a1856cdf2f4c87a712818b811b5, type: 2}
   m_sharedMaterial: {fileID: 3336654666399450746, guid: 39d22a1856cdf2f4c87a712818b811b5, type: 2}
@@ -919,6 +919,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Lemko.GameSession
   shop: {fileID: 11400000, guid: 09bd3dfa80c1b3d4da78583d580fe95c, type: 2}
   shopController: {fileID: 0}
+  activity: {fileID: 0}
   villagePanel: {fileID: 1543454517}
   shopPanel: {fileID: 0}
   resultsPanel: {fileID: 0}
@@ -1006,7 +1007,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Farm
 
-    Preview scene'
+    Enter'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 39d22a1856cdf2f4c87a712818b811b5, type: 2}
   m_sharedMaterial: {fileID: 3336654666399450746, guid: 39d22a1856cdf2f4c87a712818b811b5, type: 2}
@@ -1822,7 +1823,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: A small place to learn - development milestone 1
+  m_text: Eight places to learn - playable prototype
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 39d22a1856cdf2f4c87a712818b811b5, type: 2}
   m_sharedMaterial: {fileID: 3336654666399450746, guid: 39d22a1856cdf2f4c87a712818b811b5, type: 2}
@@ -1961,7 +1962,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Memory
 
-    Preview scene'
+    Enter'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 39d22a1856cdf2f4c87a712818b811b5, type: 2}
   m_sharedMaterial: {fileID: 3336654666399450746, guid: 39d22a1856cdf2f4c87a712818b811b5, type: 2}
@@ -2596,7 +2597,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Weather
 
-    Preview scene'
+    Enter'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 39d22a1856cdf2f4c87a712818b811b5, type: 2}
   m_sharedMaterial: {fileID: 3336654666399450746, guid: 39d22a1856cdf2f4c87a712818b811b5, type: 2}
@@ -3342,7 +3343,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Numbers
 
-    Preview scene'
+    Enter'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 39d22a1856cdf2f4c87a712818b811b5, type: 2}
   m_sharedMaterial: {fileID: 3336654666399450746, guid: 39d22a1856cdf2f4c87a712818b811b5, type: 2}
@@ -4479,7 +4480,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Alphabet
 
-    Preview scene'
+    Enter'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 39d22a1856cdf2f4c87a712818b811b5, type: 2}
   m_sharedMaterial: {fileID: 3336654666399450746, guid: 39d22a1856cdf2f4c87a712818b811b5, type: 2}

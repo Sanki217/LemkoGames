@@ -1,0 +1,11 @@
+Final validation started. Editor checks only; no player builds.
+RUNNING PrototypePlayChecks
+PrototypePlayChecks exit code 0
+RUNNING ScenePlayChecks
+ScenePlayChecks exit code 0
+RUNNING HintPlayChecks
+HintPlayChecks exit code 0
+RUNNING PrototypeVisualChecks
+PrototypeVisualChecks exit code 0
+ALL_FINAL_CHECKS_PASSED
+Post-regression repairs and expanded data/play checks: prototype-completion.log passed, including zero-life scene entry HUD and drag callbacks.

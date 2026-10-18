@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58f24f17399a0e641a0a400c1aebb79d, type: 3}
+  m_Name: Alphabet(Clone)(Clone)
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.ActivityDefinition
+  kind: 5
+  tasksPerSession: 5
+  pool:
+  - {fileID: 11400000, guid: 0c21f33f8bacdfe4fbb579fa9c352022, type: 2}
+  - {fileID: 11400000, guid: 172602e836fd62145a0221b5b44d7066, type: 2}
+  - {fileID: 11400000, guid: 85e78b75e95582f4695abec611d114db, type: 2}
+  - {fileID: 11400000, guid: 4eba51f64d83e9345b43b1e425c397d8, type: 2}
+  - {fileID: 11400000, guid: eca4af749b54d314da9b6d4aa410db7e, type: 2}
+  tasks:
+  - id: spell_0
+    word: {fileID: 11400000, guid: 0c21f33f8bacdfe4fbb579fa9c352022, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: spell_1
+    word: {fileID: 11400000, guid: 172602e836fd62145a0221b5b44d7066, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: spell_2
+    word: {fileID: 11400000, guid: 85e78b75e95582f4695abec611d114db, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: spell_3
+    word: {fileID: 11400000, guid: 4eba51f64d83e9345b43b1e425c397d8, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: spell_4
+    word: {fileID: 11400000, guid: eca4af749b54d314da9b6d4aa410db7e, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  rooms: []
+  referencePerson: you
+  people: []
+  pairs: 4
+  revealSeconds: 1
+  maxLetters: 10
+  extraLetters: 

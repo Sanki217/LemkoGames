@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f42738d6755b44ebdccadb2944e44b, type: 3}
+  m_Name: animal_cow
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
+  id: animal_cow
+  lemko: '[DEMO: cow]'
+  polish: krowa
+  english: cow
+  sprite: {fileID: 21300000, guid: de49af9641cc77b43a85e0b3f0ed903e, type: 3}
+  pronunciation: {fileID: 0}
+  tags:
+  - prototype
+  verified: 0
+  notes: 'Placeholder only: replace with verified Lemko.'
+  spriteId: sprite_animal_cow
+  audioId: audio_animal_cow
+  translations:
+  - language: lemko
+    text: '[DEMO: cow]'
+  - language: pl
+    text: krowa
+  - language: en
+    text: cow

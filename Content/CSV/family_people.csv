@@ -1,0 +1,8 @@
+﻿person_id,vocabulary_id,x,y,parent_id,second_parent_id
+grandmother,family_grandmother,-4,1.4,,
+grandfather,family_grandfather,0,1.4,,
+mother,family_mother,-2,-0.3,grandmother,
+father,family_father,3,-0.3,grandfather,
+you,family_you,0,-2.3,mother,father
+brother,family_brother,-4,-2.3,mother,father
+sister,family_sister,4,-2.3,father,mother

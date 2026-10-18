@@ -1,0 +1,6 @@
+﻿task_id,vocabulary_id,valid_person_ids
+mother,family_mother,mother
+father,family_father,father
+grandmother,family_grandmother,grandmother
+brother,family_brother,brother
+sister,family_sister,sister

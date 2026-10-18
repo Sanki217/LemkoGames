@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f42738d6755b44ebdccadb2944e44b, type: 3}
+  m_Name: family_sister
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
+  id: family_sister
+  lemko: "\u0441\u0435\u0441\u0442\u0440\u0430"
+  polish: siostra
+  english: sister
+  sprite: {fileID: 21300000, guid: fca4c89a62b7652418c7de14779e72d9, type: 3}
+  pronunciation: {fileID: 0}
+  tags:
+  - family
+  verified: 0
+  notes: Supplied family CSV; language review required.
+  spriteId: sprite_family_sister
+  audioId: audio_family_sister
+  translations:
+  - language: lemko
+    text: "\u0441\u0435\u0441\u0442\u0440\u0430"
+  - language: pl
+    text: siostra
+  - language: en
+    text: sister

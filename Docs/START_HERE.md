@@ -1,3 +1,5 @@
+> Full prototype is implemented: use [PROTOTYPE_GUIDE.md](PROTOTYPE_GUIDE.md) for all eight activities. Open Assets/Lemko/Scenes/Village.unity and press Play. Earlier milestone notes below are historical.
+
 > Current update: open Assets/Lemko/Scenes/Village.unity. Vocabulary authoring is now in Content/CSV, and art is in Assets/Lemko/Sprites. Read [CONTENT_AND_HINTS.md](CONTENT_AND_HINTS.md) for the current English IDs, delayed hints, and replacement workflow. Earlier paths below describe previous milestones.
 
 # Lemko game: build it together, from setup to delivery
@@ -174,5 +176,6 @@ See [Placeholder art and learning design](PLACEHOLDERS_AND_LEARNING.md). The cur
 ## Current entry scene and authored Shop content
 
 Start from **Assets/Lemko/Scenes/Village.unity**. Each activity now has a separate scene under Scenes/Activities; Shop is playable and the other seven are placeholders. This supersedes the earlier one-scene recommendation. See [Shop CSV, scoring and scenes](../Content/Shop/README.md) for the 47-word active pool, points/multiplier and CSV authoring instructions. No difficulty feature or new build was added.
+
 
 
