@@ -13,21 +13,22 @@ MonoBehaviour:
   m_Name: weather_snowy
   m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
   id: weather_snowy
-  lemko: '[DEMO: snowy]'
-  polish: "\u015Bnie\u017Cnie"
-  english: snowy
+  lemko: "\u043A\u0443\u0440\u0438\u0442 \u0441\u044C\u043D\u0456\u0433"
+  polish: "pada \u015Bnieg"
+  english: it is snowing
   sprite: {fileID: 21300000, guid: 0ab4c4ef0ca889c46bfe5b364b80f88a, type: 3}
   pronunciation: {fileID: 0}
   tags:
-  - prototype
+  - weather
   verified: 0
-  notes: 'Placeholder only: replace with verified Lemko.'
+  notes: 'Source: weather_source.csv, row 28. Supplied Lemko and Polish; English
+    gloss is an unverified editorial translation. '
   spriteId: sprite_weather_snowy
   audioId: audio_weather_snowy
   translations:
   - language: lemko
-    text: '[DEMO: snowy]'
+    text: "\u043A\u0443\u0440\u0438\u0442 \u0441\u044C\u043D\u0456\u0433"
   - language: pl
-    text: "\u015Bnie\u017Cnie"
+    text: "pada \u015Bnieg"
   - language: en
-    text: snowy
+    text: it is snowing

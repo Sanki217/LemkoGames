@@ -1,0 +1,358 @@
+﻿source_file,source_row,vocabulary_id,source_lemko,selected_lemko,source_polish,status
+farm_source.csv,2,animal_cow,корова,корова,krowa,updated
+farm_source.csv,3,animal_bull,бык,бык,byk,added
+farm_source.csv,4,animal_calf,теля / телятко,теля,cielę,added
+farm_source.csv,5,animal_hen,кура,кура,kura,added
+farm_source.csv,6,animal_rooster,когут,когут,kogut,added
+farm_source.csv,7,animal_chick,куря / курятко,куря,pisklę,added
+farm_source.csv,8,animal_goat,коза,коза,koza,added
+farm_source.csv,9,animal_billy_goat,цап,цап,cap,added
+farm_source.csv,10,animal_kid,кізя / кізьлятко,кізя,koźlątko,added
+farm_source.csv,11,animal_sheep,уця,уця,owca,updated
+farm_source.csv,12,animal_ram,баран,баран,baran,added
+farm_source.csv,13,animal_lamb,ягня / ягнятко,ягня,jagnię,added
+farm_source.csv,14,animal_female_cat,кітка,кітка,kotka,added
+farm_source.csv,15,animal_male_cat,кіт,кіт,kocur,added
+farm_source.csv,16,animal_kitten,котя / котятко,котя,kocię,added
+farm_source.csv,17,animal_dog,пес,пес,pies,added
+farm_source.csv,18,animal_female_dog,сука,сука,suka,added
+farm_source.csv,19,animal_puppy,пся / псятко,пся,szczenię,added
+farm_source.csv,20,animal_goose,гус,гус,gęś,added
+farm_source.csv,21,animal_gander,гусак,гусак,gąsior,added
+farm_source.csv,22,animal_gosling,гуся / гусятко,гуся,gąska,added
+farm_source.csv,23,animal_duck,качка,качка,kaczka,added
+farm_source.csv,24,animal_drake,качор,качор,kaczor,added
+farm_source.csv,25,animal_duckling,качатко,качатко,kaczątko,added
+farm_source.csv,26,animal_horse,кін,кін,koń,added
+farm_source.csv,27,animal_mare,кобыла,кобыла,kobyła,added
+farm_source.csv,28,animal_foal,гача / гачатко,гача,źrebak,added
+farm_source.csv,29,animal_pig,свиня,свиня,świnia,updated
+farm_source.csv,30,animal_hog,корназ,корназ,wieprz,added
+farm_source.csv,31,animal_piglet,паця / пацятко,паця,prosię,added
+farm_source.csv,32,animal_tom_turkey,пуляк,пуляк,indor,added
+farm_source.csv,33,animal_hen_turkey,пулька,пулька,indyczka,added
+farm_source.csv,34,animal_turkey_poult,пульча / пульчатко,пульча,indyczek,added
+house_source.csv,2,house_house,хыжа,хыжа,dom,added
+house_source.csv,3,room_bedroom,спальня,спальня,sypialnia,updated
+house_source.csv,4,room_living_room,сьвітлиця,сьвітлиця,salon,added
+house_source.csv,5,room_hallway,коритар,коритар,korytarz,added
+house_source.csv,6,room_kitchen,кухня,кухня,kuchnia,updated
+house_source.csv,7,room_bathroom,лазничка,лазничка,łazienka,added
+house_source.csv,8,furniture_table,стіл,стіл,stół,updated
+house_source.csv,9,furniture_chair,кресло,кресло,krzesło,updated
+house_source.csv,10,house_stool,стільчык,стільчык,taboret,added
+house_source.csv,11,house_bedside_cabinet,накаслик,накаслик,szafka nocna,added
+house_source.csv,12,house_window,выгляд,выгляд,okno,added
+house_source.csv,13,house_door,двері,двері,drzwi,added
+house_source.csv,14,house_painting,образ,образ,obraz,added
+house_source.csv,15,house_cabinet,шафка,шафка,szafka,added
+house_source.csv,16,house_shelf,поличка,поличка,półka,added
+house_source.csv,17,furniture_wardrobe,шафа,шафа,szafa,added
+house_source.csv,18,house_lamp,лямпа,лямпа,lampa,added
+house_source.csv,19,house_small_lamp,лямпка,лямпка,lampka,added
+house_source.csv,20,house_sculpture,різба,різба,rzeźba,added
+house_source.csv,21,furniture_bed,постіль,постіль,łóżko,updated
+house_source.csv,22,house_sofa,лежанка,лежанка,kanapa,added
+house_source.csv,23,house_runner_rug,ходник,ходник,dywanik,added
+house_source.csv,24,house_tablecloth,обрус,обрус,obrus,added
+house_source.csv,25,house_table_runner,столівка,столівка,bieżnik,added
+house_source.csv,26,house_pot,горнец,горнец,garnek,added
+house_source.csv,27,house_mug,горнятко,горнятко,kubek,added
+house_source.csv,28,house_bowl,миска,миска,miska,added
+house_source.csv,29,house_plate,танір,танір,talerz,added
+house_source.csv,30,house_board,таблиця,таблиця,tablica,added
+house_source.csv,31,house_speaker,голосник,голосник,głośnik,added
+house_source.csv,32,house_stove,пец,пец,kuchenka,added
+house_source.csv,33,house_can,бляшанка,бляшанка,puszka,added
+house_source.csv,34,house_bottle,фляшка,фляшка,butelka,added
+house_source.csv,35,house_glass,шклянка,шклянка,szklanka,added
+house_source.csv,36,house_jug,дзбанок,дзбанок,dzbanek,added
+house_source.csv,37,house_refrigerator,ледівка,ледівка,lodówka,added
+house_source.csv,38,house_tap,кран,кран,kran,added
+house_source.csv,39,house_sink,злив,злив,zlew,added
+house_source.csv,40,house_dishes,ґратя,ґратя,naczynia,added
+house_source.csv,41,house_ceiling,повала,повала,sufit,added
+house_source.csv,42,house_wall,стіна,стіна,ściana,added
+house_source.csv,43,house_flowerpot,доничка,доничка,doniczka,added
+house_source.csv,44,house_flower,квіток,квіток,kwiatek,added
+house_source.csv,45,house_plant,рослина,рослина,roślina,added
+house_source.csv,46,house_clock,дзыґар,дзыґар,zegar,added
+house_source.csv,47,house_mirror,дзеркало,дзеркало,lustro,added
+house_source.csv,48,house_chest,лада,лада,skrzynia,added
+house_source.csv,49,house_pillow,заголовок,заголовок,poduszka,added
+house_source.csv,50,house_duvet,перина,перина,pierzyna,added
+house_source.csv,51,house_sheet,престерало,престерало,prześcieradło,added
+house_source.csv,52,house_spoon,лжыця,лжыця,łyżka,added
+house_source.csv,53,house_fork,вилкы,вилкы,widelec,added
+house_source.csv,54,house_knife,ніж,ніж,nóż,added
+house_source.csv,55,house_deep_plate,глубокій танір,глубокій танір,głęboki talerz,added
+house_source.csv,56,house_platter,пілмисок,пілмисок,półmisek,added
+house_source.csv,57,house_wooden_spoon,деревяна лжыця,деревяна лжыця,drewniana łyżka,added
+house_source.csv,58,house_clothes,лахы,лахы,ubrania,added
+house_source.csv,59,house_carpet,диван/килим,диван,dywan,added
+house_source.csv,60,house_floor,підлога,підлога,podłoga,added
+house_source.csv,61,house_vacuum_cleaner,одпорошач,одпорошач,odkurzacz,added
+house_source.csv,62,house_light_switch,влучник,влучник,włącznik,added
+house_source.csv,63,house_radio,радіо,радіо,radio,added
+house_source.csv,64,house_bathtub,ванов,ванов,wanna,added
+house_source.csv,65,house_watering_can,конов,конов,konewka,added
+house_source.csv,66,house_small_bowl,мисятко,мисятко,miseczka,added
+house_source.csv,67,house_washbasin,умывальник,умывальник,umywalka,added
+house_source.csv,68,house_travel_mirror,презератко,презератко,lusterko podręczne,added
+house_source.csv,69,house_broom,мітла,мітла,miotła,added
+house_source.csv,70,house_cloth,рянда,рянда,ścierka,added
+house_source.csv,71,house_rolling_pin,катулька,катулька,wałek do ciasta,added
+house_source.csv,72,house_ladle,вариха,вариха,chochla,added
+house_source.csv,73,house_soap,мыдло,мыдло,mydło,added
+house_source.csv,74,house_shampoo,шампон,шампон,szampon,added
+house_source.csv,75,house_towel,ручник,ручник,ręcznik,added
+house_source.csv,76,house_toothbrush,щіточка до зубів,щіточка до зубів,szczoteczka do zębów,added
+house_source.csv,77,house_toothpaste,паста до зубів,паста до зубів,pasta do zębów,added
+house_source.csv,78,house_hairbrush,щітка до волося,щітка до волося,szczotka do włosów,added
+house_source.csv,79,house_comb,гребін,гребін,grzebień,added
+house_source.csv,80,house_shoes,черевікы,черевікы,buty,added
+house_source.csv,81,house_cage,клітка,клітка,klatka,added
+house_source.csv,82,house_toys,чачка,чачка,zabawki,added
+house_source.csv,83,house_paper,папір,папір,papier,added
+house_source.csv,84,house_saucepan,рынка,рынка,rondel,added
+house_source.csv,85,house_frying_pan,пановка,пановка,patelnia,added
+house_source.csv,86,house_books,книжкы,книжкы,książki,added
+house_source.csv,87,house_small_table,столик,столик,stolik,added
+house_source.csv,88,house_notebook,зошыт,зошыт,zeszyt,added
+house_source.csv,89,house_calendar,календар,календар,kalendarz,added
+house_source.csv,90,house_icon,ікона,ікона,ikona,added
+house_source.csv,91,house_hanger,вішак,вішак,wieszak,added
+house_source.csv,92,house_iron,прас,прас,żelazko,added
+house_source.csv,93,house_plank,дошка,дошка,deska,added
+house_source.csv,94,house_washing_machine,пралька,пралька,pralka,added
+house_source.csv,95,house_kettle,чайник,чайник,czajnik,added
+house_source.csv,96,house_game,гра,гра,gra,added
+house_source.csv,97,house_television,телевізор,телевізор,telewizor,added
+house_source.csv,98,house_computer,компутер,компутер,komputer,added
+house_source.csv,99,house_small_door,дверці,дверці,drzwiczki,added
+house_source.csv,100,house_fireplace,коминок,коминок,kominek,added
+house_source.csv,101,house_teaspoon,лжычка,лжычка,łyżeczka,added
+house_source.csv,102,house_stairs,сходы,сходы,schody,added
+house_source.csv,103,house_threshold,поріг,поріг,próg,added
+house_source.csv,104,house_upper_floor,плянтро,плянтро,piętro,added
+house_source.csv,105,house_colander,друшляк,друшляк,durszlak,added
+family_source.csv,1,family_family,родина,родина,rodzina,added
+family_source.csv,2,family_tree,дерево роду,дерево роду,drzewo genealogiczne,added
+family_source.csv,6,family_you,я,я,ja,updated
+family_source.csv,7,family_mother,матір,матір,matka,updated
+family_source.csv,8,family_father,отец,отец,ojciec,updated
+family_source.csv,9,family_grandmother,баба,баба,babcia,updated
+family_source.csv,10,family_grandfather,дідо,дідо,dziadek,updated
+family_source.csv,11,family_aunt,тета,тета,ciocia,added
+family_source.csv,12,family_maternal_uncle,уйко,уйко,wujek,added
+family_source.csv,13,family_paternal_uncle,стрыко,стрыко,stryjek,added
+family_source.csv,14,family_brother,брат,брат,brat,updated
+family_source.csv,15,family_sister,сестра,сестра,siostra,updated
+family_source.csv,16,family_male_cousin,брат / кузин,кузин,kuzyn,added
+family_source.csv,17,family_female_cousin,сестра / кузинка,кузинка,kuzynka,added
+family_source.csv,18,family_great_grandfather,прадідо,прадідо,pradziadek,added
+family_source.csv,19,family_great_grandmother,прабаба,прабаба,prababcia,added
+family_source.csv,20,family_son,сын,сын,syn,added
+family_source.csv,21,family_daughter,дівка,дівка,córka,added
+family_source.csv,22,family_husband,муж,муж,mąż,added
+family_source.csv,23,family_wife,жена,жена,żona,added
+family_source.csv,24,family_parents,родиче,родиче,rodzice,added
+family_source.csv,25,family_grandparents,дідове,дідове,dziadkowie,added
+family_source.csv,26,family_child,дітина,дітина,dziecko,added
+family_source.csv,27,family_children,діти,діти,dzieci,added
+family_source.csv,28,family_grandchildren,внукы,внукы,wnukowie,added
+family_source.csv,29,family_granddaughter,внучка,внучка,wnuczka,added
+family_source.csv,30,family_grandson,внук,внук,wnuk,added
+family_source.csv,34,family_paternal_uncles_wife,стрына,стрына,stryjenka,added
+family_source.csv,35,family_maternal_uncles_wife,уйчына,уйчына,wujenka,added
+family_source.csv,36,family_wifes_mother,матір жены / женина матір,матір жены,teściowa (matka żony),added
+family_source.csv,37,family_husbands_mother,матір мужа / мужова матір,матір мужа,teściowa (matka męża),added
+family_source.csv,38,family_wifes_father,отец жены / женин отец,отец жены,teść (ojciec żony),added
+family_source.csv,39,family_husbands_father,отец мужа / мужів отец,отец мужа,teść (ojciec męża),added
+family_source.csv,40,family_brothers_son,братанок,братанок,bratanek,added
+family_source.csv,41,family_sisters_son,сестренец,сестренец,siostrzeniec,added
+family_source.csv,42,family_brothers_daughter,братаниця,братаниця,bratanica,added
+family_source.csv,43,family_sisters_daughter,сестрениця,сестрениця,siostrzenica,added
+family_source.csv,44,family_daughter_in_law,невіста,невіста,synowa,added
+family_source.csv,45,family_son_in_law,зят,зят,zięć,added
+family_source.csv,46,family_female_co_parent_in_law,сваха,сваха,swatowa (teściowa dla teściowej),added
+family_source.csv,47,family_male_co_parent_in_law,сват,сват,swat (teść dla teścia),added
+family_source.csv,48,family_brothers_wife,братова,братова,bratowa,added
+family_source.csv,49,family_wifes_brother,брат жены / женин брат,брат жены,szwagier (brat żony),added
+family_source.csv,50,family_husbands_brother,брат мужа / мужів брат,брат мужа,szwagier (brat męża),added
+family_source.csv,51,family_sisters_husband,муж сестры / сестрин муж,муж сестры,szwagier (mąż siostry),added
+family_source.csv,52,family_wifes_sister,сестра жены / женина сестра,сестра жены,szwagierka (siostra żony),added
+family_source.csv,53,family_husbands_sister,сестра мужа / мужова сестра,сестра мужа,szwagierka (siostra męża),added
+weather_source.csv,2,weather_spring,яр,яр,wiosna,added
+weather_source.csv,3,weather_summer,літо,літо,lato,added
+weather_source.csv,4,weather_autumn,осін,осін,jesień,added
+weather_source.csv,5,weather_winter,зима,зима,zima,added
+weather_source.csv,6,weather_sun,сонце,сонце,słońce,added
+weather_source.csv,7,weather_moon,місяц,місяц,księżyc,added
+weather_source.csv,8,weather_stars,зьвізды,зьвізды,gwiazdy,added
+weather_source.csv,9,weather_rainbow,дуга,дуга,tęcza,added
+weather_source.csv,10,weather_clouds,хмары,хмары,chmury,added
+weather_source.csv,11,weather_dark_clouds,мракы,мракы,ciemne chmury,added
+weather_source.csv,12,weather_white_clouds,облакы,облакы,obłoki,added
+weather_source.csv,13,weather_sunny,сонце сьвітит,сонце сьвітит,słońce świeci,updated
+weather_source.csv,14,weather_sun_covered_by_clouds,сонце зашло хмарами,сонце зашло хмарами,słońce zakryły chmury,added
+weather_source.csv,15,weather_moon_shining,місяц сьвітит,місяц сьвітит,księżyc świeci,added
+weather_source.csv,16,weather_moon_covered_by_clouds,місяц зашол хмарами,місяц зашол хмарами,księżyc zakryły chmury,added
+weather_source.csv,17,weather_became_cloudy,захмарило ся,захмарило ся,zachmurzyło się,added
+weather_source.csv,18,weather_becoming_cloudy,хмарит ся,хмарит ся,chmurzy się,added
+weather_source.csv,19,weather_rain,дойдж,дойдж,deszcz,added
+weather_source.csv,20,weather_rainy,ліє дойдж,ліє дойдж,pada deszcz,updated
+weather_source.csv,21,weather_drizzle,ситит,ситит,siąpi,added
+weather_source.csv,22,weather_downpour_started,шустло дойджом,шустло дойджом,lunęło deszczem,added
+weather_source.csv,23,weather_puddle,млака,млака,kałuża,added
+weather_source.csv,24,weather_moisture,вільгіт,вільгіт,wilgoć,added
+weather_source.csv,25,weather_fog,гмла,гмла,mgła,added
+weather_source.csv,26,weather_air,повітря,повітря,powietrze,added
+weather_source.csv,27,weather_snow,сьніг,сьніг,śnieg,added
+weather_source.csv,28,weather_snowy,курит сьніг,курит сьніг,pada śnieg,updated
+weather_source.csv,29,weather_snow_accumulated,накурило сьнігу,накурило сьнігу,napadało śniegu,added
+weather_source.csv,30,weather_icicles,цомплі,цомплі,sople,added
+weather_source.csv,31,weather_blizzard,замітя,замітя,zamieć,added
+weather_source.csv,32,weather_ice,лед,лед,lód,added
+weather_source.csv,33,weather_thaw,одмяк,одмяк,odwilż,added
+weather_source.csv,34,weather_snow_melted,стаял сьніг,стаял сьніг,stopniał śnieg,added
+weather_source.csv,35,weather_wind,вітер,вітер,wiatr,added
+weather_source.csv,36,weather_wind_blowing,дує вітер,дує вітер,wieje wiatr,added
+weather_source.csv,37,weather_wind_gusting,задуват вітер,задуват вітер,zawiewa,added
+weather_source.csv,38,weather_windstorm,дуявиця,дуявиця,wichura,added
+weather_source.csv,39,weather_wind_swirling,вітер обертат ся до качала,вітер обертат ся до качала,wiatr się kręci,added
+weather_source.csv,40,weather_storm,буря,буря,burza,added
+weather_source.csv,41,weather_lightning_strike,перун,перун,piorun,added
+weather_source.csv,42,weather_lightning,блискавиця,блискавиця,błyskawica,added
+weather_source.csv,43,weather_lightning_flashing,блискат ся,блискат ся,błyska,added
+weather_source.csv,44,weather_thunder,грім,грім,grzmot,added
+weather_source.csv,45,weather_thundering,гырмит,гырмит,grzmi,added
+weather_source.csv,46,weather_day,ден,ден,dzień,added
+weather_source.csv,47,weather_in_daytime,в ден,в ден,w dzień,added
+weather_source.csv,48,weather_bright,ясно,ясно,jasno,added
+weather_source.csv,49,weather_getting_light,розвиднят ся,розвиднят ся,robi się jasno,added
+weather_source.csv,50,weather_night,ніч,ніч,noc,added
+weather_source.csv,51,weather_at_night,в ночы,в ночы,w nocy,added
+weather_source.csv,52,weather_dark,темно,темно,ciemno,added
+weather_source.csv,53,weather_getting_dark,змеркат ся,змеркат ся,zmierzcha,added
+weather_source.csv,54,weather_positive_temperature_question,Кілко тепла на дворі?,Кілко тепла на дворі?,Jaka temperatura na plusie?,added
+weather_source.csv,55,weather_scorching_heat,спекота,спекота,skwar,added
+weather_source.csv,56,weather_heat,горячка,горячка,upał,added
+weather_source.csv,57,weather_hot,горячо,горячо,gorąco,added
+weather_source.csv,58,weather_warm,тепло,тепло,ciepło,added
+weather_source.csv,59,weather_negative_temperature_question,Якій великій мороз?,Якій великій мороз?,Jaka temperatura na minusie?,added
+weather_source.csv,60,weather_cool,холодно,холодно,chłodno,added
+weather_source.csv,61,weather_cold,студено,студено,zimno,added
+weather_source.csv,62,weather_very_cold,студін,студін,bardzo zimno,added
+weather_source.csv,63,weather_frost,мороз,мороз,mróz,added
+weather_source.csv,64,weather_weather,хвиля,хвиля,pogoda,added
+numbers_source.csv,2,number_1,єден,єден,1,updated
+numbers_source.csv,3,number_2,два,два,2,updated
+numbers_source.csv,4,number_3,три,три,3,updated
+numbers_source.csv,5,number_4,штырі,штырі,4,updated
+numbers_source.csv,6,number_5,пят,пят,5,updated
+numbers_source.csv,7,number_6,шіст,шіст,6,added
+numbers_source.csv,8,number_7,сім,сім,7,added
+numbers_source.csv,9,number_8,вісем,вісем,8,added
+numbers_source.csv,10,number_9,девят,девят,9,added
+numbers_source.csv,11,number_10,десят,десят,10,added
+numbers_source.csv,12,number_11,єденадцет,єденадцет,11,added
+numbers_source.csv,13,number_12,дванадцет,дванадцет,12,added
+numbers_source.csv,14,number_13,тринадцет,тринадцет,13,added
+numbers_source.csv,15,number_14,штырнадцет,штырнадцет,14,added
+numbers_source.csv,16,number_15,пятнадцет,пятнадцет,15,added
+numbers_source.csv,17,number_16,шістнадцет,шістнадцет,16,added
+numbers_source.csv,18,number_17,сімнадцет,сімнадцет,17,added
+numbers_source.csv,19,number_18,вісемнадцет,вісемнадцет,18,added
+numbers_source.csv,20,number_19,девятнадцет,девятнадцет,19,added
+numbers_source.csv,21,number_20,двадцет,двадцет,20,added
+numbers_source.csv,22,number_21,двадцет єден,двадцет єден,21,added
+numbers_source.csv,23,number_22,двадцет два,двадцет два,22,added
+numbers_source.csv,24,number_23,двадцет три,двадцет три,23,added
+numbers_source.csv,25,number_24,двадцет штырі,двадцет штырі,24,added
+numbers_source.csv,26,number_25,двадцет пят,двадцет пят,25,added
+numbers_source.csv,27,number_26,двадцет шіст,двадцет шіст,26,added
+numbers_source.csv,28,number_27,двадцет сім,двадцет сім,27,added
+numbers_source.csv,29,number_28,двадцет вісем,двадцет вісем,28,added
+numbers_source.csv,30,number_29,двадцет девят,двадцет девят,29,added
+numbers_source.csv,31,number_30,тридцет,тридцет,30,added
+numbers_source.csv,32,number_31,тридцет єден,тридцет єден,31,added
+numbers_source.csv,33,number_32,тридцет два,тридцет два,32,added
+numbers_source.csv,34,number_33,тридцет три,тридцет три,33,added
+numbers_source.csv,35,number_34,тридцет штырі,тридцет штырі,34,added
+numbers_source.csv,36,number_35,тридцет пят,тридцет пят,35,added
+numbers_source.csv,37,number_36,тридцет шіст,тридцет шіст,36,added
+numbers_source.csv,38,number_37,тридцет сім,тридцет сім,37,added
+numbers_source.csv,39,number_38,тридцет вісем,тридцет вісем,38,added
+numbers_source.csv,40,number_39,тридцет девят,тридцет девят,39,added
+numbers_source.csv,41,number_40,сорок,сорок,40,added
+numbers_source.csv,42,number_41,сорок єден,сорок єден,41,added
+numbers_source.csv,43,number_42,сорок два,сорок два,42,added
+numbers_source.csv,44,number_43,сорок три,сорок три,43,added
+numbers_source.csv,45,number_44,сорок штырі,сорок штырі,44,added
+numbers_source.csv,46,number_45,сорок пят,сорок пят,45,added
+numbers_source.csv,47,number_46,сорок шіст,сорок шіст,46,added
+numbers_source.csv,48,number_47,сорок сім,сорок сім,47,added
+numbers_source.csv,49,number_48,сорок вісем,сорок вісем,48,added
+numbers_source.csv,50,number_49,сорок девят,сорок девят,49,added
+numbers_source.csv,51,number_50,пятдесят,пятдесят,50,added
+numbers_source.csv,52,number_51,пятдесят єден,пятдесят єден,51,added
+numbers_source.csv,53,number_52,пятдесят два,пятдесят два,52,added
+numbers_source.csv,54,number_53,пятдесят три,пятдесят три,53,added
+numbers_source.csv,55,number_54,пятдесят штырі,пятдесят штырі,54,added
+numbers_source.csv,56,number_55,пятдесят пят,пятдесят пят,55,added
+numbers_source.csv,57,number_56,пятдесят шіст,пятдесят шіст,56,added
+numbers_source.csv,58,number_57,пятдесят сім,пятдесят сім,57,added
+numbers_source.csv,59,number_58,пятдесят вісем,пятдесят вісем,58,added
+numbers_source.csv,60,number_59,пятдесят девят,пятдесят девят,59,added
+numbers_source.csv,61,number_60,шістдесят,шістдесят,60,added
+numbers_source.csv,62,number_61,шістдесят єден,шістдесят єден,61,added
+numbers_source.csv,63,number_62,шістдесят два,шістдесят два,62,added
+numbers_source.csv,64,number_63,шістдесят три,шістдесят три,63,added
+numbers_source.csv,65,number_64,шістдесят штырі,шістдесят штырі,64,added
+numbers_source.csv,66,number_65,шістдесят пят,шістдесят пят,65,added
+numbers_source.csv,67,number_66,шістдесят шіст,шістдесят шіст,66,added
+numbers_source.csv,68,number_67,шістдесят сім,шістдесят сім,67,added
+numbers_source.csv,69,number_68,шістдесят вісем,шістдесят вісем,68,added
+numbers_source.csv,70,number_69,шістдесят девят,шістдесят девят,69,added
+numbers_source.csv,71,number_70,сімдесят,сімдесят,70,added
+numbers_source.csv,72,number_71,сімдесят єден,сімдесят єден,71,added
+numbers_source.csv,73,number_72,сімдесят два,сімдесят два,72,added
+numbers_source.csv,74,number_73,сімдесят три,сімдесят три,73,added
+numbers_source.csv,75,number_74,сімдесят штырі,сімдесят штырі,74,added
+numbers_source.csv,76,number_75,сімдесят пят,сімдесят пят,75,added
+numbers_source.csv,77,number_76,сімдесят шіст,сімдесят шіст,76,added
+numbers_source.csv,78,number_77,сімдесят сім,сімдесят сім,77,added
+numbers_source.csv,79,number_78,сімдесят вісем,сімдесят вісем,78,added
+numbers_source.csv,80,number_79,сімдесят девят,сімдесят девят,79,added
+numbers_source.csv,81,number_80,вісемдесят,вісемдесят,80,added
+numbers_source.csv,82,number_81,вісемдесят єден,вісемдесят єден,81,added
+numbers_source.csv,83,number_82,вісемдесят два,вісемдесят два,82,added
+numbers_source.csv,84,number_83,вісемдесят три,вісемдесят три,83,added
+numbers_source.csv,85,number_84,вісемдесят штырі,вісемдесят штырі,84,added
+numbers_source.csv,86,number_85,вісемдесят пят,вісемдесят пят,85,added
+numbers_source.csv,87,number_86,вісемдесят шіст,вісемдесят шіст,86,added
+numbers_source.csv,88,number_87,вісемдесят сім,вісемдесят сім,87,added
+numbers_source.csv,89,number_88,вісемдесят вісем,вісемдесят вісем,88,added
+numbers_source.csv,90,number_89,вісемдесят девят,вісемдесят девят,89,added
+numbers_source.csv,91,number_90,девятдесят,девятдесят,90,added
+numbers_source.csv,92,number_91,девятдесят єден,девятдесят єден,91,added
+numbers_source.csv,93,number_92,девятдесят два,девятдесят два,92,added
+numbers_source.csv,94,number_93,девятдесят три,девятдесят три,93,added
+numbers_source.csv,95,number_94,девятдесят штырі,девятдесят штырі,94,added
+numbers_source.csv,96,number_95,девятдесят пят,девятдесят пят,95,added
+numbers_source.csv,97,number_96,девятдесят шіст,девятдесят шіст,96,added
+numbers_source.csv,98,number_97,девятдесят сім,девятдесят сім,97,added
+numbers_source.csv,99,number_98,девятдесят вісем,девятдесят вісем,98,added
+numbers_source.csv,100,number_99,девятдесят девят,девятдесят девят,99,added
+numbers_source.csv,101,number_100,сто,сто,100,added
+numbers_source.csv,102,number_200,двіста,двіста,200,added
+numbers_source.csv,103,number_300,триста,триста,300,added
+numbers_source.csv,104,number_400,штыриста,штыриста,400,added
+numbers_source.csv,105,number_500,пятсто,пятсто,500,added
+numbers_source.csv,106,number_600,шістсто,шістсто,600,added
+numbers_source.csv,107,number_700,сімсто,сімсто,700,added
+numbers_source.csv,108,number_800,вісемсто,вісемсто,800,added
+numbers_source.csv,109,number_900,девятсто,девятсто,900,added
+numbers_source.csv,110,number_1000,тисяч,тисяч,1000,added
+numbers_source.csv,111,number_1000000,мелийон,мелийон,1000000,added

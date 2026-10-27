@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f42738d6755b44ebdccadb2944e44b, type: 3}
+  m_Name: animal_turkey_poult
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
+  id: animal_turkey_poult
+  lemko: "\u043F\u0443\u043B\u044C\u0447\u0430"
+  polish: indyczek
+  english: turkey poult
+  sprite: {fileID: 0}
+  pronunciation: {fileID: 0}
+  tags:
+  - farm
+  - animal
+  verified: 0
+  notes: "Source: farm_source.csv, row 34. Supplied Lemko and Polish; English gloss
+    is an unverified editorial translation.  Source alternatives: \u043F\u0443\u043B\u044C\u0447\u0430
+    / \u043F\u0443\u043B\u044C\u0447\u0430\u0442\u043A\u043E."
+  spriteId: sprite_animal_turkey_poult
+  audioId: audio_animal_turkey_poult
+  translations:
+  - language: lemko
+    text: "\u043F\u0443\u043B\u044C\u0447\u0430"
+  - language: pl
+    text: indyczek
+  - language: en
+    text: turkey poult

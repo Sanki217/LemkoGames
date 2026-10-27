@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58f24f17399a0e641a0a400c1aebb79d, type: 3}
-  m_Name: Farm(Clone)(Clone)
+  m_Name: Farm(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: Assembly-CSharp::Lemko.ActivityDefinition
   kind: 0
   tasksPerSession: 5
@@ -19,7 +19,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b671db1845137f14ea58c17c3f6bc517, type: 2}
   - {fileID: 11400000, guid: c3772226de5ad61468b3d1388bbf2062, type: 2}
   tasks:
-  - id: cow_two
+  - id: cow_2
     word: {fileID: 11400000, guid: c691971d68e330945a3a203256883f20, type: 2}
     context: {fileID: 0}
     quantity: 2
@@ -27,7 +27,7 @@ MonoBehaviour:
     maxTemperature: 20
     request: 
     validPeople: []
-  - id: pig_three
+  - id: pig_3
     word: {fileID: 11400000, guid: b671db1845137f14ea58c17c3f6bc517, type: 2}
     context: {fileID: 0}
     quantity: 3
@@ -35,7 +35,7 @@ MonoBehaviour:
     maxTemperature: 20
     request: 
     validPeople: []
-  - id: sheep_one
+  - id: sheep_1
     word: {fileID: 11400000, guid: c3772226de5ad61468b3d1388bbf2062, type: 2}
     context: {fileID: 0}
     quantity: 1
@@ -43,7 +43,7 @@ MonoBehaviour:
     maxTemperature: 20
     request: 
     validPeople: []
-  - id: cow_four
+  - id: cow_4
     word: {fileID: 11400000, guid: c691971d68e330945a3a203256883f20, type: 2}
     context: {fileID: 0}
     quantity: 4
@@ -51,7 +51,7 @@ MonoBehaviour:
     maxTemperature: 20
     request: 
     validPeople: []
-  - id: sheep_two
+  - id: sheep_2
     word: {fileID: 11400000, guid: c3772226de5ad61468b3d1388bbf2062, type: 2}
     context: {fileID: 0}
     quantity: 2
@@ -66,3 +66,4 @@ MonoBehaviour:
   revealSeconds: 1
   maxLetters: 10
   extraLetters: 
+  alphabetLetters: []

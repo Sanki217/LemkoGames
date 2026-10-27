@@ -7,6 +7,7 @@ namespace Lemko
     {
         [System.Serializable] public struct LocalizedText { public string language; [TextArea] public string text; }
         public string id;
+        public bool IsLegacyPlaceholder => !string.IsNullOrEmpty(lemko) && lemko.StartsWith("[DEMO]",System.StringComparison.Ordinal);
         [TextArea] public string lemko;
         public string polish;
         public string english;

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f42738d6755b44ebdccadb2944e44b, type: 3}
+  m_Name: weather_lightning_flashing
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
+  id: weather_lightning_flashing
+  lemko: "\u0431\u043B\u0438\u0441\u043A\u0430\u0442 \u0441\u044F"
+  polish: "b\u0142yska"
+  english: lightning is flashing
+  sprite: {fileID: 0}
+  pronunciation: {fileID: 0}
+  tags:
+  - weather
+  verified: 0
+  notes: 'Source: weather_source.csv, row 43. Supplied Lemko and Polish; English
+    gloss is an unverified editorial translation. '
+  spriteId: sprite_weather_lightning_flashing
+  audioId: audio_weather_lightning_flashing
+  translations:
+  - language: lemko
+    text: "\u0431\u043B\u0438\u0441\u043A\u0430\u0442 \u0441\u044F"
+  - language: pl
+    text: "b\u0142yska"
+  - language: en
+    text: lightning is flashing

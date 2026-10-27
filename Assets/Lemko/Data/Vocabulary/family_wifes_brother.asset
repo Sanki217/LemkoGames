@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f42738d6755b44ebdccadb2944e44b, type: 3}
+  m_Name: family_wifes_brother
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
+  id: family_wifes_brother
+  lemko: "\u0431\u0440\u0430\u0442 \u0436\u0435\u043D\u044B"
+  polish: "szwagier (brat \u017Cony)"
+  english: wifes brother
+  sprite: {fileID: 0}
+  pronunciation: {fileID: 0}
+  tags:
+  - family
+  - source_advanced
+  verified: 0
+  notes: "Source: family_source.csv, row 49. Supplied Lemko and Polish; English gloss
+    is an unverified editorial translation.  Source alternatives: \u0431\u0440\u0430\u0442
+    \u0436\u0435\u043D\u044B / \u0436\u0435\u043D\u0438\u043D \u0431\u0440\u0430\u0442."
+  spriteId: sprite_family_wifes_brother
+  audioId: audio_family_wifes_brother
+  translations:
+  - language: lemko
+    text: "\u0431\u0440\u0430\u0442 \u0436\u0435\u043D\u044B"
+  - language: pl
+    text: "szwagier (brat \u017Cony)"
+  - language: en
+    text: wifes brother

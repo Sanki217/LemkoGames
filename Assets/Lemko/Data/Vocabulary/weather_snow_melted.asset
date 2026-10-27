@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f42738d6755b44ebdccadb2944e44b, type: 3}
+  m_Name: weather_snow_melted
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
+  id: weather_snow_melted
+  lemko: "\u0441\u0442\u0430\u044F\u043B \u0441\u044C\u043D\u0456\u0433"
+  polish: "stopnia\u0142 \u015Bnieg"
+  english: the snow melted
+  sprite: {fileID: 0}
+  pronunciation: {fileID: 0}
+  tags:
+  - weather
+  verified: 0
+  notes: 'Source: weather_source.csv, row 34. Supplied Lemko and Polish; English
+    gloss is an unverified editorial translation. '
+  spriteId: sprite_weather_snow_melted
+  audioId: audio_weather_snow_melted
+  translations:
+  - language: lemko
+    text: "\u0441\u0442\u0430\u044F\u043B \u0441\u044C\u043D\u0456\u0433"
+  - language: pl
+    text: "stopnia\u0142 \u015Bnieg"
+  - language: en
+    text: the snow melted

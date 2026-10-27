@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f42738d6755b44ebdccadb2944e44b, type: 3}
+  m_Name: house_toothpaste
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
+  id: house_toothpaste
+  lemko: "\u043F\u0430\u0441\u0442\u0430 \u0434\u043E \u0437\u0443\u0431\u0456\u0432"
+  polish: "pasta do z\u0119b\xF3w"
+  english: toothpaste
+  sprite: {fileID: 0}
+  pronunciation: {fileID: 0}
+  tags:
+  - house
+  - object
+  verified: 0
+  notes: 'Source: house_source.csv, row 77. Supplied Lemko and Polish; English gloss
+    is an unverified editorial translation. '
+  spriteId: sprite_house_toothpaste
+  audioId: audio_house_toothpaste
+  translations:
+  - language: lemko
+    text: "\u043F\u0430\u0441\u0442\u0430 \u0434\u043E \u0437\u0443\u0431\u0456\u0432"
+  - language: pl
+    text: "pasta do z\u0119b\xF3w"
+  - language: en
+    text: toothpaste

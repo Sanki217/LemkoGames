@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58f24f17399a0e641a0a400c1aebb79d, type: 3}
-  m_Name: Memory(Clone)(Clone)
+  m_Name: Memory(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: Assembly-CSharp::Lemko.ActivityDefinition
   kind: 3
   tasksPerSession: 5
@@ -21,6 +21,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4eba51f64d83e9345b43b1e425c397d8, type: 2}
   - {fileID: 11400000, guid: eca4af749b54d314da9b6d4aa410db7e, type: 2}
   - {fileID: 11400000, guid: 08675176221f5874f9016f1a5dbbdd5c, type: 2}
+  - {fileID: 11400000, guid: c691971d68e330945a3a203256883f20, type: 2}
+  - {fileID: 11400000, guid: b671db1845137f14ea58c17c3f6bc517, type: 2}
+  - {fileID: 11400000, guid: c3772226de5ad61468b3d1388bbf2062, type: 2}
+  - {fileID: 11400000, guid: 36cae511a74eba84ab6f2d12a127ee92, type: 2}
+  - {fileID: 11400000, guid: df0045a52743e2948a5f06a12801bb81, type: 2}
+  - {fileID: 11400000, guid: 78e31d0042f57d44aa282b7183663f4c, type: 2}
   tasks: []
   rooms: []
   referencePerson: you
@@ -29,3 +35,4 @@ MonoBehaviour:
   revealSeconds: 1
   maxLetters: 10
   extraLetters: 
+  alphabetLetters: []

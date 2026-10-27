@@ -52,7 +52,12 @@ namespace Lemko
         }
         public void Select() { if (entry && !submitted && (!selectButton || selectButton.interactable)) selected?.Invoke(this); }
         public void Speak() { if (entry && audioService) audioService.Play(entry.pronunciation); }
-        public void OnPointerClick(PointerEventData e) { if (worldPicture && e.button == PointerEventData.InputButton.Left && (!hint || !hint.BlocksSelection)) Select(); }
+        public void OnPointerClick(PointerEventData e) { if ((!TryGetComponent<WorldDrag>(out var drag) || !drag.BlocksClick) && worldPicture && e.button == PointerEventData.InputButton.Left && (!hint || !hint.BlocksSelection)) Select(); }
+        public void SetSelected(bool value)
+        {
+            if(worldPicture) worldPicture.color=value ? new Color(.65f,.85f,1f) : (entry && entry.sprite ? Color.white : idleColor);
+            if(selectButton) selectButton.image.color=value ? new Color(.2f,.4f,.6f) : idleColor;
+        }
         public void Mark(bool correct)
         {
             submitted = true;

@@ -13,20 +13,22 @@ MonoBehaviour:
   m_Name: furniture_table
   m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
   id: furniture_table
-  lemko: '[DEMO: table]'
+  lemko: "\u0441\u0442\u0456\u043B"
   polish: "st\xF3\u0142"
   english: table
   sprite: {fileID: 21300000, guid: a59575459d406a144a7b70794338b0a5, type: 3}
   pronunciation: {fileID: 0}
   tags:
-  - prototype
+  - house
+  - object
   verified: 0
-  notes: 'Placeholder only: replace with verified Lemko.'
+  notes: 'Source: house_source.csv, row 8. Supplied Lemko and Polish; English gloss
+    is an unverified editorial translation. '
   spriteId: sprite_furniture_table
   audioId: audio_furniture_table
   translations:
   - language: lemko
-    text: '[DEMO: table]'
+    text: "\u0441\u0442\u0456\u043B"
   - language: pl
     text: "st\xF3\u0142"
   - language: en

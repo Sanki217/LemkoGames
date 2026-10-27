@@ -22,6 +22,11 @@ namespace Lemko
         public string parentId;
         public string secondParentId;
     }
+    [Serializable] public sealed class AlphabetLetter
+    {
+        public string id, uppercase, lowercase, phoneticPolish, audioId;
+        public bool verified;
+    }
     [CreateAssetMenu(menuName="Lemko/Activity definition")]
     public sealed class ActivityDefinition : ScriptableObject
     {
@@ -41,6 +46,8 @@ namespace Lemko
         [Header("Alphabet")]
         [Range(1,12)] public int maxLetters=10;
         public string extraLetters="";
+        [Tooltip("Imported from alphabet_letters.csv. Used for extra letter tiles when Extra Letters is blank. Phonetic notation is reference data, not pronunciation scoring.")]
+        public List<AlphabetLetter> alphabetLetters=new List<AlphabetLetter>();
         public string Validate()
         {
             if(tasksPerSession<1 || tasksPerSession>20) return "Session must contain 1–20 tasks.";
@@ -48,6 +55,13 @@ namespace Lemko
             if((kind==ActivityKind.Farm || kind==ActivityKind.House) && pool.Count>4) return "This prototype tray supports at most four distinct items.";
             if(kind==ActivityKind.Weather && pool.Count>6) return "This prototype supports at most six weather options.";
             if(kind==ActivityKind.Memory) return pairs<2 || pairs>6 || new HashSet<VocabularyEntry>(pool).Count<pairs ? "Memory needs 2–6 pairs and enough distinct words." : null;
+            if(kind==ActivityKind.Alphabet && alphabetLetters!=null) {
+                var letterIds=new HashSet<string>(); var lower=new HashSet<string>();
+                foreach(var letter in alphabetLetters) if(letter==null || string.IsNullOrWhiteSpace(letter.id) || !letterIds.Add(letter.id) ||
+                    string.IsNullOrEmpty(letter.uppercase) || string.IsNullOrEmpty(letter.lowercase) ||
+                    SpellingRules.Elements(letter.uppercase).Count!=1 || SpellingRules.Elements(letter.lowercase).Count!=1 ||
+                    !lower.Add(letter.lowercase)) return "Invalid or duplicate alphabet letter.";
+            }
             if(tasks.Count==0) return "No tasks configured.";
             var ids=new HashSet<string>();
             foreach(var t in tasks) {

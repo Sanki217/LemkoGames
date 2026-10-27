@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58f24f17399a0e641a0a400c1aebb79d, type: 3}
-  m_Name: House(Clone)(Clone)
+  m_Name: House(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: Assembly-CSharp::Lemko.ActivityDefinition
   kind: 1
   tasksPerSession: 5
@@ -68,3 +68,4 @@ MonoBehaviour:
   revealSeconds: 1
   maxLetters: 10
   extraLetters: 
+  alphabetLetters: []

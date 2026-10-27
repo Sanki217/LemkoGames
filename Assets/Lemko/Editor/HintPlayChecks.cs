@@ -79,7 +79,7 @@ namespace Lemko.Editor
                     Check(box.anchoredPosition.x+half.x<=parent.rect.xMax+.01f && box.anchoredPosition.y+half.y<=parent.rect.yMax+.01f,"tooltip clamped to canvas");
                     product.OnPointerUp(touch); int correct=session.shopController.Correct, mistakes=session.shopController.Mistakes;
                     view.OnPointerClick(touch);
-                    Check(session.shopController.Correct==correct && session.shopController.Mistakes==mistakes,"long press release does not select product");
+                    Check(session.shopController.BasketCount==0 && session.shopController.Correct==correct && session.shopController.Mistakes==mistakes,"long press release does not select product");
                     Check(!session.tooltip.box.gameObject.activeSelf,"touch release hides tooltip");
                     row.OnPointerEnter(mouse); row.gameObject.SetActive(false); next=EditorApplication.timeSinceStartup+3.3;
                 }
@@ -87,7 +87,7 @@ namespace Lemko.Editor
                     Check(!session.tooltip.box.gameObject.activeSelf && session.shopController.HintsUsed==3,"disable cancels hint"); row.gameObject.SetActive(true);
                     var ids=session.shopController.listRoot.GetComponentsInChildren<HintPointer>().Select(h=>h.entry.id).ToArray();
                     foreach(var word in session.shopController.worldRoot.GetComponentsInChildren<WordView>().Where(v=>ids.Contains(v.Entry.id))) word.Select();
-                    session.shopController.Complete();
+                    session.shopController.SubmitBasket(); session.shopController.Complete();
                     Check(session.resultsPanel.activeSelf && session.Progress.lastShopHints==3 && session.results.text.Contains("Hints used: 3"),"results record hints");
                     session.OpenShop();
                 }

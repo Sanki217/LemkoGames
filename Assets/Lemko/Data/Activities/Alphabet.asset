@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58f24f17399a0e641a0a400c1aebb79d, type: 3}
-  m_Name: Alphabet(Clone)(Clone)
+  m_Name: Alphabet(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: Assembly-CSharp::Lemko.ActivityDefinition
   kind: 5
   tasksPerSession: 5
@@ -20,8 +20,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 85e78b75e95582f4695abec611d114db, type: 2}
   - {fileID: 11400000, guid: 4eba51f64d83e9345b43b1e425c397d8, type: 2}
   - {fileID: 11400000, guid: eca4af749b54d314da9b6d4aa410db7e, type: 2}
+  - {fileID: 11400000, guid: c691971d68e330945a3a203256883f20, type: 2}
+  - {fileID: 11400000, guid: b671db1845137f14ea58c17c3f6bc517, type: 2}
+  - {fileID: 11400000, guid: c3772226de5ad61468b3d1388bbf2062, type: 2}
+  - {fileID: 11400000, guid: 36cae511a74eba84ab6f2d12a127ee92, type: 2}
+  - {fileID: 11400000, guid: df0045a52743e2948a5f06a12801bb81, type: 2}
   tasks:
-  - id: spell_0
+  - id: spell_food_bread
     word: {fileID: 11400000, guid: 0c21f33f8bacdfe4fbb579fa9c352022, type: 2}
     context: {fileID: 0}
     quantity: 1
@@ -29,7 +34,7 @@ MonoBehaviour:
     maxTemperature: 20
     request: 
     validPeople: []
-  - id: spell_1
+  - id: spell_food_butter
     word: {fileID: 11400000, guid: 172602e836fd62145a0221b5b44d7066, type: 2}
     context: {fileID: 0}
     quantity: 1
@@ -37,7 +42,7 @@ MonoBehaviour:
     maxTemperature: 20
     request: 
     validPeople: []
-  - id: spell_2
+  - id: spell_food_eggs
     word: {fileID: 11400000, guid: 85e78b75e95582f4695abec611d114db, type: 2}
     context: {fileID: 0}
     quantity: 1
@@ -45,7 +50,7 @@ MonoBehaviour:
     maxTemperature: 20
     request: 
     validPeople: []
-  - id: spell_3
+  - id: spell_food_milk
     word: {fileID: 11400000, guid: 4eba51f64d83e9345b43b1e425c397d8, type: 2}
     context: {fileID: 0}
     quantity: 1
@@ -53,8 +58,48 @@ MonoBehaviour:
     maxTemperature: 20
     request: 
     validPeople: []
-  - id: spell_4
+  - id: spell_food_cheese
     word: {fileID: 11400000, guid: eca4af749b54d314da9b6d4aa410db7e, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: spell_animal_cow
+    word: {fileID: 11400000, guid: c691971d68e330945a3a203256883f20, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: spell_animal_pig
+    word: {fileID: 11400000, guid: b671db1845137f14ea58c17c3f6bc517, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: spell_animal_sheep
+    word: {fileID: 11400000, guid: c3772226de5ad61468b3d1388bbf2062, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: spell_furniture_chair
+    word: {fileID: 11400000, guid: 36cae511a74eba84ab6f2d12a127ee92, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: spell_furniture_table
+    word: {fileID: 11400000, guid: df0045a52743e2948a5f06a12801bb81, type: 2}
     context: {fileID: 0}
     quantity: 1
     minTemperature: 0
@@ -68,3 +113,208 @@ MonoBehaviour:
   revealSeconds: 1
   maxLetters: 10
   extraLetters: 
+  alphabetLetters:
+  - id: letter_a
+    uppercase: "\u0410"
+    lowercase: "\u0430"
+    phoneticPolish: '[a]'
+    audioId: audio_letter_a
+    verified: 0
+  - id: letter_be
+    uppercase: "\u0411"
+    lowercase: "\u0431"
+    phoneticPolish: '[be]'
+    audioId: audio_letter_be
+    verified: 0
+  - id: letter_ve
+    uppercase: "\u0412"
+    lowercase: "\u0432"
+    phoneticPolish: '[we]'
+    audioId: audio_letter_ve
+    verified: 0
+  - id: letter_he
+    uppercase: "\u0413"
+    lowercase: "\u0433"
+    phoneticPolish: '[ha]'
+    audioId: audio_letter_he
+    verified: 0
+  - id: letter_ghe
+    uppercase: "\u0490"
+    lowercase: "\u0491"
+    phoneticPolish: '[gie]'
+    audioId: audio_letter_ghe
+    verified: 0
+  - id: letter_de
+    uppercase: "\u0414"
+    lowercase: "\u0434"
+    phoneticPolish: '[de]'
+    audioId: audio_letter_de
+    verified: 0
+  - id: letter_e
+    uppercase: "\u0415"
+    lowercase: "\u0435"
+    phoneticPolish: '[e]'
+    audioId: audio_letter_e
+    verified: 0
+  - id: letter_ye
+    uppercase: "\u0404"
+    lowercase: "\u0454"
+    phoneticPolish: '[je]'
+    audioId: audio_letter_ye
+    verified: 0
+  - id: letter_zhe
+    uppercase: "\u0416"
+    lowercase: "\u0436"
+    phoneticPolish: "[\u017Cet]"
+    audioId: audio_letter_zhe
+    verified: 0
+  - id: letter_ze
+    uppercase: "\u0417"
+    lowercase: "\u0437"
+    phoneticPolish: '[zet]'
+    audioId: audio_letter_ze
+    verified: 0
+  - id: letter_i
+    uppercase: "\u0406"
+    lowercase: "\u0456"
+    phoneticPolish: '[i]'
+    audioId: audio_letter_i
+    verified: 0
+  - id: letter_y
+    uppercase: "\u0418"
+    lowercase: "\u0438"
+    phoneticPolish: '[y]'
+    audioId: audio_letter_y
+    verified: 0
+  - id: letter_yeru
+    uppercase: "\u042B"
+    lowercase: "\u044B"
+    phoneticPolish: "[\u0177]"
+    audioId: audio_letter_yeru
+    verified: 0
+  - id: letter_short_i
+    uppercase: "\u0419"
+    lowercase: "\u0439"
+    phoneticPolish: '[jot]'
+    audioId: audio_letter_short_i
+    verified: 0
+  - id: letter_ka
+    uppercase: "\u041A"
+    lowercase: "\u043A"
+    phoneticPolish: '[ka]'
+    audioId: audio_letter_ka
+    verified: 0
+  - id: letter_el
+    uppercase: "\u041B"
+    lowercase: "\u043B"
+    phoneticPolish: "[e\u0142]"
+    audioId: audio_letter_el
+    verified: 0
+  - id: letter_em
+    uppercase: "\u041C"
+    lowercase: "\u043C"
+    phoneticPolish: '[em]'
+    audioId: audio_letter_em
+    verified: 0
+  - id: letter_en
+    uppercase: "\u041D"
+    lowercase: "\u043D"
+    phoneticPolish: '[en]'
+    audioId: audio_letter_en
+    verified: 0
+  - id: letter_o
+    uppercase: "\u041E"
+    lowercase: "\u043E"
+    phoneticPolish: '[o]'
+    audioId: audio_letter_o
+    verified: 0
+  - id: letter_pe
+    uppercase: "\u041F"
+    lowercase: "\u043F"
+    phoneticPolish: '[pe]'
+    audioId: audio_letter_pe
+    verified: 0
+  - id: letter_er
+    uppercase: "\u0420"
+    lowercase: "\u0440"
+    phoneticPolish: '[er]'
+    audioId: audio_letter_er
+    verified: 0
+  - id: letter_es
+    uppercase: "\u0421"
+    lowercase: "\u0441"
+    phoneticPolish: '[es]'
+    audioId: audio_letter_es
+    verified: 0
+  - id: letter_te
+    uppercase: "\u0422"
+    lowercase: "\u0442"
+    phoneticPolish: '[te]'
+    audioId: audio_letter_te
+    verified: 0
+  - id: letter_u
+    uppercase: "\u0423"
+    lowercase: "\u0443"
+    phoneticPolish: '[u]'
+    audioId: audio_letter_u
+    verified: 0
+  - id: letter_ef
+    uppercase: "\u0424"
+    lowercase: "\u0444"
+    phoneticPolish: '[ef]'
+    audioId: audio_letter_ef
+    verified: 0
+  - id: letter_kha
+    uppercase: "\u0425"
+    lowercase: "\u0445"
+    phoneticPolish: '[cha]'
+    audioId: audio_letter_kha
+    verified: 0
+  - id: letter_tse
+    uppercase: "\u0426"
+    lowercase: "\u0446"
+    phoneticPolish: '[ce]'
+    audioId: audio_letter_tse
+    verified: 0
+  - id: letter_che
+    uppercase: "\u0427"
+    lowercase: "\u0447"
+    phoneticPolish: '[cze]'
+    audioId: audio_letter_che
+    verified: 0
+  - id: letter_sha
+    uppercase: "\u0428"
+    lowercase: "\u0448"
+    phoneticPolish: '[sza]'
+    audioId: audio_letter_sha
+    verified: 0
+  - id: letter_shcha
+    uppercase: "\u0429"
+    lowercase: "\u0449"
+    phoneticPolish: '[szcza]'
+    audioId: audio_letter_shcha
+    verified: 0
+  - id: letter_yu
+    uppercase: "\u042E"
+    lowercase: "\u044E"
+    phoneticPolish: '[ju]'
+    audioId: audio_letter_yu
+    verified: 0
+  - id: letter_ya
+    uppercase: "\u042F"
+    lowercase: "\u044F"
+    phoneticPolish: '[ja]'
+    audioId: audio_letter_ya
+    verified: 0
+  - id: letter_soft_sign
+    uppercase: "\u042C"
+    lowercase: "\u044C"
+    phoneticPolish: "mi\u0119kki znak"
+    audioId: audio_letter_soft_sign
+    verified: 0
+  - id: letter_hard_sign
+    uppercase: "\u042A"
+    lowercase: "\u044A"
+    phoneticPolish: twardy znak
+    audioId: audio_letter_hard_sign
+    verified: 0

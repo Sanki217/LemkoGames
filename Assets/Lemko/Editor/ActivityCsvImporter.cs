@@ -37,6 +37,13 @@ namespace Lemko.Editor
                     }
                     if(kind==ActivityKind.FamilyTree) foreach(var row in CsvTable.Records(File.ReadAllText("Content/CSV/family_people.csv"),"person_id","vocabulary_id","x","y","parent_id"))
                         def.people.Add(new FamilyPerson{id=row["person_id"],appearance=Word(row["vocabulary_id"]),position=new Vector2(float.Parse(row["x"],CultureInfo.InvariantCulture),float.Parse(row["y"],CultureInfo.InvariantCulture)),parentId=row["parent_id"],secondParentId=row.TryGetValue("second_parent_id",out var second)?second:""});
+                    if(kind==ActivityKind.Alphabet && File.Exists("Content/CSV/alphabet_letters.csv")) {
+                        def.alphabetLetters=new List<AlphabetLetter>();
+                        foreach(var row in CsvTable.Records(File.ReadAllText("Content/CSV/alphabet_letters.csv"),"letter_id","uppercase","lowercase","phonetic_pl","audio_id","verified")) {
+                            if(!bool.TryParse(row["verified"],out var verified)) throw new FormatException("Invalid alphabet verified flag: "+row["letter_id"]);
+                            def.alphabetLetters.Add(new AlphabetLetter{id=row["letter_id"],uppercase=row["uppercase"],lowercase=row["lowercase"],phoneticPolish=row["phonetic_pl"],audioId=row["audio_id"],verified=verified});
+                        }
+                    }
                     var error=def.Validate(); if(error!=null) throw new FormatException(kind+": "+error);
                 }
                 Directory.CreateDirectory(Root); AssetDatabase.Refresh();

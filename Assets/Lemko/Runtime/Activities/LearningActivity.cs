@@ -12,6 +12,7 @@ namespace Lemko
         public ActivityToken tokenPrefab;
         public TMP_Text prompt, feedback;
         public Button submit, next, speak;
+        public HoldTranslationHint hintControl;
         [Header("World layout (editable independently of UI)")]
         public Vector2 contentOffset;
         [Range(.5f,1.5f)] public float contentScale=1;
@@ -32,10 +33,12 @@ namespace Lemko
         string rejected;
         public void Begin(GameSession session)
         {
-            Close(); Session=session; Correct=Mistakes=Hints=0; score=new ShopScore();
-            string error=definition.Validate();
+            Close(); Session=session; session.BeginLearningSession(); Correct=Mistakes=Hints=0; score=new ShopScore();
+            string error=ValidateContent();
             if(error!=null) { prompt.text="Content needs attention"; feedback.text=error; Debug.LogError(error,this); return; }
-            order=new List<LearningTask>(definition.tasks); Shuffle(order); Running=true; worldRoot.gameObject.SetActive(true); taskRoot.localPosition=contentOffset; taskRoot.localScale=Vector3.one*contentScale;
+            order=AvailableTasks(); Shuffle(order);
+            var review=new List<LearningTask>(); foreach(var task in order) if(review.Count<2 && Session.ReviewPriority(task.word)>0 && !review.Exists(t=>t.word==task.word)) review.Add(task);
+            foreach(var task in review) order.Remove(task); order.InsertRange(0,review); Running=true; worldRoot.gameObject.SetActive(true); taskRoot.localPosition=contentOffset; taskRoot.localScale=Vector3.one*contentScale;
             submit.onClick.RemoveListener(Submit); submit.onClick.AddListener(Submit);
             next.onClick.RemoveListener(Advance); next.onClick.AddListener(Advance);
             speak.onClick.RemoveListener(Speak); speak.onClick.AddListener(Speak);
@@ -44,22 +47,28 @@ namespace Lemko
         void StartTask()
         {
             ClearTask(); Locked=false; rejected=null; Current=order.Count>0 ? order[Correct%order.Count] : null;
-            next.gameObject.SetActive(false); submit.gameObject.SetActive(true); feedback.text="Demo content may be unverified. Hold a word/picture for 3 seconds for a hint.";
+            next.gameObject.SetActive(false); submit.gameObject.SetActive(true); feedback.text="Keep the pointer still for a hint.";
             if(Current!=null) { Session.Encounter(Current.word); prompt.text=Current.word.lemko; prompt.GetComponent<HintPointer>().Bind(Current.word,Session.tooltip); }
+            if(hintControl) { hintControl.gameObject.SetActive(Current!=null && definition.kind!=ActivityKind.Memory); hintControl.Bind(Current?.word,Session.tooltip); }
             speak.interactable=Current!=null && Current.word.pronunciation;
-            BuildTask(); Session.RefreshHud();
+            BuildTask();
+            speak.GetComponentInChildren<TMP_Text>().text=speak.interactable ? "Play pronunciation" : "Recording coming soon";
+            Session.RefreshHud();
         }
+        protected virtual string ValidateContent()=>definition.Validate();
+        protected virtual List<LearningTask> AvailableTasks()=>new List<LearningTask>(definition.tasks);
         protected abstract void BuildTask();
         public abstract void Submit();
         protected bool Ready => Running && !Locked && Session.CanAnswer;
         protected bool Answer(bool correct,string signature,string explanation)
         {
             if(!Ready || (!correct && rejected==signature)) return false;
-            if(correct) { Correct++; Locked=true; score.Apply(SelectionResult.Correct); feedback.text="Correct! "+explanation; submit.gameObject.SetActive(false); next.gameObject.SetActive(true); next.GetComponentInChildren<TMP_Text>().text=Correct>=Total ? "Results" : "Next"; }
-            else { rejected=signature; Mistakes++; score.Apply(SelectionResult.Incorrect); feedback.text=explanation+" Change your answer and try again."; Session.Wrong(); }
+            if(Current!=null && definition.kind!=ActivityKind.Memory) Session.RecordAnswer(Current.word,correct);
+            if(correct) { Correct++; Locked=true; int awarded=score.Apply(SelectionResult.Correct); feedback.text="Correct! +"+awarded+" points. "+explanation; Session.PresentFeedback(true); submit.gameObject.SetActive(false); next.gameObject.SetActive(true); next.GetComponentInChildren<TMP_Text>().text=Correct>=Total ? "Results" : "Next"; }
+            else { rejected=signature; Mistakes++; score.Apply(SelectionResult.Incorrect); feedback.text=explanation+" Change your answer and try again."; Session.PresentFeedback(false); Session.Wrong(); }
             Session.RefreshHud(); return true;
         }
-        public void Advance() { if(!Running || !Locked) return; if(Correct>=Total) Session.FinishActivity(true); else StartTask(); }
+        public virtual void Advance() { if(!Running || !Locked) return; if(Correct>=Total) Session.FinishActivity(true); else StartTask(); }
         public void RecordHint() { if(Running) { Hints++; Session.RefreshHud(); } }
         public void Speak() { if(Current!=null) Session.audioService.Play(Current.word.pronunciation); }
         protected ActivityToken Token(VocabularyEntry word,Vector2 position,string key,System.Action<ActivityToken> click,string text=null,bool picture=true,bool draggable=false)
@@ -75,8 +84,8 @@ namespace Lemko
             go.GetComponent<BoxCollider2D>().size=size; var renderer=go.GetComponent<SpriteRenderer>(); renderer.sprite=tokenPrefab.backing.sprite; renderer.drawMode=SpriteDrawMode.Sliced; renderer.size=size; renderer.color=new Color(.3f,.5f,.35f,.5f); renderer.sortingOrder=-1;
             var zone=go.GetComponent<WorldDropZone>(); zone.dropped=accept; return zone;
         }
-        protected void ClearTask() { StopAllCoroutines(); Session?.tooltip.Hide(); foreach(Transform t in taskRoot) { t.gameObject.SetActive(false); Destroy(t.gameObject); } tokens.Clear(); }
-        public virtual void Close() { Running=false; Locked=true; StopAllCoroutines(); if(taskRoot) { foreach(Transform t in taskRoot) { t.gameObject.SetActive(false); Destroy(t.gameObject); } } tokens.Clear(); if(worldRoot) worldRoot.gameObject.SetActive(false); if(Session) { Session.tooltip.Hide(); Session.audioService.Stop(); } }
+        protected void ClearTask() { Session?.StopFeedback(); if(hintControl) hintControl.Cancel(); StopAllCoroutines(); Session?.tooltip.Hide(); foreach(Transform t in taskRoot) { t.gameObject.SetActive(false); Destroy(t.gameObject); } tokens.Clear(); }
+        public virtual void Close() { Session?.StopFeedback(); if(hintControl) hintControl.Cancel(); Running=false; Locked=true; StopAllCoroutines(); if(taskRoot) { foreach(Transform t in taskRoot) { t.gameObject.SetActive(false); Destroy(t.gameObject); } } tokens.Clear(); if(worldRoot) worldRoot.gameObject.SetActive(false); if(Session) { Session.tooltip.Hide(); Session.audioService.Stop(); } }
         protected static void Shuffle<T>(IList<T> list) { for(int i=list.Count-1;i>0;i--) { int j=Random.Range(0,i+1); (list[i],list[j])=(list[j],list[i]); } }
         protected virtual void OnDisable() => Close();
     }

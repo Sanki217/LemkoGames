@@ -13,21 +13,22 @@ MonoBehaviour:
   m_Name: weather_rainy
   m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
   id: weather_rainy
-  lemko: '[DEMO: rainy]'
-  polish: deszczowo
-  english: rainy
+  lemko: "\u043B\u0456\u0454 \u0434\u043E\u0439\u0434\u0436"
+  polish: pada deszcz
+  english: it is raining
   sprite: {fileID: 21300000, guid: fc6410f4af3206949bf39ea6ae37624e, type: 3}
   pronunciation: {fileID: 0}
   tags:
-  - prototype
+  - weather
   verified: 0
-  notes: 'Placeholder only: replace with verified Lemko.'
+  notes: 'Source: weather_source.csv, row 20. Supplied Lemko and Polish; English
+    gloss is an unverified editorial translation. '
   spriteId: sprite_weather_rainy
   audioId: audio_weather_rainy
   translations:
   - language: lemko
-    text: '[DEMO: rainy]'
+    text: "\u043B\u0456\u0454 \u0434\u043E\u0439\u0434\u0436"
   - language: pl
-    text: deszczowo
+    text: pada deszcz
   - language: en
-    text: rainy
+    text: it is raining

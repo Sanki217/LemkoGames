@@ -13,20 +13,22 @@ MonoBehaviour:
   m_Name: room_kitchen
   m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
   id: room_kitchen
-  lemko: '[DEMO: kitchen]'
+  lemko: "\u043A\u0443\u0445\u043D\u044F"
   polish: kuchnia
   english: kitchen
   sprite: {fileID: 21300000, guid: c572c2dbdf074f34db86d4f3334d0f65, type: 3}
   pronunciation: {fileID: 0}
   tags:
-  - prototype
+  - house
+  - room
   verified: 0
-  notes: 'Placeholder only: replace with verified Lemko.'
+  notes: 'Source: house_source.csv, row 6. Supplied Lemko and Polish; English gloss
+    is an unverified editorial translation. '
   spriteId: sprite_room_kitchen
   audioId: audio_room_kitchen
   translations:
   - language: lemko
-    text: '[DEMO: kitchen]'
+    text: "\u043A\u0443\u0445\u043D\u044F"
   - language: pl
     text: kuchnia
   - language: en

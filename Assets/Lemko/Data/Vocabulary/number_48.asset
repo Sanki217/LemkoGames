@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f42738d6755b44ebdccadb2944e44b, type: 3}
+  m_Name: number_48
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
+  id: number_48
+  lemko: "\u0441\u043E\u0440\u043E\u043A \u0432\u0456\u0441\u0435\u043C"
+  polish: 48
+  english: 48
+  sprite: {fileID: 0}
+  pronunciation: {fileID: 0}
+  tags:
+  - number
+  verified: 0
+  notes: "Source: numbers_source.csv, row 49. Supplied Lemko and Polish; English
+    gloss is an unverified editorial translation. Polish and English numeral glosses
+    are intentionally numeric; gameplay supports 1\u201399."
+  spriteId: sprite_number_48
+  audioId: audio_number_48
+  translations:
+  - language: lemko
+    text: "\u0441\u043E\u0440\u043E\u043A \u0432\u0456\u0441\u0435\u043C"
+  - language: pl
+    text: 48
+  - language: en
+    text: 48

@@ -27,6 +27,12 @@ namespace Lemko.Editor
                 if (!font.HasCharacters(characters, out uint[] missing, true, true))
                 { Debug.LogError("Font missing Unicode code points for " + entry.id + ": " + string.Join(",",missing),entry); errors++; }
             }
+            var alphabet = AssetDatabase.LoadAssetAtPath<ActivityDefinition>(ActivityCsvImporter.Root+"/Alphabet.asset");
+            if(alphabet && alphabet.alphabetLetters!=null) foreach(var letter in alphabet.alphabetLetters) {
+                if(!font.HasCharacters(letter.uppercase+letter.lowercase+letter.phoneticPolish,out uint[] missing,true,true)) {
+                    Debug.LogError("Font missing alphabet characters: "+letter.id+" / "+string.Join(",",missing)); errors++;
+                }
+            }
             var shop = AssetDatabase.LoadAssetAtPath<ShopDefinition>(VocabularyImporter.Root + "/Shop.asset");
             if (!shop || shop.Validate() != null) { Debug.LogError(shop ? shop.Validate() : "Shop definition missing."); errors++; }
             EditorUtility.SetDirty(font); AssetDatabase.SaveAssets();

@@ -13,21 +13,22 @@ MonoBehaviour:
   m_Name: weather_sunny
   m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
   id: weather_sunny
-  lemko: '[DEMO: sunny]'
-  polish: "s\u0142onecznie"
-  english: sunny
+  lemko: "\u0441\u043E\u043D\u0446\u0435 \u0441\u044C\u0432\u0456\u0442\u0438\u0442"
+  polish: "s\u0142o\u0144ce \u015Bwieci"
+  english: the sun is shining
   sprite: {fileID: 21300000, guid: 3c4734eee3266494f8cb87af424925b8, type: 3}
   pronunciation: {fileID: 0}
   tags:
-  - prototype
+  - weather
   verified: 0
-  notes: 'Placeholder only: replace with verified Lemko.'
+  notes: 'Source: weather_source.csv, row 13. Supplied Lemko and Polish; English
+    gloss is an unverified editorial translation. '
   spriteId: sprite_weather_sunny
   audioId: audio_weather_sunny
   translations:
   - language: lemko
-    text: '[DEMO: sunny]'
+    text: "\u0441\u043E\u043D\u0446\u0435 \u0441\u044C\u0432\u0456\u0442\u0438\u0442"
   - language: pl
-    text: "s\u0142onecznie"
+    text: "s\u0142o\u0144ce \u015Bwieci"
   - language: en
-    text: sunny
+    text: the sun is shining

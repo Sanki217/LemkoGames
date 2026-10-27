@@ -39,7 +39,7 @@ namespace Lemko.Editor
                 SessionState.SetBool(Running,false); EditorApplication.Exit(0);
             } catch(Exception e) { Debug.LogException(e); SessionState.SetBool(Running,false); EditorApplication.Exit(1); }
         }
-        static void Capture(string name,int width,int height)
+        public static void Capture(string name,int width,int height)
         {
             var camera=Camera.main; var canvas=UnityEngine.Object.FindFirstObjectByType<Canvas>();
             var mode=canvas.renderMode; var oldCamera=canvas.worldCamera; float distance=canvas.planeDistance;

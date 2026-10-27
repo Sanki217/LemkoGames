@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f42738d6755b44ebdccadb2944e44b, type: 3}
+  m_Name: room_bathroom
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
+  id: room_bathroom
+  lemko: "\u043B\u0430\u0437\u043D\u0438\u0447\u043A\u0430"
+  polish: "\u0142azienka"
+  english: bathroom
+  sprite: {fileID: 0}
+  pronunciation: {fileID: 0}
+  tags:
+  - house
+  - room
+  verified: 0
+  notes: 'Source: house_source.csv, row 7. Supplied Lemko and Polish; English gloss
+    is an unverified editorial translation. '
+  spriteId: sprite_room_bathroom
+  audioId: audio_room_bathroom
+  translations:
+  - language: lemko
+    text: "\u043B\u0430\u0437\u043D\u0438\u0447\u043A\u0430"
+  - language: pl
+    text: "\u0142azienka"
+  - language: en
+    text: bathroom

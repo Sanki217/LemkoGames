@@ -1,6 +1,11 @@
 ﻿task_id,vocabulary_id
-spell_0,food_bread
-spell_1,food_butter
-spell_2,food_eggs
-spell_3,food_milk
-spell_4,food_cheese
+spell_food_bread,food_bread
+spell_food_butter,food_butter
+spell_food_eggs,food_eggs
+spell_food_milk,food_milk
+spell_food_cheese,food_cheese
+spell_animal_cow,animal_cow
+spell_animal_pig,animal_pig
+spell_animal_sheep,animal_sheep
+spell_furniture_chair,furniture_chair
+spell_furniture_table,furniture_table

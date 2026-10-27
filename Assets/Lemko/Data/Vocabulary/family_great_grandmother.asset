@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f42738d6755b44ebdccadb2944e44b, type: 3}
+  m_Name: family_great_grandmother
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
+  id: family_great_grandmother
+  lemko: "\u043F\u0440\u0430\u0431\u0430\u0431\u0430"
+  polish: prababcia
+  english: great grandmother
+  sprite: {fileID: 0}
+  pronunciation: {fileID: 0}
+  tags:
+  - family
+  - source_basic
+  verified: 0
+  notes: 'Source: family_source.csv, row 19. Supplied Lemko and Polish; English gloss
+    is an unverified editorial translation. '
+  spriteId: sprite_family_great_grandmother
+  audioId: audio_family_great_grandmother
+  translations:
+  - language: lemko
+    text: "\u043F\u0440\u0430\u0431\u0430\u0431\u0430"
+  - language: pl
+    text: prababcia
+  - language: en
+    text: great grandmother

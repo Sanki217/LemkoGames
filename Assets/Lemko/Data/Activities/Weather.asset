@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58f24f17399a0e641a0a400c1aebb79d, type: 3}
-  m_Name: Weather(Clone)(Clone)
+  m_Name: Weather(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: Assembly-CSharp::Lemko.ActivityDefinition
   kind: 6
   tasksPerSession: 5
@@ -25,7 +25,8 @@ MonoBehaviour:
     quantity: 1
     minTemperature: 18
     maxTemperature: 27
-    request: "Demo request: sunny and warm (18\u201327 \xB0C)."
+    request: "\u0441\u043E\u043D\u0446\u0435 \u0441\u044C\u0432\u0456\u0442\u0438\u0442
+      (18\u201327 \xB0C)"
     validPeople: []
   - id: cool_rain
     word: {fileID: 11400000, guid: 79834fb0f83b25646ad2a8cc91821881, type: 2}
@@ -33,7 +34,7 @@ MonoBehaviour:
     quantity: 1
     minTemperature: 5
     maxTemperature: 14
-    request: "Demo request: rain and cool air (5\u201314 \xB0C)."
+    request: "\u043B\u0456\u0454 \u0434\u043E\u0439\u0434\u0436 (5\u201314 \xB0C)"
     validPeople: []
   - id: cold_snow
     word: {fileID: 11400000, guid: 13bd9484e6e178b4981ce499e020f23d, type: 2}
@@ -41,7 +42,8 @@ MonoBehaviour:
     quantity: 1
     minTemperature: -12
     maxTemperature: 0
-    request: "Demo request: snow and frost (-12\u20130 \xB0C)."
+    request: "\u043A\u0443\u0440\u0438\u0442 \u0441\u044C\u043D\u0456\u0433 (-12\u20130
+      \xB0C)"
     validPeople: []
   - id: mild_sun
     word: {fileID: 11400000, guid: e57b0247dd4b47a4aa34fbe006d27ed6, type: 2}
@@ -49,7 +51,8 @@ MonoBehaviour:
     quantity: 1
     minTemperature: 12
     maxTemperature: 20
-    request: "Demo request: mild sunshine (12\u201320 \xB0C)."
+    request: "\u0441\u043E\u043D\u0446\u0435 \u0441\u044C\u0432\u0456\u0442\u0438\u0442
+      (12\u201320 \xB0C)"
     validPeople: []
   - id: rain_walk
     word: {fileID: 11400000, guid: 79834fb0f83b25646ad2a8cc91821881, type: 2}
@@ -57,7 +60,7 @@ MonoBehaviour:
     quantity: 1
     minTemperature: 10
     maxTemperature: 18
-    request: "Demo request: rain for a walk (10\u201318 \xB0C)."
+    request: "\u043B\u0456\u0454 \u0434\u043E\u0439\u0434\u0436 (10\u201318 \xB0C)"
     validPeople: []
   rooms: []
   referencePerson: you
@@ -66,3 +69,4 @@ MonoBehaviour:
   revealSeconds: 1
   maxLetters: 10
   extraLetters: 
+  alphabetLetters: []

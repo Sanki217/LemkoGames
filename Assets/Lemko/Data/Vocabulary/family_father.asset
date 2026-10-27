@@ -20,8 +20,10 @@ MonoBehaviour:
   pronunciation: {fileID: 0}
   tags:
   - family
+  - source_basic
   verified: 0
-  notes: Supplied family CSV; language review required.
+  notes: "Source: family_source.csv, row 8. Supplied Lemko and Polish; English gloss
+    is an unverified editorial translation. \u043D\u044F\u043D\u044C\u043E - tato"
   spriteId: sprite_family_father
   audioId: audio_family_father
   translations:

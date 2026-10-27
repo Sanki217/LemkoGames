@@ -13,20 +13,22 @@ MonoBehaviour:
   m_Name: animal_pig
   m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
   id: animal_pig
-  lemko: '[DEMO: pig]'
+  lemko: "\u0441\u0432\u0438\u043D\u044F"
   polish: "\u015Bwinia"
   english: pig
   sprite: {fileID: 21300000, guid: 9ebc2230385621049ac70ed21d07173b, type: 3}
   pronunciation: {fileID: 0}
   tags:
-  - prototype
+  - farm
+  - animal
   verified: 0
-  notes: 'Placeholder only: replace with verified Lemko.'
+  notes: 'Source: farm_source.csv, row 29. Supplied Lemko and Polish; English gloss
+    is an unverified editorial translation. '
   spriteId: sprite_animal_pig
   audioId: audio_animal_pig
   translations:
   - language: lemko
-    text: '[DEMO: pig]'
+    text: "\u0441\u0432\u0438\u043D\u044F"
   - language: pl
     text: "\u015Bwinia"
   - language: en

@@ -13,20 +13,22 @@ MonoBehaviour:
   m_Name: number_4
   m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
   id: number_4
-  lemko: '[DEMO: 4]'
+  lemko: "\u0448\u0442\u044B\u0440\u0456"
   polish: 4
   english: 4
   sprite: {fileID: 21300000, guid: 788a71299e72774439fa8db886d7cb35, type: 3}
   pronunciation: {fileID: 0}
   tags:
-  - prototype
+  - number
   verified: 0
-  notes: 'Placeholder only: replace with verified Lemko.'
+  notes: "Source: numbers_source.csv, row 5. Supplied Lemko and Polish; English gloss
+    is an unverified editorial translation. Polish and English numeral glosses are
+    intentionally numeric; gameplay supports 1\u201399."
   spriteId: sprite_number_4
   audioId: audio_number_4
   translations:
   - language: lemko
-    text: '[DEMO: 4]'
+    text: "\u0448\u0442\u044B\u0440\u0456"
   - language: pl
     text: 4
   - language: en

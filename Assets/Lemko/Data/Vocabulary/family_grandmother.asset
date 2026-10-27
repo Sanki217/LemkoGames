@@ -20,8 +20,10 @@ MonoBehaviour:
   pronunciation: {fileID: 0}
   tags:
   - family
+  - source_basic
   verified: 0
-  notes: Supplied family CSV; language review required.
+  notes: 'Source: family_source.csv, row 9. Supplied Lemko and Polish; English gloss
+    is an unverified editorial translation. '
   spriteId: sprite_family_grandmother
   audioId: audio_family_grandmother
   translations:

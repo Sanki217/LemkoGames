@@ -42,6 +42,9 @@ namespace Lemko.Editor
                     if(!wrongChecked) { TestWrong(a,session); wrongChecked=true; next=EditorApplication.timeSinceStartup+1.4; return; }
                     if(a is MemoryController memory) {
                         if(memory.Evaluating) return;
+                        if(memory.AssociationPending) { memory.Advance(); return; }
+                        if(memory.AssociationActive && !memory.Locked) { memory.ChooseAssociation(memory.AssociationWord); if(!memory.Locked) { memory.Advance(); return; } }
+
                         if(!memory.Locked) {
                             var cards=a.taskRoot.GetComponentsInChildren<ActivityToken>();
                             var group=cards.Where(t=>!t.FaceUp).GroupBy(t=>t.view.Entry.id).FirstOrDefault(g=>g.Count()==2);
@@ -73,7 +76,7 @@ namespace Lemko.Editor
                 }
                 if(stage==5) {
                     if(!a || a.definition.kind!=ActivityKind.House) return;
-                    Check(!a.Running && session.exhaustedPanel.activeSelf && session.hud.text.Contains("Lives: 0"),"zero-life scene entry and HUD");
+                    Check(!a.Running && session.exhaustedPanel.activeSelf && session.hud.text.Contains("Challenge lives: 0"),"zero-life scene entry and HUD");
                     session.StartPractice(); a.Submit(); Check(a.Running && session.Practice && session.Lives==0,"practice stays accessible");
                     session.FreshAttempt(); Check(a.Running && session.Lives==session.shop.startingLives && !session.Practice,"fresh activity attempt");
                     session.Village(); stage=6; return;
@@ -113,6 +116,7 @@ namespace Lemko.Editor
             else if(a is FamilyTreeController family) family.Choose(a.Current.validPeople[0]);
             else if(a is NumbersController numbers) numbers.Choose(a.Current.quantity);
             else if(a is AlphabetController alphabet) {
+                for(int i=0;i<SpellingRules.Elements(a.Current.word.lemko).Count;i++) alphabet.Remove(i);
                 var tiles=a.taskRoot.GetComponentsInChildren<ActivityToken>().Where(t=>t.GetComponent<WorldDrag>()).ToList(); var used=new HashSet<string>(); var letters=SpellingRules.Elements(a.Current.word.lemko);
                 for(int i=0;i<letters.Count;i++) { if(SpellingRules.Fixed(letters[i])) continue; var tile=tiles.First(t=>t.caption.text==letters[i] && !used.Contains(t.Key)); Check(alphabet.Place(int.Parse(tile.Key),i),"letter placement"); alphabet.Remove(i); Check(alphabet.Place(int.Parse(tile.Key),i),"returned tile can be reused"); used.Add(tile.Key); }
                 alphabet.Submit();

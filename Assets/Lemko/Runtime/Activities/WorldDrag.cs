@@ -7,6 +7,8 @@ namespace Lemko
         public ActivityToken token;
         Vector3 origin;
         bool dragging;
+        int suppressClickUntil=-1;
+        public bool BlocksClick => dragging || Time.frameCount<=suppressClickUntil;
         HintPointer hint;
         bool restoreHint;
         public void OnBeginDrag(PointerEventData e) { dragging=true; origin=transform.position; hint=GetComponent<HintPointer>(); restoreHint=hint && hint.enabled; if(hint) hint.enabled=false; if(token.view.tooltip) token.view.tooltip.Hide(); }
@@ -14,8 +16,9 @@ namespace Lemko
         public void OnEndDrag(PointerEventData e)
         {
             if(!dragging) return;
+            suppressClickUntil=Time.frameCount+1;
             var p=Camera.main.ScreenToWorldPoint(e.position); transform.position=origin; dragging=false; if(hint) hint.enabled=restoreHint;
-            foreach(var hit in Physics2D.OverlapPointAll(p)) { var zone=hit.GetComponent<WorldDropZone>(); if(zone && zone.Accept(token)) break; }
+            foreach(var hit in Physics2D.OverlapPointAll(p)) { var zone=hit.GetComponent<WorldDropZone>(); if(zone && zone.Accept(token,p)) break; }
         }
         void OnDisable() { if(dragging) transform.position=origin; dragging=false; }
     }

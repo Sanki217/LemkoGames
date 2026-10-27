@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f42738d6755b44ebdccadb2944e44b, type: 3}
+  m_Name: family_husbands_mother
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
+  id: family_husbands_mother
+  lemko: "\u043C\u0430\u0442\u0456\u0440 \u043C\u0443\u0436\u0430"
+  polish: "te\u015Bciowa (matka m\u0119\u017Ca)"
+  english: husbands mother
+  sprite: {fileID: 0}
+  pronunciation: {fileID: 0}
+  tags:
+  - family
+  - source_advanced
+  verified: 0
+  notes: "Source: family_source.csv, row 37. Supplied Lemko and Polish; English gloss
+    is an unverified editorial translation.  Source alternatives: \u043C\u0430\u0442\u0456\u0440
+    \u043C\u0443\u0436\u0430 / \u043C\u0443\u0436\u043E\u0432\u0430 \u043C\u0430\u0442\u0456\u0440."
+  spriteId: sprite_family_husbands_mother
+  audioId: audio_family_husbands_mother
+  translations:
+  - language: lemko
+    text: "\u043C\u0430\u0442\u0456\u0440 \u043C\u0443\u0436\u0430"
+  - language: pl
+    text: "te\u015Bciowa (matka m\u0119\u017Ca)"
+  - language: en
+    text: husbands mother

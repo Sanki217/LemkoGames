@@ -32,7 +32,7 @@ namespace Lemko.Editor
                 var session=UnityEngine.Object.FindFirstObjectByType<GameSession>();
                 if(!session || session.Progress==null) return;
                 int step=SessionState.GetInt("Lemko.TestStep",0);
-                if(step==0) { Check(SceneManager.GetActiveScene().name=="Village","village entry"); session.OpenShop(); }
+                if(step==0) { Check(SceneManager.GetActiveScene().name=="Village","village entry"); if(session.Practice) session.ToggleLearningMode(); session.OpenShop(); }
                 else if(step==1) {
                     Check(SceneManager.GetActiveScene().name=="Shop","Shop navigation");
                     var views=session.shopController.worldRoot.GetComponentsInChildren<WordView>();
@@ -40,13 +40,15 @@ namespace Lemko.Editor
                     var targetIds=session.shopController.listRoot.GetComponentsInChildren<HintPointer>().Select(h=>h.entry.id).ToArray(); var correct=views.Where(v=>targetIds.Contains(v.Entry.id)).ToArray();
                     var wrong=views.Except(correct).ToArray(); Check(correct.Length==5 && wrong.Length==3,"solvable round");
                     int lives=session.Lives;
-                    wrong[0].Select(); wrong[0].Select(); Check(session.Lives==lives-1,"duplicate wrong selection");
-                    for(int i=0;i<3;i++) { correct[i].Select(); correct[i].Select(); }
-                    Check(session.shopController.Points==600,"streak gives 100 + 200 + 300");
-                    wrong[1].Select(); Check(session.shopController.Points==600 && session.shopController.NextMultiplier==1,"wrong resets streak");
-                    correct[3].Select(); correct[4].Select(); Check(session.shopController.Points==900,"score after reset");
-                    session.shopController.Complete(); int completions=session.Progress.shopCompletions;
-                    session.shopController.Complete(); Check(session.resultsPanel.activeSelf && session.Progress.lastShopPoints==900 && session.Progress.shopCompletions==completions,"results and duplicate completion");
+                    var shop=session.shopController;
+                    wrong[0].Select(); wrong[0].Select(); Check(session.Lives==lives && shop.BasketCount==0,"free editing");
+                    wrong[0].Select(); shop.SubmitBasket(); shop.SubmitBasket(); Check(session.Lives==lives-1,"wrong basket costs once");
+                    wrong[0].Select(); foreach(var item in correct) item.Select();
+                    Check(shop.Points==0 && session.Lives==lives-1,"editing never scores or penalizes");
+                    shop.SubmitBasket(); Check(shop.Points==1500 && shop.RoundComplete,"complete basket scores once");
+                    shop.SubmitBasket(); Check(shop.Points==1500,"duplicate submit ignored");
+                    shop.Complete(); int completions=session.Progress.shopCompletions;
+                    shop.Complete(); Check(session.resultsPanel.activeSelf && session.Progress.lastShopPoints==1500 && session.Progress.shopCompletions==completions,"results and duplicate completion");
                     SessionState.SetInt("Lemko.ExpectedLives",session.Lives); session.Village();
                 }
                 else if(step>=2 && step<=8) {
@@ -57,7 +59,7 @@ namespace Lemko.Editor
                     session.OpenActivity(SeparateScenesSetup.Activities[step-1]);
                 }
                 else if(step==9) { Check(SceneManager.GetActiveScene().name=="Weather","Weather scene"); session.Village(); }
-                else if(step==10) { Check(SceneManager.GetActiveScene().name=="Village","return from activity"); session.OpenShop(); }
+                else if(step==10) { Check(SceneManager.GetActiveScene().name=="Village","return from activity"); if(session.Practice) session.ToggleLearningMode(); session.OpenShop(); }
                 else if(step==11) {
                     Check(session.shopController.Points==0 && session.shopController.NextMultiplier==1,"round score reset on return");
                     while(session.Lives>0) session.Wrong(); Check(session.exhaustedPanel.activeSelf,"zero-life recovery");

@@ -13,20 +13,22 @@ MonoBehaviour:
   m_Name: furniture_chair
   m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
   id: furniture_chair
-  lemko: '[DEMO: chair]'
+  lemko: "\u043A\u0440\u0435\u0441\u043B\u043E"
   polish: "krzes\u0142o"
   english: chair
   sprite: {fileID: 21300000, guid: 0ad5d3bee3a579440ba5b5083e1f605a, type: 3}
   pronunciation: {fileID: 0}
   tags:
-  - prototype
+  - house
+  - object
   verified: 0
-  notes: 'Placeholder only: replace with verified Lemko.'
+  notes: 'Source: house_source.csv, row 9. Supplied Lemko and Polish; English gloss
+    is an unverified editorial translation. '
   spriteId: sprite_furniture_chair
   audioId: audio_furniture_chair
   translations:
   - language: lemko
-    text: '[DEMO: chair]'
+    text: "\u043A\u0440\u0435\u0441\u043B\u043E"
   - language: pl
     text: "krzes\u0142o"
   - language: en
