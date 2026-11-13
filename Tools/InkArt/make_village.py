@@ -311,6 +311,7 @@ def windmill(c, x, y):
 
 def main():
     c = Scene(W, H, scale=2, bg=GRASS, seed=11, ysquash=1.25)
+    c.wob = .9; c.seg = 20
     r = c.r
     ground(c)
     spots = {k: world(*v) for k, v in dict(Shop=(-5.083, .233), FamilyTree=(4.333, -.033), Farm=(-3, .967), House=(2.25, 1.1),

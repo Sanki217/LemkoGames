@@ -1,24 +1,27 @@
-"""Sprite kit: thick wobbly ink outlines, flat fills from the game's 31-colour palette,
-one soft shadow per shape. Every word picture in the game is drawn with this."""
+"""Sprite kit in the style of the reference illustration: dark maroon hand-drawn outlines of uneven weight,
+warm earthy fills sampled from that picture, one darker tone along the lower right of each shape and a few
+tone-on-tone marks. Every word picture in the game is drawn with this."""
 import math, sys, io
 from pathlib import Path
 import cairo
-from ink import Canvas, rgb
+import ink
+from ink import Canvas, rgb, LWK
 
 PAL = dict(
-    grey1='#7a6a62', grey2='#a39386', taupe='#d8bfa0', skin='#ffc58f', orange='#f78b2d',
-    brick='#e4472f', brown='#8f4a2a', ink='#4b2a20', plum='#7b3550', mauve='#c9647f',
-    wood='#c98343', gold='#f4a62a', yellow='#ffd44d', cream='#ffedc4', sand='#f3d28f',
-    lime='#bcd63c', green='#76bd3c', dgreen='#3f9438', forest='#2a6e45', pine='#3d8f6a',
-    sage='#86cc7a', mint='#a5e3c0', pale='#d3f3e2', white='#fffaf0', silver='#e8dfd2',
-    pink='#ffb3a7', rose='#f7798a',
-    ice='#c5d6ea', sky='#8cc6ee', blue='#4d93dc', navy='#3861b0', slate='#39406b', night='#23264a')
+    grey1='#66747a', grey2='#97a2a6', taupe='#d2ac86', skin='#f2c79c', orange='#e68f4b',
+    brick='#d5583a', brown='#8a4b2c', ink='#3a160d', plum='#6e3442', mauve='#b7697a',
+    wood='#c07d45', gold='#e0a044', yellow='#f2c85f', cream='#f6e4b0', sand='#e6c58f',
+    lime='#cdcb5d', green='#95ad4c', dgreen='#628745', forest='#386137', pine='#4a7a6c',
+    sage='#a6c47e', mint='#bfd6a0', pale='#e0ecc6', white='#fbf5d8', silver='#d5d8cf',
+    pink='#f2ad9c', rose='#d9806f', maroon='#9a3328', bone='#e9d8ae',
+    ice='#d2e2dc', sky='#9dc3cf', blue='#5b87a6', navy='#4a4b70', slate='#39344f', night='#2a2233')
 # the shadow colour of each colour is its darker neighbour in the palette
-SHADE = dict(white='silver', silver='ice', ice='sky', sky='blue', blue='navy', navy='slate', slate='night', night='night',
-             cream='sand', sand='taupe', taupe='grey2', grey2='grey1', grey1='ink', skin='orange', orange='brick', brick='brown',
+SHADE = dict(white='bone', bone='sand', maroon='plum', silver='ice', ice='sky', sky='blue', blue='navy', navy='slate', slate='night', night='night',
+             cream='sand', sand='taupe', taupe='wood', grey2='grey1', grey1='ink', skin='orange', orange='brick', brick='maroon',
              brown='plum', plum='ink', mauve='plum', wood='brown', gold='wood', yellow='gold', lime='green', green='dgreen',
-             dgreen='forest', forest='slate', pine='forest', sage='pine', mint='sage', pale='mint', ink='ink', pink='rose', rose='plum')
-LW = 8.5
+             dgreen='forest', forest='slate', pine='forest', sage='pine', mint='sage', pale='mint', ink='ink', pink='rose', rose='maroon')
+LW = 7.0
+ink.PALNAMES.update(PAL)
 ROOT = Path(__file__).resolve().parents[2]
 ACT = ROOT / 'Assets/Lemko/Sprites/Placeholders/Activities'
 PROD = ROOT / 'Assets/Lemko/Sprites/Placeholders/Products'
@@ -34,11 +37,19 @@ class Sp(Canvas):
         super().__init__(size, size, 3, None, seed)
         self.size = size
         self.rad = 9
+        self.wob = 1.1         # how far the hand-drawn lines stray, in canvas pixels
+        self.seg = 20
+
+    # ---- hand-drawn line: hand() and pen() come from Canvas ---------------------------
+    def line(self, pts, w=2.6, color='#3a160d', amp=1.3, step=16):
+        p = self.hand(pts, False, min(self.wob, amp) * (.8 if len(pts) < 4 else .5)) if len(pts) > 1 else pts
+        self.pen(p, w * LWK, color, False)
 
     # ---- outlined shapes -----------------------------------------------------------
-    def poly(self, pts, fill='white', w=LW, shade=True, amp=1.4, step=14, inner=None, sx=5, sy=6, color='ink', shine=None):
-        """Chunky shape: fill, a darker crescent along the bottom right, a light rim along the top left, thick outline."""
-        p = list(pts)
+    def poly(self, pts, fill='white', w=LW, shade=True, amp=1.4, step=14, inner=None, sx=4, sy=5, color='ink', shine=None, raw=False):
+        """Shape in the reference style: flat fill, a darker tone along the lower right, two light dashes on big dark
+        shapes, and a hand-drawn outline."""
+        p = list(pts) if raw else self.hand(pts)
         cr = self.c
         xs = [q[0] for q in p]; ys = [q[1] for q in p]
         bw, bh = max(xs) - min(xs), max(ys) - min(ys)
@@ -51,23 +62,33 @@ class Sp(Canvas):
             cr.save(); cr.clip()
             if dark:
                 self._path([(x - sx * k, y - sy * k) for x, y in p], True); cr.set_source_rgb(*rgb(col(fill))); cr.fill()
-            if (shine if shine is not None else (big > 44 and fill not in ('white', 'ink', 'night', 'slate'))):
-                # light rim: the outline pushed inwards, kept only on the top-left side
-                cr.save()
-                cx, cy = (max(xs) + min(xs)) / 2, (max(ys) + min(ys)) / 2
-                cr.move_to(min(xs) - 9, min(ys) - 9); cr.line_to(cx + bw * .12, min(ys) - 9); cr.line_to(min(xs) - 9, cy + bh * .12); cr.close_path(); cr.clip()
-                d = 7 + big * .05
-                self._path([(x + d, y + d) for x, y in p], True)
-                cr.set_source_rgba(1, 1, 1, .42); cr.set_line_width(3.5 + big * .018); cr.stroke()
-                cr.restore()
+            if (shine if shine is not None else (big > 56 and fill not in ('white', 'cream', 'bone', 'ink', 'pale', 'skin'))):
+                L = max(6, min(13, big * .11))
+                cr.set_source_rgb(*mix(col(fill), '#fff6da', .5)); cr.set_line_width(3.2 + big * .012)
+                for fx, fy in ((.31, .19), (.19, .34)):
+                    x, y = min(xs) + bw * fx, min(ys) + bh * fy
+                    cr.move_to(x - L * .5, y + L * .36); cr.line_to(x + L * .5, y - L * .36); cr.stroke()
             if inner:
                 inner()
             cr.restore()
         else:
             cr.new_path()
         if w:
-            self._path(p, True); cr.set_source_rgb(*rgb(col(color))); cr.set_line_width(w); cr.stroke()
+            self.pen(p, w, color)
         return p
+
+    def blobp(self, pts, fill='white', rounds=3, **k):
+        """Soft blob through a rough control polygon (corners are cut until it is round)."""
+        return self.poly(chaikin(pts, rounds), fill, **k)
+
+    def merged(self, shapes):
+        """Several shapes fused into one silhouette with a single outline around all of them.
+        shapes: list of (points, fill, keyword arguments for poly)."""
+        hs = [self.hand(p) for p, f, k in shapes]
+        for h in hs:
+            self.pen(h, LW * 2)
+        for h, (p, f, k) in zip(hs, shapes):
+            self.poly(h, f, w=0, raw=True, **k)
 
     def ell(self, cx, cy, rx, ry, fill='white', rot=0, n=44, **k):
         ca, sa = math.cos(rot), math.sin(rot)
@@ -125,13 +146,13 @@ class Sp(Canvas):
         self.line(pts, w, col(color), .4, 8)
 
     def eye(self, x, y, r=5.5):
-        self.dot(x, y, r); self.dot(x - r * .3, y - r * .35, r * .32, 'white')
+        self.dot(x, y, r)
 
     def bigeye(self, x, y, rx=10, ry=13, shut=False):
-        """The round shiny eye of the cute characters."""
+        """The plain dark oval eye of the characters (the reference has no highlight dots)."""
         if shut:
             self.arc(x, y + 2, rx, 200, 340, 5, ry=ry * .7); return
-        self.fe(x, y, rx, ry, 'ink'); self.fe(x - rx * .3, y - ry * .38, rx * .42, ry * .36, 'white'); self.fe(x + rx * .3, y + ry * .42, rx * .2, ry * .16, 'white')
+        self.fe(x, y, rx, ry, 'ink')
 
     def mouth(self, x, y, w=9, lw=4):
         """Tiny w-shaped smile."""
@@ -140,8 +161,12 @@ class Sp(Canvas):
     def smile(self, x, y, w=14, w2=4.5):
         self.arc(x, y, w / 2, 20, 160, w2, ry=w * .32)
 
-    def blush(self, x, y, r=7, color='orange'):
-        self.fe(x, y, r, r * .7, color)
+    def blush(self, x, y, r=7, color='rose'):
+        """Cheek: a soft oval with three little hatch strokes, as in the reference."""
+        self.fe(x, y, r, r * .68, color)
+        cr = self.c; cr.set_source_rgb(*rgb(col(SHADE.get(color, 'maroon')))); cr.set_line_width(max(1.6, r * .22))
+        for i in (-1, 0, 1):
+            cr.move_to(x + i * r * .5 - r * .14, y + r * .32); cr.line_to(x + i * r * .5 + r * .14, y - r * .32); cr.stroke()
 
     def text(self, s, x, y, size=60, color='ink', font='DejaVu Sans', bold=True, center=True):
         cr = self.c
@@ -171,13 +196,29 @@ class Sp(Canvas):
         return res
 
 
+def mix(a, b, t):
+    ra, rb = rgb(a), rgb(b)
+    return tuple(ra[i] + (rb[i] - ra[i]) * t for i in range(3))
+
+
+def chaikin(pts, rounds=3):
+    p = list(pts)
+    for _ in range(rounds):
+        q = []
+        for i in range(len(p)):
+            a, b = p[i], p[(i + 1) % len(p)]
+            q.append((a[0] * .75 + b[0] * .25, a[1] * .75 + b[1] * .25)); q.append((a[0] * .25 + b[0] * .75, a[1] * .25 + b[1] * .75))
+        p = q
+    return p
+
+
 def star_pts(cx, cy, r, r2=None, n=5, rot=-90):
     r2 = r2 or r * .45
     return [(cx + math.cos(math.radians(rot + i * 180 / n)) * (r if i % 2 == 0 else r2),
              cy + math.sin(math.radians(rot + i * 180 / n)) * (r if i % 2 == 0 else r2)) for i in range(2 * n)]
 
 
-def sheet(names, folder, path, cols=8, cell=150, bg='#fff3d6'):
+def sheet(names, folder, path, cols=8, cell=150, bg='#f9f0cc'):
     """Contact sheet for looking at a group of pictures."""
     from PIL import Image
     target = Path(PREVIEW) if PREVIEW else folder

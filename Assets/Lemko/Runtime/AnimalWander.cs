@@ -18,7 +18,7 @@ namespace Lemko {
             if(!walking) {
                 Step(0); wait-=Time.unscaledDeltaTime; if(wait>0) return;
                 target=new Vector2(Mathf.Clamp(at.x+Random.Range(-2.4f,2.4f),area.xMin,area.xMax),Mathf.Clamp(at.y+Random.Range(-.9f,.9f),area.yMin,area.yMax));
-                walking=true; if(picture) picture.flipX=target.x<at.x;
+                walking=true; if(picture) picture.flipX=target.x>at.x;   // the animals are drawn looking left
             }
             var next=Vector2.MoveTowards(at,target,speed*Time.unscaledDeltaTime);
             transform.localPosition=new Vector3(next.x,next.y,transform.localPosition.z);

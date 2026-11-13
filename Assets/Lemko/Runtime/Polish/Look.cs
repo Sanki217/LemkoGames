@@ -7,9 +7,9 @@ namespace Lemko
     public static class Look
     {
         // Every colour here comes from the game's 31-colour palette; Tools/InkArt draws every picture with the same one.
-        public static readonly Color Peach=Hex(0xFFEDC4), Paper=Hex(0xFFFAF0), Ink=Hex(0x4B2A20), Mint=Hex(0xD3F3E2), Sand=Hex(0xF3D28F),
-            Sage=Hex(0xA5E3C0), Pine=Hex(0x3D8F6A), Brick=Hex(0xE4472F), Honey=Hex(0xFFD44D), Good=Hex(0x3F9438), Retry=Hex(0xF78B2D),
-            GoodSoft=Hex(0xBCD63C), Muted=Hex(0x7A6A62), Empty=Hex(0xF3D28F), Grass=Hex(0x86CC7A), Water=Hex(0x4D93DC), Wood=Hex(0x8F4A2A);
+        public static readonly Color Peach=Hex(0xF6E4B0), Paper=Hex(0xFBF5D8), Ink=Hex(0x3A160D), Mint=Hex(0xE0ECC6), Sand=Hex(0xE6C58F),
+            Sage=Hex(0xBFD6A0), Pine=Hex(0x4A7A6C), Brick=Hex(0xD5583A), Honey=Hex(0xF2C85F), Good=Hex(0x628745), Retry=Hex(0xE68F4B),
+            GoodSoft=Hex(0xCDCB5D), Muted=Hex(0x66747A), Empty=Hex(0xE6C58F), Grass=Hex(0xA6C47E), Water=Hex(0x5B87A6), Wood=Hex(0x8A4B2C);
         public static Color Hex(int rgb,float a=1)=>new Color(((rgb>>16)&255)/255f,((rgb>>8)&255)/255f,(rgb&255)/255f,a);
         public static Color Alpha(Color c,float a) { c.a=a; return c; }
         // The Lemko word is the star of every prompt.
@@ -44,7 +44,7 @@ namespace Lemko
                 float d=RoundBox(x,y,64,64,16); float inside=Cover(d);
                 if(inside<=0) return Color.clear;
                 var fill=y<lip+3 && lip>0 ? new Color(.8f,.8f,.8f,1) : Color.white;
-                var c=Color.Lerp(fill,new Color(.294f,.165f,.125f,1),1-Cover(d+4.5f));
+                var c=Color.Lerp(fill,new Color(.227f,.086f,.051f,1),1-Cover(d+4.5f));
                 c.a=inside; return c;
             },new Vector4(22,22,22,22));
         public static Sprite Panel=>Card("lemko_panel",0);
@@ -52,13 +52,13 @@ namespace Lemko
         public static Sprite Pill=>Make("lemko_pill",64,64,(x,y)=> { float a=Cover(RoundBox(x,y,64,64,31)); return new Color(1,1,1,a); },new Vector4(31,31,31,31));
         public static Sprite Dot=>Make("lemko_dot",48,48,(x,y)=> {
             float d=Vector2.Distance(new Vector2(x,y),new Vector2(24,24))-22;
-            var c=Color.Lerp(Color.white,new Color(.294f,.165f,.125f,1),1-Cover(d+4.5f)); c.a=Cover(d); return c; });
+            var c=Color.Lerp(Color.white,new Color(.227f,.086f,.051f,1),1-Cover(d+4.5f)); c.a=Cover(d); return c; });
         public static Sprite Soft=>Make("lemko_soft",64,64,(x,y)=> { float d=Vector2.Distance(new Vector2(x,y),new Vector2(32,32))/32; return new Color(1,1,1,Mathf.Clamp01(1-d)*Mathf.Clamp01(1-d)); });
         public static Sprite Square=>Make("lemko_square",8,8,(x,y)=>Color.white);
         public static Sprite Diamond=>Make("lemko_diamond",32,32,(x,y)=>new Color(1,1,1,Cover(Mathf.Abs(x-16)+Mathf.Abs(y-16)-14)));
         public static Sprite Heart=>Make("lemko_heart",64,64,(x,y)=> {
             float d=HeartDistance(Mathf.Abs(x-32)/50f,(y-7)/50f)*50f;
-            var c=Color.Lerp(Color.white,new Color(.294f,.165f,.125f,1),1-Cover(d+4.5f)); c.a=Cover(d); return c; });
+            var c=Color.Lerp(Color.white,new Color(.227f,.086f,.051f,1),1-Cover(d+4.5f)); c.a=Cover(d); return c; });
         // Signed distance to a heart whose tip is at the origin and whose top is at y = 1 (x already mirrored).
         static float HeartDistance(float x,float y)
         {
@@ -69,7 +69,7 @@ namespace Lemko
         }
         public static Sprite Star=>Make("lemko_star",64,64,(x,y)=> {
             float d=StarDistance(x-32,y-31,27,12);
-            var c=Color.Lerp(Color.white,new Color(.294f,.165f,.125f,1),1-Cover(d+4.5f)); c.a=Cover(d); return c; });
+            var c=Color.Lerp(Color.white,new Color(.227f,.086f,.051f,1),1-Cover(d+4.5f)); c.a=Cover(d); return c; });
         static float StarDistance(float x,float y,float outer,float inner)
         {
             // Signed distance to a five-point star, evaluated against its ten edges.
@@ -92,7 +92,7 @@ namespace Lemko
         },default,100,true);
         public static Sprite Lantern=>Make("lemko_lantern",48,64,(x,y)=> {
             float body=RoundBox(x-8,y-6,32,42,12); float cap=RoundBox(x-16,y-46,16,8,2); float d=Mathf.Min(body,cap);
-            var c=Color.Lerp(Color.white,new Color(.294f,.165f,.125f,1),1-Cover(d+4.5f)); c.a=Cover(d); return c; });
+            var c=Color.Lerp(Color.white,new Color(.227f,.086f,.051f,1),1-Cover(d+4.5f)); c.a=Cover(d); return c; });
         public static Sprite Cloud=>Make("lemko_cloud",128,64,(x,y)=> {
             float d=Mathf.Min(Vector2.Distance(new Vector2(x,y),new Vector2(42,26))-22,Mathf.Min(Vector2.Distance(new Vector2(x,y),new Vector2(70,34))-27,Vector2.Distance(new Vector2(x,y),new Vector2(96,24))-19));
             d=Mathf.Min(d,RoundBox(x-22,y-6,84,22,10));
@@ -109,6 +109,6 @@ namespace Lemko
             c=Color.Lerp(c,Ink,Cover(glyph)); c.a=Cover(d); return c; });
         public static Sprite Bulb=>Make("lemko_bulb",48,48,(x,y)=> {
             float glass=Vector2.Distance(new Vector2(x,y),new Vector2(24,29))-13; float neck=RoundBox(x-18,y-6,12,12,2); float d=Mathf.Min(glass,neck);
-            var c=Color.Lerp(Color.white,new Color(.294f,.165f,.125f,1),1-Cover(d+2.5f)); c.a=Cover(d); return c; });
+            var c=Color.Lerp(Color.white,new Color(.227f,.086f,.051f,1),1-Cover(d+2.5f)); c.a=Cover(d); return c; });
     }
 }

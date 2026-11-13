@@ -7,30 +7,31 @@ import math, random
 import cairo
 
 # The game's 31-colour palette; these are the ones the scenery uses.
-INK = '#4b2a20'
-WHITE = '#fffaf0'
-PAPER = '#ffedc4'      # indoor walls
-TONE1 = '#f3d28f'      # floors, paths, side walls
-TONE2 = '#d8bfa0'      # rock, stone
-TONE3 = '#a39386'      # rock in shade
-GOLD = '#ffd44d'
-RED = '#e4472f'
-SKY = '#d3f3e2'
-GRASS = '#86cc7a'
-GRASS_DARK = '#76bd3c'
-GRASS_LIGHT = '#a5e3c0'
-SHADOW = '#3d8f6a'     # ground shadows, drawn half transparent
-PINE = '#3d8f6a'
-PINE_DARK = '#2a6e45'
-LEAF = '#76bd3c'
-LEAF_DARK = '#3f9438'
-WOOD = '#c98343'
-WOOD_DARK = '#8f4a2a'
-WATER = '#8cc6ee'
-WATER_DARK = '#4d93dc'
-STONE = '#e8dfd2'
-NAVY = '#3861b0'
-ORANGE = '#f78b2d'
+INK = '#3a160d'
+WHITE = '#fbf5d8'
+PAPER = '#f6e4b0'      # indoor walls
+TONE1 = '#e6c58f'      # floors, paths, side walls
+TONE2 = '#d2ac86'      # rock, stone
+TONE3 = '#97a2a6'      # rock in shade
+GOLD = '#f2c85f'
+RED = '#d5583a'
+SKY = '#e0ecc6'
+GRASS = '#a6c47e'
+GRASS_DARK = '#95ad4c'
+GRASS_LIGHT = '#bfd6a0'
+SHADOW = '#4a7a6c'     # ground shadows, drawn half transparent
+PINE = '#4a7a6c'
+PINE_DARK = '#386137'
+LEAF = '#95ad4c'
+LEAF_DARK = '#628745'
+WOOD = '#c07d45'
+WOOD_DARK = '#8a4b2c'
+WATER = '#9dc3cf'
+WATER_DARK = '#5b87a6'
+STONE = '#d5d8cf'
+NAVY = '#4a4b70'
+ORANGE = '#e68f4b'
+PALNAMES = {}          # sk fills this in so pen() understands palette names
 LWK = 1.75             # every outline is this much thicker than the first, thin version
 
 
@@ -56,9 +57,47 @@ class Canvas:
     # --- hand-drawn line helpers -------------------------------------------------
     rad = 2.5       # every corner is rounded by this much: the style has no sharp points
 
+    wob = .55       # how far the hand-drawn lines stray, in canvas pixels
+    seg = 12        # long edges get a point every this many pixels so they can stray too
+
     def wobble(self, pts, amp=1.3, step=16, closed=False):
-        """Outlines used to be shaky ink lines; the style is now smooth, so the points pass through unchanged."""
-        return list(pts)
+        """Kept under its old name: returns the hand-drawn version of an outline."""
+        return self.hand(pts, closed)
+
+    def hand(self, pts, closed=True, amp=None):
+        """An outline as a hand would draw it: long edges get extra points and every point strays a little."""
+        amp = self.wob if amp is None else amp
+        p = list(pts); n = len(p)
+        out = []
+        for i in (range(n) if closed else range(n - 1)):
+            a = p[i]; b = p[(i + 1) % n]
+            d = math.hypot(b[0] - a[0], b[1] - a[1])
+            k = max(1, int(d / self.seg))
+            for j in range(k):
+                t = j / k
+                out.append((a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, j == 0))
+        if not closed:
+            out.append((p[-1][0], p[-1][1], True))
+        res = []; drift = 0.0; m = len(out)
+        for i, (x, y, corner) in enumerate(out):
+            x0, y0, _ = out[i - 1] if (closed or i > 0) else out[0]
+            x1, y1, _ = out[(i + 1) % m] if (closed or i < m - 1) else out[m - 1]
+            dx, dy = x1 - x0, y1 - y0
+            L = math.hypot(dx, dy) or 1
+            drift = drift * .6 + self.r.uniform(-amp, amp)
+            k = .7 if corner else 1
+            if not closed and i in (0, m - 1):
+                k = 0
+            res.append((x - dy / L * drift * k, y + dx / L * drift * k))
+        return res
+
+    def pen(self, p, w, color='ink', closed=True):
+        """Stroke with a slightly uneven weight, like a brush pen: a second, shifted pass thickens one diagonal."""
+        cr = self.c
+        cr.set_source_rgb(*rgb(PALNAMES.get(color, color)))
+        self._path(p, closed); cr.set_line_width(w * .88); cr.stroke()
+        if w >= 3:
+            cr.save(); cr.translate(w * .09, w * .12); self._path(p, closed); cr.set_line_width(w * .66); cr.stroke(); cr.restore()
 
     def _path(self, pts, closed=False, rad=None):
         """Polyline with every corner rounded."""
@@ -95,18 +134,16 @@ class Canvas:
             c.line_to(*pts[-1])
 
     def line(self, pts, w=2.6, color=INK, amp=1.3, step=16):
-        self._path(self.wobble(pts, amp, step))
-        self.c.set_source_rgb(*rgb(color)); self.c.set_line_width(w * LWK); self.c.stroke()
+        self.pen(self.hand(pts, False) if len(pts) > 1 else pts, w * LWK, color, False)
 
     def shape(self, pts, fill=WHITE, w=2.6, color=INK, amp=1.3, step=16):
         p = self.wobble(pts, amp, step, closed=True)
         self._path(p, True)
         if fill:
-            self.c.set_source_rgb(*rgb(fill)); self.c.fill_preserve()
+            self.c.set_source_rgb(*rgb(fill)); self.c.fill()
+        self.c.new_path()
         if w:
-            self.c.set_source_rgb(*rgb(color)); self.c.set_line_width(w * LWK); self.c.stroke()
-        else:
-            self.c.new_path()
+            self.pen(p, w * LWK, color)
         return p
 
     def flat(self, pts, fill, alpha=1.0):

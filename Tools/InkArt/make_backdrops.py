@@ -15,8 +15,21 @@ PREVIEW = Path(sys.argv[1]) if len(sys.argv) > 1 else None
 W, H = 1024, 480
 
 
-def out(c, folder, name, size):
-    c.save(str((PREVIEW or folder) / (name + '.png')), size)
+def out(c, folder, name, size, soft=True):
+    """Save a backdrop. Like the street behind the characters in the reference picture, a backdrop is drawn with
+    pale orange-brown lines and slightly hazy colours, so the dark-outlined game pieces in front stand out."""
+    path = str((PREVIEW or folder) / (name + '.png'))
+    c.save(path, size)
+    if not soft:
+        return
+    import numpy as np
+    from PIL import Image
+    im = np.asarray(Image.open(path).convert('RGB')).astype(float)
+    ink = np.array(rgb(INK)) * 255; line = np.array(rgb('#b9764a')) * 255; haze = np.array(rgb('#f9f0cc')) * 255
+    w = np.clip(1 - np.sqrt(((im - ink) ** 2).sum(2)) / 90, 0, 1)[..., None]
+    im = im + (line - im) * w
+    im = im + (haze - im) * .1
+    Image.fromarray(im.round().astype('uint8')).save(path)
 
 
 def grid(c, y0, w=W, h=H, step=150, alpha=.5, color=WHITE):
@@ -149,7 +162,7 @@ def plant(c, x, y, k=1.0):
 def frame(c, x, y, w=46, h=36, fill=WHITE):
     c.line([(x - 8, y - h / 2), (x, y - h / 2 - 12), (x + 8, y - h / 2)], 1.6, amp=.2)
     c.shape([(x - w / 2, y - h / 2), (x + w / 2, y - h / 2), (x + w / 2, y + h / 2), (x - w / 2, y + h / 2)], fill, 2.6, amp=.5)
-    c.oval(x, y - 3, 7, 7, '#ffc58f', 1.6); c.line([(x - 12, y + 12), (x, y + 5), (x + 12, y + 12)], 1.6, amp=.2)
+    c.oval(x, y - 3, 7, 7, '#f2c79c', 1.6); c.line([(x - 12, y + 12), (x, y + 5), (x + 12, y + 12)], 1.6, amp=.2)
 
 
 def text(c, s, x, y, size=22, color=INK, bold=True):
@@ -180,7 +193,7 @@ def stove(c, x, y):
             c.line([(x + k, y - 130), (x + k, y)], 1.2, dk(PAL['pale']), amp=.3)
     c.two([(x - 36, y), (x - 36, y - 118), (x + 36, y - 118), (x + 36, y)], PAL['pale'], 2.6, 6, 0, inner=tiles)
     c.two([(x - 42, y - 118), (x + 42, y - 118), (x + 38, y - 130), (x - 38, y - 130)], WOOD, 2.2, 3, 0, amp=.4)
-    c.shape([(x - 15, y - 12), (x - 15, y - 44), (x + 15, y - 44), (x + 15, y - 12)], '#4b2a20', 2, amp=.3)
+    c.shape([(x - 15, y - 12), (x - 15, y - 44), (x + 15, y - 44), (x + 15, y - 12)], '#3a160d', 2, amp=.3)
     c.flat([(x - 9, y - 14), (x - 4, y - 30), (x, y - 20), (x + 5, y - 34), (x + 9, y - 14)], ORANGE)
     c.flat([(x - 4, y - 14), (x, y - 24), (x + 4, y - 14)], GOLD)
 
@@ -442,7 +455,7 @@ def shop():
     the floor, a tall rack, the door and the shopkeeper behind the counter (right), the basket (bottom right) and a notepad
     for the shopping list (bottom left). World (wx, wy) is at 960 + wx*120, 540 - wy*120; products are 162 x 144."""
     c = Scene(1920, 1080, 1.5, PAPER, 31)
-    c.rad = 6
+    c.rad = 6; c.wob = 1.0; c.seg = 22
     r = c.r
     FLOOR = 700
     CREAM = PAL['cream']
@@ -677,7 +690,8 @@ def shop():
 
 # --- house rooms (stretched by the game to the 8 x 3.6 placement area) -------------------
 def room(name, seed, kitchen):
-    c = Scene(1600, 720, 1.5, PAPER if kitchen else '#d3f3e2', seed)
+    c = Scene(1600, 720, 1.5, PAPER if kitchen else '#e0ecc6', seed)
+    c.wob = .9; c.seg = 20; c.rad = 5
     fl = 470
     wall_dark = dk(PAPER if kitchen else PAL['pale'])
     for i in range(0, 40):
@@ -690,7 +704,7 @@ def room(name, seed, kitchen):
     c.line([(0, fl - 16), (1600, fl - 16)], 2.6, amp=1); c.line([(0, fl), (1600, fl)], 3.2, amp=1)
     # window with a view
     x, y, w, h = (1300, 190, 150, 170) if kitchen else (300, 190, 150, 170)
-    c.shape([(x - w / 2, y - h / 2), (x + w / 2, y - h / 2), (x + w / 2, y + h / 2), (x - w / 2, y + h / 2)], '#8cc6ee', 3.4, amp=.8)
+    c.shape([(x - w / 2, y - h / 2), (x + w / 2, y - h / 2), (x + w / 2, y + h / 2), (x - w / 2, y + h / 2)], '#9dc3cf', 3.4, amp=.8)
     c.flat([(x - w / 2 + 8, y + h / 2 - 8), (x - w / 2 + 8, y + 20), (x - 20, y - 20), (x + 20, y + 14), (x + w / 2 - 8, y - 10), (x + w / 2 - 8, y + h / 2 - 8)], GRASS)
     c.oval(x + 36, y - 46, 15, 15, GOLD, 2.4)
     c.line([(x, y - h / 2), (x, y + h / 2)], 2.8, amp=.4); c.line([(x - w / 2, y), (x + w / 2, y)], 2.8, amp=.4)
@@ -700,20 +714,20 @@ def room(name, seed, kitchen):
         for i in range(12):
             for j in range(2):
                 x0, y0 = 80 + i * 62, fl - 150 + j * 62
-                c.shape([(x0, y0), (x0 + 62, y0), (x0 + 62, y0 + 62), (x0, y0 + 62)], WHITE if (i + j) % 2 else '#a5e3c0', 1.8, amp=.5, step=20)
+                c.shape([(x0, y0), (x0 + 62, y0), (x0 + 62, y0 + 62), (x0, y0 + 62)], WHITE if (i + j) % 2 else '#bfd6a0', 1.8, amp=.5, step=20)
         c.line([(120, 150), (760, 150)], 3.2, amp=.8)
         for i, kind in enumerate('spoon pan spoon pan spoon'.split()):
             hx = 190 + i * 125
             c.line([(hx, 150), (hx, 196)], 2.4, amp=.3)
             if kind == 'pan':
-                c.oval(hx, 232, 34, 34, ORANGE if i == 1 else '#7a6a62', 2.8)
+                c.oval(hx, 232, 34, 34, ORANGE if i == 1 else '#66747a', 2.8)
             else:
                 c.oval(hx, 214, 13, 18, WOOD, 2.4)
     else:
         # wallpaper dots, a picture and a rug
         for i in range(9):
             for j in range(3):
-                c.tick(520 + i * 120 + (j % 2) * 60, 90 + j * 120, .8, '#a5e3c0')
+                c.tick(520 + i * 120 + (j % 2) * 60, 90 + j * 120, .8, '#bfd6a0')
         c.shape([(760, 120), (900, 120), (900, 230), (760, 230)], WHITE, 3.2, amp=.6)
         c.shape([(780, 214), (820, 160), (846, 190), (866, 170), (884, 214)], GRASS, 2.2, amp=.4)
         c.oval(866, 148, 10, 10, GOLD, 2)

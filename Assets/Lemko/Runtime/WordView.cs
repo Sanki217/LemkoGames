@@ -90,7 +90,7 @@ namespace Lemko
         {
             submitted = true;
             if(selectButton) { selectButton.interactable = false; selectButton.image.color = correct ? Look.GoodSoft : Look.Sand; }
-            if(worldPicture) worldPicture.color = correct ? Color.white : Look.Hex(0xF78B2D);   // a wrong pick blushes red
+            if(worldPicture) worldPicture.color = correct ? Color.white : Look.Hex(0xE68F4B);   // a wrong pick blushes red
             if(label && !worldPicture) label.text = (correct ? "OK: " : "Try another: ") + entry.lemko;
         }
         void OnDisable() { if (tooltip && hint) tooltip.Hide(hint); selected = null; }

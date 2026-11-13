@@ -22,7 +22,7 @@ def dk(c):
 class Scene(Canvas):
     # ---- drawing helpers -----------------------------------------------------------
     def stroke(self, p, w=2.6, color=INK, closed=True):
-        self._path(p, closed); self.c.set_source_rgb(*rgb(color)); self.c.set_line_width(w * LWK); self.c.stroke()
+        self.pen(p, w * LWK, color, closed)
 
     def inside(self, p, fn):
         self._path(p, True); self.c.save(); self.c.clip(); fn(); self.c.restore()
