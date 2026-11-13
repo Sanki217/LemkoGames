@@ -28,7 +28,7 @@ namespace Lemko
         protected override int Total => 1;
         protected override void BuildTask()
         {
-            submit.gameObject.SetActive(false); speak.interactable=false; prompt.text="Match each picture with its Lemko word";
+            submit.gameObject.SetActive(false); speak.interactable=false; prompt.text="Match pictures and words";
             picture.Clear(); matched.Clear(); first=null; evaluating=false; pairsFound=0;
             var pool=definition.pool.Distinct().ToList(); Shuffle(pool);
             // Mix subjects so closely related concepts seldom compete on the same board.
@@ -46,12 +46,12 @@ namespace Lemko
                 var card=cards[i]; var token=Token(card.w,new Vector2(-5.4f+(i%4)*3.5f,1.3f-(i/4)*1.85f),"card_"+i,Choose);
                 picture[token]=card.Item2; token.Face(false,card.Item2,card.w.lemko);
             }
-            feedback.text="Ordinary mismatches cost no lives. Face-down cards have no hints or pronunciation.";
+            feedback.text="Turn over two cards.";
         }
         public void Choose(ActivityToken card)
         {
             if(AssociationActive || boardFinished || !Ready || evaluating || !picture.ContainsKey(card) || matched.Contains(card) || first==card) return;
-            card.Face(true,picture[card],card.view.Entry.lemko);
+            bool showPicture=picture[card]; Juice.Flip(card.transform,()=>card.Face(true,showPicture,card.view.Entry.lemko)); Juice.Sound("flip");
             if(!first) { first=card; return; }
             evaluating=true; StartCoroutine(Evaluate(first,card));
         }
@@ -62,14 +62,19 @@ namespace Lemko
             if(!Running) yield break;
             if(a.view.Entry==b.view.Entry && picture[a]!=picture[b]) {
                 matched.Add(a); matched.Add(b);
-                a.backing.color=b.backing.color=new Color(.78f,.94f,.85f);
-                PresentationMotion.Pulse(a.transform,Session); PresentationMotion.Pulse(b.transform,Session);
+                a.Face(true,picture[a],a.view.Entry.lemko); b.Face(true,picture[b],b.view.Entry.lemko);
+                a.backing.color=b.backing.color=Look.GoodSoft;
+                Juice.Hop(a.transform,.35f); Juice.Hop(b.transform,.35f,.08f); Juice.Sparkle(Juice.WorldToScreen(a.transform.position),8); Juice.Sparkle(Juice.WorldToScreen(b.transform.position),8); Juice.Sound("match",1+pairsFound*.08f);
                 Session.audioService.Play(a.view.Entry.pronunciation); pairsFound++; feedback.text="Pair found! "+pairsFound+"/"+definition.pairs; Session.PresentFeedback(true);
                 if(pairsFound==definition.pairs) {
                     if(checkWords.Count==0) Answer(true,"complete","All pairs found.");
-                    else { boardFinished=true; next.gameObject.SetActive(true); next.GetComponentInChildren<TMPro.TMP_Text>().text="Check words"; feedback.text="Packing pairs ready! Now try "+checkWords.Count+" short word checks without card positions."; }
+                    else { boardFinished=true; feedback.text="All pairs found! Now "+checkWords.Count+" quick word checks."; ContinueSoon(1.7f); }
                 }
-            } else { a.Face(false,picture[a],a.view.Entry.lemko); b.Face(false,picture[b],b.view.Entry.lemko); feedback.text="Try another pair. No life lost."; Session.PresentFeedback(false); }
+            } else {
+                bool pa=picture[a], pb=picture[b]; Juice.Shake(a.transform,.1f); Juice.Shake(b.transform,.1f);
+                Juice.Flip(a.transform,()=>a.Face(false,pa,a.view.Entry.lemko)); Juice.Flip(b.transform,()=>b.Face(false,pb,b.view.Entry.lemko));
+                feedback.text="Not a pair. Try again."; Session.PresentFeedback(false);
+            }
             first=null; evaluating=false;
         }
         public override void Advance() {
@@ -81,7 +86,7 @@ namespace Lemko
             ClearTask(); picture.Clear(); matched.Clear(); first=null; evaluating=false;
             AssociationActive=true; associationSolved=false; rejectedChecks.Clear(); AssociationWord=checkWords[AssociationsCorrect];
             next.gameObject.SetActive(false); submit.gameObject.SetActive(false);
-            prompt.text="Packing check "+(AssociationsCorrect+1)+"/"+checkWords.Count+": choose this picture's Lemko word";
+            prompt.text="Word check "+(AssociationsCorrect+1)+"/"+checkWords.Count+": which word is this?";
             prompt.GetComponent<HintPointer>().Bind(null,Session.tooltip);
             speak.interactable=false;
             Token(AssociationWord,new Vector2(0,1.1f),"association_picture",t=>Session.audioService.Play(AssociationWord.pronunciation));
@@ -90,17 +95,17 @@ namespace Lemko
                 var word=options[i]; var token=Token(word,new Vector2(-5.1f+(i%4)*3.4f,-.8f-(i/4)*1.5f),"association_option",t=>ChooseAssociation(word),word.lemko,false);
                 token.GetComponent<HintPointer>().enabled=false;
             }
-            feedback.text="Use the word, not its old card position. Mistakes here cost no lives.";
+            feedback.text="";
         }
         public void ChooseAssociation(VocabularyEntry word) {
             if(!Ready || !AssociationActive || associationSolved || !boardWords.Contains(word)) return;
             bool correct=word==AssociationWord;
             if(!correct && !rejectedChecks.Add(word.id)) return;
             Session.MarkSupported(AssociationWord); Session.RecordAnswer(AssociationWord,correct);
-            if(!correct) { AssociationMistakes++; feedback.text="That word belongs to another picture. Try again; no life lost."; Session.PresentFeedback(false); return; }
+            if(!correct) { AssociationMistakes++; feedback.text="That word belongs to another picture."; Session.PresentFeedback(false); GameEvents.Answer(false,0,0); return; }
             AssociationsCorrect++; associationSolved=true;
-            if(AssociationsCorrect>=checkWords.Count) Answer(true,"complete","Packing checklist ready. Word associations practised!");
-            else { Session.PresentFeedback(true); feedback.text="Correct: "+AssociationWord.lemko+". One more packing check."; next.gameObject.SetActive(true); next.GetComponentInChildren<TMPro.TMP_Text>().text="Next check"; }
+            if(AssociationsCorrect>=checkWords.Count) Answer(true,"complete","All matched and checked!");
+            else { Session.PresentFeedback(true); feedback.text="Yes: "+AssociationWord.lemko; GameEvents.Answer(true,0,0); ContinueSoon(); }
         }
         public override void Submit() { }
         public override void Close() { base.Close(); first=null; evaluating=false; boardFinished=AssociationActive=associationSolved=false; AssociationsCorrect=AssociationMistakes=0; AssociationWord=null; boardWords.Clear(); checkWords.Clear(); rejectedChecks.Clear(); picture.Clear(); matched.Clear(); }

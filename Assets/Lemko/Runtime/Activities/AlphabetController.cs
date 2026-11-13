@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -18,8 +19,8 @@ namespace Lemko
         public string AnswerText => string.Concat(filled);
         protected override void BuildTask()
         {
-            IsRepairTask=enableRepairLabels && (Correct+1)%Mathf.Max(2,repairEvery)==0;
-            prompt.text=(IsRepairTask ? "Repair this shelf label: " : "Make a shelf label: ")+Current.word.polish; prompt.GetComponent<HintPointer>().Bind(Current.word,Session.tooltip,HintContent.LemkoSpelling);
+            building=true; IsRepairTask=enableRepairLabels && (Correct+1)%Mathf.Max(2,repairEvery)==0;
+            prompt.text=(IsRepairTask ? "Fix the label: " : "Spell in Lemko: ")+Look.Word(Current.word.polish); prompt.GetComponent<HintPointer>().Bind(Current.word,Session.tooltip,HintContent.LemkoSpelling);
             if(hintControl) hintControl.Bind(Current.word,Session.tooltip,HintContent.LemkoSpelling);
             var picture=Token(Current.word,new Vector2(-5.7f,1.2f),"object",t=>Speak());
             picture.GetComponent<HintPointer>().Bind(Current.word,Session.tooltip,HintContent.LemkoSpelling);
@@ -42,7 +43,14 @@ namespace Lemko
                 foreach(int index in positions.Skip(Mathf.Max(1,missingLetters))) FillCorrect(index);
                 if(used.Count>0) Session.MarkSupported(Current.word);
             }
-            feedback.text=(IsRepairTask ? "Replace the missing letters. " : "")+"Click or drag a letter. Click a filled slot to undo. Hold the picture or meaning for the Lemko spelling.";
+            feedback.text=(IsRepairTask ? "Add the missing letters. " : "")+"Tap or drag letters. Tap a slot to undo."; building=false;
+        }
+        bool building;
+        protected override bool HasAnswer => used.Count>0;
+        // Filling the last slot checks the label, exactly as pressing Check would.
+        IEnumerator AutoCheck() {
+            yield return new WaitForSecondsRealtime(.55f);
+            if(Ready && System.Array.TrueForAll(filled,f=>f!="")) Submit();
         }
         Vector2 TileSize => Session.presentation ? Session.presentation.letterSize : new Vector2(.72f,.82f);
         float Spacing => Session.presentation ? Session.presentation.letterSpacing : .96f;
@@ -68,7 +76,7 @@ namespace Lemko
             if(!Ready) return;
             int index=Enumerable.Range(0,spelling.Count).Where(i=>!SpellingRules.Fixed(spelling[i]) && filled[i]!=spelling[i]).DefaultIfEmpty(-1).First();
             if(index<0) return;
-            if(FillCorrect(index)) { Session.MarkSupported(Current.word); Session.RegisterHint(Current.word); feedback.text="One letter supplied. You can still move or remove it; finish the label and Submit."; }
+            if(FillCorrect(index)) { Session.MarkSupported(Current.word); Session.RegisterHint(Current.word); feedback.text="One letter added for you."; }
         }
         public void PlaceFirst(int tile) { int index=System.Array.FindIndex(filled,s=>s==""); if(index>=0) Place(tile,index); }
         public bool Place(int tile,int index)
@@ -77,11 +85,15 @@ namespace Lemko
             filled[index]=tiles[tile].caption.text; used[index]=tile; tiles[tile].Available(false); slots[index].caption.text=filled[index]; PresentationMotion.Pulse(slots[index].caption.transform,Session);
             var letter=definition.alphabetLetters?.Find(l=>l.lowercase==filled[index]);
             if(letter?.pronunciation) Session.audioService.Play(letter.pronunciation);
+            Juice.Sound("drop",1+used.Count*.06f);
+            if(!building && System.Array.TrueForAll(filled,f=>f!="")) StartCoroutine(AutoCheck());
             return true;
         }
         public void Remove(int index) { if(!Ready || !used.TryGetValue(index,out int tile)) return; used.Remove(index); filled[index]=""; slots[index].caption.text="_"; tiles[tile].Available(true); }
         public override void Submit() { if(!Ready) return; bool correct=AnswerText==string.Concat(spelling);
             if(correct) Session.audioService.Play(Current.word.pronunciation);
-            Answer(correct,string.Join("|",filled),AnswerText==string.Concat(spelling) ? "Shelf label ready: "+Current.word.lemko : "Check each letter, including repeated letters and accents."); }
+            if(!Answer(correct,string.Join("|",filled),correct ? "Label ready: "+Current.word.lemko : "Not quite. Check each letter.")) return;
+            // Right: the letters do a little wave. Wrong: the whole label shakes (no letter is singled out).
+            for(int i=0;i<slots.Count;i++) if(slots[i]) { if(correct) Juice.Hop(slots[i].transform,.28f,i*.05f); else Juice.Shake(slots[i].transform,.08f); } }
     }
 }

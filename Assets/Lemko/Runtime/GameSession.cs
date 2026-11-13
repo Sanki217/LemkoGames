@@ -56,10 +56,20 @@ namespace Lemko
         public bool CanAnswer => (!introduction || !introduction.IsOpen) && (!menu || !menu.IsOpen) && (Practice || Lives > 0);
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void ResetSession() { sharedProgress=null; sharedLives=0; sharedPractice=false; }
+        public static bool ReducedMotion => sharedProgress!=null && sharedProgress.reducedMotion;
+        public static bool Muted => sharedProgress!=null && sharedProgress.muted;
+        // Starts a completely fresh sitting (nothing is stored, so this simply forgets the session).
+        public void NewSession() { ResetSession(); SessionStats.Reset(); Navigate("Village"); }
+        public IReadOnlyList<VocabularyEntry> SessionWords => sessionWords;
+        // Reveals the meaning of the current task word at once (the touch-friendly hint button).
+        public void HintNow(Object requester,Vector2 screenPosition) {
+            if(!activity || activity.Current==null || !CanAnswer) return;
+            tooltip.RevealNow(requester,activity.Current.word,screenPosition,activity.definition.kind==ActivityKind.Alphabet ? HintContent.LemkoSpelling : HintContent.Translation);
+        }
         void Start()
         {
             tooltip.Revealed+=RecordHint;
-            if(sharedProgress==null) { sharedProgress=new ProgressData(); sharedLives=shop.startingLives; sharedPractice=!sharedProgress.challengeMode; }
+            if(sharedProgress==null) { sharedProgress=new ProgressData(); sharedLives=shop.startingLives; sharedPractice=!sharedProgress.challengeMode; SessionStats.Reset(); SessionStats.StartedAt=Time.realtimeSinceStartup; }
             ApplyPreferences();
             bool isGame=activity || (useSeparateScenes && SceneManager.GetActiveScene().name=="Shop");
             if(isGame && introduction && !Progress.skippedIntroductions.Contains(introduction.definition.activityId)) {
@@ -182,7 +192,7 @@ namespace Lemko
             if(navigating) return;
             if(!Application.CanStreamedLevelBeLoaded(sceneName)) { Debug.LogError("Scene is not registered: "+sceneName); return; }
             navigating=true; Clear();
-            SceneManager.LoadScene(sceneName,LoadSceneMode.Single);
+            Juice.ChangeScene(sceneName);
         }
         public void OpenActivity(string sceneName)
         {
@@ -230,6 +240,7 @@ namespace Lemko
             results.text=(complete ? "Shopping complete!" : "Attempt finished")+"\nPoints: "+points+"  |  Best: "+Progress.bestShopPoints
                 +"\nCorrect: "+correct+"  |  Mistakes: "+mistakes+"  |  Hints used: "+hints+"\n"+(Practice ? "Learning session" : "Challenge lives remaining: "+Lives)+LearningResult()+contribution;
             RefreshHud(); ShowRecap("Shop"); if(contributionReward) contributionReward.Show(this,"Shop",complete);
+            Announce("Shop",complete,points,Progress.bestShopPoints,correct,mistakes,hints,contribution);
         }
         public void RestartActivity() { if(!activity) { OpenShop(); return; } Clear(); if(!CanAnswer) { exhaustedPanel.SetActive(true); RefreshHud(); return; } shopPanel.SetActive(true); activity.Begin(this); RefreshHud(); }
         public void FinishActivity(bool complete)
@@ -243,6 +254,14 @@ namespace Lemko
             if(complete) record.completions++; record.lastPoints=activity.Points; record.bestPoints=Mathf.Max(record.bestPoints,activity.Points);
             record.lastHints=activity.Hints; record.lastCorrect=activity.Correct; record.lastMistakes=activity.Mistakes;
             Clear(); resultsPanel.SetActive(true); results.text=(complete ? "Session complete!" : "Attempt finished")+"\n"+id+" | Points: "+record.lastPoints+" | Best: "+record.bestPoints+"\nCorrect: "+record.lastCorrect+" | Mistakes: "+record.lastMistakes+"\n"+(Practice ? "Learning" : "Challenge")+" | Hints used: "+record.lastHints+(id=="Memory" ? "\n"+memorySummary+LearningResult() : LearningResult())+contribution; RefreshHud(); ShowRecap(id); if(contributionReward) contributionReward.Show(this,id,complete);
+            Announce(id,complete,record.lastPoints,record.bestPoints,record.lastCorrect,record.lastMistakes,record.lastHints,contribution);
+        }
+        void Announce(string id,bool complete,int points,int best,int correct,int mistakes,int hints,string contribution) {
+            int stars=SessionStats.Rate(complete,mistakes,hints); SessionStats.Record(id,stars);
+            var result=new RoundResult{activity=id,complete=complete,practice=Practice,points=points,best=best,correct=correct,mistakes=mistakes,hints=hints,stars=stars,contribution=(contribution??"").Trim(),suggested=suggestedActivity};
+            result.revisit.AddRange(sessionWords.Where(w=>supportedWords.Contains(w.id) || correctedWords.Contains(w.id)).Take(3));
+            if(result.revisit.Count==0) result.revisit.AddRange(sessionWords.Take(3));
+            GameEvents.Finished(result);
         }
         public void FreshAttempt() { sharedLives=shop.startingLives; sharedPractice=false; Progress.challengeMode=true; RestartActivity(); }
         public void StartPractice() { sharedPractice=true; Progress.challengeMode=false; RestartActivity(); }

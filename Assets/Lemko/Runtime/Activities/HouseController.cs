@@ -29,11 +29,12 @@ namespace Lemko
             // Keep the room decorations through this session; Close starts a fresh house.
             previousRoom.onClick.RemoveAllListeners(); previousRoom.onClick.AddListener(()=>SwitchRoom(-1));
             nextRoom.onClick.RemoveAllListeners(); nextRoom.onClick.AddListener(()=>SwitchRoom(1));
-            prompt.text="Place: "+Current.word.lemko;
-            if(requestedRoomLabel) { requestedRoomLabel.text="Requested room: "+Current.context.lemko; requestedRoomLabel.GetComponent<HintPointer>().Bind(Current.context,Session.tooltip); }
+            prompt.text="Place "+Look.Word(Current.word.lemko);
+            if(requestedRoomLabel) { requestedRoomLabel.text="Room: "+Current.context.lemko; requestedRoomLabel.GetComponent<HintPointer>().Bind(Current.context,Session.tooltip); }
             DrawRoom();
         }
-        public void SwitchRoom(int delta) { if(!Ready) return; room=(room+delta+definition.rooms.Count)%definition.rooms.Count; DrawRoom(); }
+        protected override bool HasAnswer => placed.Count>0;
+        public void SwitchRoom(int delta) { if(!Ready) return; room=(room+delta+definition.rooms.Count)%definition.rooms.Count; DrawRoom(); Juice.Punch(roomLabel.transform,.2f); Juice.Sound("whoosh",1.3f); }
         void DrawRoom()
         {
             ClearTask(); roomLabel.text=definition.rooms[room].lemko; roomLabel.GetComponent<HintPointer>().Bind(definition.rooms[room],Session.tooltip);
@@ -51,7 +52,7 @@ namespace Lemko
                 token.transform.localScale=Vector3.one*furnitureScale;
                 token.backing.enabled=false;
             }
-            feedback.text="Drag to place or move. Click to remove. Submit checks all rooms.";
+            feedback.text="Drag to place or move. Tap to remove.";
         }
         bool Drop(ActivityToken token,Vector2 worldPoint)
         {
@@ -63,23 +64,29 @@ namespace Lemko
         public bool PlaceAt(VocabularyEntry word,Vector2 position)
         {
             if(!Ready || !definition.pool.Contains(word) || !placementArea.Contains(position) || placed.Count>=maximumFurniture) return false;
-            placed.Add(new PlacedItem{id=nextId++,room=room,word=word,position=position}); DrawRoom(); return true;
+            int id=nextId++; placed.Add(new PlacedItem{id=id,room=room,word=word,position=position}); Redraw(); Land(id); return true;
         }
         // Kept for old button/test callers; no visible slots or snapping remain.
         public bool Place(VocabularyEntry word,int slot) => slot>=0 && slot<slotsPerRoom && PlaceAt(word,placementArea.center+Vector2.right*(slot*.5f));
         public bool Move(int id,Vector2 position) {
             var item=placed.Find(p=>p.id==id && p.room==room);
             if(!Ready || item==null || !placementArea.Contains(position)) return false;
-            item.position=position; DrawRoom(); return true;
+            item.position=position; Redraw(); Land(id); return true;
         }
-        public void Remove(int id) { if(!Ready) return; if(placed.RemoveAll(p=>p.id==id && p.room==room)>0) DrawRoom(); }
+        public void Remove(int id) { if(!Ready) return; if(placed.RemoveAll(p=>p.id==id && p.room==room)>0) Redraw(); }
+        void Redraw() { quietSpawn=true; DrawRoom(); quietSpawn=false; }
+        // The piece that was just set down lands with a little squash and dust.
+        void Land(int id) {
+            var token=tokens.Find(t=>t && t.Key=="placed_"+id); if(!token) return;
+            Juice.Squash(token.transform); Juice.Dust(Juice.WorldToScreen(token.transform.position+Vector3.down*.3f)); Juice.Sound("drop");
+        }
         public override void Close() { base.Close(); placed.Clear(); room=0; nextId=0; }
         public override void Submit()
         {
             if(!Ready) return;
             bool correct=placed.Any(p=>definition.rooms[p.room]==Current.context && p.word==Current.word);
-            string correction=placed.Any(p=>p.word==Current.word) ? "The furniture is right. Move it to "+Current.context.lemko+"." : "Find "+Current.word.lemko+" and place it in "+Current.context.lemko+".";
-            Answer(correct,string.Join("|",placed.Select(p=>p.room+":"+p.word.id).OrderBy(s=>s)),correct?"The furniture is ready for the gathering.":correction);
+            string correction=placed.Any(p=>p.word==Current.word) ? "Right piece, wrong room." : "That is not the piece we need.";
+            Answer(correct,string.Join("|",placed.Select(p=>p.room+":"+p.word.id).OrderBy(s=>s)),correct?"Just right!":correction);
         }
     }
 }

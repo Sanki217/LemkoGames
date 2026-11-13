@@ -23,29 +23,36 @@ namespace Lemko
         }
         protected override void BuildTask()
         {
-            submit.gameObject.SetActive(false); prompt.text="Issue a gathering ticket marked: "+Current.word.lemko;
+            submit.gameObject.SetActive(false); prompt.text="Find the ticket "+Look.Word(Current.word.lemko);
             var options=AvailableTasks().Select(t=>t.quantity).Distinct().Where(n=>n!=Current.quantity).ToList(); Shuffle(options);
             options=options.Take(3).ToList(); options.Add(Current.quantity); Shuffle(options); Options=options.ToArray();
             for(int i=0;i<Options.Length;i++) {
                 int n=Options[i]; var ticket=Token(Current.word,new Vector2(-4.5f+i*3,0),n.ToString(),t=>Choose(n),n.ToString(),false);
-                ticket.GetComponent<HintPointer>().enabled=false; ticket.backing.color=new Color(.95f,.82f,.48f);
+                ticket.GetComponent<HintPointer>().enabled=false; ticket.backing.color=Look.Honey;
             }
             for(int i=0;i<Mathf.Min(5,issued.Count);i++) DrawIssued(issued[issued.Count-Mathf.Min(5,issued.Count)+i],i);
-            feedback.text="Read the Lemko request or play its recording, then choose the matching ticket. Tickets ready: "+issued.Count+".";
+            feedback.text="";
         }
-        void DrawIssued(int number,int position) {
+        ActivityToken DrawIssued(int number,int position) {
             var token=Token(Current.word,new Vector2(-2.4f+position*1.2f,-1.8f),"issued",null,number.ToString(),false);
-            token.transform.localScale=Vector3.one*.45f; token.GetComponent<HintPointer>().enabled=false; token.backing.color=new Color(.78f,.94f,.85f);
-            PresentationMotion.Pulse(token.transform,Session);
+            token.transform.localScale=Vector3.one*.45f; token.GetComponent<HintPointer>().enabled=false; token.backing.color=Look.GoodSoft;
+            return token;
         }
         public void Choose(int number) {
             if(!Ready || Options==null || !Options.Contains(number)) return;
             bool correct=number==Current.quantity;
-            if(Answer(correct,number.ToString(),correct ? "Ticket "+number+" issued for the gathering." : "That ticket has a different number. Listen again or hold the prompt for a hint.") && correct) {
+            var ticket=tokens.Find(t=>t && t.Key==number.ToString());
+            if(!Answer(correct,number.ToString(),correct ? "Ticket "+number+" is ready!" : "That ticket shows a different number.")) return;
+            if(!correct) { if(ticket) Juice.Shake(ticket.transform,.14f); return; }
+            {
                 issued.Add(number);
                 // Keep the preview bounded for longer Inspector-configured sessions.
                 foreach(var old in tokens.Where(t=>t && t.Key=="issued").ToArray()) { old.gameObject.SetActive(false); Destroy(old.gameObject); tokens.Remove(old); }
-                for(int i=0;i<Mathf.Min(5,issued.Count);i++) DrawIssued(issued[issued.Count-Mathf.Min(5,issued.Count)+i],i);
+                quietSpawn=true; ActivityToken newest=null;
+                for(int i=0;i<Mathf.Min(5,issued.Count);i++) newest=DrawIssued(issued[issued.Count-Mathf.Min(5,issued.Count)+i],i);
+                quietSpawn=false;
+                // The chosen ticket tears off and lands in the row of issued tickets.
+                if(newest && ticket) { Juice.TravelFrom(newest.transform,ticket.transform.position,.6f); Juice.Sound("pickup"); }
             }
         }
         public override void Submit() { }

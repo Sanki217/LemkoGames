@@ -30,7 +30,7 @@ namespace Lemko {
             if(EventSystem.current) EventSystem.current.SetSelectedGameObject(null);
             title.text=definition.title; story.text=definition.story;
             instructions.text=definition.activityId=="Farm" && !session.FarmQuantitiesUnlocked && !string.IsNullOrWhiteSpace(definition.beforeNumbers) ? definition.beforeNumbers : definition.instructions;
-            support.text="Need a meaning? Keep the pointer still, or touch and hold a word or picture.\nEach word counts as one hint per session.";
+            support.text="Stuck? Tap the lightbulb, or hold a word or picture, to see what it means.";
             illustration.sprite=definition.illustration; illustration.enabled=definition.illustration;
             session.tooltip.Hide(); session.audioService.Stop();
             panel.SetActive(true); transform.SetAsLastSibling(); opened=Time.unscaledTime;
