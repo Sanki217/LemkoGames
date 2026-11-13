@@ -70,7 +70,7 @@ namespace Lemko
             if(Camera.main) Camera.main.backgroundColor=InVillage ? Look.Grass : SkyScene() ? Look.Mint : Look.Peach;   // matches the top edge of each backdrop
             foreach(var image in root.GetComponentsInChildren<Image>(true)) {
                 string n=image.name; var c=image.color;
-                if(n=="Clean top bar") { image.color=Look.Sage; AddAwning(image.rectTransform); continue; }
+                if(n=="Clean top bar") { image.color=Color.clear; image.raycastTarget=false; continue; }   // the HUD floats over the picture
                 if(n=="Illustration" || n=="Picture" || n=="Handle" || c.a<.05f) continue;
                 if(n=="Modal input blocker") { image.color=Look.Alpha(Look.Ink,.55f); continue; }
                 if(n=="Click or tap anywhere") { image.color=Look.Mint; continue; }
@@ -102,12 +102,6 @@ namespace Lemko
         {
             var target=parent.Find(child); if(!target) return;
             var label=target.GetComponentInChildren<TMP_Text>(true); if(label) label.text=text;
-        }
-        void AddAwning(RectTransform bar)
-        {
-            // The scalloped awning from the Shop backdrop runs under the top bar on every screen.
-            var strip=Picture(bar.parent,"Awning trim",Look.Awning,Color.white,bar.anchoredPosition+new Vector2(0,-bar.sizeDelta.y*.5f-11),new Vector2(1296,24));
-            strip.type=Image.Type.Tiled; strip.pixelsPerUnitMultiplier=1.16f; strip.rectTransform.SetSiblingIndex(bar.GetSiblingIndex()+1);
         }
 
         // ---------- icon HUD ----------
