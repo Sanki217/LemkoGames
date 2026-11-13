@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: buraki
   english: beetroots
   sprite: {fileID: 21300000, guid: 36a7f0a29cbb101418542516cf8acb5d, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 53356684ff9d43988c26c17e3a734704, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_beetroots

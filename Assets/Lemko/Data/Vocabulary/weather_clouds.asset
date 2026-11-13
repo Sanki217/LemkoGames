@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: chmury
   english: clouds
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: ca909aaddac849598a17fea21bb74e63, type: 3}
   tags:
   - weather
   verified: 0

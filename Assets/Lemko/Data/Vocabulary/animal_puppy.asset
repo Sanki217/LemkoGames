@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "szczeni\u0119"
   english: puppy
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 344a6574562643c58b0a0f7c7f4575c2, type: 3}
   tags:
   - farm
-  - animal
   verified: 0
   notes: "Source: farm_source.csv, row 19. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation.  Source alternatives: \u043F\u0441\u044F

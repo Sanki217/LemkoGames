@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: "upa\u0142"
   english: heat
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 06b61080906644919368db4dd9eea5a1, type: 3}
   tags:
   - weather
   verified: 0

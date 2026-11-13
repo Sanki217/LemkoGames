@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: stryjenka
   english: paternal uncles wife
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: e2886975c5cb43dbb5b76a1040f7108b, type: 3}
   tags:
   - family
-  - source_advanced
   verified: 0
   notes: "Source: family_source.csv, row 34. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. \u017Cona stryjka"

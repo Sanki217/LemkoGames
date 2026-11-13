@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: czajnik
   english: kettle
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 3f6e0e19b0ef4fcc9323af64a4e9dfac, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 95. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

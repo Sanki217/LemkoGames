@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: "zamie\u0107"
   english: blizzard
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 6edb3e46cccd42fe9d6c05111e03d765, type: 3}
   tags:
   - weather
   verified: 0

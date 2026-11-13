@@ -26,7 +26,7 @@ namespace Lemko
         public Vector2[] Positions => placed.Where(p=>p.room==room).Select(p=>p.position).ToArray();
         protected override void BuildTask()
         {
-            placed.Clear(); room=0; nextId=0;
+            // Keep the room decorations through this session; Close starts a fresh house.
             previousRoom.onClick.RemoveAllListeners(); previousRoom.onClick.AddListener(()=>SwitchRoom(-1));
             nextRoom.onClick.RemoveAllListeners(); nextRoom.onClick.AddListener(()=>SwitchRoom(1));
             prompt.text="Place: "+Current.word.lemko;
@@ -73,11 +73,12 @@ namespace Lemko
             item.position=position; DrawRoom(); return true;
         }
         public void Remove(int id) { if(!Ready) return; if(placed.RemoveAll(p=>p.id==id && p.room==room)>0) DrawRoom(); }
+        public override void Close() { base.Close(); placed.Clear(); room=0; nextId=0; }
         public override void Submit()
         {
             if(!Ready) return;
             bool correct=placed.Any(p=>definition.rooms[p.room]==Current.context && p.word==Current.word);
-            string correction="Place "+Current.word.lemko+" in "+Current.context.lemko+". You may submit while viewing any room.";
+            string correction=placed.Any(p=>p.word==Current.word) ? "The furniture is right. Move it to "+Current.context.lemko+"." : "Find "+Current.word.lemko+" and place it in "+Current.context.lemko+".";
             Answer(correct,string.Join("|",placed.Select(p=>p.room+":"+p.word.id).OrderBy(s=>s)),correct?"The furniture is ready for the gathering.":correction);
         }
     }

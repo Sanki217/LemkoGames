@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: "zachmurzy\u0142o si\u0119"
   english: it became cloudy
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: d55931c861934c279b40c599b14f7bbc, type: 3}
   tags:
   - weather
   verified: 0

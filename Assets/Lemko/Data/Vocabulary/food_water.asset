@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: woda
   english: water
   sprite: {fileID: 21300000, guid: f6785ec8e763ef042ac9aed008ea918c, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 2eb443c2e14c40db8fbe65fe8f3d0253, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_water

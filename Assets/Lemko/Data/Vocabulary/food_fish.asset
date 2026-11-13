@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: ryba
   english: fish
   sprite: {fileID: 21300000, guid: ccbd7bb66cc95ba408de2df6c11cbe4a, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: c6d70f2a33554241916110e84cc0d721, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_fish

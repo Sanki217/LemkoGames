@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: dzbanek
   english: jug
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: a725d0fbf3b2451397becce73da3331e, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 36. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

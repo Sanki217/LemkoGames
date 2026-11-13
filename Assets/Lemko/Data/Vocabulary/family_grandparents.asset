@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: dziadkowie
   english: grandparents
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: fc9a7259c6214b959a6e466bfd39d908, type: 3}
   tags:
   - family
-  - source_basic
   verified: 0
   notes: 'Source: family_source.csv, row 25. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: zlew
   english: sink
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: e871c68545324e09a2aad71b49c1659e, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 39. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

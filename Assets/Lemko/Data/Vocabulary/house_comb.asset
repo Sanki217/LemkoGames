@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "grzebie\u0144"
   english: comb
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: dfaf2aef6dac4973b1c8708256d048fb, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 79. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

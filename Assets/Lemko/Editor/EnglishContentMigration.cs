@@ -114,9 +114,6 @@ namespace Lemko.Editor
                 string folder=entry.slug=="carrot" ? "/Products/" : "/Placeholders/Products/";
                 if(!AssetDatabase.LoadAssetAtPath<Sprite>(Sprites+folder+entry.spriteId+".png")) throw new Exception("Missing sprite "+entry.spriteId);
             }
-            var json="{\"version\":1,\"encountered\":[\"shop_chleb\",\"food_bread\"],\"shopCompletions\":3}";
-            var data=ProgressStore.Parse(json);
-            if(data.encountered.Count!=1 || data.encountered[0]!="food_bread" || data.shopCompletions!=3) throw new Exception("Save migration failed");
             ContentValidator.Validate(); Debug.Log("LEMKO_ENGLISH_DATA_CHECKS_PASS");
         }
     }

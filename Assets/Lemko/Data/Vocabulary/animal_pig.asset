@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "\u015Bwinia"
   english: pig
   sprite: {fileID: 21300000, guid: 9ebc2230385621049ac70ed21d07173b, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 56bf8a3da6544093bd04e3a963e0ec77, type: 3}
   tags:
   - farm
-  - animal
   verified: 0
   notes: 'Source: farm_source.csv, row 29. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: zimno
   english: cold
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 7cd3f435fa0842f99e29bb761f84627c, type: 3}
   tags:
   - weather
   verified: 0

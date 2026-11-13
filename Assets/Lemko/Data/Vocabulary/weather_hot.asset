@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: "gor\u0105co"
   english: hot
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: d3f5a165f84e468aa89a77f58e228ea7, type: 3}
   tags:
   - weather
   verified: 0

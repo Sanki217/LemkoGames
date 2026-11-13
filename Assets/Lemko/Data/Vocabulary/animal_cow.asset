@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: krowa
   english: cow
   sprite: {fileID: 21300000, guid: de49af9641cc77b43a85e0b3f0ed903e, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 3b8762659c6e40b0957b4cde5d8188d2, type: 3}
   tags:
   - farm
-  - animal
   verified: 0
   notes: 'Source: farm_source.csv, row 2. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

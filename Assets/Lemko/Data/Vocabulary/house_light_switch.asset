@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "w\u0142\u0105cznik"
   english: light switch
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: ec984019182c44c695724bdc4172f134, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 62. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

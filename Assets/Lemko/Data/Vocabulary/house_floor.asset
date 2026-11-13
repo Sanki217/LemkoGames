@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "pod\u0142oga"
   english: floor
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: a0b8c4f9b6934d76a561b46846bb6638, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 60. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

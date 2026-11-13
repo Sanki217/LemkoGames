@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: rodzina
   english: family
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: ee44aec836874ff7a8725d912836f3a0, type: 3}
   tags:
   - family
-  - heading
   verified: 0
   notes: 'Source: family_source.csv, row 1. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: radio
   english: radio
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 0db7fe72cf51476984865fbf34db4af0, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 63. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

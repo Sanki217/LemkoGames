@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: lato
   english: summer
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 9f1ea67adf2141e89aba9f90c1c7d1a1, type: 3}
   tags:
   - weather
   verified: 0

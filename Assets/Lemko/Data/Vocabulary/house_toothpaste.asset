@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "pasta do z\u0119b\xF3w"
   english: toothpaste
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: c10edce2537d4d4aaf1642a1fbb17085, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 77. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: owca
   english: sheep
   sprite: {fileID: 21300000, guid: bfe7b14b52d5ce647ab566387d558660, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 87c1397211594409a8332347e4c3cc00, type: 3}
   tags:
   - farm
-  - animal
   verified: 0
   notes: 'Source: farm_source.csv, row 11. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: pieprz
   english: pepper
   sprite: {fileID: 21300000, guid: 53dd426f2d575234787e56c3d72877ed, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 9f5f7a1e8df44f04a05876030fd1490a, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_black_pepper

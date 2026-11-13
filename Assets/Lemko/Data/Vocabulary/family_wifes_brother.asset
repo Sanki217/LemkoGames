@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "szwagier (brat \u017Cony)"
   english: wifes brother
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: cc7857a447d84380b51dd97c3a350dfd, type: 3}
   tags:
   - family
-  - source_advanced
   verified: 0
   notes: "Source: family_source.csv, row 49. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation.  Source alternatives: \u0431\u0440\u0430\u0442

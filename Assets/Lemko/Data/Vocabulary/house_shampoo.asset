@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: szampon
   english: shampoo
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 3655c173b0684f3c843eeb416c7170ba, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 74. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "koci\u0119"
   english: kitten
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: ec396da3e75a4c9c95c4b32f037d4684, type: 3}
   tags:
   - farm
-  - animal
   verified: 0
   notes: "Source: farm_source.csv, row 16. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation.  Source alternatives: \u043A\u043E\u0442\u044F

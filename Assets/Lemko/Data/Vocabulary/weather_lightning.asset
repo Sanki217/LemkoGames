@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: "b\u0142yskawica"
   english: lightning
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: f4af2e25f5394438a8058be1b2e5e2b5, type: 3}
   tags:
   - weather
   verified: 0

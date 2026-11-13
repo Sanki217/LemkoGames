@@ -14,22 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
   id: animal_male_cat
   lemko: "\u043A\u0456\u0442"
-  polish: kocur
-  english: male cat
+  polish: kot
+  english: cat
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 096910868f134df9b9961698b4a01157, type: 3}
   tags:
   - farm
-  - animal
   verified: 0
   notes: 'Source: farm_source.csv, row 15. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '
-  spriteId: sprite_animal_male_cat
+  spriteId: sprite_animal_cat
   audioId: audio_animal_male_cat
   translations:
   - language: lemko
     text: "\u043A\u0456\u0442"
   - language: pl
-    text: kocur
+    text: kot
   - language: en
-    text: male cat
+    text: cat

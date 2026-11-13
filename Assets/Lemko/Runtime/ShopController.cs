@@ -32,6 +32,7 @@ namespace Lemko
         public TMP_Text basketStatus;
         readonly List<WordView> basketViews=new List<WordView>();
         public int BasketCount=>round?.Count??0;
+        public int TargetCount=>targets?.Count??definition.taskCount;
         GameSession session;
         bool active;
         ShopScore score = new ShopScore();
@@ -53,8 +54,7 @@ namespace Lemko
             if(worldRoot) worldRoot.gameObject.SetActive(true);
             var products = new List<VocabularyEntry>(definition.products);
             Shuffle(products);
-            var review=products.Where(w=>session.ReviewPriority(w)>0).OrderByDescending(session.ReviewPriority).Take(2).ToList();
-            products=review.Concat(products.Where(w=>!review.Contains(w))).ToList();
+            products=PracticeSelection.Order(products,w=>w,session,definition.taskCount);
             products = products.Take(definition.displayedProductCount).ToList();
             targets = products.Take(definition.taskCount).ToList();
             round = new ShopBasket(targets.Select(w => w.id), products.Select(w => w.id));
@@ -66,14 +66,13 @@ namespace Lemko
                 view.Bind(word, session.tooltip, session.audioService, Select);
                 session.Encounter(word);
             }
-            ProgressStore.Save(session.Progress);
             if(listRoot && listRowPrefab) foreach(var word in targets) {
                 var row=Instantiate(listRowPrefab,listRoot); row.gameObject.SetActive(true);
                 row.GetComponent<HintPointer>().Bind(word,session.tooltip);
                 foreach(var control in row.GetComponentsInChildren<HoldTranslationHint>()) control.Bind(word,session.tooltip);
                 listRows.Add(row);
             }
-            feedback.text = "Collect the supplies for our shared table. Click pictures to add or remove; then check your basket.";
+            feedback.text = "Choose the products on your list.";
             finishButton.gameObject.SetActive(true); finishButton.GetComponentInChildren<TMP_Text>().text="Check basket"; UpdateBasket(); UpdateList();
         }
         static void Shuffle<T>(List<T> items)
@@ -84,6 +83,7 @@ namespace Lemko
         {
             if(!active || !session.CanAnswer || !round.Toggle(view.Entry.id)) return;
             session.tooltip.Hide(); UpdateBasket(); session.RefreshHud();
+            if(round.Contains(view.Entry.id)) { var copy=basketViews.Find(v=>v.Entry==view.Entry); if(copy) PresentationMotion.Travel(copy.transform,view.transform.position,session); }
         }
         void UpdateBasket()
         {
@@ -96,7 +96,7 @@ namespace Lemko
                 copy.transform.localPosition=basketStart+Vector3.right*basketViews.Count*basketSpacing;
                 copy.transform.localScale=Vector3.one*basketItemScale; basketViews.Add(copy);
             }
-            if(basketStatus) basketStatus.text="Your basket: "+round.Count+" items - click an item to remove";
+            if(basketStatus) basketStatus.text="Basket · "+round.Count+" items   /   Tap to remove";
         }
         public void SubmitBasket()
         {
@@ -107,7 +107,7 @@ namespace Lemko
                 foreach(var word in targets.Where(w=>round.Missing.Contains(w.id))) session.RecordAnswer(word,false);
                 foreach(var view in views.Where(w=>round.Extra.Contains(w.Entry.id))) session.RecordAnswer(view.Entry,false);
                 score.Apply(result);
-                feedback.text="Check the list: "+round.Missing.Length+" missing, "+round.Extra.Length+" extra. Edit your basket and try again.";
+                feedback.text=round.Missing.Length+" missing · "+round.Extra.Length+" extra. "+(round.Mistakes>=2 ? "Look for: "+string.Join(", ",targets.Where(w=>round.Missing.Contains(w.id)).Select(w=>w.lemko))+". Hold a word for help." : "Compare the basket with your list, then adjust it.");
                 session.PresentFeedback(false); session.Wrong(); return;
             }
             int awarded=0;
@@ -121,8 +121,8 @@ namespace Lemko
         {
             if(listRoot && listRowPrefab) {
                 shoppingList.text=definition.shoppingListTitle;
-                for(int i=0;i<targets.Count;i++) listRows[i].text=(round.Complete ? "[OK] " : "[  ] ")+targets[i].lemko;
-            } else shoppingList.text=definition.shoppingListTitle+"\n\n"+string.Join("\n",targets.Select(w=>(round.Complete ? "[OK] " : "[  ] ")+w.lemko));
+                for(int i=0;i<targets.Count;i++) { listRows[i].text=targets[i].lemko; listRows[i].color=round.Complete ? new Color(.1f,.48f,.34f) : new Color(.14f,.2f,.24f); }
+            } else shoppingList.text=definition.shoppingListTitle+"\n\n"+string.Join("\n",targets.Select(w=>w.lemko));
         }
         public void Complete() { if(round==null || !session) return; if(round.Complete) session.Finish(true); else SubmitBasket(); }
         public void Close()

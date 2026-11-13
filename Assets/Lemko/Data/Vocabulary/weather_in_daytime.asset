@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: "w dzie\u0144"
   english: in the daytime
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: f9752f6df1b64fb2bc9c32f1ae9fb589, type: 3}
   tags:
   - weather
   verified: 0

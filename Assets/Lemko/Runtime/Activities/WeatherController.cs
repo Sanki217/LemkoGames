@@ -13,10 +13,11 @@ namespace Lemko
         public Vector2 previewPosition=new Vector2(-5.5f,-1.35f);
         SpriteRenderer blanket, supplies;
         VocabularyEntry selected;
+        SpriteRenderer weatherPreview;
         public VocabularyEntry Selected=>selected;
         protected override void BuildTask()
         {
-            selected=null;
+            selected=null; weatherPreview=null;
             prompt.text="Plan the gathering outing:\n"+(string.IsNullOrWhiteSpace(Current.request) ? "I would like "+Current.word.lemko : Current.request);
             Token(Current.context ? Current.context : Current.word,new Vector2(-5.5f,.5f),"character",t=>Speak());
             temperature.onValueChanged.RemoveListener(TemperatureChanged);
@@ -31,7 +32,12 @@ namespace Lemko
             feedback.text="Planning puzzle: choose the requested weather and "+Current.minTemperature+" to "+Current.maxTemperature+" °C, then Submit.";
         }
         void TemperatureChanged(float value) { if(temperatureLabel) temperatureLabel.text=value.ToString("0")+" °C"; }
-        public void Choose(VocabularyEntry word) { if(!Ready || !definition.pool.Contains(word)) return; selected=word; foreach(var t in tokens) if(t.Key=="weather") t.backing.color=t.view.Entry==word ? new Color(.6f,.95f,.6f) : Color.white; }
+        public void Choose(VocabularyEntry word) { if(!Ready || !definition.pool.Contains(word)) return; selected=word;
+            if(!weatherPreview) { var go=new GameObject("Selected weather preview",typeof(SpriteRenderer)); go.transform.SetParent(taskRoot,false); go.transform.localPosition=new Vector3(-5.5f,2.05f,0); weatherPreview=go.GetComponent<SpriteRenderer>(); weatherPreview.sortingOrder=3; }
+            weatherPreview.sprite=word.sprite;
+            if(word.sprite) weatherPreview.transform.localScale=Vector3.one*(1.1f/Mathf.Max(word.sprite.bounds.size.x,word.sprite.bounds.size.y));
+            PresentationMotion.Pulse(weatherPreview.transform,Session);
+            foreach(var t in tokens) if(t.Key=="weather") t.backing.color=t.view.Entry==word ? new Color(.6f,.95f,.6f) : Color.white; }
         public override void Submit() {
             if(!Ready) return;
             var problems=new List<string>();
@@ -42,7 +48,7 @@ namespace Lemko
             bool correct=problems.Count==0;
             if(Answer(correct,(selected?selected.id:"")+":"+temperature.value.ToString("0"),correct ? "Outing plan ready! Weather and temperature match. The supplies are prepared." : string.Join(" ",problems)) && correct) {
                 blanket.color=new Color(.55f,.85f,.6f); supplies.gameObject.SetActive(outingIllustration); temperature.interactable=false;
-                foreach(var token in tokens) if(token.Key=="character") token.backing.color=new Color(.55f,.85f,.6f);
+                foreach(var token in tokens) if(token.Key=="character") { token.backing.color=new Color(.55f,.85f,.6f); PresentationMotion.Pulse(token.view.worldPicture.transform,Session); }
             }
         }
         public override void Close() { if(temperature) temperature.onValueChanged.RemoveListener(TemperatureChanged); base.Close(); selected=null; blanket=null; supplies=null; }

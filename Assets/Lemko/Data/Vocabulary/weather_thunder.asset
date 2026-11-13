@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: grzmot
   english: thunder
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: c10abe47b03547f0a69563e31ba380db, type: 3}
   tags:
   - weather
   verified: 0

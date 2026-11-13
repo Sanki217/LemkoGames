@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: gwiazdy
   english: stars
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: e0b62e0012e44ce88faae97a87d8ded3, type: 3}
   tags:
   - weather
   verified: 0

@@ -68,7 +68,7 @@ Select the PNG in the Project panel. Inspector settings:
 
 The supplied image has a white background. **Alpha Is Transparency does not remove white pixels.** Export a transparent PNG from your drawing application to get a cutout. Crop excess transparent margins consistently so different products fill their slots similarly. Replace the existing file with the same filename; retain its `.meta`. No prefab editing is necessary to update its picture.
 
-Now select `demo_carrot.asset`: Sprite should point to that PNG. Add a verified pronunciation clip to Pronunciation when ready. Set Polish/English translations and Lemko text. Keep Verified off until you have reviewed the language. Do not rename its ID after it has been used in saved progress or activity tables; an asset filename can differ from its stable ID.
+Now select `demo_carrot.asset`: Sprite should point to that PNG. Add a verified pronunciation clip to Pronunciation when ready. Set Polish/English translations and Lemko text. Keep Verified off until you have reviewed the language. Do not rename its ID after it has been used in activity tables; an asset filename can differ from its stable ID.
 
 ## 5. Add the next product
 
@@ -146,7 +146,7 @@ For each content batch, provide the updated CSV folder plus assets named by stab
 - Leave while a tooltip/audio/animation is active; it must stop cleanly.
 - Exhaust lives across rounds; fresh attempt and practice must both remain available.
 - Replace one sprite and one audio clip, then reimport CSV; references must remain valid.
-- Quit and relaunch normally: preferences and completion persist; lives restart. Automated runs use a separate save key.
+- Quit and relaunch normally: progress, lives and preferences start fresh.
 - Check actual Lemko/Polish glyphs, not just placeholder English.
 - Check large and smaller windows; then actual touch devices/browser builds.
 

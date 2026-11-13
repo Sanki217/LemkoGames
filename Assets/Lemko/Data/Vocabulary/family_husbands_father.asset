@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "te\u015B\u0107 (ojciec m\u0119\u017Ca)"
   english: husbands father
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 7cab6484b9ad452da7d16ebaedffa63e, type: 3}
   tags:
   - family
-  - source_advanced
   verified: 0
   notes: "Source: family_source.csv, row 39. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation.  Source alternatives: \u043E\u0442\u0435\u0446

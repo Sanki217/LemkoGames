@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 namespace Lemko
 {
-    public sealed class WordView : MonoBehaviour, IPointerClickHandler
+    public sealed class WordView : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
     {
         public VocabularyEntry entry;
         public TMP_Text label;
@@ -16,10 +16,20 @@ namespace Lemko
         public PronunciationService audioService;
         [Header("Optional scene sprite presentation")]
         public SpriteRenderer worldPicture;
+        public SpriteRenderer selectionMarker;
         public Sprite placeholderSprite;
         public GameObject worldSpeaker;
         public Vector2 pictureBounds = new Vector2(1.5f, 1.65f);
         bool submitted;
+        Vector3 restingScale; bool hovering;
+        GameSession owner;
+        public void OnPointerEnter(PointerEventData e) { hovering=true; }
+        public void OnPointerExit(PointerEventData e) { hovering=false; }
+        void LateUpdate() {
+            if(!worldPicture || !worldPicture.gameObject.activeInHierarchy || !owner || owner.Progress==null) return;
+            bool lift=hovering && !submitted && owner.CanAnswer && !owner.Progress.reducedMotion;
+            worldPicture.transform.localScale=Vector3.Lerp(worldPicture.transform.localScale,restingScale*(lift?1.055f:1),1-Mathf.Exp(-18*Time.unscaledDeltaTime));
+        }
         HintPointer hint;
         [SerializeField] Color idleColor = new Color(.39f, .53f, .39f);
         Action<WordView> selected;
@@ -30,7 +40,8 @@ namespace Lemko
         {
             if (tooltip) tooltip.Hide(this);
             entry = word; tooltip = tips; audioService = audio; selected = onSelect;
-            submitted = false;
+            submitted = false; hovering=false; owner=FindFirstObjectByType<GameSession>();
+            if(selectionMarker) selectionMarker.enabled=false;
             hint=GetComponent<HintPointer>(); if(!hint) hint=gameObject.AddComponent<HintPointer>(); hint.Bind(word,tips);
             if(label) { label.text = word ? word.lemko : "Missing word"; label.gameObject.SetActive(!worldPicture); }
             if (picture) {
@@ -46,6 +57,7 @@ namespace Lemko
                     worldPicture.transform.localScale = Vector3.one * scale;
                 }
             }
+            if(worldPicture) restingScale=worldPicture.transform.localScale;
             if(selectButton) { selectButton.interactable = word; selectButton.image.color = idleColor; }
             if(audioButton) audioButton.interactable = word && word.pronunciation;
             if(worldSpeaker) worldSpeaker.SetActive(word && word.pronunciation);
@@ -55,7 +67,8 @@ namespace Lemko
         public void OnPointerClick(PointerEventData e) { if ((!TryGetComponent<WorldDrag>(out var drag) || !drag.BlocksClick) && worldPicture && e.button == PointerEventData.InputButton.Left && (!hint || !hint.BlocksSelection)) Select(); }
         public void SetSelected(bool value)
         {
-            if(worldPicture) worldPicture.color=value ? new Color(.65f,.85f,1f) : (entry && entry.sprite ? Color.white : idleColor);
+            if(selectionMarker) selectionMarker.enabled=value;
+            if(worldPicture) worldPicture.color=entry && entry.sprite ? Color.white : idleColor;
             if(selectButton) selectButton.image.color=value ? new Color(.2f,.4f,.6f) : idleColor;
         }
         public void Mark(bool correct)

@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: kapusta
   english: cabbage
   sprite: {fileID: 21300000, guid: 471aadb96c050954c8422a31297e87d6, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 95215eaff7a7469e843c4b572c1beca5, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_cabbage

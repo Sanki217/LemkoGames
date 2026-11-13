@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: ojciec
   english: father
   sprite: {fileID: 21300000, guid: 9ad1b6a68cf1f7a4999aea0855ce5ce1, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 650d239a58894535bdc284b1e85b1f03, type: 3}
   tags:
   - family
-  - source_basic
   verified: 0
   notes: "Source: family_source.csv, row 8. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. \u043D\u044F\u043D\u044C\u043E - tato"

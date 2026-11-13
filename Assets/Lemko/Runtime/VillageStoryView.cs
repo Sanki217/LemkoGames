@@ -24,11 +24,15 @@ namespace Lemko
                 var contribution=session.story.Find(id);
                 if(worldLocations!=null && i<worldLocations.Length && worldLocations[i]) worldLocations[i].Refresh(done);
                 if(i<locations.Length && locations[i]) locations[i].GetComponentInChildren<TMP_Text>().text=(id=="FamilyTree"?"Family Tree":id)+"\n"+(done?"Ready - practise again":contribution?.title??"Help here");
-                if(i<contributions.Length && contributions[i]) contributions[i].gameObject.SetActive(done && id!="Alphabet");
+                if(i<contributions.Length && contributions[i]) { contributions[i].gameObject.SetActive(done && id!="Alphabet"); if(done && id!="Alphabet") PresentationMotion.Pulse(contributions[i].transform,session); }
             }
             status.text="Gathering preparations: "+state.contributions.Count+" / 8";
-            if(!complete) status.text+="\nChoose any unfinished place. Hints and practice count too.";
-            else status.text+="\n"+(string.IsNullOrEmpty(state.decoration)?"Choose a colour below. Your progress is saved.":"Your gathering is saved. Come back whenever you like.");
+            if(!complete) {
+                string next=VillageStoryProgress.Activities.First(id=>!state.contributions.Contains(id));
+                status.text+="\nNext: "+(next=="FamilyTree"?"Family Tree":next)+" — "+(session.story.Find(next)?.request??"Help prepare the gathering.");
+                foreach(var location in worldLocations) if(location) location.Recommend(location.activityId==next);
+            }
+            else status.text+="\n"+(string.IsNullOrEmpty(state.decoration)?"Choose a colour below.":"Your village gathering is ready!");
             goldChoice.gameObject.SetActive(complete); blueChoice.gameObject.SetActive(complete);
             goldChoice.onClick.RemoveListener(Gold); goldChoice.onClick.AddListener(Gold);
             blueChoice.onClick.RemoveListener(Blue); blueChoice.onClick.AddListener(Blue);
@@ -36,7 +40,7 @@ namespace Lemko
         }
         public void Gold()=>Choose("gold");
         public void Blue()=>Choose("blue");
-        void Choose(string choice) { if(VillageStoryProgress.ChooseDecoration(session.Progress,choice)) { ProgressStore.Save(session.Progress); Refresh(session); } }
+        void Choose(string choice) { if(VillageStoryProgress.ChooseDecoration(session.Progress,choice)) { Refresh(session); } }
         void OnDisable() { if(goldChoice) goldChoice.onClick.RemoveListener(Gold); if(blueChoice) blueChoice.onClick.RemoveListener(Blue); }
     }
 }

@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "ko\u017Al\u0105tko"
   english: kid
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 59c0125396ac4cdfb46c350470544d35, type: 3}
   tags:
   - farm
-  - animal
   verified: 0
   notes: "Source: farm_source.csv, row 10. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation.  Source alternatives: \u043A\u0456\u0437\u044F

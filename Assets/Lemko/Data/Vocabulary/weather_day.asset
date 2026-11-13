@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: "dzie\u0144"
   english: day
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: c7f416289e7a4c8c81f66dcc035572fa, type: 3}
   tags:
   - weather
   verified: 0

@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: cukier
   english: sugar
   sprite: {fileID: 21300000, guid: ec3d62c820b2e564d8d945aa30ad1eaf, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: e96934d34130471bbb7cd5b72870e4fd, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_sugar

@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: bratowa
   english: brothers wife
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 675e08d7ad414bbebe5e73a47cdd3456, type: 3}
   tags:
   - family
-  - source_advanced
   verified: 0
   notes: 'Source: family_source.csv, row 48. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

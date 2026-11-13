@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: babcia
   english: grandmother
   sprite: {fileID: 21300000, guid: 5d8bc211fe5ba1e4486bbe9d2ef709ab, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: d837bae56f3749249f531a3d2d555606, type: 3}
   tags:
   - family
-  - source_basic
   verified: 0
   notes: 'Source: family_source.csv, row 9. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: zeszyt
   english: notebook
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: ebe5db1428ab498bbf4b94061b6f0c28, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 88. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

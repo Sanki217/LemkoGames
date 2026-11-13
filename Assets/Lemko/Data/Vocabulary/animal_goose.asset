@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "g\u0119\u015B"
   english: goose
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: c96fa49a22d44060a439c9a47f9295a8, type: 3}
   tags:
   - farm
-  - animal
   verified: 0
   notes: 'Source: farm_source.csv, row 20. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

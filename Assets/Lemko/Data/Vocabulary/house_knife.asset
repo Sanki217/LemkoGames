@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "n\xF3\u017C"
   english: knife
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: f6fe40a143354f05ad51395b9d68acff, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 54. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

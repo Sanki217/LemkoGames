@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: papier
   english: paper
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 8ce947a791e7415588da77384e99f747, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 83. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

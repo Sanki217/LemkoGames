@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: kaczka
   english: duck
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 5ce21bf49ecf44e59821e7d25481abbc, type: 3}
   tags:
   - farm
-  - animal
   verified: 0
   notes: 'Source: farm_source.csv, row 23. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

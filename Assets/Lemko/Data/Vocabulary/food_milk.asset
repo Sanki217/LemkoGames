@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: mleko
   english: milk
   sprite: {fileID: 21300000, guid: 0c7b07718f540a34e8c185034a61068a, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 50bf51ca149046c98099f3232b89e763, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_milk

@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: indyczek
   english: turkey poult
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: f940d67135bf42239854c29460ef8c31, type: 3}
   tags:
   - farm
-  - animal
   verified: 0
   notes: "Source: farm_source.csv, row 34. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation.  Source alternatives: \u043F\u0443\u043B\u044C\u0447\u0430

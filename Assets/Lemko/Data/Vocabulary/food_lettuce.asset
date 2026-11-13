@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "sa\u0142ata"
   english: lettuce
   sprite: {fileID: 21300000, guid: b016a567a34492a47a81f704e0169d42, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: a74ea1b07f2d42a6afa8322623178b4f, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_lettuce

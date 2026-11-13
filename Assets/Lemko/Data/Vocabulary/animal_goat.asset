@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: koza
   english: goat
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 175e9e6743ff4002a25a3a6cdbde0674, type: 3}
   tags:
   - farm
-  - animal
   verified: 0
   notes: 'Source: farm_source.csv, row 8. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

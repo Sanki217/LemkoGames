@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: komputer
   english: computer
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: e53df649397541589b3458857603f409, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 98. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

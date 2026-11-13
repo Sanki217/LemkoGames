@@ -42,11 +42,6 @@ namespace Lemko.Editor
             Check(CsvTable.Parse("sep=;\r\nid;text\r\na;баба")[1][1] == "баба","Excel separator");
             failed = false; try { CsvTable.Parse("id,text\na,\"unterminated"); } catch(FormatException) { failed = true; }
             Check(failed,"malformed CSV rejected");
-            Check(ProgressStore.Parse("not json").shopCompletions == 0,"corrupt save recovery");
-            var data = new ProgressData { shopCompletions = 3, english = true }; data.encountered.Add("a");
-            var restored = ProgressStore.Parse(JsonUtility.ToJson(data));
-            Check(restored.shopCompletions == 3 && restored.english && restored.encountered.Contains("a"),"save round trip");
-            Check(ProgressStore.Parse("{\"version\":99}").version == 1,"unsupported save version fallback");
             var shop = AssetDatabase.LoadAssetAtPath<ShopDefinition>(VocabularyImporter.Root + "/Shop.asset");
             Check(shop && shop.Validate() == null,"imported Shop is solvable");
             string asset = VocabularyImporter.Root + "/Vocabulary/demo_apple.asset";

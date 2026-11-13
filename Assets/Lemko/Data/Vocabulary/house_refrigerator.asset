@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "lod\xF3wka"
   english: refrigerator
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 480d144b47fb4de8b57b1cc18e0b839e, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 37. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

@@ -35,7 +35,8 @@ namespace Lemko
         }
         void DrawIssued(int number,int position) {
             var token=Token(Current.word,new Vector2(-2.4f+position*1.2f,-1.8f),"issued",null,number.ToString(),false);
-            token.transform.localScale=Vector3.one*.45f; token.GetComponent<HintPointer>().enabled=false; token.backing.color=new Color(.55f,.85f,.6f);
+            token.transform.localScale=Vector3.one*.45f; token.GetComponent<HintPointer>().enabled=false; token.backing.color=new Color(.78f,.94f,.85f);
+            PresentationMotion.Pulse(token.transform,Session);
         }
         public void Choose(int number) {
             if(!Ready || Options==null || !Options.Contains(number)) return;

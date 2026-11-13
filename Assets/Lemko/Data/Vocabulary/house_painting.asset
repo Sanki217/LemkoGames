@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: obraz
   english: painting
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 12f12d1981ea441bbbb998f671186150, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 14. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

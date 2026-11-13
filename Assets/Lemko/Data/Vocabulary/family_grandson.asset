@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: wnuk
   english: grandson
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 6795453d34b045449d43a028df4fdd65, type: 3}
   tags:
   - family
-  - source_basic
   verified: 0
   notes: 'Source: family_source.csv, row 30. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

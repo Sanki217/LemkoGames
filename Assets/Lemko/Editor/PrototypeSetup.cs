@@ -64,7 +64,7 @@ namespace Lemko.Editor
             }
             var village=EditorSceneManager.OpenScene(SeparateScenesSetup.VillagePath,OpenSceneMode.Single);
             var s=UnityEngine.Object.FindFirstObjectByType<GameSession>(); foreach(var button in s.villagePanel.GetComponentsInChildren<Button>(true)) { var text=button.GetComponentInChildren<TMP_Text>(); text.text=text.text.Replace("Preview scene","Enter"); }
-            s.villagePanel.transform.Find("Subtitle").GetComponent<TMP_Text>().text="Eight places to learn - playable prototype";
+            s.villagePanel.transform.Find("Subtitle").GetComponent<TMP_Text>().text="Explore eight places to learn Lemko";
             EditorSceneManager.SaveScene(village); AssetDatabase.SaveAssets(); ContentValidator.Validate();
             Debug.Log("LEMKO_FULL_PROTOTYPE_SETUP_PASS: seven activity scenes upgraded; Shop preserved; no builds.");
         }

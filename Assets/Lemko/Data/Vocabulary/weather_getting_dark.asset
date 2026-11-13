@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: zmierzcha
   english: it is getting dark
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 0a7df610b207419b87fcbd837014198a, type: 3}
   tags:
   - weather
   verified: 0

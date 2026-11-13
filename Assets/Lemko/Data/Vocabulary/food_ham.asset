@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: szynka
   english: ham
   sprite: {fileID: 21300000, guid: 7d41a892a98dfb042a1bfb16db9d8495, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: b30a29e67b504dfaba10c5b15bc1c751, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_ham

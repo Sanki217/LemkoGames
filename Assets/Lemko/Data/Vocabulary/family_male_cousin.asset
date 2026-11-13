@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: kuzyn
   english: male cousin
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: fb6f5f308c7d49e4b05fc57e20c4051f, type: 3}
   tags:
   - family
-  - source_basic
   verified: 0
   notes: "Source: family_source.csv, row 16. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation.  Chose explicit cousin variant to avoid

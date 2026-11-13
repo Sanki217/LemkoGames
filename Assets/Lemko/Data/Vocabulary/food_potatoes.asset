@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: ziemniaki
   english: potatoes
   sprite: {fileID: 21300000, guid: b5b81c92d4631af419a5e07ecd15c0a7, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 43aab47c68b549d48a47c2047078e7be, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: "Ziemniaki maj\u0105 po \u0142emkowsku najwi\u0119cej nazw, m.in. \u043A\u043E\u043C\u043F\u0435\u0440\u0456,
     \u0431\u0430\u043D\u0434\u0443\u0440\u043A\u044B, \u0491\u0440\u0443\u043B\u0456,

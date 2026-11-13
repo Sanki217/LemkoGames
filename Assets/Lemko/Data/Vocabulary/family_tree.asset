@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: drzewo genealogiczne
   english: family tree
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: d22d48b7dae14867a1c140315902ed0f, type: 3}
   tags:
   - family
-  - heading
   verified: 0
   notes: 'Source: family_source.csv, row 2. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

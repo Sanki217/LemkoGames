@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "og\xF3rki"
   english: cucumbers
   sprite: {fileID: 21300000, guid: 49b3f6df9acf0ef4b8ef9fe4dae9c2d4, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 3954e916b6254772aac63a78502f310b, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_cucumbers

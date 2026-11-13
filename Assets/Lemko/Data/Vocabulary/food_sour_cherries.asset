@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "wi\u015Bnie"
   english: cherries
   sprite: {fileID: 21300000, guid: f5de3442d984ed046bbfe9e717094a39, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: c8073e9dcb904d289de0d643d6702955, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_sour_cherries

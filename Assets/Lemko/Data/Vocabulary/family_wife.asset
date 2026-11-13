@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "\u017Cona"
   english: wife
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 8a551429f2094fb598406c6d6e596af5, type: 3}
   tags:
   - family
-  - source_basic
   verified: 0
   notes: 'Source: family_source.csv, row 23. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

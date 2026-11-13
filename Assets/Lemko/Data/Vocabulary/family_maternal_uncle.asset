@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: wujek
   english: maternal uncle
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: cf17c6bb3d784bbcb1fdd8bf8d0535ec, type: 3}
   tags:
   - family
-  - source_basic
   verified: 0
   notes: 'Source: family_source.csv, row 12. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

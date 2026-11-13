@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: wiosna
   english: spring
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 1d198394d7ab4c628268b6e38f3884be, type: 3}
   tags:
   - weather
   verified: 0

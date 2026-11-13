@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: herbata
   english: tea
   sprite: {fileID: 21300000, guid: 5f833e0f5e8edc948b80d7044fa52984, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 14e91e5225bc414eadc6d68969b56d53, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_tea

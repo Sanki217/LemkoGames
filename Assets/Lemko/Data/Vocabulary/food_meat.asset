@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "mi\u0119so"
   english: meat
   sprite: {fileID: 21300000, guid: 794f0d3fe0296de4788eb2c1a3b5d6e0, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 5160092c2b3642d58fcfeb79bec846b3, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_meat

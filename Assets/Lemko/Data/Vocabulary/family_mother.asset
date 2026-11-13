@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: matka
   english: mother
   sprite: {fileID: 21300000, guid: 0bf289acdaa19de4093502285cef0ef0, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 486fc158f3fe465680d8116df04ccc1b, type: 3}
   tags:
   - family
-  - source_basic
   verified: 0
   notes: "Source: family_source.csv, row 7. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. \u043C\u0430\u043C\u0430 - mama"

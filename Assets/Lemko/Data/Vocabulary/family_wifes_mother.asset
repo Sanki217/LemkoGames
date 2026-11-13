@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "te\u015Bciowa (matka \u017Cony)"
   english: wifes mother
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: e39faeecf39e4bc3a1a38161fff8bea7, type: 3}
   tags:
   - family
-  - source_advanced
   verified: 0
   notes: "Source: family_source.csv, row 36. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation.  Source alternatives: \u043C\u0430\u0442\u0456\u0440

@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: piorun
   english: lightning strike
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: ce208f3e3e8148369c3e4e504bfe2241, type: 3}
   tags:
   - weather
   verified: 0

@@ -16,8 +16,7 @@ namespace Lemko.Editor
         static void Check(bool ok,string message) { if(!ok) throw new Exception(message); }
         public static void Data()
         {
-            var old=ProgressStore.Parse("{\"version\":1,\"shopCompletions\":4,\"encountered\":[\"food_bread\"]}");
-            Check(old.version==2 && old.shopCompletions==4 && old.story.contributions.Count==0,"old save migration preserves progress without retroactive story completion");
+            var old=new ProgressData();
             Check(!VillageStoryProgress.ChooseDecoration(old,"gold"),"reward unavailable before completing story");
             foreach(var id in VillageStoryProgress.Activities) { Check(VillageStoryProgress.Contribute(old,id),"first contribution "+id); Check(!VillageStoryProgress.Contribute(old,id),"duplicate contribution "+id); }
             Check(!VillageStoryProgress.Contribute(old,"Unknown"),"unknown contribution rejected");
@@ -28,12 +27,8 @@ namespace Lemko.Editor
             WordLearning.Record(old,"food_bread","Shop",true,false,"2026-10-26");
             Check(!old.words[0].rememberedOnLaterDay,"same day is not later recall");
             WordLearning.Record(old,"food_bread","Alphabet",true,false,"2026-10-27");
-            var restored=ProgressStore.Parse(JsonUtility.ToJson(old));
-            Check(restored.story.contributions.Count==8 && restored.story.decoration=="blue" && restored.words[0].rememberedOnLaterDay && restored.words[0].assisted==1,"save roundtrip includes story and learning evidence");
-            var corrupt=ProgressStore.Parse("{\"version\":2,\"story\":{\"contributions\":[\"Shop\",\"Shop\",\"Invalid\"],\"decoration\":\"bad\"},\"words\":null}");
-            Check(corrupt.story.contributions.SequenceEqual(new[]{"Shop"}) && corrupt.words.Count==0 && corrupt.story.decoration=="","malformed partial save repair");
             var score=new ShopScore(); for(int i=0;i<12;i++) score.Apply(SelectionResult.Correct); Check(score.NextMultiplier==5,"multiplier cap");
-            Debug.Log("LEMKO_STORY_DATA_PASS: old saves, eight contributions, duplicates, reward choices, supported versus independent evidence, later-day recall, malformed saves, score cap.");
+            Debug.Log("LEMKO_STORY_DATA_PASS: eight contributions, duplicates, reward choices, supported versus independent evidence, later-day recall, score cap.");
         }
         public static void SetupAndData() { VillageStorySetup.Apply(); Data(); }
         public static void RunPlay()

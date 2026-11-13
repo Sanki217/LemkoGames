@@ -27,6 +27,7 @@ namespace Lemko
         public LearningTask Current {get;private set;}
         public string ProgressLabel => definition.kind+": "+Correct+"/"+Total;
         protected virtual int Total => definition.tasksPerSession;
+        public int SessionTaskCount => Total;
         protected readonly List<ActivityToken> tokens=new List<ActivityToken>();
         ShopScore score=new ShopScore();
         List<LearningTask> order;
@@ -37,8 +38,7 @@ namespace Lemko
             string error=ValidateContent();
             if(error!=null) { prompt.text="Content needs attention"; feedback.text=error; Debug.LogError(error,this); return; }
             order=AvailableTasks(); Shuffle(order);
-            var review=new List<LearningTask>(); foreach(var task in order) if(review.Count<2 && Session.ReviewPriority(task.word)>0 && !review.Exists(t=>t.word==task.word)) review.Add(task);
-            foreach(var task in review) order.Remove(task); order.InsertRange(0,review); Running=true; worldRoot.gameObject.SetActive(true); taskRoot.localPosition=contentOffset; taskRoot.localScale=Vector3.one*contentScale;
+            order=PracticeSelection.Order(order,t=>t.word,session,Total); Running=true; worldRoot.gameObject.SetActive(true); taskRoot.localPosition=contentOffset; taskRoot.localScale=Vector3.one*contentScale;
             submit.onClick.RemoveListener(Submit); submit.onClick.AddListener(Submit);
             next.onClick.RemoveListener(Advance); next.onClick.AddListener(Advance);
             speak.onClick.RemoveListener(Speak); speak.onClick.AddListener(Speak);
@@ -49,7 +49,7 @@ namespace Lemko
             ClearTask(); Locked=false; rejected=null; Current=order.Count>0 ? order[Correct%order.Count] : null;
             next.gameObject.SetActive(false); submit.gameObject.SetActive(true); feedback.text="Keep the pointer still for a hint.";
             if(Current!=null) { Session.Encounter(Current.word); prompt.text=Current.word.lemko; prompt.GetComponent<HintPointer>().Bind(Current.word,Session.tooltip); }
-            if(hintControl) { hintControl.gameObject.SetActive(Current!=null && definition.kind!=ActivityKind.Memory); hintControl.Bind(Current?.word,Session.tooltip); }
+            if(hintControl) { hintControl.gameObject.SetActive(false); hintControl.Bind(Current?.word,Session.tooltip); }
             speak.interactable=Current!=null && Current.word.pronunciation;
             BuildTask();
             speak.GetComponentInChildren<TMP_Text>().text=speak.interactable ? "Play pronunciation" : "Recording coming soon";
@@ -65,7 +65,7 @@ namespace Lemko
             if(!Ready || (!correct && rejected==signature)) return false;
             if(Current!=null && definition.kind!=ActivityKind.Memory) Session.RecordAnswer(Current.word,correct);
             if(correct) { Correct++; Locked=true; int awarded=score.Apply(SelectionResult.Correct); feedback.text="Correct! +"+awarded+" points. "+explanation; Session.PresentFeedback(true); submit.gameObject.SetActive(false); next.gameObject.SetActive(true); next.GetComponentInChildren<TMP_Text>().text=Correct>=Total ? "Results" : "Next"; }
-            else { rejected=signature; Mistakes++; score.Apply(SelectionResult.Incorrect); feedback.text=explanation+" Change your answer and try again."; Session.PresentFeedback(false); Session.Wrong(); }
+            else { rejected=signature; Mistakes++; score.Apply(SelectionResult.Incorrect); feedback.text=explanation+(Mistakes>=2 ? " Hold the request for help; learning has no time limit." : " Change your answer and try again."); Session.PresentFeedback(false); Session.Wrong(); }
             Session.RefreshHud(); return true;
         }
         public virtual void Advance() { if(!Running || !Locked) return; if(Correct>=Total) Session.FinishActivity(true); else StartTask(); }

@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: bratanica
   english: brothers daughter
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: cb251c40c021462fbf9579dd8552b1f9, type: 3}
   tags:
   - family
-  - source_advanced
   verified: 0
   notes: 'Source: family_source.csv, row 42. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

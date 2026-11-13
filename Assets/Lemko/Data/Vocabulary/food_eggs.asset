@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: jajka
   english: eggs
   sprite: {fileID: 21300000, guid: 21474d0bf606fa640b23497adf54625e, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 0bc0477f3d7f44ea8a509b58a5db6685, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_eggs

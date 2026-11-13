@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: "ksi\u0119\u017Cyc"
   english: moon
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: cfa954aa803a40acb95217476eb1d51d, type: 3}
   tags:
   - weather
   verified: 0

@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "bu\u0142ki"
   english: buns
   sprite: {fileID: 21300000, guid: 782c0d56a0ded8a419a71ed193b5437d, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 054b93132a5c44969be6147ee43fad0e, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: ??
   spriteId: sprite_buns

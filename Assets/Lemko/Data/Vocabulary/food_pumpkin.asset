@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: dynia
   english: pumpkin
   sprite: {fileID: 21300000, guid: 20860a39ad44a6b4fa008c5c8f646be2, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: a49f788dcc634a11a50bd3fd3a3d426c, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_pumpkin

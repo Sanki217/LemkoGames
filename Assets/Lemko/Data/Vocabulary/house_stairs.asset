@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: schody
   english: stairs
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: d17637d953d94959bba79114a27c6c8a, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 102. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

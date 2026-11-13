@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "ro\u015Blina"
   english: plant
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 115fbe04109d49d58ee6059b12a470f5, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 45. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

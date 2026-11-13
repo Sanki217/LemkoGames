@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: dziadek
   english: grandfather
   sprite: {fileID: 21300000, guid: deb3b22abc9ce7d4d9c30cc80b55aece, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 3f69c1b67d574e60b946945756649e27, type: 3}
   tags:
   - family
-  - source_basic
   verified: 0
   notes: 'Source: family_source.csv, row 10. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

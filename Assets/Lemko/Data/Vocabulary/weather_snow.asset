@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: "\u015Bnieg"
   english: snow
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 8c3d407c58a4459abd0f32132685740e, type: 3}
   tags:
   - weather
   verified: 0

@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: fasola
   english: beans
   sprite: {fileID: 21300000, guid: 6c9872f8289de1f4396ec73d40307324, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 5c13701fda6a4ac78116013de73f8bf5, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_beans

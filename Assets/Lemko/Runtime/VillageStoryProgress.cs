@@ -39,6 +39,8 @@ namespace Lemko
     {
         public string id;
         public int correct, assisted, independent, mistakes;
+        public int independentStreak;
+        public string lastAttemptDay="";
         public string lastIndependentDay="", lastActivity="";
         public bool rememberedOnLaterDay;
     }
@@ -49,12 +51,12 @@ namespace Lemko
             if(string.IsNullOrEmpty(id)) return;
             var word=data.words.Find(w=>w.id==id);
             if(word==null) { word=new WordLearningRecord{id=id}; data.words.Add(word); }
-            word.lastActivity=activity;
-            if(!correct) { word.mistakes++; return; }
+            word.lastActivity=activity; word.lastAttemptDay=utcDay;
+            if(!correct) { word.mistakes++; word.independentStreak=0; return; }
             word.correct++;
-            if(supported) word.assisted++;
+            if(supported) { word.assisted++; word.independentStreak=0; }
             else {
-                word.independent++;
+                word.independent++; word.independentStreak++;
                 if(DateTime.TryParseExact(word.lastIndependentDay,"yyyy-MM-dd",System.Globalization.CultureInfo.InvariantCulture,System.Globalization.DateTimeStyles.None,out var previous) &&
                    DateTime.TryParseExact(utcDay,"yyyy-MM-dd",System.Globalization.CultureInfo.InvariantCulture,System.Globalization.DateTimeStyles.None,out var current) && current>previous) word.rememberedOnLaterDay=true;
                 word.lastIndependentDay=utcDay;

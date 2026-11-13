@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: chleb
   english: bread
   sprite: {fileID: 21300000, guid: 0409e1e4011fe3141adb43c0900c3554, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 82461b73fc164a128dc071892c6abc5d, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_bread

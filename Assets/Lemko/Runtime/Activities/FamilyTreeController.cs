@@ -17,7 +17,7 @@ namespace Lemko
             foreach(var person in definition.people) {
                 var p=person; var token=Token(p.appearance,p.position,p.id,t=>Choose(p.id),p.id==definition.referencePerson ? "YOU" : null);
                 if(invited.Contains(p.id)) token.backing.color=new Color(.55f,.85f,.6f);
-                if(p.id==definition.referencePerson) { token.backing.color=Color.yellow; token.caption.transform.localPosition=new Vector3(0,-.6f,0); token.caption.rectTransform.sizeDelta=new Vector2(1.7f,.4f); token.caption.enableAutoSizing=true; token.caption.fontSizeMin=1; token.caption.fontSizeMax=6; }
+                if(p.id==definition.referencePerson) { token.backing.color=new Color(.98f,.87f,.49f); token.caption.transform.localPosition=new Vector3(0,-.6f,0); token.caption.rectTransform.sizeDelta=new Vector2(1.7f,.4f); token.caption.enableAutoSizing=true; token.caption.fontSizeMin=1; token.caption.fontSizeMax=6; }
                 if(!string.IsNullOrEmpty(p.parentId)) { var parent=definition.people.Find(x=>x.id==p.parentId); if(parent!=null) Link(parent.position,p.position); }
                 if(!string.IsNullOrEmpty(p.secondParentId)) { var parent=definition.people.Find(x=>x.id==p.secondParentId); if(parent!=null) Link(parent.position,p.position); }
             }
@@ -27,7 +27,7 @@ namespace Lemko
         {
             var go=new GameObject("Family connection",typeof(SpriteRenderer)); go.transform.SetParent(taskRoot,false); go.transform.localPosition=(a+b)/2;
             go.transform.rotation=Quaternion.Euler(0,0,Mathf.Atan2(b.y-a.y,b.x-a.x)*Mathf.Rad2Deg);
-            go.transform.localScale=new Vector3(Vector2.Distance(a,b),.045f,1); var r=go.GetComponent<SpriteRenderer>(); r.sprite=tokenPrefab.backing.sprite; r.color=Color.white; r.sortingOrder=-2;
+            go.transform.localScale=new Vector3(Vector2.Distance(a,b),.045f,1); var r=go.GetComponent<SpriteRenderer>(); r.sprite=tokenPrefab.backing.sprite; r.color=new Color(.48f,.56f,.62f); r.sortingOrder=-2;
         }
         void RefreshAlbum() { if(album) album.text="Invitations delivered: "+delivered.Count+" / "+definition.tasksPerSession+"\n"+string.Join("  •  ",delivered); }
         public void Choose(string person) {
@@ -36,7 +36,26 @@ namespace Lemko
             if(Answer(correct,person,correct ? "Invitation delivered! This relative can join the gathering." : "Follow the connections from YOU." ) && correct) {
                 invited.Add(person); delivered.Add(Current.word.lemko);
                 foreach(var token in tokens) if(token.Key==person) token.backing.color=new Color(.55f,.85f,.6f);
-                RefreshAlbum();
+                HighlightPath(person); RefreshAlbum();
+            }
+        }
+        void HighlightPath(string target) {
+            var previous=new Dictionary<string,string>(); var queue=new Queue<string>();
+            previous[definition.referencePerson]=null; queue.Enqueue(definition.referencePerson);
+            while(queue.Count>0 && !previous.ContainsKey(target)) {
+                var id=queue.Dequeue();
+                foreach(var p in definition.people) {
+                    bool adjacent=p.parentId==id || p.secondParentId==id;
+                    var current=definition.people.Find(x=>x.id==id);
+                    adjacent|=current!=null && (current.parentId==p.id || current.secondParentId==p.id);
+                    if(adjacent && !previous.ContainsKey(p.id)) { previous[p.id]=id; queue.Enqueue(p.id); }
+                }
+            }
+            if(!previous.ContainsKey(target)) return;
+            for(string id=target; previous[id]!=null; id=previous[id]) {
+                var a=definition.people.Find(p=>p.id==id); var b=definition.people.Find(p=>p.id==previous[id]);
+                Link(a.position,b.position); var r=taskRoot.GetChild(taskRoot.childCount-1).GetComponent<SpriteRenderer>();
+                r.color=new Color(.43f,.33f,.84f); r.sortingOrder=-1;
             }
         }
         public override void Close() { base.Close(); invited.Clear(); delivered.Clear(); if(album) album.text=""; }

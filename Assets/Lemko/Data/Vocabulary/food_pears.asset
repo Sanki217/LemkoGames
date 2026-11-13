@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: gruszki
   english: pears
   sprite: {fileID: 21300000, guid: 75e0c4f16b3f9a2438679c0e71f4fa1c, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: b9bda86701f84faca89e34c73158bcd4, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_pears

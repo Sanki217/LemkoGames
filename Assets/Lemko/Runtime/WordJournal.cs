@@ -67,7 +67,7 @@ namespace Lemko
         void Highlight() {
             for(int i=0;i<rows.Length;i++) {
                 int n=page*rows.Length+i; var row=rows[i];
-                if(row.button.image) row.button.image.color=n<filtered.Count && filtered[n]==selected ? new Color(.33f,.53f,.43f) : new Color(.16f,.28f,.25f);
+                if(row.button.image) row.button.image.color=n<filtered.Count && filtered[n]==selected ? new Color(.85f,.95f,.9f) : new Color(.95f,.97f,.98f);
             }
         }
         void ShowDetail()

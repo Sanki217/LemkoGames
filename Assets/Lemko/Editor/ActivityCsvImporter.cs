@@ -10,8 +10,14 @@ namespace Lemko.Editor
     public static class ActivityCsvImporter
     {
         public const string Root="Assets/Lemko/Data/Activities";
-        [MenuItem("Lemko/Import all prototype CSV tables")]
-        public static void Import()
+        // Older setup callers now respect the single-master workflow.
+        public static void Import() { VocabularyImporter.Import("Content/CSV"); }
+        static string LegacyPath(string file) {
+            string archived="Content/CSV/Archive/BeforeSingleMaster/"+file;
+            return File.Exists(archived) ? archived : "Content/CSV/"+file;
+        }
+        // Explicit developer recovery only; never invoked by the normal import menu.
+        public static void ImportLegacy()
         {
             VocabularyImporter.Import("Content/CSV");
             var db=AssetDatabase.LoadAssetAtPath<VocabularyDatabase>(VocabularyImporter.Root+"/VocabularyDatabase.asset");
@@ -21,7 +27,7 @@ namespace Lemko.Editor
             try {
                 foreach(ActivityKind kind in Enum.GetValues(typeof(ActivityKind))) {
                     string file=kind==ActivityKind.FamilyTree?"family_tree":kind.ToString().ToLowerInvariant();
-                    var rows=CsvTable.Records(File.ReadAllText("Content/CSV/activity_"+file+".csv"),"vocabulary_id");
+                    var rows=CsvTable.Records(File.ReadAllText(LegacyPath("activity_"+file+".csv")),"vocabulary_id");
                     var existing=AssetDatabase.LoadAssetAtPath<ActivityDefinition>(Root+"/"+kind+".asset");
                     var def=existing ? UnityEngine.Object.Instantiate(existing) : ScriptableObject.CreateInstance<ActivityDefinition>(); pending.Add(def); def.kind=kind; def.pool.Clear(); def.tasks.Clear(); def.rooms.Clear(); def.people.Clear();
                     foreach(var row in rows) {
@@ -35,11 +41,11 @@ namespace Lemko.Editor
                         if(kind==ActivityKind.Weather) { task.context=Word(row["character_id"]); task.minTemperature=int.Parse(row["min_temperature"]); task.maxTemperature=int.Parse(row["max_temperature"]); task.request=row["request"]; }
                         def.tasks.Add(task);
                     }
-                    if(kind==ActivityKind.FamilyTree) foreach(var row in CsvTable.Records(File.ReadAllText("Content/CSV/family_people.csv"),"person_id","vocabulary_id","x","y","parent_id"))
+                    if(kind==ActivityKind.FamilyTree) foreach(var row in CsvTable.Records(File.ReadAllText(LegacyPath("family_people.csv")),"person_id","vocabulary_id","x","y","parent_id"))
                         def.people.Add(new FamilyPerson{id=row["person_id"],appearance=Word(row["vocabulary_id"]),position=new Vector2(float.Parse(row["x"],CultureInfo.InvariantCulture),float.Parse(row["y"],CultureInfo.InvariantCulture)),parentId=row["parent_id"],secondParentId=row.TryGetValue("second_parent_id",out var second)?second:""});
-                    if(kind==ActivityKind.Alphabet && File.Exists("Content/CSV/alphabet_letters.csv")) {
+                    if(kind==ActivityKind.Alphabet && File.Exists(LegacyPath("alphabet_letters.csv"))) {
                         def.alphabetLetters=new List<AlphabetLetter>();
-                        foreach(var row in CsvTable.Records(File.ReadAllText("Content/CSV/alphabet_letters.csv"),"letter_id","uppercase","lowercase","phonetic_pl","audio_id","verified")) {
+                        foreach(var row in CsvTable.Records(File.ReadAllText(LegacyPath("alphabet_letters.csv")),"letter_id","uppercase","lowercase","phonetic_pl","audio_id","verified")) {
                             if(!bool.TryParse(row["verified"],out var verified)) throw new FormatException("Invalid alphabet verified flag: "+row["letter_id"]);
                             def.alphabetLetters.Add(new AlphabetLetter{id=row["letter_id"],uppercase=row["uppercase"],lowercase=row["lowercase"],phoneticPolish=row["phonetic_pl"],audioId=row["audio_id"],verified=verified});
                         }

@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: kanapa
   english: sofa
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: b821e257fa794d3c8c5dce7add84ce63, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 22. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

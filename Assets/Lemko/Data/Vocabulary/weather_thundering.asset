@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: grzmi
   english: it is thundering
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 814128c5b64a418690f8544806e9f383, type: 3}
   tags:
   - weather
   verified: 0

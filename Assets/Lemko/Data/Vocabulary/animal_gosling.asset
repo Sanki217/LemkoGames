@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "g\u0105ska"
   english: gosling
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 7b48344467ad4bd88131c9b96953ea82, type: 3}
   tags:
   - farm
-  - animal
   verified: 0
   notes: "Source: farm_source.csv, row 22. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation.  Source alternatives: \u0433\u0443\u0441\u044F

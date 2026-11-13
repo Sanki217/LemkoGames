@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "ciel\u0119"
   english: calf
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: d72058f6028c464283490bd3c5330312, type: 3}
   tags:
   - farm
-  - animal
   verified: 0
   notes: "Source: farm_source.csv, row 4. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation.  Source alternatives: \u0442\u0435\u043B\u044F

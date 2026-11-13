@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: kawa
   english: coffee
   sprite: {fileID: 21300000, guid: c9cf20780b1b75c40801746e75132cae, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 7515c7f75765405a9838570b92624941, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_coffee

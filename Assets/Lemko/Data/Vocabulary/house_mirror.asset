@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: lustro
   english: mirror
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: dd9daeba08af444ba2f2d199882f47cc, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 47. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

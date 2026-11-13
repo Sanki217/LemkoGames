@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "mi\u0119ta"
   english: mint
   sprite: {fileID: 21300000, guid: 7e030296c85630e44b4cc688d7ab8b2b, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 694995eb155241fcbe0d5b3094d9df12, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_mint

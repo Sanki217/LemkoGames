@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "krzes\u0142o"
   english: chair
   sprite: {fileID: 21300000, guid: 0ad5d3bee3a579440ba5b5083e1f605a, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 9bdd80e1b973456a83621c631510cef8, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 9. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

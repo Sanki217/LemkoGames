@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "r\u0119cznik"
   english: towel
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 61e2ba92fdda43f983dbf342cd10d044, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 75. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

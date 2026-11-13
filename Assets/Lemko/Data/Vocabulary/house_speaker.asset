@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "g\u0142o\u015Bnik"
   english: speaker
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: af943788c84846c49fc10a76be400e26, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 31. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

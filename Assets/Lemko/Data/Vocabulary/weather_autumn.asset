@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: "jesie\u0144"
   english: autumn
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: b40554c8575c4b1e9a412a669e273299, type: 3}
   tags:
   - weather
   verified: 0

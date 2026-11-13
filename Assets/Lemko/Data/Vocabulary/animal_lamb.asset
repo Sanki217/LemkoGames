@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "jagni\u0119"
   english: lamb
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: b9c5eb8855ad409f9da9118b7c4f31c9, type: 3}
   tags:
   - farm
-  - animal
   verified: 0
   notes: "Source: farm_source.csv, row 13. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation.  Source alternatives: \u044F\u0433\u043D\u044F

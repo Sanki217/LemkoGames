@@ -25,7 +25,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c5455ccc6ae44284f90fbf0fe03a1d22, type: 2}
   - {fileID: 11400000, guid: eafccd1feba7bb34384d604f0cb11c98, type: 2}
   - {fileID: 11400000, guid: 793bdadd894352e488c62df0890c276e, type: 2}
-  - {fileID: 11400000, guid: a49bda6d057fb3e4f81588c0c90b1f86, type: 2}
   - {fileID: 11400000, guid: d0b5a6767eb21ac42bd3fc8c2abd385a, type: 2}
   - {fileID: 11400000, guid: fde9362ced3ed4b45954c51973f4c2ba, type: 2}
   - {fileID: 11400000, guid: bc8e8a903d0b21740ab315f53c99d63b, type: 2}
@@ -36,12 +35,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9223f4c38c0eb1b4897b60f983ba193d, type: 2}
   - {fileID: 11400000, guid: 8bab49bb08c66b14bb6047d3cdb187a3, type: 2}
   - {fileID: 11400000, guid: 63a84ad09bddc7141bfb7a520fdddd16, type: 2}
-  - {fileID: 11400000, guid: 1ef4fd15ebd1a8b48b48396a66fbd986, type: 2}
   - {fileID: 11400000, guid: 00844702c70414542bd95ea8d8d111ea, type: 2}
   - {fileID: 11400000, guid: f549df68b621e9748828d0f95cbadc11, type: 2}
   - {fileID: 11400000, guid: f0ca508db76c9ea48990eced1cac1ce1, type: 2}
   - {fileID: 11400000, guid: 05800b07a05fa0c4985b33da204f5947, type: 2}
-  - {fileID: 11400000, guid: b3137af69cf3695438be1834e036463e, type: 2}
   - {fileID: 11400000, guid: 5f98a815011407f489ef1dcec0589606, type: 2}
   - {fileID: 11400000, guid: 1719229ab5f798640b4a2cf8373917fd, type: 2}
   - {fileID: 11400000, guid: c0bb363db127f064997f95df19deabdb, type: 2}
@@ -56,10 +53,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 01dc28e7de8fb964fab9825c075ef824, type: 2}
   - {fileID: 11400000, guid: 782cb2cc2ff3ec74fb64cf82475cd6d1, type: 2}
   - {fileID: 11400000, guid: 2e7b01f42d678fb45b145d753f806b1d, type: 2}
-  - {fileID: 11400000, guid: 58eb4a17b0d328249b86d93bdf55f291, type: 2}
   - {fileID: 11400000, guid: fd56e0bdcb442434db0c88d555160f6d, type: 2}
   - {fileID: 11400000, guid: 5bb4b06d00a660f4992d6de58109f97f, type: 2}
-  - {fileID: 11400000, guid: dfd8e303c562e264cb02d282004c733d, type: 2}
   taskCount: 5
   startingLives: 5
   displayedProductCount: 8

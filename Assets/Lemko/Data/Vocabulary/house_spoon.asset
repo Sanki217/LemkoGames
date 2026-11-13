@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "\u0142y\u017Cka"
   english: spoon
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: d0a5af9cecb043f08cf7538b0ae7b610, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 52. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

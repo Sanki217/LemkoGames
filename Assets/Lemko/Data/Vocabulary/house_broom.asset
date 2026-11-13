@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "miot\u0142a"
   english: broom
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 39fc2f22a98246caa82b8fe600d9f105, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 69. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: miska
   english: bowl
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 2c89302058ab43dda93298ba3ab7105f, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 28. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

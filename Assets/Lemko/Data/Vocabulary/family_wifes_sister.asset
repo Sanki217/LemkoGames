@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "szwagierka (siostra \u017Cony)"
   english: wifes sister
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 5661ecd0908b4184ba3a7ad5f43959ac, type: 3}
   tags:
   - family
-  - source_advanced
   verified: 0
   notes: "Source: family_source.csv, row 52. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation.  Source alternatives: \u0441\u0435\u0441\u0442\u0440\u0430

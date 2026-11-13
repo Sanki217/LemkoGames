@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: pomidor
   english: tomato
   sprite: {fileID: 21300000, guid: fdbcd36e73016564596af4c0580228fd, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: f07dd9ffd86d44ee9eb983c19d8b4968, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_tomato

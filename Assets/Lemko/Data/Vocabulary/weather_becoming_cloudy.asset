@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: "chmurzy si\u0119"
   english: it is getting cloudy
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 2cdda51ca7c746e5bf23419717da4a81, type: 3}
   tags:
   - weather
   verified: 0

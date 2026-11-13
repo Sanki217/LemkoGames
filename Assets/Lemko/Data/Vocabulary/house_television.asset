@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: telewizor
   english: television
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: ccc39fe1d06f4272ab3d86868dde7078, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 97. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

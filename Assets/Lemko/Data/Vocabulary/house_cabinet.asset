@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: szafka
   english: cabinet
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 9980fddc6ce4469e88c48bf1aea0832b, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 15. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: winogrono
   english: grapes
   sprite: {fileID: 21300000, guid: 808ea544ab39d5e49a595b83aa6758f6, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 8f150b3c5af04d40b6d42cfb6d07e240, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_grapes

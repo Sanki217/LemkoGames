@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: "ch\u0142odno"
   english: cool
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: a770b20fd70140629bc1c8f8d72c910e, type: 3}
   tags:
   - weather
   verified: 0

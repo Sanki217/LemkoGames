@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "prosi\u0119"
   english: piglet
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: bedeb9e7f80945c6a9bc72411c0e5f18, type: 3}
   tags:
   - farm
-  - animal
   verified: 0
   notes: "Source: farm_source.csv, row 31. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation.  Source alternatives: \u043F\u0430\u0446\u044F

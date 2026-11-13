@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: burza
   english: storm
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 4daf4b536351467390806f587d5a54a3, type: 3}
   tags:
   - weather
   verified: 0

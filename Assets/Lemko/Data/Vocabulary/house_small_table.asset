@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: stolik
   english: small table
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: fa9600e8575e41c0acaaf41c31943086, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 87. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

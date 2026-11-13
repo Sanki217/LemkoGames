@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "\u0142\xF3\u017Cko"
   english: bed
   sprite: {fileID: 21300000, guid: 9e35f8c0d054d6b4fa3fee73b70ffa70, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 43fff480a8164476a43886ce7da059da, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 21. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

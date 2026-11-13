@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "m\u0105\u017C"
   english: husband
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 7d95473544404bac9cac36465d3152bb, type: 3}
   tags:
   - family
-  - source_basic
   verified: 0
   notes: 'Source: family_source.csv, row 22. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

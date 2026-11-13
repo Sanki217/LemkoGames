@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: "pada \u015Bnieg"
   english: it is snowing
   sprite: {fileID: 21300000, guid: 0ab4c4ef0ca889c46bfe5b364b80f88a, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 531d1e7d518c4c639a3abdab1c2536bb, type: 3}
   tags:
   - weather
   verified: 0

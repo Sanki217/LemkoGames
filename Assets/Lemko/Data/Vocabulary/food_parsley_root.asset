@@ -15,20 +15,19 @@ MonoBehaviour:
   id: food_parsley_root
   lemko: "\u043F\u0435\u0442\u0440\u0443\u0448\u043A\u0430"
   polish: pietruszka
-  english: parsley root
-  sprite: {fileID: 21300000, guid: 2c2423f212f90fc4b8a069d7f4a4c1c6, type: 3}
-  pronunciation: {fileID: 0}
+  english: parsley
+  sprite: {fileID: 21300000, guid: e55a3c517665234499552aaa931f496b, type: 3}
+  pronunciation: {fileID: 8300000, guid: d28fd39b899e493abccb6a98e38fafde, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
-  spriteId: sprite_parsley_root
-  audioId: audio_parsley_root
+  spriteId: sprite_parsley
+  audioId: audio_parsley
   translations:
   - language: lemko
     text: "\u043F\u0435\u0442\u0440\u0443\u0448\u043A\u0430"
   - language: pl
     text: pietruszka
   - language: en
-    text: parsley root
+    text: parsley

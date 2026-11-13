@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: sufit
   english: ceiling
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: d98d3faaa20a482c9dd8da156db65917, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 41. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

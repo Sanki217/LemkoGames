@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: garnek
   english: pot
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 9b588bf38a01403da17b7586835fa366, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 26. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

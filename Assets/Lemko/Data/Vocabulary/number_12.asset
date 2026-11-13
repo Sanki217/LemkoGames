@@ -19,7 +19,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   pronunciation: {fileID: 0}
   tags:
-  - number
+  - numbers
   verified: 0
   notes: "Source: numbers_source.csv, row 13. Supplied Lemko and Polish; English
     gloss is an unverified editorial translation. Polish and English numeral glosses

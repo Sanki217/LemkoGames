@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3637421da7ea9f348b4aa1b96e5eae6e, type: 3}
+  m_Name: Memory
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.ActivityIntroductionDefinition
+  activityId: Memory
+  title: Pack for the gathering
+  story: We have pictures and Lemko words for the supplies. Pair them up to help
+    everyone pack.
+  instructions: '1. Turn over two cards: match a picture with its Lemko word.
+
+    2.
+    Keep matching until the board is cleared. Mismatches do not cost lives.
+
+    3.
+    Finish the short picture-to-word checks afterwards.'
+  beforeNumbers: 
+  illustration: {fileID: 21300000, guid: 7b60beb34b641c1458a1262e0fe556c7, type: 3}

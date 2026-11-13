@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: "mg\u0142a"
   english: fog
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 3ce0ba0ab8034c09acae9ce3d5992486, type: 3}
   tags:
   - weather
   verified: 0

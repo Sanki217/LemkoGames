@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: "wilgo\u0107"
   english: moisture
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 60a9b1151eed41a8ac8cb23251589975, type: 3}
   tags:
   - weather
   verified: 0

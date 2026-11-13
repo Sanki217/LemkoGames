@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: "l\xF3d"
   english: ice
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: aeb6465001b24d3db4401581bca14289, type: 3}
   tags:
   - weather
   verified: 0

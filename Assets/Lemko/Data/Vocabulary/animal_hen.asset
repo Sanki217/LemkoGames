@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: kura
   english: hen
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 1a1d5cf0955246c4971daadadfc16d15, type: 3}
   tags:
   - farm
-  - animal
   verified: 0
   notes: 'Source: farm_source.csv, row 5. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

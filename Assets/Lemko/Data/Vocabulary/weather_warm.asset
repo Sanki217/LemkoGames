@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: "ciep\u0142o"
   english: warm
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 4d9559ebdf004746adec4900a3678f75, type: 3}
   tags:
   - weather
   verified: 0

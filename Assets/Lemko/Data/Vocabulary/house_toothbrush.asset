@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "szczoteczka do z\u0119b\xF3w"
   english: toothbrush
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: a5c555d5609240c6bb9f70406f5b611c, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 76. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

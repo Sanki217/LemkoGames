@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: dzieci
   english: children
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 4a23cbfef7924672bc34eca7d751cc14, type: 3}
   tags:
   - family
-  - source_basic
   verified: 0
   notes: 'Source: family_source.csv, row 27. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

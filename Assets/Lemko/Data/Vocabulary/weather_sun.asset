@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: "s\u0142o\u0144ce"
   english: sun
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 69f09b2c88ad4c5ea45a4affd56a5405, type: 3}
   tags:
   - weather
   verified: 0

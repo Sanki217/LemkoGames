@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: stryjek
   english: paternal uncle
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 80550d579e364a10a3e141a0cd0268d4, type: 3}
   tags:
   - family
-  - source_basic
   verified: 0
   notes: 'Source: family_source.csv, row 13. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. brat ojca'

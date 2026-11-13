@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: wujenka
   english: maternal uncles wife
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 9e6b9f07c002472382f12ec1061174f9, type: 3}
   tags:
   - family
-  - source_advanced
   verified: 0
   notes: "Source: family_source.csv, row 35. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. \u017Cona wujka"

@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: lampa
   english: lamp
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 587d544288854edc852d2b9bfb54c6ad, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 18. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

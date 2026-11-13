@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: "stopnia\u0142 \u015Bnieg"
   english: the snow melted
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 23cc04a00bc74d6fa2c0c697357afdf1, type: 3}
   tags:
   - weather
   verified: 0

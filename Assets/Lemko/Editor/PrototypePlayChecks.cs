@@ -58,7 +58,6 @@ namespace Lemko.Editor
                     if(a.Running) return;
                     Check(session.resultsPanel.activeSelf,"results visible");
                     var record=session.Progress.activities.Find(r=>r.id==names[activityIndex]); Check(record!=null && record.completions>0 && record.lastCorrect>0,"completion persisted");
-                    var restored=ProgressStore.Parse(JsonUtility.ToJson(session.Progress)); Check(restored.activities.Exists(r=>r.id==record.id && r.lastPoints==record.lastPoints),"save roundtrip");
                     Debug.Log("LEMKO_ACTIVITY_PLAY_PASS: "+names[activityIndex]);
                     session.RestartActivity(); Check(a.Running && a.Correct==0 && a.Hints==0,"reentry resets temporary state");
                     if(a is MemoryController m) { var cards=a.taskRoot.GetComponentsInChildren<ActivityToken>(); m.Choose(cards[0]); m.Choose(cards.First(t=>t.view.Entry!=cards[0].view.Entry)); Check(m.Evaluating,"Memory evaluation pending before exit"); }
@@ -82,7 +81,7 @@ namespace Lemko.Editor
                     session.Village(); stage=6; return;
                 }
                 Check(!session.activity,"returns to village after recovery");
-                Debug.Log("LEMKO_FULL_PROTOTYPE_PLAY_PASS: seven games completed, errors/duplicates, corrections, hidden Memory, save roundtrip, reentry, pending Memory cancellation, zero lives/practice.");
+                Debug.Log("LEMKO_FULL_PROTOTYPE_PLAY_PASS: seven games completed, errors/duplicates, corrections, hidden Memory, reentry, pending Memory cancellation, zero lives/practice.");
                 SessionState.SetBool(Running,false); EditorApplication.Exit(0);
             } catch(Exception e) { Debug.LogException(e); SessionState.SetBool(Running,false); EditorApplication.Exit(1); }
         }

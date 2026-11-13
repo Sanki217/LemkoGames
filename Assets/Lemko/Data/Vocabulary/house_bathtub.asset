@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: wanna
   english: bathtub
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 2d313975847b4700a350c0aa6011a898, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 64. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

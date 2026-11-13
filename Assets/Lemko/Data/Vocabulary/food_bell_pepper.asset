@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: papryka
   english: pepper
   sprite: {fileID: 21300000, guid: 78a41818e7b9baa469799cd1187bcd75, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 1232ada3c5d14b75a6f4bbe3b7a29e67, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_bell_pepper

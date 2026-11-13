@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "s\xF3l"
   english: salt
   sprite: {fileID: 21300000, guid: c9fc1e7fa42bb544195e2188e7eebe88, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 4deb1e15f1354a7c84a38fd6ad6e9913, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_salt

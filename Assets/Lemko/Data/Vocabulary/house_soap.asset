@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "myd\u0142o"
   english: soap
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 76a7e282447e4b00837690ef4d3b19c6, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 73. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

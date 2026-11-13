@@ -14,22 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Lemko.VocabularyEntry
   id: animal_tom_turkey
   lemko: "\u043F\u0443\u043B\u044F\u043A"
-  polish: indor
+  polish: indyk
   english: tom turkey
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: fddf0647369640f2a118635688d73dcd, type: 3}
   tags:
   - farm
-  - animal
   verified: 0
   notes: 'Source: farm_source.csv, row 32. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '
-  spriteId: sprite_animal_tom_turkey
+  spriteId: sprite_animal_turkey
   audioId: audio_animal_tom_turkey
   translations:
   - language: lemko
     text: "\u043F\u0443\u043B\u044F\u043A"
   - language: pl
-    text: indor
+    text: indyk
   - language: en
     text: tom turkey

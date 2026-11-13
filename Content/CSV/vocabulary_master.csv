@@ -1,405 +1,379 @@
-﻿id,text_lemko,text_pl,text_en,sprite_id,audio_id,tags,verified,notes
-food_bread,хліб,chleb,bread,sprite_bread,audio_bread,shop|food,false,
-food_butter,масло,masło,butter,sprite_butter,audio_butter,shop|food,false,
-food_eggs,яйця,jajka,eggs,sprite_eggs,audio_eggs,shop|food,false,
-food_milk,молоко,mleko,milk,sprite_milk,audio_milk,shop|food,false,
-food_meat,мясо,mięso,meat,sprite_meat,audio_meat,shop|food,false,
-food_flour,мука,mąka,flour,sprite_flour,audio_flour,shop|food,false,
-food_cheese,сыр,ser,cheese,sprite_cheese,audio_cheese,shop|food,false,twaróg tak samo
-food_cream,сметана,śmietana,cream,sprite_cream,audio_cream,shop|food,false,też: верхнина
-food_water,вода,woda,water,sprite_water,audio_water,shop|food,false,
-food_tea,гарбата,herbata,tea,sprite_tea,audio_tea,shop|food,false,
-food_coffee,кава,kawa,coffee,sprite_coffee,audio_coffee,shop|food,false,
-food_oil,олій,olej,oil,sprite_oil,audio_oil,shop|food,false,
-food_vinegar,оцет,ocet,vinegar,sprite_vinegar,audio_vinegar,shop|food,false,
-food_pasta,різанка,makaron,pasta,sprite_pasta,audio_pasta,shop|food,false,
-food_ham,шынка,szynka,ham,sprite_ham,audio_ham,shop|food,false,
-food_sausage,кобаса,kiełbasa,sausage,sprite_sausage,audio_sausage,shop|food,false,
-food_fish,рыба,ryba,fish,sprite_fish,audio_fish,shop|food,false,
-food_raspberries,малины,maliny,raspberries,sprite_raspberries,audio_raspberries,shop|food,false,
-food_apples,ябка,jabłka,apples,sprite_apples,audio_apples,shop|food,false,
-food_pears,грушкы,gruszki,pears,sprite_pears,audio_pears,shop|food,false,
-food_plums,сливкы,śliwki,plums,sprite_plums,audio_plums,shop|food,false,
-food_lemon,цитрина,cytryna,lemon,sprite_lemon,audio_lemon,shop|food,false,
-food_sour_cherries,вышні,wiśnie,cherries,sprite_sour_cherries,audio_sour_cherries,shop|food,false,
-food_sweet_cherries,черешні,czereśnie,cherries,sprite_sweet_cherries,audio_sweet_cherries,shop|food,false,
-food_grapes,виноград,winogrono,grapes,sprite_grapes,audio_grapes,shop|food,false,
-food_potatoes,компері,ziemniaki,potatoes,sprite_potatoes,audio_potatoes,shop|food,false,"Ziemniaki mają po łemkowsku najwięcej nazw, m.in. компері, бандуркы, ґрулі, земякы, кромплі."
-food_beetroots,буракы,buraki,beetroots,sprite_beetroots,audio_beetroots,shop|food,false,
-food_beans,фізоля,fasola,beans,sprite_beans,audio_beans,shop|food,false,
-food_peas,горох,groch,peas,sprite_peas,audio_peas,shop|food,false,
-food_cabbage,капуста,kapusta,cabbage,sprite_cabbage,audio_cabbage,shop|food,false,
-food_lettuce,шалата,sałata,lettuce,sprite_lettuce,audio_lettuce,shop|food,false,
-food_bell_pepper,паприка,papryka,pepper,sprite_bell_pepper,audio_bell_pepper,shop|food,false,
-food_cucumbers,огуркы,ogórki,cucumbers,sprite_cucumbers,audio_cucumbers,shop|food,false,
-food_carrot,морков,marchew,carrot,sprite_carrot,audio_carrot,shop|food,false,
-food_parsley_root,петрушка,pietruszka,parsley root,sprite_parsley_root,audio_parsley_root,shop|food,false,
-food_garlic,чеснок,czosnek,garlic,sprite_garlic,audio_garlic,shop|food,false,
-food_onion,цибуля,cebula,onion,sprite_onion,audio_onion,shop|food,false,
-food_pumpkin,дыня,dynia,pumpkin,sprite_pumpkin,audio_pumpkin,shop|food,false,
-food_salt,сіль,sól,salt,sprite_salt,audio_salt,shop|food,false,
-food_black_pepper,попер,pieprz,pepper,sprite_black_pepper,audio_black_pepper,shop|food,false,
-food_sugar,цукєр,cukier,sugar,sprite_sugar,audio_sugar,shop|food,false,
-food_mint,мята,mięta,mint,sprite_mint,audio_mint,shop|food,false,
-food_beer,пиво,piwo,beer,sprite_beer,audio_beer,shop|food,false,
-food_vodka,палюнка,wódka,vodka,sprite_vodka,audio_vodka,shop|food,false,
-food_tomato,помідор,pomidor,tomato,sprite_tomato,audio_tomato,shop|food,false,
-food_buns,булкы,bułki,buns,sprite_buns,audio_buns,shop|food,false,??
-food_croissant,рогалик,rogalik,croissant,sprite_croissant,audio_croissant,shop|food,false,
-animal_cow,корова,krowa,cow,sprite_animal_cow,audio_animal_cow,farm|animal,false,"Source: farm_source.csv, row 2. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-animal_pig,свиня,świnia,pig,sprite_animal_pig,audio_animal_pig,farm|animal,false,"Source: farm_source.csv, row 29. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-animal_sheep,уця,owca,sheep,sprite_animal_sheep,audio_animal_sheep,farm|animal,false,"Source: farm_source.csv, row 11. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-furniture_chair,кресло,krzesło,chair,sprite_furniture_chair,audio_furniture_chair,house|object,false,"Source: house_source.csv, row 9. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-furniture_bed,постіль,łóżko,bed,sprite_furniture_bed,audio_furniture_bed,house|object,false,"Source: house_source.csv, row 21. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-furniture_table,стіл,stół,table,sprite_furniture_table,audio_furniture_table,house|object,false,"Source: house_source.csv, row 8. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-room_kitchen,кухня,kuchnia,kitchen,sprite_room_kitchen,audio_room_kitchen,house|room,false,"Source: house_source.csv, row 6. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-room_bedroom,спальня,sypialnia,bedroom,sprite_room_bedroom,audio_room_bedroom,house|room,false,"Source: house_source.csv, row 3. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_you,я,ja,you,sprite_family_you,audio_family_you,family|source_basic,false,"Source: family_source.csv, row 6. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_mother,матір,matka,mother,sprite_family_mother,audio_family_mother,family|source_basic,false,"Source: family_source.csv, row 7. Supplied Lemko and Polish; English gloss is an unverified editorial translation. мама - mama"
-family_father,отец,ojciec,father,sprite_family_father,audio_family_father,family|source_basic,false,"Source: family_source.csv, row 8. Supplied Lemko and Polish; English gloss is an unverified editorial translation. няньо - tato"
-family_grandmother,баба,babcia,grandmother,sprite_family_grandmother,audio_family_grandmother,family|source_basic,false,"Source: family_source.csv, row 9. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_grandfather,дідо,dziadek,grandfather,sprite_family_grandfather,audio_family_grandfather,family|source_basic,false,"Source: family_source.csv, row 10. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_brother,брат,brat,brother,sprite_family_brother,audio_family_brother,family|source_basic,false,"Source: family_source.csv, row 14. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_sister,сестра,siostra,sister,sprite_family_sister,audio_family_sister,family|source_basic,false,"Source: family_source.csv, row 15. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_sunny,сонце сьвітит,słońce świeci,the sun is shining,sprite_weather_sunny,audio_weather_sunny,weather,false,"Source: weather_source.csv, row 13. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_rainy,ліє дойдж,pada deszcz,it is raining,sprite_weather_rainy,audio_weather_rainy,weather,false,"Source: weather_source.csv, row 20. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_snowy,курит сьніг,pada śnieg,it is snowing,sprite_weather_snowy,audio_weather_snowy,weather,false,"Source: weather_source.csv, row 28. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-number_1,єден,1,1,sprite_number_1,audio_number_1,number,false,"Source: numbers_source.csv, row 2. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_2,два,2,2,sprite_number_2,audio_number_2,number,false,"Source: numbers_source.csv, row 3. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_3,три,3,3,sprite_number_3,audio_number_3,number,false,"Source: numbers_source.csv, row 4. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_4,штырі,4,4,sprite_number_4,audio_number_4,number,false,"Source: numbers_source.csv, row 5. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_5,пят,5,5,sprite_number_5,audio_number_5,number,false,"Source: numbers_source.csv, row 6. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-animal_bull,бык,byk,bull,sprite_animal_bull,audio_animal_bull,farm|animal,false,"Source: farm_source.csv, row 3. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-animal_calf,теля,cielę,calf,sprite_animal_calf,audio_animal_calf,farm|animal,false,"Source: farm_source.csv, row 4. Supplied Lemko and Polish; English gloss is an unverified editorial translation.  Source alternatives: теля / телятко."
-animal_hen,кура,kura,hen,sprite_animal_hen,audio_animal_hen,farm|animal,false,"Source: farm_source.csv, row 5. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-animal_rooster,когут,kogut,rooster,sprite_animal_rooster,audio_animal_rooster,farm|animal,false,"Source: farm_source.csv, row 6. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-animal_chick,куря,pisklę,chick,sprite_animal_chick,audio_animal_chick,farm|animal,false,"Source: farm_source.csv, row 7. Supplied Lemko and Polish; English gloss is an unverified editorial translation.  Source alternatives: куря / курятко."
-animal_goat,коза,koza,goat,sprite_animal_goat,audio_animal_goat,farm|animal,false,"Source: farm_source.csv, row 8. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-animal_billy_goat,цап,cap,billy goat,sprite_animal_billy_goat,audio_animal_billy_goat,farm|animal,false,"Source: farm_source.csv, row 9. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-animal_kid,кізя,koźlątko,kid,sprite_animal_kid,audio_animal_kid,farm|animal,false,"Source: farm_source.csv, row 10. Supplied Lemko and Polish; English gloss is an unverified editorial translation.  Source alternatives: кізя / кізьлятко."
-animal_ram,баран,baran,ram,sprite_animal_ram,audio_animal_ram,farm|animal,false,"Source: farm_source.csv, row 12. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-animal_lamb,ягня,jagnię,lamb,sprite_animal_lamb,audio_animal_lamb,farm|animal,false,"Source: farm_source.csv, row 13. Supplied Lemko and Polish; English gloss is an unverified editorial translation.  Source alternatives: ягня / ягнятко."
-animal_female_cat,кітка,kotka,female cat,sprite_animal_female_cat,audio_animal_female_cat,farm|animal,false,"Source: farm_source.csv, row 14. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-animal_male_cat,кіт,kocur,male cat,sprite_animal_male_cat,audio_animal_male_cat,farm|animal,false,"Source: farm_source.csv, row 15. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-animal_kitten,котя,kocię,kitten,sprite_animal_kitten,audio_animal_kitten,farm|animal,false,"Source: farm_source.csv, row 16. Supplied Lemko and Polish; English gloss is an unverified editorial translation.  Source alternatives: котя / котятко."
-animal_dog,пес,pies,dog,sprite_animal_dog,audio_animal_dog,farm|animal,false,"Source: farm_source.csv, row 17. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-animal_female_dog,сука,suka,female dog,sprite_animal_female_dog,audio_animal_female_dog,farm|animal,false,"Source: farm_source.csv, row 18. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-animal_puppy,пся,szczenię,puppy,sprite_animal_puppy,audio_animal_puppy,farm|animal,false,"Source: farm_source.csv, row 19. Supplied Lemko and Polish; English gloss is an unverified editorial translation.  Source alternatives: пся / псятко."
-animal_goose,гус,gęś,goose,sprite_animal_goose,audio_animal_goose,farm|animal,false,"Source: farm_source.csv, row 20. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-animal_gander,гусак,gąsior,gander,sprite_animal_gander,audio_animal_gander,farm|animal,false,"Source: farm_source.csv, row 21. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-animal_gosling,гуся,gąska,gosling,sprite_animal_gosling,audio_animal_gosling,farm|animal,false,"Source: farm_source.csv, row 22. Supplied Lemko and Polish; English gloss is an unverified editorial translation.  Source alternatives: гуся / гусятко."
-animal_duck,качка,kaczka,duck,sprite_animal_duck,audio_animal_duck,farm|animal,false,"Source: farm_source.csv, row 23. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-animal_drake,качор,kaczor,drake,sprite_animal_drake,audio_animal_drake,farm|animal,false,"Source: farm_source.csv, row 24. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-animal_duckling,качатко,kaczątko,duckling,sprite_animal_duckling,audio_animal_duckling,farm|animal,false,"Source: farm_source.csv, row 25. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-animal_horse,кін,koń,horse,sprite_animal_horse,audio_animal_horse,farm|animal,false,"Source: farm_source.csv, row 26. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-animal_mare,кобыла,kobyła,mare,sprite_animal_mare,audio_animal_mare,farm|animal,false,"Source: farm_source.csv, row 27. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-animal_foal,гача,źrebak,foal,sprite_animal_foal,audio_animal_foal,farm|animal,false,"Source: farm_source.csv, row 28. Supplied Lemko and Polish; English gloss is an unverified editorial translation.  Source alternatives: гача / гачатко."
-animal_hog,корназ,wieprz,hog,sprite_animal_hog,audio_animal_hog,farm|animal,false,"Source: farm_source.csv, row 30. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-animal_piglet,паця,prosię,piglet,sprite_animal_piglet,audio_animal_piglet,farm|animal,false,"Source: farm_source.csv, row 31. Supplied Lemko and Polish; English gloss is an unverified editorial translation.  Source alternatives: паця / пацятко."
-animal_tom_turkey,пуляк,indor,tom turkey,sprite_animal_tom_turkey,audio_animal_tom_turkey,farm|animal,false,"Source: farm_source.csv, row 32. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-animal_hen_turkey,пулька,indyczka,hen turkey,sprite_animal_hen_turkey,audio_animal_hen_turkey,farm|animal,false,"Source: farm_source.csv, row 33. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-animal_turkey_poult,пульча,indyczek,turkey poult,sprite_animal_turkey_poult,audio_animal_turkey_poult,farm|animal,false,"Source: farm_source.csv, row 34. Supplied Lemko and Polish; English gloss is an unverified editorial translation.  Source alternatives: пульча / пульчатко."
-house_house,хыжа,dom,house,sprite_house_house,audio_house_house,house|object,false,"Source: house_source.csv, row 2. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-room_living_room,сьвітлиця,salon,living room,sprite_room_living_room,audio_room_living_room,house|room,false,"Source: house_source.csv, row 4. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-room_hallway,коритар,korytarz,hallway,sprite_room_hallway,audio_room_hallway,house|room,false,"Source: house_source.csv, row 5. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-room_bathroom,лазничка,łazienka,bathroom,sprite_room_bathroom,audio_room_bathroom,house|room,false,"Source: house_source.csv, row 7. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_stool,стільчык,taboret,stool,sprite_house_stool,audio_house_stool,house|object,false,"Source: house_source.csv, row 10. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_bedside_cabinet,накаслик,szafka nocna,bedside cabinet,sprite_house_bedside_cabinet,audio_house_bedside_cabinet,house|object,false,"Source: house_source.csv, row 11. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_window,выгляд,okno,window,sprite_house_window,audio_house_window,house|object,false,"Source: house_source.csv, row 12. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_door,двері,drzwi,door,sprite_house_door,audio_house_door,house|object,false,"Source: house_source.csv, row 13. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_painting,образ,obraz,painting,sprite_house_painting,audio_house_painting,house|object,false,"Source: house_source.csv, row 14. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_cabinet,шафка,szafka,cabinet,sprite_house_cabinet,audio_house_cabinet,house|object,false,"Source: house_source.csv, row 15. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_shelf,поличка,półka,shelf,sprite_house_shelf,audio_house_shelf,house|object,false,"Source: house_source.csv, row 16. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-furniture_wardrobe,шафа,szafa,wardrobe,sprite_furniture_wardrobe,audio_furniture_wardrobe,house|object,false,"Source: house_source.csv, row 17. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_lamp,лямпа,lampa,lamp,sprite_house_lamp,audio_house_lamp,house|object,false,"Source: house_source.csv, row 18. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_small_lamp,лямпка,lampka,small lamp,sprite_house_small_lamp,audio_house_small_lamp,house|object,false,"Source: house_source.csv, row 19. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_sculpture,різба,rzeźba,sculpture,sprite_house_sculpture,audio_house_sculpture,house|object,false,"Source: house_source.csv, row 20. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_sofa,лежанка,kanapa,sofa,sprite_house_sofa,audio_house_sofa,house|object,false,"Source: house_source.csv, row 22. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_runner_rug,ходник,dywanik,runner rug,sprite_house_runner_rug,audio_house_runner_rug,house|object,false,"Source: house_source.csv, row 23. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_tablecloth,обрус,obrus,tablecloth,sprite_house_tablecloth,audio_house_tablecloth,house|object,false,"Source: house_source.csv, row 24. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_table_runner,столівка,bieżnik,table runner,sprite_house_table_runner,audio_house_table_runner,house|object,false,"Source: house_source.csv, row 25. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_pot,горнец,garnek,pot,sprite_house_pot,audio_house_pot,house|object,false,"Source: house_source.csv, row 26. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_mug,горнятко,kubek,mug,sprite_house_mug,audio_house_mug,house|object,false,"Source: house_source.csv, row 27. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_bowl,миска,miska,bowl,sprite_house_bowl,audio_house_bowl,house|object,false,"Source: house_source.csv, row 28. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_plate,танір,talerz,plate,sprite_house_plate,audio_house_plate,house|object,false,"Source: house_source.csv, row 29. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_board,таблиця,tablica,board,sprite_house_board,audio_house_board,house|object,false,"Source: house_source.csv, row 30. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_speaker,голосник,głośnik,speaker,sprite_house_speaker,audio_house_speaker,house|object,false,"Source: house_source.csv, row 31. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_stove,пец,kuchenka,stove,sprite_house_stove,audio_house_stove,house|object,false,"Source: house_source.csv, row 32. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_can,бляшанка,puszka,can,sprite_house_can,audio_house_can,house|object,false,"Source: house_source.csv, row 33. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_bottle,фляшка,butelka,bottle,sprite_house_bottle,audio_house_bottle,house|object,false,"Source: house_source.csv, row 34. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_glass,шклянка,szklanka,glass,sprite_house_glass,audio_house_glass,house|object,false,"Source: house_source.csv, row 35. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_jug,дзбанок,dzbanek,jug,sprite_house_jug,audio_house_jug,house|object,false,"Source: house_source.csv, row 36. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_refrigerator,ледівка,lodówka,refrigerator,sprite_house_refrigerator,audio_house_refrigerator,house|object,false,"Source: house_source.csv, row 37. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_tap,кран,kran,tap,sprite_house_tap,audio_house_tap,house|object,false,"Source: house_source.csv, row 38. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_sink,злив,zlew,sink,sprite_house_sink,audio_house_sink,house|object,false,"Source: house_source.csv, row 39. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_dishes,ґратя,naczynia,dishes,sprite_house_dishes,audio_house_dishes,house|object,false,"Source: house_source.csv, row 40. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_ceiling,повала,sufit,ceiling,sprite_house_ceiling,audio_house_ceiling,house|object,false,"Source: house_source.csv, row 41. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_wall,стіна,ściana,wall,sprite_house_wall,audio_house_wall,house|object,false,"Source: house_source.csv, row 42. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_flowerpot,доничка,doniczka,flowerpot,sprite_house_flowerpot,audio_house_flowerpot,house|object,false,"Source: house_source.csv, row 43. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_flower,квіток,kwiatek,flower,sprite_house_flower,audio_house_flower,house|object,false,"Source: house_source.csv, row 44. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_plant,рослина,roślina,plant,sprite_house_plant,audio_house_plant,house|object,false,"Source: house_source.csv, row 45. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_clock,дзыґар,zegar,clock,sprite_house_clock,audio_house_clock,house|object,false,"Source: house_source.csv, row 46. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_mirror,дзеркало,lustro,mirror,sprite_house_mirror,audio_house_mirror,house|object,false,"Source: house_source.csv, row 47. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_chest,лада,skrzynia,chest,sprite_house_chest,audio_house_chest,house|object,false,"Source: house_source.csv, row 48. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_pillow,заголовок,poduszka,pillow,sprite_house_pillow,audio_house_pillow,house|object,false,"Source: house_source.csv, row 49. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_duvet,перина,pierzyna,duvet,sprite_house_duvet,audio_house_duvet,house|object,false,"Source: house_source.csv, row 50. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_sheet,престерало,prześcieradło,sheet,sprite_house_sheet,audio_house_sheet,house|object,false,"Source: house_source.csv, row 51. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_spoon,лжыця,łyżka,spoon,sprite_house_spoon,audio_house_spoon,house|object,false,"Source: house_source.csv, row 52. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_fork,вилкы,widelec,fork,sprite_house_fork,audio_house_fork,house|object,false,"Source: house_source.csv, row 53. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_knife,ніж,nóż,knife,sprite_house_knife,audio_house_knife,house|object,false,"Source: house_source.csv, row 54. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_deep_plate,глубокій танір,głęboki talerz,deep plate,sprite_house_deep_plate,audio_house_deep_plate,house|object,false,"Source: house_source.csv, row 55. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_platter,пілмисок,półmisek,platter,sprite_house_platter,audio_house_platter,house|object,false,"Source: house_source.csv, row 56. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_wooden_spoon,деревяна лжыця,drewniana łyżka,wooden spoon,sprite_house_wooden_spoon,audio_house_wooden_spoon,house|object,false,"Source: house_source.csv, row 57. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_clothes,лахы,ubrania,clothes,sprite_house_clothes,audio_house_clothes,house|object,false,"Source: house_source.csv, row 58. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_carpet,диван,dywan,carpet,sprite_house_carpet,audio_house_carpet,house|object,false,"Source: house_source.csv, row 59. Supplied Lemko and Polish; English gloss is an unverified editorial translation.  Source alternatives: диван/килим."
-house_floor,підлога,podłoga,floor,sprite_house_floor,audio_house_floor,house|object,false,"Source: house_source.csv, row 60. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_vacuum_cleaner,одпорошач,odkurzacz,vacuum cleaner,sprite_house_vacuum_cleaner,audio_house_vacuum_cleaner,house|object,false,"Source: house_source.csv, row 61. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_light_switch,влучник,włącznik,light switch,sprite_house_light_switch,audio_house_light_switch,house|object,false,"Source: house_source.csv, row 62. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_radio,радіо,radio,radio,sprite_house_radio,audio_house_radio,house|object,false,"Source: house_source.csv, row 63. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_bathtub,ванов,wanna,bathtub,sprite_house_bathtub,audio_house_bathtub,house|object,false,"Source: house_source.csv, row 64. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_watering_can,конов,konewka,watering can,sprite_house_watering_can,audio_house_watering_can,house|object,false,"Source: house_source.csv, row 65. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_small_bowl,мисятко,miseczka,small bowl,sprite_house_small_bowl,audio_house_small_bowl,house|object,false,"Source: house_source.csv, row 66. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_washbasin,умывальник,umywalka,washbasin,sprite_house_washbasin,audio_house_washbasin,house|object,false,"Source: house_source.csv, row 67. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_travel_mirror,презератко,lusterko podręczne,travel mirror,sprite_house_travel_mirror,audio_house_travel_mirror,house|object,false,"Source: house_source.csv, row 68. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_broom,мітла,miotła,broom,sprite_house_broom,audio_house_broom,house|object,false,"Source: house_source.csv, row 69. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_cloth,рянда,ścierka,cloth,sprite_house_cloth,audio_house_cloth,house|object,false,"Source: house_source.csv, row 70. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_rolling_pin,катулька,wałek do ciasta,rolling pin,sprite_house_rolling_pin,audio_house_rolling_pin,house|object,false,"Source: house_source.csv, row 71. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_ladle,вариха,chochla,ladle,sprite_house_ladle,audio_house_ladle,house|object,false,"Source: house_source.csv, row 72. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_soap,мыдло,mydło,soap,sprite_house_soap,audio_house_soap,house|object,false,"Source: house_source.csv, row 73. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_shampoo,шампон,szampon,shampoo,sprite_house_shampoo,audio_house_shampoo,house|object,false,"Source: house_source.csv, row 74. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_towel,ручник,ręcznik,towel,sprite_house_towel,audio_house_towel,house|object,false,"Source: house_source.csv, row 75. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_toothbrush,щіточка до зубів,szczoteczka do zębów,toothbrush,sprite_house_toothbrush,audio_house_toothbrush,house|object,false,"Source: house_source.csv, row 76. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_toothpaste,паста до зубів,pasta do zębów,toothpaste,sprite_house_toothpaste,audio_house_toothpaste,house|object,false,"Source: house_source.csv, row 77. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_hairbrush,щітка до волося,szczotka do włosów,hairbrush,sprite_house_hairbrush,audio_house_hairbrush,house|object,false,"Source: house_source.csv, row 78. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_comb,гребін,grzebień,comb,sprite_house_comb,audio_house_comb,house|object,false,"Source: house_source.csv, row 79. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_shoes,черевікы,buty,shoes,sprite_house_shoes,audio_house_shoes,house|object,false,"Source: house_source.csv, row 80. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_cage,клітка,klatka,cage,sprite_house_cage,audio_house_cage,house|object,false,"Source: house_source.csv, row 81. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_toys,чачка,zabawki,toys,sprite_house_toys,audio_house_toys,house|object,false,"Source: house_source.csv, row 82. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_paper,папір,papier,paper,sprite_house_paper,audio_house_paper,house|object,false,"Source: house_source.csv, row 83. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_saucepan,рынка,rondel,saucepan,sprite_house_saucepan,audio_house_saucepan,house|object,false,"Source: house_source.csv, row 84. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_frying_pan,пановка,patelnia,frying pan,sprite_house_frying_pan,audio_house_frying_pan,house|object,false,"Source: house_source.csv, row 85. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_books,книжкы,książki,books,sprite_house_books,audio_house_books,house|object,false,"Source: house_source.csv, row 86. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_small_table,столик,stolik,small table,sprite_house_small_table,audio_house_small_table,house|object,false,"Source: house_source.csv, row 87. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_notebook,зошыт,zeszyt,notebook,sprite_house_notebook,audio_house_notebook,house|object,false,"Source: house_source.csv, row 88. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_calendar,календар,kalendarz,calendar,sprite_house_calendar,audio_house_calendar,house|object,false,"Source: house_source.csv, row 89. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_icon,ікона,ikona,icon,sprite_house_icon,audio_house_icon,house|object,false,"Source: house_source.csv, row 90. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_hanger,вішак,wieszak,hanger,sprite_house_hanger,audio_house_hanger,house|object,false,"Source: house_source.csv, row 91. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_iron,прас,żelazko,iron,sprite_house_iron,audio_house_iron,house|object,false,"Source: house_source.csv, row 92. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_plank,дошка,deska,plank,sprite_house_plank,audio_house_plank,house|object,false,"Source: house_source.csv, row 93. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_washing_machine,пралька,pralka,washing machine,sprite_house_washing_machine,audio_house_washing_machine,house|object,false,"Source: house_source.csv, row 94. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_kettle,чайник,czajnik,kettle,sprite_house_kettle,audio_house_kettle,house|object,false,"Source: house_source.csv, row 95. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_game,гра,gra,game,sprite_house_game,audio_house_game,house|object,false,"Source: house_source.csv, row 96. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_television,телевізор,telewizor,television,sprite_house_television,audio_house_television,house|object,false,"Source: house_source.csv, row 97. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_computer,компутер,komputer,computer,sprite_house_computer,audio_house_computer,house|object,false,"Source: house_source.csv, row 98. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_small_door,дверці,drzwiczki,small door,sprite_house_small_door,audio_house_small_door,house|object,false,"Source: house_source.csv, row 99. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_fireplace,коминок,kominek,fireplace,sprite_house_fireplace,audio_house_fireplace,house|object,false,"Source: house_source.csv, row 100. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_teaspoon,лжычка,łyżeczka,teaspoon,sprite_house_teaspoon,audio_house_teaspoon,house|object,false,"Source: house_source.csv, row 101. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_stairs,сходы,schody,stairs,sprite_house_stairs,audio_house_stairs,house|object,false,"Source: house_source.csv, row 102. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_threshold,поріг,próg,threshold,sprite_house_threshold,audio_house_threshold,house|object,false,"Source: house_source.csv, row 103. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_upper_floor,плянтро,piętro,upper floor,sprite_house_upper_floor,audio_house_upper_floor,house|object,false,"Source: house_source.csv, row 104. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-house_colander,друшляк,durszlak,colander,sprite_house_colander,audio_house_colander,house|object,false,"Source: house_source.csv, row 105. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_family,родина,rodzina,family,sprite_family_family,audio_family_family,family|heading,false,"Source: family_source.csv, row 1. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_tree,дерево роду,drzewo genealogiczne,family tree,sprite_family_tree,audio_family_tree,family|heading,false,"Source: family_source.csv, row 2. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_aunt,тета,ciocia,aunt,sprite_family_aunt,audio_family_aunt,family|source_basic,false,"Source: family_source.csv, row 11. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_maternal_uncle,уйко,wujek,maternal uncle,sprite_family_maternal_uncle,audio_family_maternal_uncle,family|source_basic,false,"Source: family_source.csv, row 12. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_paternal_uncle,стрыко,stryjek,paternal uncle,sprite_family_paternal_uncle,audio_family_paternal_uncle,family|source_basic,false,"Source: family_source.csv, row 13. Supplied Lemko and Polish; English gloss is an unverified editorial translation. brat ojca"
-family_male_cousin,кузин,kuzyn,male cousin,sprite_family_male_cousin,audio_family_male_cousin,family|source_basic,false,"Source: family_source.csv, row 16. Supplied Lemko and Polish; English gloss is an unverified editorial translation.  Chose explicit cousin variant to avoid collision with brother/sister. Source alternatives: брат / кузин."
-family_female_cousin,кузинка,kuzynka,female cousin,sprite_family_female_cousin,audio_family_female_cousin,family|source_basic,false,"Source: family_source.csv, row 17. Supplied Lemko and Polish; English gloss is an unverified editorial translation.  Chose explicit cousin variant to avoid collision with brother/sister. Source alternatives: сестра / кузинка."
-family_great_grandfather,прадідо,pradziadek,great grandfather,sprite_family_great_grandfather,audio_family_great_grandfather,family|source_basic,false,"Source: family_source.csv, row 18. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_great_grandmother,прабаба,prababcia,great grandmother,sprite_family_great_grandmother,audio_family_great_grandmother,family|source_basic,false,"Source: family_source.csv, row 19. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_son,сын,syn,son,sprite_family_son,audio_family_son,family|source_basic,false,"Source: family_source.csv, row 20. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_daughter,дівка,córka,daughter,sprite_family_daughter,audio_family_daughter,family|source_basic,false,"Source: family_source.csv, row 21. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_husband,муж,mąż,husband,sprite_family_husband,audio_family_husband,family|source_basic,false,"Source: family_source.csv, row 22. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_wife,жена,żona,wife,sprite_family_wife,audio_family_wife,family|source_basic,false,"Source: family_source.csv, row 23. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_parents,родиче,rodzice,parents,sprite_family_parents,audio_family_parents,family|source_basic,false,"Source: family_source.csv, row 24. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_grandparents,дідове,dziadkowie,grandparents,sprite_family_grandparents,audio_family_grandparents,family|source_basic,false,"Source: family_source.csv, row 25. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_child,дітина,dziecko,child,sprite_family_child,audio_family_child,family|source_basic,false,"Source: family_source.csv, row 26. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_children,діти,dzieci,children,sprite_family_children,audio_family_children,family|source_basic,false,"Source: family_source.csv, row 27. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_grandchildren,внукы,wnukowie,grandchildren,sprite_family_grandchildren,audio_family_grandchildren,family|source_basic,false,"Source: family_source.csv, row 28. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_granddaughter,внучка,wnuczka,granddaughter,sprite_family_granddaughter,audio_family_granddaughter,family|source_basic,false,"Source: family_source.csv, row 29. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_grandson,внук,wnuk,grandson,sprite_family_grandson,audio_family_grandson,family|source_basic,false,"Source: family_source.csv, row 30. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_paternal_uncles_wife,стрына,stryjenka,paternal uncles wife,sprite_family_paternal_uncles_wife,audio_family_paternal_uncles_wife,family|source_advanced,false,"Source: family_source.csv, row 34. Supplied Lemko and Polish; English gloss is an unverified editorial translation. żona stryjka"
-family_maternal_uncles_wife,уйчына,wujenka,maternal uncles wife,sprite_family_maternal_uncles_wife,audio_family_maternal_uncles_wife,family|source_advanced,false,"Source: family_source.csv, row 35. Supplied Lemko and Polish; English gloss is an unverified editorial translation. żona wujka"
-family_wifes_mother,матір жены,teściowa (matka żony),wifes mother,sprite_family_wifes_mother,audio_family_wifes_mother,family|source_advanced,false,"Source: family_source.csv, row 36. Supplied Lemko and Polish; English gloss is an unverified editorial translation.  Source alternatives: матір жены / женина матір."
-family_husbands_mother,матір мужа,teściowa (matka męża),husbands mother,sprite_family_husbands_mother,audio_family_husbands_mother,family|source_advanced,false,"Source: family_source.csv, row 37. Supplied Lemko and Polish; English gloss is an unverified editorial translation.  Source alternatives: матір мужа / мужова матір."
-family_wifes_father,отец жены,teść (ojciec żony),wifes father,sprite_family_wifes_father,audio_family_wifes_father,family|source_advanced,false,"Source: family_source.csv, row 38. Supplied Lemko and Polish; English gloss is an unverified editorial translation.  Source alternatives: отец жены / женин отец."
-family_husbands_father,отец мужа,teść (ojciec męża),husbands father,sprite_family_husbands_father,audio_family_husbands_father,family|source_advanced,false,"Source: family_source.csv, row 39. Supplied Lemko and Polish; English gloss is an unverified editorial translation.  Source alternatives: отец мужа / мужів отец."
-family_brothers_son,братанок,bratanek,brothers son,sprite_family_brothers_son,audio_family_brothers_son,family|source_advanced,false,"Source: family_source.csv, row 40. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_sisters_son,сестренец,siostrzeniec,sisters son,sprite_family_sisters_son,audio_family_sisters_son,family|source_advanced,false,"Source: family_source.csv, row 41. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_brothers_daughter,братаниця,bratanica,brothers daughter,sprite_family_brothers_daughter,audio_family_brothers_daughter,family|source_advanced,false,"Source: family_source.csv, row 42. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_sisters_daughter,сестрениця,siostrzenica,sisters daughter,sprite_family_sisters_daughter,audio_family_sisters_daughter,family|source_advanced,false,"Source: family_source.csv, row 43. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_daughter_in_law,невіста,synowa,daughter in law,sprite_family_daughter_in_law,audio_family_daughter_in_law,family|source_advanced,false,"Source: family_source.csv, row 44. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_son_in_law,зят,zięć,son in law,sprite_family_son_in_law,audio_family_son_in_law,family|source_advanced,false,"Source: family_source.csv, row 45. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_female_co_parent_in_law,сваха,swatowa (teściowa dla teściowej),female co parent in law,sprite_family_female_co_parent_in_law,audio_family_female_co_parent_in_law,family|source_advanced,false,"Source: family_source.csv, row 46. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_male_co_parent_in_law,сват,swat (teść dla teścia),male co parent in law,sprite_family_male_co_parent_in_law,audio_family_male_co_parent_in_law,family|source_advanced,false,"Source: family_source.csv, row 47. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_brothers_wife,братова,bratowa,brothers wife,sprite_family_brothers_wife,audio_family_brothers_wife,family|source_advanced,false,"Source: family_source.csv, row 48. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-family_wifes_brother,брат жены,szwagier (brat żony),wifes brother,sprite_family_wifes_brother,audio_family_wifes_brother,family|source_advanced,false,"Source: family_source.csv, row 49. Supplied Lemko and Polish; English gloss is an unverified editorial translation.  Source alternatives: брат жены / женин брат."
-family_husbands_brother,брат мужа,szwagier (brat męża),husbands brother,sprite_family_husbands_brother,audio_family_husbands_brother,family|source_advanced,false,"Source: family_source.csv, row 50. Supplied Lemko and Polish; English gloss is an unverified editorial translation.  Source alternatives: брат мужа / мужів брат."
-family_sisters_husband,муж сестры,szwagier (mąż siostry),sisters husband,sprite_family_sisters_husband,audio_family_sisters_husband,family|source_advanced,false,"Source: family_source.csv, row 51. Supplied Lemko and Polish; English gloss is an unverified editorial translation.  Source alternatives: муж сестры / сестрин муж."
-family_wifes_sister,сестра жены,szwagierka (siostra żony),wifes sister,sprite_family_wifes_sister,audio_family_wifes_sister,family|source_advanced,false,"Source: family_source.csv, row 52. Supplied Lemko and Polish; English gloss is an unverified editorial translation.  Source alternatives: сестра жены / женина сестра."
-family_husbands_sister,сестра мужа,szwagierka (siostra męża),husbands sister,sprite_family_husbands_sister,audio_family_husbands_sister,family|source_advanced,false,"Source: family_source.csv, row 53. Supplied Lemko and Polish; English gloss is an unverified editorial translation.  Source alternatives: сестра мужа / мужова сестра."
-weather_spring,яр,wiosna,spring,sprite_weather_spring,audio_weather_spring,weather,false,"Source: weather_source.csv, row 2. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_summer,літо,lato,summer,sprite_weather_summer,audio_weather_summer,weather,false,"Source: weather_source.csv, row 3. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_autumn,осін,jesień,autumn,sprite_weather_autumn,audio_weather_autumn,weather,false,"Source: weather_source.csv, row 4. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_winter,зима,zima,winter,sprite_weather_winter,audio_weather_winter,weather,false,"Source: weather_source.csv, row 5. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_sun,сонце,słońce,sun,sprite_weather_sun,audio_weather_sun,weather,false,"Source: weather_source.csv, row 6. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_moon,місяц,księżyc,moon,sprite_weather_moon,audio_weather_moon,weather,false,"Source: weather_source.csv, row 7. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_stars,зьвізды,gwiazdy,stars,sprite_weather_stars,audio_weather_stars,weather,false,"Source: weather_source.csv, row 8. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_rainbow,дуга,tęcza,rainbow,sprite_weather_rainbow,audio_weather_rainbow,weather,false,"Source: weather_source.csv, row 9. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_clouds,хмары,chmury,clouds,sprite_weather_clouds,audio_weather_clouds,weather,false,"Source: weather_source.csv, row 10. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_dark_clouds,мракы,ciemne chmury,dark clouds,sprite_weather_dark_clouds,audio_weather_dark_clouds,weather,false,"Source: weather_source.csv, row 11. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_white_clouds,облакы,obłoki,white clouds,sprite_weather_white_clouds,audio_weather_white_clouds,weather,false,"Source: weather_source.csv, row 12. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_sun_covered_by_clouds,сонце зашло хмарами,słońce zakryły chmury,clouds covered the sun,sprite_weather_sun_covered_by_clouds,audio_weather_sun_covered_by_clouds,weather,false,"Source: weather_source.csv, row 14. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_moon_shining,місяц сьвітит,księżyc świeci,the moon is shining,sprite_weather_moon_shining,audio_weather_moon_shining,weather,false,"Source: weather_source.csv, row 15. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_moon_covered_by_clouds,місяц зашол хмарами,księżyc zakryły chmury,clouds covered the moon,sprite_weather_moon_covered_by_clouds,audio_weather_moon_covered_by_clouds,weather,false,"Source: weather_source.csv, row 16. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_became_cloudy,захмарило ся,zachmurzyło się,it became cloudy,sprite_weather_became_cloudy,audio_weather_became_cloudy,weather,false,"Source: weather_source.csv, row 17. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_becoming_cloudy,хмарит ся,chmurzy się,it is getting cloudy,sprite_weather_becoming_cloudy,audio_weather_becoming_cloudy,weather,false,"Source: weather_source.csv, row 18. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_rain,дойдж,deszcz,rain,sprite_weather_rain,audio_weather_rain,weather,false,"Source: weather_source.csv, row 19. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_drizzle,ситит,siąpi,it is drizzling,sprite_weather_drizzle,audio_weather_drizzle,weather,false,"Source: weather_source.csv, row 21. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_downpour_started,шустло дойджом,lunęło deszczem,it started pouring,sprite_weather_downpour_started,audio_weather_downpour_started,weather,false,"Source: weather_source.csv, row 22. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_puddle,млака,kałuża,puddle,sprite_weather_puddle,audio_weather_puddle,weather,false,"Source: weather_source.csv, row 23. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_moisture,вільгіт,wilgoć,moisture,sprite_weather_moisture,audio_weather_moisture,weather,false,"Source: weather_source.csv, row 24. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_fog,гмла,mgła,fog,sprite_weather_fog,audio_weather_fog,weather,false,"Source: weather_source.csv, row 25. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_air,повітря,powietrze,air,sprite_weather_air,audio_weather_air,weather,false,"Source: weather_source.csv, row 26. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_snow,сьніг,śnieg,snow,sprite_weather_snow,audio_weather_snow,weather,false,"Source: weather_source.csv, row 27. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_snow_accumulated,накурило сьнігу,napadało śniegu,snow has accumulated,sprite_weather_snow_accumulated,audio_weather_snow_accumulated,weather,false,"Source: weather_source.csv, row 29. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_icicles,цомплі,sople,icicles,sprite_weather_icicles,audio_weather_icicles,weather,false,"Source: weather_source.csv, row 30. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_blizzard,замітя,zamieć,blizzard,sprite_weather_blizzard,audio_weather_blizzard,weather,false,"Source: weather_source.csv, row 31. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_ice,лед,lód,ice,sprite_weather_ice,audio_weather_ice,weather,false,"Source: weather_source.csv, row 32. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_thaw,одмяк,odwilż,thaw,sprite_weather_thaw,audio_weather_thaw,weather,false,"Source: weather_source.csv, row 33. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_snow_melted,стаял сьніг,stopniał śnieg,the snow melted,sprite_weather_snow_melted,audio_weather_snow_melted,weather,false,"Source: weather_source.csv, row 34. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_wind,вітер,wiatr,wind,sprite_weather_wind,audio_weather_wind,weather,false,"Source: weather_source.csv, row 35. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_wind_blowing,дує вітер,wieje wiatr,the wind is blowing,sprite_weather_wind_blowing,audio_weather_wind_blowing,weather,false,"Source: weather_source.csv, row 36. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_wind_gusting,задуват вітер,zawiewa,the wind is gusting,sprite_weather_wind_gusting,audio_weather_wind_gusting,weather,false,"Source: weather_source.csv, row 37. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_windstorm,дуявиця,wichura,windstorm,sprite_weather_windstorm,audio_weather_windstorm,weather,false,"Source: weather_source.csv, row 38. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_wind_swirling,вітер обертат ся до качала,wiatr się kręci,the wind is swirling,sprite_weather_wind_swirling,audio_weather_wind_swirling,weather,false,"Source: weather_source.csv, row 39. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_storm,буря,burza,storm,sprite_weather_storm,audio_weather_storm,weather,false,"Source: weather_source.csv, row 40. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_lightning_strike,перун,piorun,lightning strike,sprite_weather_lightning_strike,audio_weather_lightning_strike,weather,false,"Source: weather_source.csv, row 41. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_lightning,блискавиця,błyskawica,lightning,sprite_weather_lightning,audio_weather_lightning,weather,false,"Source: weather_source.csv, row 42. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_lightning_flashing,блискат ся,błyska,lightning is flashing,sprite_weather_lightning_flashing,audio_weather_lightning_flashing,weather,false,"Source: weather_source.csv, row 43. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_thunder,грім,grzmot,thunder,sprite_weather_thunder,audio_weather_thunder,weather,false,"Source: weather_source.csv, row 44. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_thundering,гырмит,grzmi,it is thundering,sprite_weather_thundering,audio_weather_thundering,weather,false,"Source: weather_source.csv, row 45. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_day,ден,dzień,day,sprite_weather_day,audio_weather_day,weather,false,"Source: weather_source.csv, row 46. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_in_daytime,в ден,w dzień,in the daytime,sprite_weather_in_daytime,audio_weather_in_daytime,weather,false,"Source: weather_source.csv, row 47. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_bright,ясно,jasno,bright,sprite_weather_bright,audio_weather_bright,weather,false,"Source: weather_source.csv, row 48. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_getting_light,розвиднят ся,robi się jasno,it is getting light,sprite_weather_getting_light,audio_weather_getting_light,weather,false,"Source: weather_source.csv, row 49. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_night,ніч,noc,night,sprite_weather_night,audio_weather_night,weather,false,"Source: weather_source.csv, row 50. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_at_night,в ночы,w nocy,at night,sprite_weather_at_night,audio_weather_at_night,weather,false,"Source: weather_source.csv, row 51. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_dark,темно,ciemno,dark,sprite_weather_dark,audio_weather_dark,weather,false,"Source: weather_source.csv, row 52. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_getting_dark,змеркат ся,zmierzcha,it is getting dark,sprite_weather_getting_dark,audio_weather_getting_dark,weather,false,"Source: weather_source.csv, row 53. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_positive_temperature_question,Кілко тепла на дворі?,Jaka temperatura na plusie?,What is the temperature above zero?,sprite_weather_positive_temperature_question,audio_weather_positive_temperature_question,weather,false,"Source: weather_source.csv, row 54. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_scorching_heat,спекота,skwar,scorching heat,sprite_weather_scorching_heat,audio_weather_scorching_heat,weather,false,"Source: weather_source.csv, row 55. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_heat,горячка,upał,heat,sprite_weather_heat,audio_weather_heat,weather,false,"Source: weather_source.csv, row 56. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_hot,горячо,gorąco,hot,sprite_weather_hot,audio_weather_hot,weather,false,"Source: weather_source.csv, row 57. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_warm,тепло,ciepło,warm,sprite_weather_warm,audio_weather_warm,weather,false,"Source: weather_source.csv, row 58. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_negative_temperature_question,Якій великій мороз?,Jaka temperatura na minusie?,How far below zero is the temperature?,sprite_weather_negative_temperature_question,audio_weather_negative_temperature_question,weather,false,"Source: weather_source.csv, row 59. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_cool,холодно,chłodno,cool,sprite_weather_cool,audio_weather_cool,weather,false,"Source: weather_source.csv, row 60. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_cold,студено,zimno,cold,sprite_weather_cold,audio_weather_cold,weather,false,"Source: weather_source.csv, row 61. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_very_cold,студін,bardzo zimno,very cold,sprite_weather_very_cold,audio_weather_very_cold,weather,false,"Source: weather_source.csv, row 62. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_frost,мороз,mróz,frost,sprite_weather_frost,audio_weather_frost,weather,false,"Source: weather_source.csv, row 63. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-weather_weather,хвиля,pogoda,weather,sprite_weather_weather,audio_weather_weather,weather,false,"Source: weather_source.csv, row 64. Supplied Lemko and Polish; English gloss is an unverified editorial translation. "
-number_6,шіст,6,6,sprite_number_6,audio_number_6,number,false,"Source: numbers_source.csv, row 7. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_7,сім,7,7,sprite_number_7,audio_number_7,number,false,"Source: numbers_source.csv, row 8. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_8,вісем,8,8,sprite_number_8,audio_number_8,number,false,"Source: numbers_source.csv, row 9. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_9,девят,9,9,sprite_number_9,audio_number_9,number,false,"Source: numbers_source.csv, row 10. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_10,десят,10,10,sprite_number_10,audio_number_10,number,false,"Source: numbers_source.csv, row 11. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_11,єденадцет,11,11,sprite_number_11,audio_number_11,number,false,"Source: numbers_source.csv, row 12. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_12,дванадцет,12,12,sprite_number_12,audio_number_12,number,false,"Source: numbers_source.csv, row 13. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_13,тринадцет,13,13,sprite_number_13,audio_number_13,number,false,"Source: numbers_source.csv, row 14. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_14,штырнадцет,14,14,sprite_number_14,audio_number_14,number,false,"Source: numbers_source.csv, row 15. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_15,пятнадцет,15,15,sprite_number_15,audio_number_15,number,false,"Source: numbers_source.csv, row 16. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_16,шістнадцет,16,16,sprite_number_16,audio_number_16,number,false,"Source: numbers_source.csv, row 17. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_17,сімнадцет,17,17,sprite_number_17,audio_number_17,number,false,"Source: numbers_source.csv, row 18. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_18,вісемнадцет,18,18,sprite_number_18,audio_number_18,number,false,"Source: numbers_source.csv, row 19. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_19,девятнадцет,19,19,sprite_number_19,audio_number_19,number,false,"Source: numbers_source.csv, row 20. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_20,двадцет,20,20,sprite_number_20,audio_number_20,number,false,"Source: numbers_source.csv, row 21. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_21,двадцет єден,21,21,sprite_number_21,audio_number_21,number,false,"Source: numbers_source.csv, row 22. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_22,двадцет два,22,22,sprite_number_22,audio_number_22,number,false,"Source: numbers_source.csv, row 23. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_23,двадцет три,23,23,sprite_number_23,audio_number_23,number,false,"Source: numbers_source.csv, row 24. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_24,двадцет штырі,24,24,sprite_number_24,audio_number_24,number,false,"Source: numbers_source.csv, row 25. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_25,двадцет пят,25,25,sprite_number_25,audio_number_25,number,false,"Source: numbers_source.csv, row 26. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_26,двадцет шіст,26,26,sprite_number_26,audio_number_26,number,false,"Source: numbers_source.csv, row 27. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_27,двадцет сім,27,27,sprite_number_27,audio_number_27,number,false,"Source: numbers_source.csv, row 28. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_28,двадцет вісем,28,28,sprite_number_28,audio_number_28,number,false,"Source: numbers_source.csv, row 29. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_29,двадцет девят,29,29,sprite_number_29,audio_number_29,number,false,"Source: numbers_source.csv, row 30. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_30,тридцет,30,30,sprite_number_30,audio_number_30,number,false,"Source: numbers_source.csv, row 31. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_31,тридцет єден,31,31,sprite_number_31,audio_number_31,number,false,"Source: numbers_source.csv, row 32. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_32,тридцет два,32,32,sprite_number_32,audio_number_32,number,false,"Source: numbers_source.csv, row 33. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_33,тридцет три,33,33,sprite_number_33,audio_number_33,number,false,"Source: numbers_source.csv, row 34. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_34,тридцет штырі,34,34,sprite_number_34,audio_number_34,number,false,"Source: numbers_source.csv, row 35. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_35,тридцет пят,35,35,sprite_number_35,audio_number_35,number,false,"Source: numbers_source.csv, row 36. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_36,тридцет шіст,36,36,sprite_number_36,audio_number_36,number,false,"Source: numbers_source.csv, row 37. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_37,тридцет сім,37,37,sprite_number_37,audio_number_37,number,false,"Source: numbers_source.csv, row 38. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_38,тридцет вісем,38,38,sprite_number_38,audio_number_38,number,false,"Source: numbers_source.csv, row 39. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_39,тридцет девят,39,39,sprite_number_39,audio_number_39,number,false,"Source: numbers_source.csv, row 40. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_40,сорок,40,40,sprite_number_40,audio_number_40,number,false,"Source: numbers_source.csv, row 41. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_41,сорок єден,41,41,sprite_number_41,audio_number_41,number,false,"Source: numbers_source.csv, row 42. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_42,сорок два,42,42,sprite_number_42,audio_number_42,number,false,"Source: numbers_source.csv, row 43. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_43,сорок три,43,43,sprite_number_43,audio_number_43,number,false,"Source: numbers_source.csv, row 44. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_44,сорок штырі,44,44,sprite_number_44,audio_number_44,number,false,"Source: numbers_source.csv, row 45. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_45,сорок пят,45,45,sprite_number_45,audio_number_45,number,false,"Source: numbers_source.csv, row 46. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_46,сорок шіст,46,46,sprite_number_46,audio_number_46,number,false,"Source: numbers_source.csv, row 47. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_47,сорок сім,47,47,sprite_number_47,audio_number_47,number,false,"Source: numbers_source.csv, row 48. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_48,сорок вісем,48,48,sprite_number_48,audio_number_48,number,false,"Source: numbers_source.csv, row 49. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_49,сорок девят,49,49,sprite_number_49,audio_number_49,number,false,"Source: numbers_source.csv, row 50. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_50,пятдесят,50,50,sprite_number_50,audio_number_50,number,false,"Source: numbers_source.csv, row 51. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_51,пятдесят єден,51,51,sprite_number_51,audio_number_51,number,false,"Source: numbers_source.csv, row 52. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_52,пятдесят два,52,52,sprite_number_52,audio_number_52,number,false,"Source: numbers_source.csv, row 53. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_53,пятдесят три,53,53,sprite_number_53,audio_number_53,number,false,"Source: numbers_source.csv, row 54. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_54,пятдесят штырі,54,54,sprite_number_54,audio_number_54,number,false,"Source: numbers_source.csv, row 55. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_55,пятдесят пят,55,55,sprite_number_55,audio_number_55,number,false,"Source: numbers_source.csv, row 56. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_56,пятдесят шіст,56,56,sprite_number_56,audio_number_56,number,false,"Source: numbers_source.csv, row 57. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_57,пятдесят сім,57,57,sprite_number_57,audio_number_57,number,false,"Source: numbers_source.csv, row 58. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_58,пятдесят вісем,58,58,sprite_number_58,audio_number_58,number,false,"Source: numbers_source.csv, row 59. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_59,пятдесят девят,59,59,sprite_number_59,audio_number_59,number,false,"Source: numbers_source.csv, row 60. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_60,шістдесят,60,60,sprite_number_60,audio_number_60,number,false,"Source: numbers_source.csv, row 61. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_61,шістдесят єден,61,61,sprite_number_61,audio_number_61,number,false,"Source: numbers_source.csv, row 62. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_62,шістдесят два,62,62,sprite_number_62,audio_number_62,number,false,"Source: numbers_source.csv, row 63. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_63,шістдесят три,63,63,sprite_number_63,audio_number_63,number,false,"Source: numbers_source.csv, row 64. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_64,шістдесят штырі,64,64,sprite_number_64,audio_number_64,number,false,"Source: numbers_source.csv, row 65. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_65,шістдесят пят,65,65,sprite_number_65,audio_number_65,number,false,"Source: numbers_source.csv, row 66. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_66,шістдесят шіст,66,66,sprite_number_66,audio_number_66,number,false,"Source: numbers_source.csv, row 67. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_67,шістдесят сім,67,67,sprite_number_67,audio_number_67,number,false,"Source: numbers_source.csv, row 68. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_68,шістдесят вісем,68,68,sprite_number_68,audio_number_68,number,false,"Source: numbers_source.csv, row 69. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_69,шістдесят девят,69,69,sprite_number_69,audio_number_69,number,false,"Source: numbers_source.csv, row 70. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_70,сімдесят,70,70,sprite_number_70,audio_number_70,number,false,"Source: numbers_source.csv, row 71. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_71,сімдесят єден,71,71,sprite_number_71,audio_number_71,number,false,"Source: numbers_source.csv, row 72. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_72,сімдесят два,72,72,sprite_number_72,audio_number_72,number,false,"Source: numbers_source.csv, row 73. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_73,сімдесят три,73,73,sprite_number_73,audio_number_73,number,false,"Source: numbers_source.csv, row 74. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_74,сімдесят штырі,74,74,sprite_number_74,audio_number_74,number,false,"Source: numbers_source.csv, row 75. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_75,сімдесят пят,75,75,sprite_number_75,audio_number_75,number,false,"Source: numbers_source.csv, row 76. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_76,сімдесят шіст,76,76,sprite_number_76,audio_number_76,number,false,"Source: numbers_source.csv, row 77. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_77,сімдесят сім,77,77,sprite_number_77,audio_number_77,number,false,"Source: numbers_source.csv, row 78. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_78,сімдесят вісем,78,78,sprite_number_78,audio_number_78,number,false,"Source: numbers_source.csv, row 79. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_79,сімдесят девят,79,79,sprite_number_79,audio_number_79,number,false,"Source: numbers_source.csv, row 80. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_80,вісемдесят,80,80,sprite_number_80,audio_number_80,number,false,"Source: numbers_source.csv, row 81. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_81,вісемдесят єден,81,81,sprite_number_81,audio_number_81,number,false,"Source: numbers_source.csv, row 82. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_82,вісемдесят два,82,82,sprite_number_82,audio_number_82,number,false,"Source: numbers_source.csv, row 83. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_83,вісемдесят три,83,83,sprite_number_83,audio_number_83,number,false,"Source: numbers_source.csv, row 84. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_84,вісемдесят штырі,84,84,sprite_number_84,audio_number_84,number,false,"Source: numbers_source.csv, row 85. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_85,вісемдесят пят,85,85,sprite_number_85,audio_number_85,number,false,"Source: numbers_source.csv, row 86. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_86,вісемдесят шіст,86,86,sprite_number_86,audio_number_86,number,false,"Source: numbers_source.csv, row 87. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_87,вісемдесят сім,87,87,sprite_number_87,audio_number_87,number,false,"Source: numbers_source.csv, row 88. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_88,вісемдесят вісем,88,88,sprite_number_88,audio_number_88,number,false,"Source: numbers_source.csv, row 89. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_89,вісемдесят девят,89,89,sprite_number_89,audio_number_89,number,false,"Source: numbers_source.csv, row 90. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_90,девятдесят,90,90,sprite_number_90,audio_number_90,number,false,"Source: numbers_source.csv, row 91. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_91,девятдесят єден,91,91,sprite_number_91,audio_number_91,number,false,"Source: numbers_source.csv, row 92. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_92,девятдесят два,92,92,sprite_number_92,audio_number_92,number,false,"Source: numbers_source.csv, row 93. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_93,девятдесят три,93,93,sprite_number_93,audio_number_93,number,false,"Source: numbers_source.csv, row 94. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_94,девятдесят штырі,94,94,sprite_number_94,audio_number_94,number,false,"Source: numbers_source.csv, row 95. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_95,девятдесят пят,95,95,sprite_number_95,audio_number_95,number,false,"Source: numbers_source.csv, row 96. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_96,девятдесят шіст,96,96,sprite_number_96,audio_number_96,number,false,"Source: numbers_source.csv, row 97. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_97,девятдесят сім,97,97,sprite_number_97,audio_number_97,number,false,"Source: numbers_source.csv, row 98. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_98,девятдесят вісем,98,98,sprite_number_98,audio_number_98,number,false,"Source: numbers_source.csv, row 99. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_99,девятдесят девят,99,99,sprite_number_99,audio_number_99,number,false,"Source: numbers_source.csv, row 100. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_100,сто,100,100,sprite_number_100,audio_number_100,number|reference_only,false,"Source: numbers_source.csv, row 101. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_200,двіста,200,200,sprite_number_200,audio_number_200,number|reference_only,false,"Source: numbers_source.csv, row 102. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_300,триста,300,300,sprite_number_300,audio_number_300,number|reference_only,false,"Source: numbers_source.csv, row 103. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_400,штыриста,400,400,sprite_number_400,audio_number_400,number|reference_only,false,"Source: numbers_source.csv, row 104. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_500,пятсто,500,500,sprite_number_500,audio_number_500,number|reference_only,false,"Source: numbers_source.csv, row 105. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_600,шістсто,600,600,sprite_number_600,audio_number_600,number|reference_only,false,"Source: numbers_source.csv, row 106. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_700,сімсто,700,700,sprite_number_700,audio_number_700,number|reference_only,false,"Source: numbers_source.csv, row 107. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_800,вісемсто,800,800,sprite_number_800,audio_number_800,number|reference_only,false,"Source: numbers_source.csv, row 108. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_900,девятсто,900,900,sprite_number_900,audio_number_900,number|reference_only,false,"Source: numbers_source.csv, row 109. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_1000,тисяч,1000,1000,sprite_number_1000,audio_number_1000,number|reference_only,false,"Source: numbers_source.csv, row 110. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
-number_1000000,мелийон,1000000,1000000,sprite_number_1000000,audio_number_1000000,number|reference_only,false,"Source: numbers_source.csv, row 111. Supplied Lemko and Polish; English gloss is an unverified editorial translation. Polish and English numeral glosses are intentionally numeric; gameplay supports 1–99."
+id,text_lemko,text_pl,text_en,sprite_id,audio_id,tags,done,letter_uppercase,phonetic_pl
+food_bread,хліб,chleb,bread,sprite_bread,audio_bread,shop,FALSE,,
+food_butter,масло,masło,butter,sprite_butter,audio_butter,shop,FALSE,,
+food_eggs,яйця,jajka,eggs,sprite_eggs,audio_eggs,shop,FALSE,,
+food_milk,молоко,mleko,milk,sprite_milk,audio_milk,shop,FALSE,,
+food_meat,мясо,mięso,meat,sprite_meat,audio_meat,shop,FALSE,,
+food_flour,мука,mąka,flour,sprite_flour,audio_flour,shop,FALSE,,
+food_cheese,сыр,ser,cheese,sprite_cheese,audio_cheese,shop,FALSE,,
+food_cream,сметана,śmietana,cream,sprite_cream,audio_cream,shop,FALSE,,
+food_water,вода,woda,water,sprite_water,audio_water,shop,FALSE,,
+food_tea,гарбата,herbata,tea,sprite_tea,audio_tea,shop,FALSE,,
+food_coffee,кава,kawa,coffee,sprite_coffee,audio_coffee,shop,FALSE,,
+food_oil,олій,olej,oil,sprite_oil,audio_oil,shop,FALSE,,
+food_pasta,різанка,makaron,pasta,sprite_pasta,audio_pasta,shop,FALSE,,
+food_ham,шынка,szynka,ham,sprite_ham,audio_ham,shop,FALSE,,
+food_sausage,кобаса,kiełbasa,sausage,sprite_sausage,audio_sausage,shop,FALSE,,
+food_fish,рыба,ryba,fish,sprite_fish,audio_fish,shop,FALSE,,
+food_raspberries,малины,maliny,raspberries,sprite_raspberries,audio_raspberries,shop,FALSE,,
+food_apples,ябка,jabłka,apples,sprite_apples,audio_apples,shop,FALSE,,
+food_pears,грушкы,gruszki,pears,sprite_pears,audio_pears,shop,FALSE,,
+food_plums,сливкы,śliwki,plums,sprite_plums,audio_plums,shop,FALSE,,
+food_lemon,цитрина,cytryna,lemon,sprite_lemon,audio_lemon,shop,FALSE,,
+food_sour_cherries,вышні,wiśnie,cherries,sprite_sour_cherries,audio_sour_cherries,shop,FALSE,,
+food_grapes,виноград,winogrono,grapes,sprite_grapes,audio_grapes,shop,FALSE,,
+food_potatoes,компері,ziemniaki,potatoes,sprite_potatoes,audio_potatoes,shop,FALSE,,
+food_beetroots,буракы,buraki,beetroots,sprite_beetroots,audio_beetroots,shop,FALSE,,
+food_beans,фізоля,fasola,beans,sprite_beans,audio_beans,shop,FALSE,,
+food_cabbage,капуста,kapusta,cabbage,sprite_cabbage,audio_cabbage,shop,FALSE,,
+food_lettuce,шалата,sałata,lettuce,sprite_lettuce,audio_lettuce,shop,FALSE,,
+food_bell_pepper,паприка,papryka,pepper,sprite_bell_pepper,audio_bell_pepper,shop,FALSE,,
+food_cucumbers,огуркы,ogórki,cucumbers,sprite_cucumbers,audio_cucumbers,shop,FALSE,,
+food_carrot,морков,marchew,carrot,sprite_carrot,audio_carrot,shop,FALSE,,
+food_parsley_root,петрушка,pietruszka,parsley,sprite_parsley,audio_parsley,shop,FALSE,,
+food_garlic,чеснок,czosnek,garlic,sprite_garlic,audio_garlic,shop,FALSE,,
+food_onion,цибуля,cebula,onion,sprite_onion,audio_onion,shop,FALSE,,
+food_pumpkin,дыня,dynia,pumpkin,sprite_pumpkin,audio_pumpkin,shop,FALSE,,
+food_salt,сіль,sól,salt,sprite_salt,audio_salt,shop,FALSE,,
+food_black_pepper,попер,pieprz,pepper,sprite_black_pepper,audio_black_pepper,shop,FALSE,,
+food_sugar,цукєр,cukier,sugar,sprite_sugar,audio_sugar,shop,FALSE,,
+food_mint,мята,mięta,mint,sprite_mint,audio_mint,shop,FALSE,,
+food_beer,пиво,piwo,beer,sprite_beer,audio_beer,shop,FALSE,,
+food_tomato,помідор,pomidor,tomato,sprite_tomato,audio_tomato,shop,FALSE,,
+food_buns,булкы,bułki,buns,sprite_buns,audio_buns,shop,FALSE,,
+animal_cow,корова,krowa,cow,sprite_animal_cow,audio_animal_cow,farm,FALSE,,
+animal_bull,бык,byk,bull,sprite_animal_bull,audio_animal_bull,farm,FALSE,,
+animal_calf,теля,cielę,calf,sprite_animal_calf,audio_animal_calf,farm,FALSE,,
+animal_hen,кура,kura,hen,sprite_animal_hen,audio_animal_hen,farm,FALSE,,
+animal_rooster,когут,kogut,rooster,sprite_animal_rooster,audio_animal_rooster,farm,FALSE,,
+animal_chick,куря,pisklę,chick,sprite_animal_chick,audio_animal_chick,farm,FALSE,,
+animal_goat,коза,koza,goat,sprite_animal_goat,audio_animal_goat,farm,FALSE,,
+animal_kid,кізя,koźlątko,kid,sprite_animal_kid,audio_animal_kid,farm,FALSE,,
+animal_sheep,уця,owca,sheep,sprite_animal_sheep,audio_animal_sheep,farm,FALSE,,
+animal_ram,баран,baran,ram,sprite_animal_ram,audio_animal_ram,farm,FALSE,,
+animal_lamb,ягня,jagnię,lamb,sprite_animal_lamb,audio_animal_lamb,farm,FALSE,,
+animal_male_cat,кіт,kot,cat,sprite_animal_cat,audio_animal_male_cat,farm,FALSE,,
+animal_kitten,котя,kocię,kitten,sprite_animal_kitten,audio_animal_kitten,farm,FALSE,,
+animal_dog,пес,pies,dog,sprite_animal_dog,audio_animal_dog,farm,FALSE,,
+animal_puppy,пся,szczenię,puppy,sprite_animal_puppy,audio_animal_puppy,farm,FALSE,,
+animal_goose,гус,gęś,goose,sprite_animal_goose,audio_animal_goose,farm,FALSE,,
+animal_gosling,гуся,gąska,gosling,sprite_animal_gosling,audio_animal_gosling,farm,FALSE,,
+animal_duck,качка,kaczka,duck,sprite_animal_duck,audio_animal_duck,farm,FALSE,,
+animal_duckling,качатко,kaczątko,duckling,sprite_animal_duckling,audio_animal_duckling,farm,FALSE,,
+animal_horse,кін,koń,horse,sprite_animal_horse,audio_animal_horse,farm,FALSE,,
+animal_foal,гача,źrebak,foal,sprite_animal_foal,audio_animal_foal,farm,FALSE,,
+animal_pig,свиня,świnia,pig,sprite_animal_pig,audio_animal_pig,farm,FALSE,,
+animal_piglet,паця,prosię,piglet,sprite_animal_piglet,audio_animal_piglet,farm,FALSE,,
+animal_tom_turkey,пуляк,indyk,tom turkey,sprite_animal_turkey,audio_animal_tom_turkey,farm,FALSE,,
+animal_turkey_poult,пульча,indyczek,turkey poult,sprite_animal_turkey_poult,audio_animal_turkey_poult,farm,FALSE,,
+family_you,я,ja,you,sprite_family_you,audio_family_you,family,FALSE,,
+family_mother,матір,matka,mother,sprite_family_mother,audio_family_mother,family,FALSE,,
+family_father,отец,ojciec,father,sprite_family_father,audio_family_father,family,FALSE,,
+family_grandmother,баба,babcia,grandmother,sprite_family_grandmother,audio_family_grandmother,family,FALSE,,
+family_grandfather,дідо,dziadek,grandfather,sprite_family_grandfather,audio_family_grandfather,family,FALSE,,
+family_brother,брат,brat,brother,sprite_family_brother,audio_family_brother,family,FALSE,,
+family_sister,сестра,siostra,sister,sprite_family_sister,audio_family_sister,family,FALSE,,
+family_family,родина,rodzina,family,sprite_family_family,audio_family_family,family,FALSE,,
+family_tree,дерево роду,drzewo genealogiczne,family tree,sprite_family_tree,audio_family_tree,family,FALSE,,
+family_aunt,тета,ciocia,aunt,sprite_family_aunt,audio_family_aunt,family,FALSE,,
+family_maternal_uncle,уйко,wujek,maternal uncle,sprite_family_maternal_uncle,audio_family_maternal_uncle,family,FALSE,,
+family_paternal_uncle,стрыко,stryjek,paternal uncle,sprite_family_paternal_uncle,audio_family_paternal_uncle,family,FALSE,,
+family_male_cousin,кузин,kuzyn,male cousin,sprite_family_male_cousin,audio_family_male_cousin,family,FALSE,,
+family_female_cousin,кузинка,kuzynka,female cousin,sprite_family_female_cousin,audio_family_female_cousin,family,FALSE,,
+family_great_grandfather,прадідо,pradziadek,great grandfather,sprite_family_great_grandfather,audio_family_great_grandfather,family,FALSE,,
+family_great_grandmother,прабаба,prababcia,great grandmother,sprite_family_great_grandmother,audio_family_great_grandmother,family,FALSE,,
+family_son,сын,syn,son,sprite_family_son,audio_family_son,family,FALSE,,
+family_daughter,дівка,córka,daughter,sprite_family_daughter,audio_family_daughter,family,FALSE,,
+family_husband,муж,mąż,husband,sprite_family_husband,audio_family_husband,family,FALSE,,
+family_wife,жена,żona,wife,sprite_family_wife,audio_family_wife,family,FALSE,,
+family_parents,родиче,rodzice,parents,sprite_family_parents,audio_family_parents,family,FALSE,,
+family_grandparents,дідове,dziadkowie,grandparents,sprite_family_grandparents,audio_family_grandparents,family,FALSE,,
+family_child,дітина,dziecko,child,sprite_family_child,audio_family_child,family,FALSE,,
+family_children,діти,dzieci,children,sprite_family_children,audio_family_children,family,FALSE,,
+family_grandchildren,внукы,wnukowie,grandchildren,sprite_family_grandchildren,audio_family_grandchildren,family,FALSE,,
+family_granddaughter,внучка,wnuczka,granddaughter,sprite_family_granddaughter,audio_family_granddaughter,family,FALSE,,
+family_grandson,внук,wnuk,grandson,sprite_family_grandson,audio_family_grandson,family,FALSE,,
+family_paternal_uncles_wife,стрына,stryjenka,paternal uncles wife,sprite_family_paternal_uncles_wife,audio_family_paternal_uncles_wife,family,FALSE,,
+family_maternal_uncles_wife,уйчына,wujenka,maternal uncles wife,sprite_family_maternal_uncles_wife,audio_family_maternal_uncles_wife,family,FALSE,,
+family_wifes_mother,матір жены,teściowa (matka żony),wifes mother,sprite_family_wifes_mother,audio_family_wifes_mother,family,FALSE,,
+family_husbands_mother,матір мужа,teściowa (matka męża),husbands mother,sprite_family_husbands_mother,audio_family_husbands_mother,family,FALSE,,
+family_wifes_father,отец жены,teść (ojciec żony),wifes father,sprite_family_wifes_father,audio_family_wifes_father,family,FALSE,,
+family_husbands_father,отец мужа,teść (ojciec męża),husbands father,sprite_family_husbands_father,audio_family_husbands_father,family,FALSE,,
+family_brothers_son,братанок,bratanek,brothers son,sprite_family_brothers_son,audio_family_brothers_son,family,FALSE,,
+family_sisters_son,сестренец,siostrzeniec,sisters son,sprite_family_sisters_son,audio_family_sisters_son,family,FALSE,,
+family_brothers_daughter,братаниця,bratanica,brothers daughter,sprite_family_brothers_daughter,audio_family_brothers_daughter,family,FALSE,,
+family_sisters_daughter,сестрениця,siostrzenica,sisters daughter,sprite_family_sisters_daughter,audio_family_sisters_daughter,family,FALSE,,
+family_daughter_in_law,невіста,synowa,daughter in law,sprite_family_daughter_in_law,audio_family_daughter_in_law,family,FALSE,,
+family_son_in_law,зят,zięć,son in law,sprite_family_son_in_law,audio_family_son_in_law,family,FALSE,,
+family_brothers_wife,братова,bratowa,brothers wife,sprite_family_brothers_wife,audio_family_brothers_wife,family,FALSE,,
+family_wifes_brother,брат жены,szwagier (brat żony),wifes brother,sprite_family_wifes_brother,audio_family_wifes_brother,family,FALSE,,
+family_husbands_brother,брат мужа,szwagier (brat męża),husbands brother,sprite_family_husbands_brother,audio_family_husbands_brother,family,FALSE,,
+family_wifes_sister,сестра жены,szwagierka (siostra żony),wifes sister,sprite_family_wifes_sister,audio_family_wifes_sister,family,FALSE,,
+family_husbands_sister,сестра мужа,szwagierka (siostra męża),husbands sister,sprite_family_husbands_sister,audio_family_husbands_sister,family,FALSE,,
+furniture_chair,кресло,krzesło,chair,sprite_furniture_chair,audio_furniture_chair,house,FALSE,,
+furniture_bed,постіль,łóżko,bed,sprite_furniture_bed,audio_furniture_bed,house,FALSE,,
+furniture_table,стіл,stół,table,sprite_furniture_table,audio_furniture_table,house,FALSE,,
+room_kitchen,кухня,kuchnia,kitchen,sprite_room_kitchen,audio_room_kitchen,house,FALSE,,
+room_bedroom,спальня,sypialnia,bedroom,sprite_room_bedroom,audio_room_bedroom,house,FALSE,,
+house_house,хыжа,dom,house,sprite_house_house,audio_house_house,house,FALSE,,
+room_living_room,сьвітлиця,salon,living room,sprite_room_living_room,audio_room_living_room,house,FALSE,,
+room_hallway,коритар,korytarz,hallway,sprite_room_hallway,audio_room_hallway,house,FALSE,,
+room_bathroom,лазничка,łazienka,bathroom,sprite_room_bathroom,audio_room_bathroom,house,FALSE,,
+house_stool,стільчык,taboret,stool,sprite_house_stool,audio_house_stool,house,FALSE,,
+house_window,выгляд,okno,window,sprite_house_window,audio_house_window,house,FALSE,,
+house_door,двері,drzwi,door,sprite_house_door,audio_house_door,house,FALSE,,
+house_painting,образ,obraz,painting,sprite_house_painting,audio_house_painting,house,FALSE,,
+house_cabinet,шафка,szafka,cabinet,sprite_house_cabinet,audio_house_cabinet,house,FALSE,,
+house_shelf,поличка,półka,shelf,sprite_house_shelf,audio_house_shelf,house,FALSE,,
+furniture_wardrobe,шафа,szafa,wardrobe,sprite_furniture_wardrobe,audio_furniture_wardrobe,house,FALSE,,
+house_lamp,лямпа,lampa,lamp,sprite_house_lamp,audio_house_lamp,house,FALSE,,
+house_small_lamp,лямпка,lampka,small lamp,sprite_house_small_lamp,audio_house_small_lamp,house,FALSE,,
+house_sofa,лежанка,kanapa,sofa,sprite_house_sofa,audio_house_sofa,house,FALSE,,
+house_pot,горнец,garnek,pot,sprite_house_pot,audio_house_pot,house,FALSE,,
+house_mug,горнятко,kubek,mug,sprite_house_mug,audio_house_mug,house,FALSE,,
+house_bowl,миска,miska,bowl,sprite_house_bowl,audio_house_bowl,house,FALSE,,
+house_plate,танір,talerz,plate,sprite_house_plate,audio_house_plate,house,FALSE,,
+house_board,таблиця,tablica,board,sprite_house_board,audio_house_board,house,FALSE,,
+house_speaker,голосник,głośnik,speaker,sprite_house_speaker,audio_house_speaker,house,FALSE,,
+house_stove,пец,kuchenka,stove,sprite_house_stove,audio_house_stove,house,FALSE,,
+house_can,бляшанка,puszka,can,sprite_house_can,audio_house_can,house,FALSE,,
+house_bottle,фляшка,butelka,bottle,sprite_house_bottle,audio_house_bottle,house,FALSE,,
+house_glass,шклянка,szklanka,glass,sprite_house_glass,audio_house_glass,house,FALSE,,
+house_jug,дзбанок,dzbanek,jug,sprite_house_jug,audio_house_jug,house,FALSE,,
+house_refrigerator,ледівка,lodówka,refrigerator,sprite_house_refrigerator,audio_house_refrigerator,house,FALSE,,
+house_tap,кран,kran,tap,sprite_house_tap,audio_house_tap,house,FALSE,,
+house_sink,злив,zlew,sink,sprite_house_sink,audio_house_sink,house,FALSE,,
+house_ceiling,повала,sufit,ceiling,sprite_house_ceiling,audio_house_ceiling,house,FALSE,,
+house_wall,стіна,ściana,wall,sprite_house_wall,audio_house_wall,house,FALSE,,
+house_plant,рослина,roślina,plant,sprite_house_plant,audio_house_plant,house,FALSE,,
+house_clock,дзыґар,zegar,clock,sprite_house_clock,audio_house_clock,house,FALSE,,
+house_mirror,дзеркало,lustro,mirror,sprite_house_mirror,audio_house_mirror,house,FALSE,,
+house_chest,лада,skrzynia,chest,sprite_house_chest,audio_house_chest,house,FALSE,,
+house_pillow,заголовок,poduszka,pillow,sprite_house_pillow,audio_house_pillow,house,FALSE,,
+house_spoon,лжыця,łyżka,spoon,sprite_house_spoon,audio_house_spoon,house,FALSE,,
+house_fork,вилкы,widelec,fork,sprite_house_fork,audio_house_fork,house,FALSE,,
+house_knife,ніж,nóż,knife,sprite_house_knife,audio_house_knife,house,FALSE,,
+house_clothes,лахы,ubrania,clothes,sprite_house_clothes,audio_house_clothes,house,FALSE,,
+house_carpet,диван,dywan,carpet,sprite_house_carpet,audio_house_carpet,house,FALSE,,
+house_floor,підлога,podłoga,floor,sprite_house_floor,audio_house_floor,house,FALSE,,
+house_vacuum_cleaner,одпорошач,odkurzacz,vacuum cleaner,sprite_house_vacuum_cleaner,audio_house_vacuum_cleaner,house,FALSE,,
+house_light_switch,влучник,włącznik,light switch,sprite_house_light_switch,audio_house_light_switch,house,FALSE,,
+house_radio,радіо,radio,radio,sprite_house_radio,audio_house_radio,house,FALSE,,
+house_bathtub,ванов,wanna,bathtub,sprite_house_bathtub,audio_house_bathtub,house,FALSE,,
+house_broom,мітла,miotła,broom,sprite_house_broom,audio_house_broom,house,FALSE,,
+house_rolling_pin,катулька,wałek do ciasta,rolling pin,sprite_house_rolling_pin,audio_house_rolling_pin,house,FALSE,,
+house_soap,мыдло,mydło,soap,sprite_house_soap,audio_house_soap,house,FALSE,,
+house_shampoo,шампон,szampon,shampoo,sprite_house_shampoo,audio_house_shampoo,house,FALSE,,
+house_towel,ручник,ręcznik,towel,sprite_house_towel,audio_house_towel,house,FALSE,,
+house_toothbrush,щіточка до зубів,szczoteczka do zębów,toothbrush,sprite_house_toothbrush,audio_house_toothbrush,house,FALSE,,
+house_toothpaste,паста до зубів,pasta do zębów,toothpaste,sprite_house_toothpaste,audio_house_toothpaste,house,FALSE,,
+house_hairbrush,щітка до волося,szczotka do włosów,hairbrush,sprite_house_hairbrush,audio_house_hairbrush,house,FALSE,,
+house_comb,гребін,grzebień,comb,sprite_house_comb,audio_house_comb,house,FALSE,,
+house_shoes,черевікы,buty,shoes,sprite_house_shoes,audio_house_shoes,house,FALSE,,
+house_toys,чачка,zabawki,toys,sprite_house_toys,audio_house_toys,house,FALSE,,
+house_paper,папір,papier,paper,sprite_house_paper,audio_house_paper,house,FALSE,,
+house_frying_pan,пановка,patelnia,frying pan,sprite_house_frying_pan,audio_house_frying_pan,house,FALSE,,
+house_books,книжкы,książki,books,sprite_house_books,audio_house_books,house,FALSE,,
+house_small_table,столик,stolik,small table,sprite_house_small_table,audio_house_small_table,house,FALSE,,
+house_notebook,зошыт,zeszyt,notebook,sprite_house_notebook,audio_house_notebook,house,FALSE,,
+house_calendar,календар,kalendarz,calendar,sprite_house_calendar,audio_house_calendar,house,FALSE,,
+house_washing_machine,пралька,pralka,washing machine,sprite_house_washing_machine,audio_house_washing_machine,house,FALSE,,
+house_kettle,чайник,czajnik,kettle,sprite_house_kettle,audio_house_kettle,house,FALSE,,
+house_game,гра,gra,game,sprite_house_game,audio_house_game,house,FALSE,,
+house_television,телевізор,telewizor,television,sprite_house_television,audio_house_television,house,FALSE,,
+house_computer,компутер,komputer,computer,sprite_house_computer,audio_house_computer,house,FALSE,,
+house_fireplace,коминок,kominek,fireplace,sprite_house_fireplace,audio_house_fireplace,house,FALSE,,
+house_stairs,сходы,schody,stairs,sprite_house_stairs,audio_house_stairs,house,FALSE,,
+weather_sunny,сонце сьвітит,słońce świeci,the sun is shining,sprite_weather_sunny,audio_weather_sunny,weather,FALSE,,
+weather_rainy,ліє дойдж,pada deszcz,it is raining,sprite_weather_rainy,audio_weather_rainy,weather,FALSE,,
+weather_snowy,курит сьніг,pada śnieg,it is snowing,sprite_weather_snowy,audio_weather_snowy,weather,FALSE,,
+weather_spring,яр,wiosna,spring,sprite_weather_spring,audio_weather_spring,weather,FALSE,,
+weather_summer,літо,lato,summer,sprite_weather_summer,audio_weather_summer,weather,FALSE,,
+weather_autumn,осін,jesień,autumn,sprite_weather_autumn,audio_weather_autumn,weather,FALSE,,
+weather_winter,зима,zima,winter,sprite_weather_winter,audio_weather_winter,weather,FALSE,,
+weather_sun,сонце,słońce,sun,sprite_weather_sun,audio_weather_sun,weather,FALSE,,
+weather_moon,місяц,księżyc,moon,sprite_weather_moon,audio_weather_moon,weather,FALSE,,
+weather_stars,зьвізды,gwiazdy,stars,sprite_weather_stars,audio_weather_stars,weather,FALSE,,
+weather_rainbow,дуга,tęcza,rainbow,sprite_weather_rainbow,audio_weather_rainbow,weather,FALSE,,
+weather_clouds,хмары,chmury,clouds,sprite_weather_clouds,audio_weather_clouds,weather,FALSE,,
+weather_dark_clouds,мракы,ciemne chmury,dark clouds,sprite_weather_dark_clouds,audio_weather_dark_clouds,weather,FALSE,,
+weather_became_cloudy,захмарило ся,zachmurzyło się,it became cloudy,sprite_weather_became_cloudy,audio_weather_became_cloudy,weather,FALSE,,
+weather_becoming_cloudy,хмарит ся,chmurzy się,it is getting cloudy,sprite_weather_becoming_cloudy,audio_weather_becoming_cloudy,weather,FALSE,,
+weather_rain,дойдж,deszcz,rain,sprite_weather_rain,audio_weather_rain,weather,FALSE,,
+weather_moisture,вільгіт,wilgoć,moisture,sprite_weather_moisture,audio_weather_moisture,weather,FALSE,,
+weather_fog,гмла,mgła,fog,sprite_weather_fog,audio_weather_fog,weather,FALSE,,
+weather_air,повітря,powietrze,air,sprite_weather_air,audio_weather_air,weather,FALSE,,
+weather_snow,сьніг,śnieg,snow,sprite_weather_snow,audio_weather_snow,weather,FALSE,,
+weather_blizzard,замітя,zamieć,blizzard,sprite_weather_blizzard,audio_weather_blizzard,weather,FALSE,,
+weather_ice,лед,lód,ice,sprite_weather_ice,audio_weather_ice,weather,FALSE,,
+weather_snow_melted,стаял сьніг,stopniał śnieg,the snow melted,sprite_weather_snow_melted,audio_weather_snow_melted,weather,FALSE,,
+weather_wind,вітер,wiatr,wind,sprite_weather_wind,audio_weather_wind,weather,FALSE,,
+weather_windstorm,дуявиця,wichura,windstorm,sprite_weather_windstorm,audio_weather_windstorm,weather,FALSE,,
+weather_storm,буря,burza,storm,sprite_weather_storm,audio_weather_storm,weather,FALSE,,
+weather_lightning_strike,перун,piorun,lightning strike,sprite_weather_lightning_strike,audio_weather_lightning_strike,weather,FALSE,,
+weather_lightning,блискавиця,błyskawica,lightning,sprite_weather_lightning,audio_weather_lightning,weather,FALSE,,
+weather_thunder,грім,grzmot,thunder,sprite_weather_thunder,audio_weather_thunder,weather,FALSE,,
+weather_thundering,гырмит,grzmi,it is thundering,sprite_weather_thundering,audio_weather_thundering,weather,FALSE,,
+weather_day,ден,dzień,day,sprite_weather_day,audio_weather_day,weather,FALSE,,
+weather_in_daytime,в ден,w dzień,in the daytime,sprite_weather_in_daytime,audio_weather_in_daytime,weather,FALSE,,
+weather_bright,ясно,jasno,bright,sprite_weather_bright,audio_weather_bright,weather,FALSE,,
+weather_getting_light,розвиднят ся,robi się jasno,it is getting light,sprite_weather_getting_light,audio_weather_getting_light,weather,FALSE,,
+weather_night,ніч,noc,night,sprite_weather_night,audio_weather_night,weather,FALSE,,
+weather_at_night,в ночы,w nocy,at night,sprite_weather_at_night,audio_weather_at_night,weather,FALSE,,
+weather_dark,темно,ciemno,dark,sprite_weather_dark,audio_weather_dark,weather,FALSE,,
+weather_getting_dark,змеркат ся,zmierzcha,it is getting dark,sprite_weather_getting_dark,audio_weather_getting_dark,weather,FALSE,,
+weather_positive_temperature_question,Кілко тепла на дворі?,Jaka temperatura na plusie?,What is the temperature above zero?,sprite_weather_positive_temperature_question,audio_weather_positive_temperature_question,weather,FALSE,,
+weather_scorching_heat,спекота,skwar,scorching heat,sprite_weather_scorching_heat,audio_weather_scorching_heat,weather,FALSE,,
+weather_heat,горячка,upał,heat,sprite_weather_heat,audio_weather_heat,weather,FALSE,,
+weather_hot,горячо,gorąco,hot,sprite_weather_hot,audio_weather_hot,weather,FALSE,,
+weather_warm,тепло,ciepło,warm,sprite_weather_warm,audio_weather_warm,weather,FALSE,,
+weather_negative_temperature_question,Якій великій мороз?,Jaka temperatura na minusie?,How far below zero is the temperature?,sprite_weather_negative_temperature_question,audio_weather_negative_temperature_question,weather,FALSE,,
+weather_cool,холодно,chłodno,cool,sprite_weather_cool,audio_weather_cool,weather,FALSE,,
+weather_cold,студено,zimno,cold,sprite_weather_cold,audio_weather_cold,weather,FALSE,,
+weather_very_cold,студін,bardzo zimno,very cold,sprite_weather_very_cold,audio_weather_very_cold,weather,FALSE,,
+weather_frost,мороз,mróz,frost,sprite_weather_frost,audio_weather_frost,weather,FALSE,,
+weather_weather,хвиля,pogoda,weather,sprite_weather_weather,audio_weather_weather,weather,FALSE,,
+number_1,єден,1,1,sprite_number_1,audio_number_1,numbers,FALSE,,
+number_2,два,2,2,sprite_number_2,audio_number_2,numbers,FALSE,,
+number_3,три,3,3,sprite_number_3,audio_number_3,numbers,FALSE,,
+number_4,штырі,4,4,sprite_number_4,audio_number_4,numbers,FALSE,,
+number_5,пят,5,5,sprite_number_5,audio_number_5,numbers,FALSE,,
+number_6,шіст,6,6,sprite_number_6,audio_number_6,numbers,FALSE,,
+number_7,сім,7,7,sprite_number_7,audio_number_7,numbers,FALSE,,
+number_8,вісем,8,8,sprite_number_8,audio_number_8,numbers,FALSE,,
+number_9,девят,9,9,sprite_number_9,audio_number_9,numbers,FALSE,,
+number_10,десят,10,10,sprite_number_10,audio_number_10,numbers,FALSE,,
+number_11,єденадцет,11,11,sprite_number_11,audio_number_11,numbers,FALSE,,
+number_12,дванадцет,12,12,sprite_number_12,audio_number_12,numbers,FALSE,,
+number_13,тринадцет,13,13,sprite_number_13,audio_number_13,numbers,FALSE,,
+number_14,штырнадцет,14,14,sprite_number_14,audio_number_14,numbers,FALSE,,
+number_15,пятнадцет,15,15,sprite_number_15,audio_number_15,numbers,FALSE,,
+number_16,шістнадцет,16,16,sprite_number_16,audio_number_16,numbers,FALSE,,
+number_17,сімнадцет,17,17,sprite_number_17,audio_number_17,numbers,FALSE,,
+number_18,вісемнадцет,18,18,sprite_number_18,audio_number_18,numbers,FALSE,,
+number_19,девятнадцет,19,19,sprite_number_19,audio_number_19,numbers,FALSE,,
+number_20,двадцет,20,20,sprite_number_20,audio_number_20,numbers,FALSE,,
+number_21,двадцет єден,21,21,sprite_number_21,audio_number_21,numbers,FALSE,,
+number_22,двадцет два,22,22,sprite_number_22,audio_number_22,numbers,FALSE,,
+number_23,двадцет три,23,23,sprite_number_23,audio_number_23,numbers,FALSE,,
+number_24,двадцет штырі,24,24,sprite_number_24,audio_number_24,numbers,FALSE,,
+number_25,двадцет пят,25,25,sprite_number_25,audio_number_25,numbers,FALSE,,
+number_26,двадцет шіст,26,26,sprite_number_26,audio_number_26,numbers,FALSE,,
+number_27,двадцет сім,27,27,sprite_number_27,audio_number_27,numbers,FALSE,,
+number_28,двадцет вісем,28,28,sprite_number_28,audio_number_28,numbers,FALSE,,
+number_29,двадцет девят,29,29,sprite_number_29,audio_number_29,numbers,FALSE,,
+number_30,тридцет,30,30,sprite_number_30,audio_number_30,numbers,FALSE,,
+number_31,тридцет єден,31,31,sprite_number_31,audio_number_31,numbers,FALSE,,
+number_32,тридцет два,32,32,sprite_number_32,audio_number_32,numbers,FALSE,,
+number_33,тридцет три,33,33,sprite_number_33,audio_number_33,numbers,FALSE,,
+number_34,тридцет штырі,34,34,sprite_number_34,audio_number_34,numbers,FALSE,,
+number_35,тридцет пят,35,35,sprite_number_35,audio_number_35,numbers,FALSE,,
+number_36,тридцет шіст,36,36,sprite_number_36,audio_number_36,numbers,FALSE,,
+number_37,тридцет сім,37,37,sprite_number_37,audio_number_37,numbers,FALSE,,
+number_38,тридцет вісем,38,38,sprite_number_38,audio_number_38,numbers,FALSE,,
+number_39,тридцет девят,39,39,sprite_number_39,audio_number_39,numbers,FALSE,,
+number_40,сорок,40,40,sprite_number_40,audio_number_40,numbers,FALSE,,
+number_41,сорок єден,41,41,sprite_number_41,audio_number_41,numbers,FALSE,,
+number_42,сорок два,42,42,sprite_number_42,audio_number_42,numbers,FALSE,,
+number_43,сорок три,43,43,sprite_number_43,audio_number_43,numbers,FALSE,,
+number_44,сорок штырі,44,44,sprite_number_44,audio_number_44,numbers,FALSE,,
+number_45,сорок пят,45,45,sprite_number_45,audio_number_45,numbers,FALSE,,
+number_46,сорок шіст,46,46,sprite_number_46,audio_number_46,numbers,FALSE,,
+number_47,сорок сім,47,47,sprite_number_47,audio_number_47,numbers,FALSE,,
+number_48,сорок вісем,48,48,sprite_number_48,audio_number_48,numbers,FALSE,,
+number_49,сорок девят,49,49,sprite_number_49,audio_number_49,numbers,FALSE,,
+number_50,пятдесят,50,50,sprite_number_50,audio_number_50,numbers,FALSE,,
+number_51,пятдесят єден,51,51,sprite_number_51,audio_number_51,numbers,FALSE,,
+number_52,пятдесят два,52,52,sprite_number_52,audio_number_52,numbers,FALSE,,
+number_53,пятдесят три,53,53,sprite_number_53,audio_number_53,numbers,FALSE,,
+number_54,пятдесят штырі,54,54,sprite_number_54,audio_number_54,numbers,FALSE,,
+number_55,пятдесят пят,55,55,sprite_number_55,audio_number_55,numbers,FALSE,,
+number_56,пятдесят шіст,56,56,sprite_number_56,audio_number_56,numbers,FALSE,,
+number_57,пятдесят сім,57,57,sprite_number_57,audio_number_57,numbers,FALSE,,
+number_58,пятдесят вісем,58,58,sprite_number_58,audio_number_58,numbers,FALSE,,
+number_59,пятдесят девят,59,59,sprite_number_59,audio_number_59,numbers,FALSE,,
+number_60,шістдесят,60,60,sprite_number_60,audio_number_60,numbers,FALSE,,
+number_61,шістдесят єден,61,61,sprite_number_61,audio_number_61,numbers,FALSE,,
+number_62,шістдесят два,62,62,sprite_number_62,audio_number_62,numbers,FALSE,,
+number_63,шістдесят три,63,63,sprite_number_63,audio_number_63,numbers,FALSE,,
+number_64,шістдесят штырі,64,64,sprite_number_64,audio_number_64,numbers,FALSE,,
+number_65,шістдесят пят,65,65,sprite_number_65,audio_number_65,numbers,FALSE,,
+number_66,шістдесят шіст,66,66,sprite_number_66,audio_number_66,numbers,FALSE,,
+number_67,шістдесят сім,67,67,sprite_number_67,audio_number_67,numbers,FALSE,,
+number_68,шістдесят вісем,68,68,sprite_number_68,audio_number_68,numbers,FALSE,,
+number_69,шістдесят девят,69,69,sprite_number_69,audio_number_69,numbers,FALSE,,
+number_70,сімдесят,70,70,sprite_number_70,audio_number_70,numbers,FALSE,,
+number_71,сімдесят єден,71,71,sprite_number_71,audio_number_71,numbers,FALSE,,
+number_72,сімдесят два,72,72,sprite_number_72,audio_number_72,numbers,FALSE,,
+number_73,сімдесят три,73,73,sprite_number_73,audio_number_73,numbers,FALSE,,
+number_74,сімдесят штырі,74,74,sprite_number_74,audio_number_74,numbers,FALSE,,
+number_75,сімдесят пят,75,75,sprite_number_75,audio_number_75,numbers,FALSE,,
+number_76,сімдесят шіст,76,76,sprite_number_76,audio_number_76,numbers,FALSE,,
+number_77,сімдесят сім,77,77,sprite_number_77,audio_number_77,numbers,FALSE,,
+number_78,сімдесят вісем,78,78,sprite_number_78,audio_number_78,numbers,FALSE,,
+number_79,сімдесят девят,79,79,sprite_number_79,audio_number_79,numbers,FALSE,,
+number_80,вісемдесят,80,80,sprite_number_80,audio_number_80,numbers,FALSE,,
+number_81,вісемдесят єден,81,81,sprite_number_81,audio_number_81,numbers,FALSE,,
+number_82,вісемдесят два,82,82,sprite_number_82,audio_number_82,numbers,FALSE,,
+number_83,вісемдесят три,83,83,sprite_number_83,audio_number_83,numbers,FALSE,,
+number_84,вісемдесят штырі,84,84,sprite_number_84,audio_number_84,numbers,FALSE,,
+number_85,вісемдесят пят,85,85,sprite_number_85,audio_number_85,numbers,FALSE,,
+number_86,вісемдесят шіст,86,86,sprite_number_86,audio_number_86,numbers,FALSE,,
+number_87,вісемдесят сім,87,87,sprite_number_87,audio_number_87,numbers,FALSE,,
+number_88,вісемдесят вісем,88,88,sprite_number_88,audio_number_88,numbers,FALSE,,
+number_89,вісемдесят девят,89,89,sprite_number_89,audio_number_89,numbers,FALSE,,
+number_90,девятдесят,90,90,sprite_number_90,audio_number_90,numbers,FALSE,,
+number_91,девятдесят єден,91,91,sprite_number_91,audio_number_91,numbers,FALSE,,
+number_92,девятдесят два,92,92,sprite_number_92,audio_number_92,numbers,FALSE,,
+number_93,девятдесят три,93,93,sprite_number_93,audio_number_93,numbers,FALSE,,
+number_94,девятдесят штырі,94,94,sprite_number_94,audio_number_94,numbers,FALSE,,
+number_95,девятдесят пят,95,95,sprite_number_95,audio_number_95,numbers,FALSE,,
+number_96,девятдесят шіст,96,96,sprite_number_96,audio_number_96,numbers,FALSE,,
+number_97,девятдесят сім,97,97,sprite_number_97,audio_number_97,numbers,FALSE,,
+number_98,девятдесят вісем,98,98,sprite_number_98,audio_number_98,numbers,FALSE,,
+number_99,девятдесят девят,99,99,sprite_number_99,audio_number_99,numbers,FALSE,,
+number_100,сто,100,100,sprite_number_100,audio_number_100,numbers,FALSE,,
+number_200,двіста,200,200,sprite_number_200,audio_number_200,numbers,FALSE,,
+number_300,триста,300,300,sprite_number_300,audio_number_300,numbers,FALSE,,
+number_400,штыриста,400,400,sprite_number_400,audio_number_400,numbers,FALSE,,
+number_500,пятсто,500,500,sprite_number_500,audio_number_500,numbers,FALSE,,
+number_600,шістсто,600,600,sprite_number_600,audio_number_600,numbers,FALSE,,
+number_700,сімсто,700,700,sprite_number_700,audio_number_700,numbers,FALSE,,
+number_800,вісемсто,800,800,sprite_number_800,audio_number_800,numbers,FALSE,,
+number_900,девятсто,900,900,sprite_number_900,audio_number_900,numbers,FALSE,,
+number_1000,тисяч,1000,1000,sprite_number_1000,audio_number_1000,numbers,FALSE,,
+number_1000000,мелийон,1000000,1000000,sprite_number_1000000,audio_number_1000000,numbers,FALSE,,
+letter_a,а,,,,audio_letter_a,alphabet,FALSE,А,[a]
+letter_be,б,,,,audio_letter_be,alphabet,FALSE,Б,[be]
+letter_ve,в,,,,audio_letter_ve,alphabet,FALSE,В,[we]
+letter_he,г,,,,audio_letter_he,alphabet,FALSE,Г,[ha]
+letter_ghe,ґ,,,,audio_letter_ghe,alphabet,FALSE,Ґ,[gie]
+letter_de,д,,,,audio_letter_de,alphabet,FALSE,Д,[de]
+letter_e,е,,,,audio_letter_e,alphabet,FALSE,Е,[e]
+letter_ye,є,,,,audio_letter_ye,alphabet,FALSE,Є,[je]
+letter_zhe,ж,,,,audio_letter_zhe,alphabet,FALSE,Ж,[żet]
+letter_ze,з,,,,audio_letter_ze,alphabet,FALSE,З,[zet]
+letter_i,і,,,,audio_letter_i,alphabet,FALSE,І,[i]
+letter_y,и,,,,audio_letter_y,alphabet,FALSE,И,[y]
+letter_yeru,ы,,,,audio_letter_yeru,alphabet,FALSE,Ы,[ŷ]
+letter_short_i,й,,,,audio_letter_short_i,alphabet,FALSE,Й,[jot]
+letter_ka,к,,,,audio_letter_ka,alphabet,FALSE,К,[ka]
+letter_el,л,,,,audio_letter_el,alphabet,FALSE,Л,[eł]
+letter_em,м,,,,audio_letter_em,alphabet,FALSE,М,[em]
+letter_en,н,,,,audio_letter_en,alphabet,FALSE,Н,[en]
+letter_o,о,,,,audio_letter_o,alphabet,FALSE,О,[o]
+letter_pe,п,,,,audio_letter_pe,alphabet,FALSE,П,[pe]
+letter_er,р,,,,audio_letter_er,alphabet,FALSE,Р,[er]
+letter_es,с,,,,audio_letter_es,alphabet,FALSE,С,[es]
+letter_te,т,,,,audio_letter_te,alphabet,FALSE,Т,[te]
+letter_u,у,,,,audio_letter_u,alphabet,FALSE,У,[u]
+letter_ef,ф,,,,audio_letter_ef,alphabet,FALSE,Ф,[ef]
+letter_kha,х,,,,audio_letter_kha,alphabet,FALSE,Х,[cha]
+letter_tse,ц,,,,audio_letter_tse,alphabet,FALSE,Ц,[ce]
+letter_che,ч,,,,audio_letter_che,alphabet,FALSE,Ч,[cze]
+letter_sha,ш,,,,audio_letter_sha,alphabet,FALSE,Ш,[sza]
+letter_shcha,щ,,,,audio_letter_shcha,alphabet,FALSE,Щ,[szcza]
+letter_yu,ю,,,,audio_letter_yu,alphabet,FALSE,Ю,[ju]
+letter_ya,я,,,,audio_letter_ya,alphabet,FALSE,Я,[ja]
+letter_soft_sign,ь,,,,audio_letter_soft_sign,alphabet,FALSE,Ь,miękki znak
+letter_hard_sign,ъ,,,,audio_letter_hard_sign,alphabet,FALSE,Ъ,twardy znak

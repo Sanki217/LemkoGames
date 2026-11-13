@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: widelec
   english: fork
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: f4ea2d59516f485393b141276cfcb8bc, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 53. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

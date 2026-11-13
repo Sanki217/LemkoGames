@@ -31,7 +31,7 @@ namespace Lemko
             submit.gameObject.SetActive(false); speak.interactable=false; prompt.text="Match each picture with its Lemko word";
             picture.Clear(); matched.Clear(); first=null; evaluating=false; pairsFound=0;
             var pool=definition.pool.Distinct().ToList(); Shuffle(pool);
-            pool=pool.OrderByDescending(w=>Session.Progress.encountered.Contains(w.id)).Take(definition.pairs).ToList();
+            pool=pool.OrderByDescending(w=>Session.ReviewPriority(w)).ThenByDescending(w=>Session.Progress.encountered.Contains(w.id)).Take(definition.pairs).ToList();
             boardWords.Clear(); boardWords.AddRange(pool); checkWords.Clear(); checkWords.AddRange(pool.Take(Mathf.Clamp(associationChecks,0,2)));
             var cards=pool.SelectMany(w=>new[]{(w,true),(w,false)}).ToList(); Shuffle(cards);
             for(int i=0;i<cards.Count;i++) {
@@ -50,8 +50,13 @@ namespace Lemko
         IEnumerator Evaluate(ActivityToken a,ActivityToken b)
         {
             yield return new WaitForSecondsRealtime(definition.revealSeconds);
+            while(Running && !Session.CanAnswer) yield return null;
+            if(!Running) yield break;
             if(a.view.Entry==b.view.Entry && picture[a]!=picture[b]) {
-                matched.Add(a); matched.Add(b); pairsFound++; feedback.text="Pair found! "+pairsFound+"/"+definition.pairs; Session.PresentFeedback(true);
+                matched.Add(a); matched.Add(b);
+                a.backing.color=b.backing.color=new Color(.78f,.94f,.85f);
+                PresentationMotion.Pulse(a.transform,Session); PresentationMotion.Pulse(b.transform,Session);
+                Session.audioService.Play(a.view.Entry.pronunciation); pairsFound++; feedback.text="Pair found! "+pairsFound+"/"+definition.pairs; Session.PresentFeedback(true);
                 if(pairsFound==definition.pairs) {
                     if(checkWords.Count==0) Answer(true,"complete","All pairs found.");
                     else { boardFinished=true; next.gameObject.SetActive(true); next.GetComponentInChildren<TMPro.TMP_Text>().text="Check words"; feedback.text="Packing pairs ready! Now try "+checkWords.Count+" short word checks without card positions."; }

@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: kuzynka
   english: female cousin
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: a048cfd125074601a53dce654571bc36, type: 3}
   tags:
   - family
-  - source_basic
   verified: 0
   notes: "Source: family_source.csv, row 17. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation.  Chose explicit cousin variant to avoid

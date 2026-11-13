@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "zi\u0119\u0107"
   english: son in law
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 968b337949564b6fa98fbc577976dd43, type: 3}
   tags:
   - family
-  - source_advanced
   verified: 0
   notes: 'Source: family_source.csv, row 45. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: wichura
   english: windstorm
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 4f01dccfdb1143689c4137f9397c5e0b, type: 3}
   tags:
   - weather
   verified: 0

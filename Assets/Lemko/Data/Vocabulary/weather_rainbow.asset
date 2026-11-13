@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: "t\u0119cza"
   english: rainbow
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 2a6ed423933c4a738f1fca20849f5ff6, type: 3}
   tags:
   - weather
   verified: 0

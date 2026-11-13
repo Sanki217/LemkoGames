@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: tablica
   english: board
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 8c1152c178f14de68328790c9b4e1946, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 30. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

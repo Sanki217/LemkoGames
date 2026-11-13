@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "\u017Arebak"
   english: foal
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: cb5e7b2fad734793b4fb4380e2260749, type: 3}
   tags:
   - farm
-  - animal
   verified: 0
   notes: "Source: farm_source.csv, row 28. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation.  Source alternatives: \u0433\u0430\u0447\u0430

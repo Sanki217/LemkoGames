@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: wnuczka
   english: granddaughter
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: f65cc94685314101a96350073c56dd5a, type: 3}
   tags:
   - family
-  - source_basic
   verified: 0
   notes: 'Source: family_source.csv, row 29. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

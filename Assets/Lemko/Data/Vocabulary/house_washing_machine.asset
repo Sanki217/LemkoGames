@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: pralka
   english: washing machine
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 52b7eb5baf6c44fd9030ea6aa17c14f7, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 94. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

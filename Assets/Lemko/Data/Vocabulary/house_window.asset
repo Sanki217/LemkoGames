@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: okno
   english: window
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: f65465fb68f6415bab1251015d59c846, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 12. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

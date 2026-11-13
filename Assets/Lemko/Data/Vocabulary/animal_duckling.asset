@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "kacz\u0105tko"
   english: duckling
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: f2152f8ee9334a019e25f76fa11c15b0, type: 3}
   tags:
   - farm
-  - animal
   verified: 0
   notes: 'Source: farm_source.csv, row 25. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

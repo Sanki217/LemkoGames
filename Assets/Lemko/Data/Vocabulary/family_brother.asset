@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: brat
   english: brother
   sprite: {fileID: 21300000, guid: 746e26284fbf05c499f144d6eb64773e, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 112b378e85a5452f8a4076acf1d4e4b9, type: 3}
   tags:
   - family
-  - source_basic
   verified: 0
   notes: 'Source: family_source.csv, row 14. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

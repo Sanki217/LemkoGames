@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "wa\u0142ek do ciasta"
   english: rolling pin
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 26db81bfd15e47bc851c18b61c90df2a, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 71. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

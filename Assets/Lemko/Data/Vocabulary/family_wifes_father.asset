@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "te\u015B\u0107 (ojciec \u017Cony)"
   english: wifes father
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: a10c8e59bf08489397e86b843724e245, type: 3}
   tags:
   - family
-  - source_advanced
   verified: 0
   notes: "Source: family_source.csv, row 38. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation.  Source alternatives: \u043E\u0442\u0435\u0446

@@ -52,7 +52,7 @@ Spelling uses Unicode NFC text elements, preserving case, accents and apostrophe
 
 Wrong editable answers cost a life only on Submit. Repeating an unchanged wrong answer is ignored. Correct answers lock until Next. Farm starts with an empty pen; House starts with empty rooms for each task. Ordinary Memory mismatches never consume lives.
 
-Session-only: lives, practice mode, the current task, placed objects, flipped cards, current score/streak and hint count. Persisted: audio/language preferences, encountered vocabulary, completion counts, last/best points and simple result details. Old Shop saves remain compatible. No accounts or network services are used.
+During a play session, the activities share vocabulary encounters, completions, scores and preferences. Restarting the game starts a fresh session.
 
 ## Safe setup and validation
 

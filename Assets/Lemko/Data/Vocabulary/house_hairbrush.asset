@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "szczotka do w\u0142os\xF3w"
   english: hairbrush
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 0a94512479044633811d7d76a3a5e3b7, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 78. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

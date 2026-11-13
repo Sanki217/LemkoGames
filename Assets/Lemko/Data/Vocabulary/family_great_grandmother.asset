@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: prababcia
   english: great grandmother
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: c3a6d85b0ca34ff0abe6800f07d26ae4, type: 3}
   tags:
   - family
-  - source_basic
   verified: 0
   notes: 'Source: family_source.csv, row 19. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

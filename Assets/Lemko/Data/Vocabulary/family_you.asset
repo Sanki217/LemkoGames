@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: ja
   english: you
   sprite: {fileID: 21300000, guid: e9815e64dbe057343b4f24b929636e8a, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 563a3dbf34c54d38aecbb3293e4702cc, type: 3}
   tags:
   - family
-  - source_basic
   verified: 0
   notes: 'Source: family_source.csv, row 6. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

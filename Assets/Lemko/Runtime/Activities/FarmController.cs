@@ -35,10 +35,11 @@ namespace Lemko
         {
             if(!Ready || !definition.pool.Contains(word) || placed.Count>=12) return false;
             if(!QuantityTasks) { foreach(var old in placed) { old.gameObject.SetActive(false); Destroy(old.gameObject); } placed.Clear(); }
-            var token=Token(word,Vector2.zero,"placed",Remove); placed.Add(token); Arrange(); return true;
+            var token=Token(word,Vector2.zero,"placed",Remove); placed.Add(token); Arrange(); PresentationMotion.Pulse(token.backing.transform,Session);
+            var idle=token.view.worldPicture.gameObject.AddComponent<AnimalIdle>(); idle.session=Session; return true;
         }
         public void Remove(ActivityToken token) { if(!Ready || !placed.Remove(token)) return; token.gameObject.SetActive(false); Destroy(token.gameObject); Arrange(); }
         void Arrange() { for(int i=0;i<placed.Count;i++) { placed[i].transform.localPosition=new Vector2(-.4f+(i%4)*1.55f,.8f-(i/4)*1.35f); placed[i].transform.localScale=Vector3.one*.75f; } }
-        public override void Submit() => Answer(placed.Count==(QuantityTasks ? Current.quantity : 1) && placed.All(t=>t.view.Entry==Current.word),string.Join("|",placed.Select(t=>t.view.Entry.id).OrderBy(s=>s)),placed.Count==(QuantityTasks ? Current.quantity : 1) && placed.All(t=>t.view.Entry==Current.word) ? "This pen is ready for the gathering." : QuantityTasks ? "Match both the animal and requested quantity." : "Choose the requested animal. You can replace it before submitting.");
+        public override void Submit() => Answer(placed.Count==(QuantityTasks ? Current.quantity : 1) && placed.All(t=>t.view.Entry==Current.word),string.Join("|",placed.Select(t=>t.view.Entry.id).OrderBy(s=>s)),placed.Count==(QuantityTasks ? Current.quantity : 1) && placed.All(t=>t.view.Entry==Current.word) ? "This pen is ready for the gathering." : QuantityTasks ? (placed.Any(t=>t.view.Entry!=Current.word) ? "One of these animals is a different type. Remove it and try again." : "You have "+placed.Count+"; the request is "+Current.quantity+". Add or remove animals.") : "Choose the requested animal. You can replace it before submitting.");
     }
 }

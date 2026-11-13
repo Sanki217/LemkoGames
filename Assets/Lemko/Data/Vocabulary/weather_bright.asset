@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: jasno
   english: bright
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 326201b5b25d435a8b4d0c8f0a74f108, type: 3}
   tags:
   - weather
   verified: 0

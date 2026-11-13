@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: czosnek
   english: garlic
   sprite: {fileID: 21300000, guid: 62f05898e82e3dd46a3380ee603519b7, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 4a599150b2e14878ac37d3d5aec6e6b6, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_garlic

@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: kran
   english: tap
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 735133886f3c4e44b00392a32a26c60a, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 38. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

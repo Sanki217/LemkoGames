@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: gra
   english: game
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 2d4b2bb3e4cd439f8d2d968d03842f53, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 96. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

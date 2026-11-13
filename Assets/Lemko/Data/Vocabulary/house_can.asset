@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: puszka
   english: can
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: bd07def6ffef43a0b979428ad9f2a4db, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 33. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

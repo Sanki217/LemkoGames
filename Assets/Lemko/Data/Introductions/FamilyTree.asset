@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3637421da7ea9f348b4aa1b96e5eae6e, type: 3}
+  m_Name: FamilyTree
+  m_EditorClassIdentifier: Assembly-CSharp::Lemko.ActivityIntroductionDefinition
+  activityId: FamilyTree
+  title: Invite the family
+  story: A gathering feels better with family around. Work out who is being invited,
+    using the person marked 'you' as your reference.
+  instructions: '1. Find the person marked ''you''.
+
+    2. Read the requested relative
+    in Lemko.
+
+    3. Select a matching person. Some questions accept more than one
+    person.'
+  beforeNumbers: 
+  illustration: {fileID: 21300000, guid: 0bf289acdaa19de4093502285cef0ef0, type: 3}

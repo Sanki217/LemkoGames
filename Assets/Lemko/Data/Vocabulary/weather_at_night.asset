@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: w nocy
   english: at night
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 14086ae10ea64bf9a1a48bef1fd93618, type: 3}
   tags:
   - weather
   verified: 0

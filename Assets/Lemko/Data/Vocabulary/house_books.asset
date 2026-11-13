@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "ksi\u0105\u017Cki"
   english: books
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: d1dcba2c96f84d5da25a72d5582da958, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 86. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

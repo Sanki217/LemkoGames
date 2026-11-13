@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: skrzynia
   english: chest
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: bf4f483a6a6247389981ed6e8ee7dd9d, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 48. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

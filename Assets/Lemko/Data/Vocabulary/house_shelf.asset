@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "p\xF3\u0142ka"
   english: shelf
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 4fdee24b01e242028671a89a3f296e1c, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 16. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

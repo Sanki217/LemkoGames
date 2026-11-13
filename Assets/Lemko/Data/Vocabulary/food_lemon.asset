@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: cytryna
   english: lemon
   sprite: {fileID: 21300000, guid: 58fc1b0c7dafa0443aed9f243e09889b, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: a26d27289e7946e992e4837ccb7d2317, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_lemon

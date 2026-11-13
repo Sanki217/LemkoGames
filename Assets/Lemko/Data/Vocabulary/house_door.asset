@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: drzwi
   english: door
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 6dd3f8f8c14f4898b5e48ce133da3322, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 13. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "m\u0105ka"
   english: flour
   sprite: {fileID: 21300000, guid: 14ac490e4a7d7e44cbfb1bc25102c846, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 41fe3c2d458d44fe81d8aa1addf29ae8, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_flour

@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: pada deszcz
   english: it is raining
   sprite: {fileID: 21300000, guid: fc6410f4af3206949bf39ea6ae37624e, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: d3e4e82eab614fc3a498627ff7d901af, type: 3}
   tags:
   - weather
   verified: 0

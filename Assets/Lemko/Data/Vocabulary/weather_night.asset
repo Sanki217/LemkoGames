@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: noc
   english: night
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: e7817e668565474c9bf489ff037404b1, type: 3}
   tags:
   - weather
   verified: 0

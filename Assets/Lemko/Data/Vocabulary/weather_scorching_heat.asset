@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: skwar
   english: scorching heat
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 17b6b4017ec04e1985708b781328717b, type: 3}
   tags:
   - weather
   verified: 0

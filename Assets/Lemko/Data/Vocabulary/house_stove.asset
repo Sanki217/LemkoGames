@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: kuchenka
   english: stove
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: a5b273d455654ff594f51b0b59ba4e18, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 32. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

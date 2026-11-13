@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "\u015Bciana"
   english: wall
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 7143361ab3154283b0e5108b8777e019, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 42. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

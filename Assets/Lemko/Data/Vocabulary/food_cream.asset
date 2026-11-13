@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "\u015Bmietana"
   english: cream
   sprite: {fileID: 21300000, guid: 416f60d300887cf448365e3c0c1c9d6f, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: eeecb668439a4b409707dc0db385519d, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: "te\u017C: \u0432\u0435\u0440\u0445\u043D\u0438\u043D\u0430"
   spriteId: sprite_cream

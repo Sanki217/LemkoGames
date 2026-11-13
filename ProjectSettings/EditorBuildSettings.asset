@@ -38,7 +38,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Game 1.unity
     guid: da41b32771b5fcf4bb9832d15c6fc419
-  - enabled: 1
+  - enabled: 0
     path: Assets/Lemko/Scenes/LemkoVillage2D.unity
     guid: b83e3f4dcb09bcb43b420fc2be87f047
   m_configObjects:

@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "kie\u0142basa"
   english: sausage
   sprite: {fileID: 21300000, guid: 52182a81b1537a34fa81fac3a056c8df, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: f15906fd23ca4cafa07a104d2e5210b8, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_sausage

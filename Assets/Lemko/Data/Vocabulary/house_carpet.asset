@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: dywan
   english: carpet
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 4236030a64f24a08ab23b180b929ae84, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: "Source: house_source.csv, row 59. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation.  Source alternatives: \u0434\u0438\u0432\u0430\u043D/\u043A\u0438\u043B\u0438\u043C."

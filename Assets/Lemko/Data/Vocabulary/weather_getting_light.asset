@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: "robi si\u0119 jasno"
   english: it is getting light
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 15f86fa97ecd4368a4f5f37ecc2614c5, type: 3}
   tags:
   - weather
   verified: 0

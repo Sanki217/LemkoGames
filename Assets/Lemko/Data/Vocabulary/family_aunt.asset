@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: ciocia
   english: aunt
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 8023dd871c654d36b04445a56e3ff3af, type: 3}
   tags:
   - family
-  - source_basic
   verified: 0
   notes: 'Source: family_source.csv, row 11. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

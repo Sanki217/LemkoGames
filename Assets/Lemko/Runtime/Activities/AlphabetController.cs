@@ -68,15 +68,20 @@ namespace Lemko
             if(!Ready) return;
             int index=Enumerable.Range(0,spelling.Count).Where(i=>!SpellingRules.Fixed(spelling[i]) && filled[i]!=spelling[i]).DefaultIfEmpty(-1).First();
             if(index<0) return;
-            if(FillCorrect(index)) { Session.MarkSupported(Current.word); RecordHint(); feedback.text="One letter supplied. You can still move or remove it; finish the label and Submit."; }
+            if(FillCorrect(index)) { Session.MarkSupported(Current.word); Session.RegisterHint(Current.word); feedback.text="One letter supplied. You can still move or remove it; finish the label and Submit."; }
         }
         public void PlaceFirst(int tile) { int index=System.Array.FindIndex(filled,s=>s==""); if(index>=0) Place(tile,index); }
         public bool Place(int tile,int index)
         {
             if(!Ready || !tiles.ContainsKey(tile) || used.ContainsValue(tile) || index<0 || index>=filled.Length || filled[index]!="") return false;
-            filled[index]=tiles[tile].caption.text; used[index]=tile; tiles[tile].Available(false); slots[index].caption.text=filled[index]; return true;
+            filled[index]=tiles[tile].caption.text; used[index]=tile; tiles[tile].Available(false); slots[index].caption.text=filled[index]; PresentationMotion.Pulse(slots[index].caption.transform,Session);
+            var letter=definition.alphabetLetters?.Find(l=>l.lowercase==filled[index]);
+            if(letter?.pronunciation) Session.audioService.Play(letter.pronunciation);
+            return true;
         }
         public void Remove(int index) { if(!Ready || !used.TryGetValue(index,out int tile)) return; used.Remove(index); filled[index]=""; slots[index].caption.text="_"; tiles[tile].Available(true); }
-        public override void Submit() { if(!Ready) return; Answer(AnswerText==string.Concat(spelling),string.Join("|",filled),AnswerText==string.Concat(spelling) ? "Shelf label ready: "+Current.word.lemko : "Check each letter, including repeated letters and accents."); }
+        public override void Submit() { if(!Ready) return; bool correct=AnswerText==string.Concat(spelling);
+            if(correct) Session.audioService.Play(Current.word.pronunciation);
+            Answer(correct,string.Join("|",filled),AnswerText==string.Concat(spelling) ? "Shelf label ready: "+Current.word.lemko : "Check each letter, including repeated letters and accents."); }
     }
 }

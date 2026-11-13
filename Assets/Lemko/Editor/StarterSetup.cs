@@ -61,7 +61,7 @@ namespace Lemko.Editor
                 EditorUtility.SetDirty(font);
             }
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-            var cameraObject = new GameObject("Camera", typeof(Camera));
+            var cameraObject = new GameObject("Camera", typeof(Camera), typeof(AudioListener));
             var camera = cameraObject.GetComponent<Camera>(); camera.clearFlags = CameraClearFlags.SolidColor; camera.backgroundColor = new Color(.12f,.22f,.19f);
             var canvasObject = new GameObject("Lemko UI", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
             canvasObject.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;

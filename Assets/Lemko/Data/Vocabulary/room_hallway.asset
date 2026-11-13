@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: korytarz
   english: hallway
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 31f5c5dd912442f587ef2741ab282d06, type: 3}
   tags:
   - house
-  - room
   verified: 0
   notes: 'Source: house_source.csv, row 5. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

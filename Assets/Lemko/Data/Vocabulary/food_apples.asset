@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "jab\u0142ka"
   english: apples
   sprite: {fileID: 21300000, guid: 7b60beb34b641c1458a1262e0fe556c7, type: 3}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 5eeae54befc84afd93bc93643f94a660, type: 3}
   tags:
   - shop
-  - food
   verified: 0
   notes: 
   spriteId: sprite_apples

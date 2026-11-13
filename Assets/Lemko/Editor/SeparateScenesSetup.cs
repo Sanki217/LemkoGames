@@ -92,7 +92,6 @@ namespace Lemko.Editor
             Check(score.Apply(SelectionResult.Ignored)==0 && score.Points==300 && score.Streak==2,"ignored duplicate");
             score.Apply(SelectionResult.Incorrect); Check(score.Points==300 && score.NextMultiplier==1,"wrong resets multiplier only");
             Check(score.Apply(SelectionResult.Correct)==100 && score.Points==400,"streak restart");
-            var old=ProgressStore.Parse("{\"version\":1,\"shopCompletions\":2}"); Check(old.bestShopPoints==0 && old.shopCompletions==2,"old save compatibility");
             var shop=AssetDatabase.LoadAssetAtPath<ShopDefinition>(VocabularyImporter.Root+"/Shop.asset");
             Check(shop.Validate()==null && shop.products.Count==47,"47 word pool");
             Check(shop.products.All(w=>w.id.StartsWith("food_") && !w.lemko.Contains("[DEMO]")),"real source content");

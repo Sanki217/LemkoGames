@@ -25,6 +25,7 @@ namespace Lemko
     [Serializable] public sealed class AlphabetLetter
     {
         public string id, uppercase, lowercase, phoneticPolish, audioId;
+        public AudioClip pronunciation;
         public bool verified;
     }
     [CreateAssetMenu(menuName="Lemko/Activity definition")]

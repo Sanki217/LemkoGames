@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: odkurzacz
   english: vacuum cleaner
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 0dc8dab6238541feadcd0f796f38c88c, type: 3}
   tags:
   - house
-  - object
   verified: 0
   notes: 'Source: house_source.csv, row 61. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

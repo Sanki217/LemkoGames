@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: "piskl\u0119"
   english: chick
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 35e0fa7171b84c97a66a397df6d59b50, type: 3}
   tags:
   - farm
-  - animal
   verified: 0
   notes: "Source: farm_source.csv, row 7. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation.  Source alternatives: \u043A\u0443\u0440\u044F

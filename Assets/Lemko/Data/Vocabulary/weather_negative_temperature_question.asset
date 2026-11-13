@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: Jaka temperatura na minusie?
   english: How far below zero is the temperature?
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: 74de5bfcfc8b41fb932fac21a9751ad3, type: 3}
   tags:
   - weather
   verified: 0

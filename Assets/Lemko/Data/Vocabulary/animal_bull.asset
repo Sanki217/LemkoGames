@@ -17,10 +17,9 @@ MonoBehaviour:
   polish: byk
   english: bull
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: f526f6ede525481ca35c84840883cf1a, type: 3}
   tags:
   - farm
-  - animal
   verified: 0
   notes: 'Source: farm_source.csv, row 3. Supplied Lemko and Polish; English gloss
     is an unverified editorial translation. '

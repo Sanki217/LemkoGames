@@ -17,7 +17,7 @@ MonoBehaviour:
   polish: bardzo zimno
   english: very cold
   sprite: {fileID: 0}
-  pronunciation: {fileID: 0}
+  pronunciation: {fileID: 8300000, guid: f690ff37e60e480582d22eb5cfeadb51, type: 3}
   tags:
   - weather
   verified: 0

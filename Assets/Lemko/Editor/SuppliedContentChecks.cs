@@ -15,9 +15,9 @@ namespace Lemko.Editor
             // Scene checks can unload asset instances; re-resolve the database before comparison.
             db=AssetDatabase.LoadAssetAtPath<VocabularyDatabase>(VocabularyImporter.Root+"/VocabularyDatabase.asset");
             foreach(var pair in before) Check(db.entries.Any(w=>w && w.id==pair.Key && AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(w))==pair.Value),"Preserved GUID: "+pair.Key);
-            var importedIds=CsvTable.Records(System.IO.File.ReadAllText("Content/CSV/vocabulary_master.csv"),"id").Select(r=>r["id"]).ToArray();
+            var importedIds=CsvTable.Records(System.IO.File.ReadAllText("Content/CSV/vocabulary_master.csv"),"id").Where(r=>!AlphabetMasterImporter.IsLetter(r)).Select(r=>r["id"]).ToArray();
             var imported=db.entries.Where(w=>w && importedIds.Contains(w.id)).ToArray();
-            Check(imported.Length==404,"404 imported vocabulary assets; unrelated legacy assets retained");
+            Check(imported.Length==importedIds.Length,"All master word rows imported; unrelated legacy assets retained");
             Check(imported.All(w=>!w.lemko.Contains("[DEMO:")),"Demo language replaced in master content");
             var numbers=AssetDatabase.LoadAssetAtPath<ActivityDefinition>(ActivityCsvImporter.Root+"/Numbers.asset");
             Check(numbers.tasks.Select(t=>t.quantity).OrderBy(n=>n).SequenceEqual(Enumerable.Range(1,99)),"All supplied numbers 1–99 playable");
@@ -32,7 +32,7 @@ namespace Lemko.Editor
             clone.alphabetLetters.Add(clone.alphabetLetters[0]); Check(clone.Validate()!=null,"Duplicate alphabet entry rejected");
             UnityEngine.Object.DestroyImmediate(clone);
             EditorUtility.SetDirty(font); AssetDatabase.SaveAssets();
-            Debug.Log("LEMKO_SUPPLIED_CONTENT_PASS: 404 words, 34 letters, numbers 1–99, no demo strings, existing GUIDs, spelling alphabet, font coverage, invalid alphabet rejection.");
+            Debug.Log("LEMKO_SUPPLIED_CONTENT_PASS: master words, 34 letters, numbers 1–99, no demo strings, existing GUIDs, spelling alphabet, font coverage, invalid alphabet rejection.");
         }
         static void Check(bool ok,string message) { if(!ok) throw new Exception(message); }
     }
