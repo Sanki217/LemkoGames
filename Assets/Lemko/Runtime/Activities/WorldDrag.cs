@@ -18,7 +18,7 @@ namespace Lemko
             ClearPreview();
             foreach(var hit in Physics2D.OverlapPointAll(p)) if(hit.GetComponent<WorldDropZone>()) {
                 preview=new GameObject("Placement preview",typeof(SpriteRenderer)); var r=preview.GetComponent<SpriteRenderer>();
-                r.sprite=token.view.worldPicture.sprite; r.color=new Color(.7f,1f,.85f,.35f); r.sortingOrder=10;
+                r.sprite=token.view.worldPicture.sprite; r.color=new Color(1,1,1,.4f); r.sortingOrder=10;
                 preview.transform.position=new Vector3(p.x,p.y,origin.z); preview.transform.localScale=token.view.worldPicture.transform.lossyScale; break;
             } }
         public void OnEndDrag(PointerEventData e)

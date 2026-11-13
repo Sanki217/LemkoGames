@@ -82,7 +82,7 @@ namespace Lemko
         {
             if(Reduced) return;
             var j=Instance; int before=j.particles.Count;
-            j.Emit(new Vector2(UnityEngine.Random.Range(0f,Screen.width),Screen.height*.86f),1,snow ? new[]{Color.white} : new[]{Look.Hex(0x6FA3C8)},snow ? Look.Soft : Look.Pill,0,0,snow ? 3.2f : 1.1f,snow ? new Vector2(8,14) : new Vector2(5,7));
+            j.Emit(new Vector2(UnityEngine.Random.Range(0f,Screen.width),Screen.height*.86f),1,snow ? new[]{Color.white} : new[]{Look.Muted},snow ? Look.Soft : Look.Pill,0,0,snow ? 3.2f : 1.1f,snow ? new Vector2(8,14) : new Vector2(5,7));
             if(j.particles.Count==before) return;
             var p=j.particles[j.particles.Count-1]; p.velocity=snow ? new Vector2(UnityEngine.Random.Range(-25f,25f),-170) : new Vector2(-40,-640); p.spin=0;
             if(!snow) p.rect.sizeDelta=new Vector2(4,18);

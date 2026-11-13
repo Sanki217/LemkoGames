@@ -58,7 +58,7 @@ namespace Lemko
             token.transform.localScale=Vector3.one;
             var size=token.backing.sprite.bounds.size;
             token.backing.transform.localScale=new Vector3(TileSize.x/size.x,TileSize.y/size.y,1);
-            token.backing.color=Session.presentation ? (tile ? Session.presentation.letterColor : Session.presentation.slotColor) : (tile ? new Color(1,.84f,.48f) : new Color(.75f,.88f,.85f));
+            token.backing.color=tile ? Look.Honey : Look.Empty;
             token.GetComponent<BoxCollider2D>().size=TileSize;
             token.caption.rectTransform.sizeDelta=TileSize-new Vector2(.07f,.06f);
         }

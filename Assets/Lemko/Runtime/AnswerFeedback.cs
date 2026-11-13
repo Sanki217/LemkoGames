@@ -19,7 +19,7 @@ namespace Lemko
         void Capture() { if(captured || !message || !hud) return; originalColor=message.color; messageScale=message.transform.localScale; hudScale=hud.transform.localScale; captured=true; }
         public void Play(bool correct) {
             Capture(); Cancel(); if(!captured || !message.gameObject.activeInHierarchy) return;
-            message.color=correct ? successColor : correctionColor;
+            message.color=correct ? Look.Good : Look.Brick;
             if(animate && !reducedMotion) StartCoroutine(Pulse(correct));
         }
         IEnumerator Pulse(bool correct) {

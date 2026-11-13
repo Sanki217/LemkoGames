@@ -66,7 +66,7 @@ namespace Lemko
         static bool Light(Color c)=>Mathf.Min(c.r,Mathf.Min(c.g,c.b))>.8f;
         void Theme()
         {
-            if(Camera.main) Camera.main.backgroundColor=Look.Mint;
+            if(Camera.main) Camera.main.backgroundColor=InVillage ? Look.Mint : Look.Peach;   // matches the top edge of each backdrop
             foreach(var image in root.GetComponentsInChildren<Image>(true)) {
                 string n=image.name; var c=image.color;
                 if(n=="Clean top bar") { image.color=Look.Pine; AddAwning(image.rectTransform); continue; }
@@ -81,6 +81,8 @@ namespace Lemko
                 else if(control) { image.sprite=Look.Button; image.type=Image.Type.Sliced; image.color=Color.white; }
                 else if(Light(c)) { image.sprite=Look.Panel; image.type=Image.Type.Sliced; image.color=Look.Paper; }
             }
+            // World props that carry their own colour (the shop's shelf boards) become ink lines.
+            foreach(var board in FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None)) if(board.name.StartsWith("Shelf")) board.color=Look.Ink;
             foreach(var text in root.GetComponentsInChildren<TMP_Text>(true)) {
                 var c=text.color;
                 text.color=Purple(c) ? Look.Brick : (c.r>.3f && c.r<.5f && c.g>.38f && c.g<.55f) ? Look.Muted : Look.Ink;

@@ -46,11 +46,11 @@ namespace Lemko
             if(label) { label.text = word ? word.lemko : "Missing word"; label.gameObject.SetActive(!worldPicture); }
             if (picture) {
                 picture.sprite = word ? word.sprite : null;
-                picture.color = word && word.sprite ? Color.white : new Color(.75f, .82f, .69f);
+                picture.color = word && word.sprite ? Color.white : Look.Sand;
             }
             if (worldPicture) {
                 worldPicture.sprite = word && word.sprite ? word.sprite : placeholderSprite;
-                worldPicture.color = word && word.sprite ? Color.white : idleColor;
+                worldPicture.color = word && word.sprite ? Color.white : Look.Sand;
                 if (worldPicture.sprite) {
                     var size = worldPicture.sprite.bounds.size;
                     float scale = Mathf.Min(pictureBounds.x / size.x, pictureBounds.y / size.y);
@@ -58,7 +58,7 @@ namespace Lemko
                 }
             }
             if(worldPicture) restingScale=worldPicture.transform.localScale;
-            if(selectButton) { selectButton.interactable = word; selectButton.image.color = idleColor; }
+            if(selectButton) { selectButton.interactable = word; selectButton.image.color = Look.Paper; }
             if(audioButton) audioButton.interactable = word && word.pronunciation;
             if(worldSpeaker) worldSpeaker.SetActive(word && word.pronunciation);
         }
@@ -68,14 +68,14 @@ namespace Lemko
         public void SetSelected(bool value)
         {
             if(selectionMarker) selectionMarker.enabled=value;
-            if(worldPicture) worldPicture.color=entry && entry.sprite ? Color.white : idleColor;
-            if(selectButton) selectButton.image.color=value ? new Color(.2f,.4f,.6f) : idleColor;
+            if(worldPicture) worldPicture.color=entry && entry.sprite ? Color.white : Look.Sand;
+            if(selectButton) selectButton.image.color=value ? Look.Honey : Look.Paper;
         }
         public void Mark(bool correct)
         {
             submitted = true;
-            if(selectButton) { selectButton.interactable = false; selectButton.image.color = correct ? new Color(.15f, .45f, .25f) : new Color(.6f, .2f, .15f); }
-            if(worldPicture) worldPicture.color = correct ? new Color(.5f,1f,.5f) : new Color(1f,.4f,.4f);
+            if(selectButton) { selectButton.interactable = false; selectButton.image.color = correct ? Look.GoodSoft : Look.Sand; }
+            if(worldPicture) worldPicture.color = correct ? Color.white : Look.Hex(0xE9A493);   // a wrong pick blushes red
             if(label && !worldPicture) label.text = (correct ? "OK: " : "Try another: ") + entry.lemko;
         }
         void OnDisable() { if (tooltip && hint) tooltip.Hide(hint); selected = null; }

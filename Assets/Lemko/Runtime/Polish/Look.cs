@@ -2,13 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Lemko
 {
-    // One palette, sampled from the illustrations, plus the few interface shapes the game needs.
+    // One palette, shared with the illustrations, plus the few interface shapes the game needs.
     // Shapes are drawn in code so no scene or texture has to be edited by hand.
     public static class Look
     {
-        public static readonly Color Peach=Hex(0xFEE1B8), Paper=Hex(0xFFF4E2), Ink=Hex(0x3E3434), Mint=Hex(0xCAE6D9), Sand=Hex(0xD4C692),
-            Sage=Hex(0xA4C5AF), Pine=Hex(0x546756), Brick=Hex(0xB55945), Honey=Hex(0xF2C14E), Good=Hex(0x6E9B57), Retry=Hex(0xE0913A),
-            GoodSoft=Hex(0xCFE5B8), Muted=Hex(0x7A6A62), Empty=Hex(0xE3D2B4);
+        // Ink on paper: warm near-black lines, white and three warm greys, and gold and red as the only accents.
+        // The names are kept from the first theme; the same values are used by Tools/InkArt for every picture.
+        public static readonly Color Peach=Hex(0xF1E9D8), Paper=Hex(0xFBF7EE), Ink=Hex(0x2A2420), Mint=Hex(0xE0D5C0), Sand=Hex(0xC8BAA1),
+            Sage=Hex(0xD6CAB2), Pine=Hex(0xC8BAA1), Brick=Hex(0xD8553A), Honey=Hex(0xF0B429), Good=Hex(0xB27C0E), Retry=Hex(0xD8553A),
+            GoodSoft=Hex(0xF7DFA0), Muted=Hex(0x7D7163), Empty=Hex(0xD6CAB2);
         public static Color Hex(int rgb,float a=1)=>new Color(((rgb>>16)&255)/255f,((rgb>>8)&255)/255f,(rgb&255)/255f,a);
         public static Color Alpha(Color c,float a) { c.a=a; return c; }
         // The Lemko word is the star of every prompt.
@@ -86,7 +88,7 @@ namespace Lemko
         public static Sprite Awning=>Make("lemko_awning",96,28,(x,y)=> {
             bool second=x>=48; float cx=second ? 72 : 24;
             float d=y>=24 ? Mathf.Abs(x-cx)-24 : Vector2.Distance(new Vector2(x,y),new Vector2(cx,24))-24;
-            var fill=second ? Sand : Brick;
+            var fill=second ? Paper : Honey;
             var c=Color.Lerp(fill,Ink,1-Cover(d+2.5f)); c.a=Cover(d); return c;
         },default,100,true);
         public static Sprite Lantern=>Make("lemko_lantern",48,64,(x,y)=> {
