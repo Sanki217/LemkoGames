@@ -64,12 +64,13 @@ namespace Lemko
         // ---------- theme ----------
         static bool Purple(Color c)=>c.b>c.r+.15f && c.b>c.g+.15f;
         static bool Light(Color c)=>Mathf.Min(c.r,Mathf.Min(c.g,c.b))>.8f;
+        static bool SkyScene() { string n=UnityEngine.SceneManagement.SceneManager.GetActiveScene().name; return n=="Farm" || n=="FamilyTree" || n=="Weather" || n=="Memory" || n=="Alphabet"; }
         void Theme()
         {
-            if(Camera.main) Camera.main.backgroundColor=InVillage ? Look.Mint : Look.Peach;   // matches the top edge of each backdrop
+            if(Camera.main) Camera.main.backgroundColor=InVillage ? Look.Grass : SkyScene() ? Look.Mint : Look.Peach;   // matches the top edge of each backdrop
             foreach(var image in root.GetComponentsInChildren<Image>(true)) {
                 string n=image.name; var c=image.color;
-                if(n=="Clean top bar") { image.color=Look.Pine; AddAwning(image.rectTransform); continue; }
+                if(n=="Clean top bar") { image.color=Look.Sage; AddAwning(image.rectTransform); continue; }
                 if(n=="Illustration" || n=="Picture" || n=="Handle" || c.a<.05f) continue;
                 if(n=="Modal input blocker") { image.color=Look.Alpha(Look.Ink,.55f); continue; }
                 if(n=="Click or tap anywhere") { image.color=Look.Mint; continue; }
@@ -81,8 +82,8 @@ namespace Lemko
                 else if(control) { image.sprite=Look.Button; image.type=Image.Type.Sliced; image.color=Color.white; }
                 else if(Light(c)) { image.sprite=Look.Panel; image.type=Image.Type.Sliced; image.color=Look.Paper; }
             }
-            // World props that carry their own colour (the shop's shelf boards) become ink lines.
-            foreach(var board in FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None)) if(board.name.StartsWith("Shelf")) board.color=Look.Ink;
+            // World props that carry their own colour (the shop's shelf boards) become dark wood.
+            foreach(var board in FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None)) if(board.name.StartsWith("Shelf")) board.color=Look.Wood;
             foreach(var text in root.GetComponentsInChildren<TMP_Text>(true)) {
                 var c=text.color;
                 text.color=Purple(c) ? Look.Brick : (c.r>.3f && c.r<.5f && c.g>.38f && c.g<.55f) ? Look.Muted : Look.Ink;
