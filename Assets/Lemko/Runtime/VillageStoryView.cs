@@ -36,7 +36,10 @@ namespace Lemko
             goldChoice.gameObject.SetActive(complete); blueChoice.gameObject.SetActive(complete);
             goldChoice.onClick.RemoveListener(Gold); goldChoice.onClick.AddListener(Gold);
             blueChoice.onClick.RemoveListener(Blue); blueChoice.onClick.AddListener(Blue);
-            if(tablecloth) { tablecloth.gameObject.SetActive(complete); tablecloth.color=state.decoration=="blue" ? new Color(.3f,.65f,.9f) : new Color(1,.75f,.25f); }
+            // The table cloth choice follows the two accents of the palette.
+            var goldLabel=goldChoice.GetComponentInChildren<TMPro.TMP_Text>(true); if(goldLabel) goldLabel.text="Gold cloth";
+            var redLabel=blueChoice.GetComponentInChildren<TMPro.TMP_Text>(true); if(redLabel) redLabel.text="Red cloth";
+            if(tablecloth) { tablecloth.gameObject.SetActive(complete); tablecloth.color=state.decoration=="blue" ? Look.Brick : Look.Honey; }
         }
         public void Gold()=>Choose("gold");
         public void Blue()=>Choose("blue");
