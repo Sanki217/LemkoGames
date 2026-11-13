@@ -199,24 +199,73 @@ def dresser(c, x, y, w=96, h=70):
 # --- the seven activity backdrops ------------------------------------------------------
 def farm():
     c, hz = outdoor(21)
-    sky(c, [(90, 40, 90), (560, 34, 110), (840, 52, 80)])
-    for x, y, w, h in [(120, hz + 4, 150, 96), (240, hz, 120, 70), (640, hz - 2, 140, 84), (520, hz, 110, 60)]:
+    sky(c, [(300, 40, 90), (560, 34, 110), (760, 56, 80)])
+    for x, y, w, h in [(330, hz + 4, 150, 96), (450, hz, 120, 70), (640, hz - 2, 140, 84), (540, hz, 110, 60)]:
         c.mountain(x, y, w, h)
     land(c, hz)
-    c.field(300, hz + 44, 110, 30, GOLD, 5); c.field(600, hz + 40, 90, 26, LIME, 4, crop=LEAF_DARK)
-    c.house(880, hz + 48, 100, 54, 46, roof=NAVY, wall=RED, side=WOOD_DARK, planks=True, windows=0, door=False, roof_h=48, glass=PAPER)
-    c.shape([(860, hz + 48), (860, hz + 12), (900, hz + 12), (900, hz + 48)], PAPER, 2.2, amp=.3)
-    c.line([(860, hz + 12), (900, hz + 48)], 1.6, amp=.2); c.line([(900, hz + 12), (860, hz + 48)], 1.6, amp=.2)
-    c.two([(972, hz + 30), (972, hz - 30), (998, hz - 30), (998, hz + 30)], STONE, 2.2, 4, 0); c.two([(968, hz - 28), (985, hz - 48), (1002, hz - 28)], RED, 2, 3, 3)
-    c.haybale(790, hz + 44, 20); c.haybale(760, hz + 52, 15)
-    c.fence(10, hz + 50, 260, hz + 36, 10)
-    c.pine(420, hz + 26, 50); c.pine(455, hz + 34, 60); c.tree(540, hz + 34, 18, fruit=RED); c.birch(700, hz + 34, 15)
-    c.cow(150, hz + 30, .7); c.sheep(210, hz + 26, .6)
-    # the corners of the foreground: fence, trough, hens, a cart and bushes
-    c.fence(-6, H - 14, 150, H - 30, 6); c.hen(60, H - 50, 1.2); c.hen(96, H - 40, 1, PAL['wood'])
-    c.two([(18, H - 62), (64, H - 66), (60, H - 52), (22, H - 48)], WOOD, 2, 2, 3, amp=.3); c.flat([(24, H - 60), (58, H - 63), (56, H - 57), (26, H - 54)], PAL['sky'])
-    c.cart(950, H - 22); c.bush(1004, H - 70, 18, RED); c.pine(1004, H - 96, 56)
-    c.tree(20, hz + 70, 22)
+    c.field(250, hz + 40, 90, 24, GOLD, 4)
+    c.house(900, hz + 40, 100, 54, 46, roof=NAVY, wall=RED, side=WOOD_DARK, planks=True, windows=0, door=False, roof_h=48, glass=PAPER)
+    c.shape([(880, hz + 40), (880, hz + 4), (920, hz + 4), (920, hz + 40)], PAPER, 2.2, amp=.3)
+    c.line([(880, hz + 4), (920, hz + 40)], 1.6, amp=.2); c.line([(920, hz + 4), (880, hz + 40)], 1.6, amp=.2)
+    c.two([(992, hz + 22), (992, hz - 38), (1016, hz - 38), (1016, hz + 22)], STONE, 2.2, 4, 0); c.two([(988, hz - 36), (1004, hz - 56), (1020, hz - 36)], RED, 2, 3, 3)
+    c.pine(600, hz + 30, 50); c.pine(632, hz + 36, 58); c.tree(700, hz + 36, 18, fruit=RED); c.birch(770, hz + 36, 15)
+    c.haybale(820, hz + 44, 17)
+
+    # the pasture in the middle: trodden grass inside a rail fence with an open gate towards the shelter
+    tl, tr, br, bl = (372, 182), (850, 182), (902, 392), (318, 392)
+    c.shadow([(bl[0] + 6, bl[1] + 8), (br[0] + 10, br[1] + 8), (br[0], br[1] - 4), (bl[0], bl[1] - 4)])
+    c.flat([tl, tr, br, bl], GRASS_LIGHT)
+    def turf():
+        for i in range(16):
+            c.flat(c.lumpy(c.r.uniform(330, 890), c.r.uniform(190, 390), c.r.uniform(40, 90), c.r.uniform(10, 22), 6, .25), (GRASS, PAL['pale'], SAND)[i % 3], .4)
+        for i in range(40):
+            c.tuft(c.r.uniform(340, 880), c.r.uniform(200, 388), c.r.uniform(.6, 1), GRASS_DARK)
+        for i in range(8):
+            c.flowers(c.r.uniform(350, 870), c.r.uniform(204, 384), c.r.randint(3, 6), 14, (WHITE, GOLD))
+    c.inside([tl, tr, br, bl], turf)
+    # trough and a haystack along the back rail, a puddle near the front
+    c.two([(700, 206), (770, 206), (764, 220), (706, 220)], WOOD, 2, 2, 3, amp=.3); c.flat([(706, 208), (764, 208), (760, 214), (710, 214)], PAL['sky'])
+    c.haybale(810, 226, 16)
+    c.flat(c.lumpy(470, 360, 34, 9, 5, .2), PAL['sky']); c.line([(452, 358), (464, 355), (476, 358)], 1.2, WHITE, amp=.2, step=6)
+    c.fence(tl[0], tl[1], tr[0], tr[1], 11)                          # back rail
+    def side(a, b, n, gap=None):
+        for i in range(n):
+            if gap and i in gap:
+                continue
+            t0, t1 = i / n, (i + 1) / n
+            c.fence(a[0] + (b[0] - a[0]) * t0, a[1] + (b[1] - a[1]) * t0, a[0] + (b[0] - a[0]) * t1, a[1] + (b[1] - a[1]) * t1, 3)
+    side(tr, br, 4)
+    side(tl, bl, 4, gap=(1,))                                        # the gap is the gateway
+    # open gate swung outwards
+    g0 = (tl[0] + (bl[0] - tl[0]) * .25, tl[1] + (bl[1] - tl[1]) * .25)
+    c.fence(g0[0], g0[1], g0[0] - 44, g0[1] + 30, 3)
+    c.fence(bl[0], bl[1], br[0], br[1], 12)                          # front rail
+    c.cart(960, H - 18); c.bush(1004, H - 66, 18, RED)
+
+    # the shelter on the left where the animals wait: plank wall, straw floor and a shingled roof
+    x0, x1, top, bot = -6, 226, 60, 286
+    c.shadow([(x0, bot + 6), (x1 + 16, bot + 6), (x1 + 4, bot - 8), (x0, bot - 8)])
+    wall = [(x0, top + 8), (x1, top + 8), (x1, bot - 26), (x0, bot - 26)]
+    def boards():
+        for i in range(1, 12):
+            c.line([(x0 + i * 20, top), (x0 + i * 20, bot)], 1.3, dk(WOOD), amp=.4)
+        c.flat([(x0, top), (x1, top), (x1, top + 30), (x0, top + 30)], dk(WOOD), .6)
+    c.two(wall, WOOD, 2.6, 5, 0, inner=boards)
+    straw = [(x0, bot - 30), (x1 + 6, bot - 30), (x1 + 18, bot), (x0, bot)]
+    c.two(straw, GOLD, 2.4, 3, 3, inner=lambda: c.hatch(x0, bot - 28, x1 + 10, bot, gap=9, w=1.2, color=PAL['gold']))
+    c.line([(x0, top + 118), (x1, top + 118)], 3.2, amp=.5); c.line([(x0, top + 118), (x1, top + 118)], 1.4, WOOD_DARK, amp=.5)   # rail between the rows
+    for px in (4, 112, 220):
+        c.two([(px - 5, bot - 2), (px - 5, top + 6), (px + 5, top + 6), (px + 5, bot - 2)], WOOD_DARK, 2, 2, 0, amp=.3)
+    roof = [(x0, top - 22), (x1 + 4, top - 22), (x1 + 22, top + 12), (x0, top + 12)]
+    def tiles():
+        for i in range(1, 3):
+            c.line([(x0, top - 22 + i * 11), (x1 + 22, top - 22 + i * 11)], 1.3, dk(RED), amp=.4)
+        for i in range(26):
+            for j in range(3):
+                c.line([(x0 + i * 10 + (j % 2) * 5, top - 22 + j * 11), (x0 + i * 10 + (j % 2) * 5 + 2, top - 11 + j * 11)], 1, dk(RED), amp=0)
+    c.two(roof, RED, 2.6, 3, 4, inner=tiles)
+    c.hen(60, bot + 26, 1.2); c.hen(100, bot + 38, 1, PAL['wood']); c.barrel(200, bot + 44, 1.1); c.tree(262, hz + 60, 20)
+    c.fence(-6, H - 14, 150, H - 30, 6)
     out(c, BG, 'scene_Farm', (2048, 960))
 
 
@@ -344,16 +393,36 @@ def numbers():
 
 def alphabet():
     c, fl = indoor(27, wall=PAL['pale'], pattern='dots')
-    # blackboard with chalk letters
-    c.two([(322, 20), (702, 20), (702, 128), (322, 128)], WOOD, 3, 4, 4, amp=.8)
-    c.shape([(334, 30), (690, 30), (690, 118), (334, 118)], PINE_DARK, 2, amp=.6)
-    text(c, 'А Б В Г Ґ Д', 356, 88, 40, WHITE)
-    c.line([(360, 100), (560, 100)], 1.2, PAL['sage'], amp=.6)
-    c.shape([(316, 128), (708, 128), (708, 138), (316, 138)], WOOD_DARK, 2.2, amp=.5)
-    c.shape([(600, 122), (626, 122), (626, 128), (600, 128)], WHITE, 1.4, amp=.2, step=10); c.shape([(560, 120), (584, 120), (584, 128), (560, 128)], PAL['taupe'], 1.4, amp=.2, step=10)
-    window(c, 130, 100, curtain=PAL['blue']); window(c, 894, 100, curtain=PAL['blue'])
-    # a letter banner, a globe, books and a pencil pot
-    gx, gy = 962, fl + 124
+    # the big blackboard: the letter fields are shown on it by the game
+    x0, x1, y0, y1 = 168, 945, 100, 246
+    c.shadow([(x0 + 6, y1 + 16), (x1 + 10, y1 + 16), (x1 + 10, y0 + 10), (x1, y0 + 10), (x1, y1 + 6), (x0 + 6, y1 + 6)])
+    c.two([(x0 - 12, y0 - 12), (x1 + 12, y0 - 12), (x1 + 12, y1 + 12), (x0 - 12, y1 + 12)], WOOD, 3, 4, 4, amp=.8)
+    board = [(x0, y0), (x1, y0), (x1, y1), (x0, y1)]
+    def chalk():
+        for i in range(9):                                            # wiped chalk smears
+            c.flat(c.lumpy(c.r.uniform(x0 + 40, x1 - 40), c.r.uniform(y0 + 16, y1 - 16), c.r.uniform(50, 120), c.r.uniform(8, 18), 5, .3), PINE, .35)
+        c.line([(x0 + 26, y1 - 30), (x1 - 26, y1 - 30)], 1.3, PAL['sage'], amp=.8)          # the line the word is written on
+        for i, ch in enumerate('Аа Бб Вв'.split()):
+            cr = c.c; cr.select_font_face('DejaVu Sans', cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL); cr.set_font_size(13)
+            cr.set_source_rgba(*rgb(PAL['pale']), .7); cr.move_to(x0 + 16 + i * 40, y0 + 22); cr.show_text(ch)
+    c.flat(board, PINE_DARK); c.inside(board, chalk); c.stroke(board, 2)
+    c.two([(x0 - 20, y1 + 12), (x1 + 20, y1 + 12), (x1 + 20, y1 + 22), (x0 - 20, y1 + 22)], WOOD_DARK, 2.2, 3, 0, amp=.5)       # chalk ledge
+    for i, col in enumerate((WHITE, PAL['yellow'], WHITE, PAL['skin'])):
+        c.shape([(x1 - 150 + i * 30, y1 + 6), (x1 - 130 + i * 30, y1 + 6), (x1 - 130 + i * 30, y1 + 12), (x1 - 150 + i * 30, y1 + 12)], col, 1.2, amp=.2, step=10)
+    c.two([(x0 + 30, y1 + 2), (x0 + 66, y1 + 2), (x0 + 66, y1 + 12), (x0 + 30, y1 + 12)], PAL['taupe'], 1.6, 2, 0, amp=.2)       # sponge
+    # letter bunting and a clock above the board
+    a, b = (x0 + 20, 22), (x1 - 20, 22)
+    c.line([a, ((a[0] + b[0]) / 2, 44), b], 1.5, amp=.5)
+    for i in range(1, 20):
+        if 6 < i < 14:
+            continue                                                  # leaves room for the prompt card
+        t = i / 20
+        fx = a[0] + (b[0] - a[0]) * t; fy = 22 + 22 * 4 * t * (1 - t)
+        c.shape([(fx - 9, fy), (fx + 9, fy), (fx, fy + 20)], (GOLD, RED, PAL['sky'], WHITE, ORANGE)[i % 5], 1.6, amp=.3, step=8)
+    # a frame on the wall for the picture of the word, a globe, books and a pencil pot
+    c.two([(8, 104), (128, 104), (128, 238), (8, 238)], WOOD, 2.6, 4, 4, amp=.6); c.flat([(18, 114), (118, 114), (118, 228), (18, 228)], PAL['cream'])
+    c.line([(68, 104), (68, 84)], 1.6, amp=.2); c.dotc(68, 82, 3, INK)
+    gx, gy = 966, fl + 126
     dresser(c, gx, gy, 96, 60)
     c.line([(gx, gy - 67), (gx, gy - 78)], 2.6, amp=.1)
     c.two(c.ring(gx, gy - 98, 22, 22), PAL['sky'], 2.4, 3, 3, amp=.4, step=8, inner=lambda: (c.flat(c.lumpy(gx - 6, gy - 102, 10, 8, 4, .4), LEAF), c.flat(c.lumpy(gx + 10, gy - 90, 6, 5, 4, .4), LEAF)))
@@ -369,29 +438,132 @@ def alphabet():
 
 # --- shop layout (1920x1080, matches the product slots and panels in Shop.unity) ---------
 def shop():
+    """A whole shop: wall shelf and market table on the left, a tall rack, the shopkeeper behind the counter,
+    the shopping list hanging on the right and the basket on the floor. World (wx, wy) is at 960 + wx*120, 540 - wy*120."""
     c = Scene(1920, 1080, 1.5, PAPER, 31)
+    r = c.r
+    FLOOR = 800
     for i in range(0, 46):
-        c.flat([(i * 44, 0), (i * 44 + 16, 0), (i * 44 + 16, 1080), (i * 44, 1080)], SAND, .3)
-    # shelf unit behind the products
-    c.flat([(58, 296), (1124, 296), (1124, 786), (58, 786)], TONE1)
-    c.shape([(45, 280), (1110, 280), (1110, 770), (45, 770)], WOOD, 3.4, amp=1.2, step=30)
-    for row in range(2):
-        for col in range(4):
-            x0, y0 = 80 + col * 255, 315 + row * 220
-            c.shape([(x0, y0), (x0 + 225, y0), (x0 + 225, y0 + 195), (x0, y0 + 195)], PAPER, 2.4, amp=1, step=26)
-            c.hatch(x0 + 150, y0 + 150, x0 + 215, y0 + 188, 11, 1.5, TONE1)
-    # striped awning along the top of the unit
-    for i in range(16):
-        x0 = 30 + i * 68.5
-        c.shape([(x0, 232), (x0 + 68.5, 232), (x0 + 68.5, 280), (x0 + 34, 298), (x0, 280)], RED if i % 2 == 0 else WHITE, 2.8, amp=.8, step=20)
-    c.line([(24, 232), (1132, 232)], 3.4, amp=1)
-    # basket box and the list panel
-    c.flat([(58, 821), (1124, 821), (1124, 1021), (58, 1021)], TONE1)
-    c.shape([(45, 805), (1110, 805), (1110, 1005), (45, 1005)], '#cae6d9', 3.4, amp=1.2, step=30)
-    c.flat([(1173, 296), (1889, 296), (1889, 1021), (1173, 1021)], TONE1)
-    c.shape([(1160, 280), (1875, 280), (1875, 1005), (1160, 1005)], WHITE, 3.4, amp=1.2, step=30)
-    # a pin holding the shopping list
-    c.oval(1517, 280, 12, 12, RED, 2.6)
+        c.flat([(i * 44, 0), (i * 44 + 16, 0), (i * 44 + 16, FLOOR), (i * 44, FLOOR)], SAND, .3)
+    # floorboards
+    c.flat([(0, FLOOR), (1920, FLOOR), (1920, 1080), (0, 1080)], TONE1)
+    c.flat([(0, FLOOR), (1920, FLOOR), (1920, FLOOR + 26), (0, FLOOR + 26)], dk(TONE1), .6)
+    for i in range(-8, 26):
+        x = 960 + (i - 8) * 150
+        a, b = (960 + (x - 960) * .86, FLOOR + 4), (960 + (x - 960) * 1.4, 1080)
+        c.line([a, b], 2, WOOD, amp=.8)
+        t = r.uniform(.2, .8); px, py = a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t
+        c.line([(px, py), (px + 120, py)], 1.4, WOOD, amp=.4)
+    c.flat([(0, FLOOR - 14), (1920, FLOOR - 14), (1920, FLOOR + 4), (0, FLOOR + 4)], WOOD_DARK)
+    c.line([(0, FLOOR - 14), (1920, FLOOR - 14)], 2.4, amp=1); c.line([(0, FLOOR + 4), (1920, FLOOR + 4)], 3, amp=1)
+
+    # hanging lamps and strings of garlic and sausages along the ceiling (the middle stays free for the message)
+    for x in (150, 520, 1420, 1790):
+        c.line([(x, 0), (x, 150)], 2, amp=.2)
+        c.two([(x - 34, 196), (x - 14, 150), (x + 14, 150), (x + 34, 196)], PAL['gold'], 2.4, 3, 0, amp=.4); c.oval(x, 200, 12, 8, GOLD, 1.8)
+    c.line([(230, 110), (330, 136), (430, 110)], 1.8, amp=.6)
+    for i in range(7):
+        t = (i + .5) / 7; x = 230 + 200 * t; y = 110 + 26 * 4 * t * (1 - t) * .95
+        c.two(c.lumpy(x, y + 16, 9, 12, 4, .2), (WHITE, WHITE, RED)[i % 3], 1.6, 2, 2, amp=.3, step=7)
+
+    # --- wall shelf (products stand at py 354, on the board at 426) ----------------------------
+    x0, x1 = 54, 726
+    c.shadow([(x0 + 8, 446), (x1 + 8, 446), (x1 + 8, 460), (x0 + 8, 460)])
+    back = [(x0 + 14, 262), (x1 - 14, 262), (x1 - 14, 430), (x0 + 14, 430)]
+    def panel():
+        for i in range(1, 10):
+            c.line([(x0 + i * 70, 262), (x0 + i * 70, 430)], 1.4, dk(PAL['pale']), amp=.5)
+    c.two(back, PAL['pale'], 2.6, 4, 4, inner=panel)
+    c.two([(x0, 426), (x1, 426), (x1, 446), (x0, 446)], WOOD, 3, 3, 0, amp=.8)
+    c.two([(x0 + 6, 250), (x1 - 6, 250), (x1 - 6, 266), (x0 + 6, 266)], WOOD_DARK, 2.6, 3, 0, amp=.8)
+    for x in (x0 + 40, (x0 + x1) / 2, x1 - 40):
+        c.shape([(x - 8, 446), (x + 8, 446), (x + 8, 470), (x, 486), (x - 8, 470)], WOOD_DARK, 2, amp=.3)
+    # --- market table with a striped cloth (products stand at py 588) -------------------------
+    t0, t1 = 44, 736
+    c.sh_oval(390, 812, 360, 16)
+    for x in (t0 + 40, t1 - 40, t0 + 110, t1 - 110):
+        c.two([(x - 9, 700), (x + 9, 700), (x + 7, 806), (x - 7, 806)], WOOD_DARK, 2.4, 3, 0, amp=.4)
+    top = [(t0 + 46, 628), (t1 - 46, 628), (t1, 690), (t0, 690)]
+    c.two(top, WOOD, 3, 4, 4, inner=lambda: [c.line([(t0 + 60 + i * 90, 628), (t0 + 30 + i * 100, 690)], 1.4, dk(WOOD), amp=.4) for i in range(8)])
+    cloth = [(t0, 690), (t1, 690), (t1, 728), (t0, 728)]
+    def stripes():
+        for i in range(18):
+            if i % 2 == 0:
+                c.flat([(t0 + i * 40, 686), (t0 + i * 40 + 40, 686), (t0 + i * 40 + 40, 760), (t0 + i * 40, 760)], RED)
+    scallop = [(t0, 690), (t1, 690)] + [(t1 - i * 20, 722 + (8 if i % 2 else 0)) for i in range(0, int((t1 - t0) / 20) + 1)]
+    c.flat(scallop, WHITE); c.inside(scallop, stripes); c.stroke(scallop, 2.4)
+    # --- tall rack (products stand at py 354 and 588) -------------------------------------------
+    r0, r1 = 752, 988
+    c.sh_oval(876, 806, 140, 12)
+    rack = [(r0, 232), (r1, 232), (r1, 796), (r0, 796)]
+    def inside_rack():
+        c.flat([(r0 + 16, 248), (r1 - 16, 248), (r1 - 16, 780), (r0 + 16, 780)], PAL['cream'])
+        for i in range(1, 6):
+            c.line([(r0 + 16 + i * 34, 248), (r0 + 16 + i * 34, 780)], 1.2, SAND, amp=.4)
+    c.two(rack, WOOD, 3, 5, 0, inner=inside_rack)
+    c.stroke([(r0 + 16, 248), (r1 - 16, 248), (r1 - 16, 780), (r0 + 16, 780)], 1.8)
+    for y in (426, 660):
+        c.two([(r0 + 8, y), (r1 - 8, y), (r1 - 8, y + 18), (r0 + 8, y + 18)], WOOD, 2.6, 3, 0, amp=.6)
+    c.two([(r0 - 10, 214), (r1 + 10, 214), (r1 + 10, 236), (r0 - 10, 236)], WOOD_DARK, 2.6, 3, 0, amp=.6)
+    # jars on top of the rack, baskets on its bottom shelf
+    for i, col in enumerate((RED, GOLD, PAL['lime'], ORANGE)):
+        jx = r0 + 30 + i * 54
+        c.two([(jx - 16, 214), (jx - 18, 176), (jx + 18, 176), (jx + 16, 214)], col, 2, 3, 0, amp=.3); c.shape([(jx - 14, 176), (jx + 14, 176), (jx + 14, 166), (jx - 14, 166)], WHITE, 1.6, amp=.2)
+    for i in range(2):
+        bx = r0 + 70 + i * 100
+        for k in range(3):
+            c.oval(bx - 16 + k * 16, 716, 11, 11, (RED, LIME, ORANGE)[(i + k) % 3], 1.6, amp=.2)
+        c.two([(bx - 40, 722), (bx + 40, 722), (bx + 32, 778), (bx - 32, 778)], PAL['gold'], 2.2, 3, 0, amp=.4, inner=lambda bx=bx: c.hatch(bx - 40, 726, bx + 40, 778, gap=10, w=1.2, color=WOOD))
+    # --- the basket on the floor (picked products are shown along it, around py 912) -----------
+    b0, b1 = 96, 1000
+    c.sh_oval(548, 1004, 470, 14)
+    wick = [(b0 - 10, 906), (b1 + 10, 906), (b1 - 16, 996), (b0 + 16, 996)]
+    def weave():
+        for j in range(5):
+            c.line([(b0 - 10, 918 + j * 17), (b1 + 10, 918 + j * 17)], 1.6, WOOD, amp=.6)
+        for i in range(48):
+            c.line([(b0 + i * 20, 906), (b0 + i * 20 + (6 if i % 2 else -6), 996)], 1.2, WOOD, amp=.3)
+    c.two(wick, PAL['gold'], 3, 4, 0, inner=weave)
+    c.two([(b0 - 22, 892), (b1 + 22, 892), (b1 + 18, 914), (b0 - 18, 914)], WOOD, 2.6, 3, 0, amp=.6)
+    for x in (b0 - 6, b1 + 6):
+        c.line([(x, 892), (x + (-26 if x < 500 else 26), 850), (x + (-10 if x < 500 else 10), 826)], 4.5, amp=.5); c.line([(x, 892), (x + (-26 if x < 500 else 26), 850), (x + (-10 if x < 500 else 10), 826)], 2, WOOD, amp=.5)
+
+    # --- the shopkeeper behind the counter ----------------------------------------------------------
+    kx = 1104
+    c.two([(kx - 66, 760), (kx - 56, 596), (kx - 20, 572), (kx + 20, 572), (kx + 56, 596), (kx + 66, 760)], PAL['sage'], 3, 5, 0)       # shirt
+    c.two([(kx - 40, 760), (kx - 34, 610), (kx + 34, 610), (kx + 40, 760)], WHITE, 2.4, 4, 0)                                            # apron
+    c.line([(kx - 34, 612), (kx - 12, 574)], 2, amp=.2); c.line([(kx + 34, 612), (kx + 12, 574)], 2, amp=.2)
+    c.two([(kx - 12, 580), (kx + 12, 580), (kx + 10, 556), (kx - 10, 556)], SKIN, 2, 2, 0, amp=.2)
+    c.two(c.ring(kx, 512, 44, 46), SKIN, 3, 5, 5, amp=.5, step=8)
+    c.flat([(kx - 44, 506), (kx - 40, 474), (kx - 14, 458), (kx + 16, 458), (kx + 40, 474), (kx + 44, 506), (kx + 30, 486), (kx, 478), (kx - 30, 488)], WOOD_DARK)
+    c.line([(kx - 44, 506), (kx - 40, 474), (kx - 14, 458), (kx + 16, 458), (kx + 40, 474), (kx + 44, 506)], 2.6, amp=.5)
+    c.dotc(kx - 15, 514, 4.2, INK); c.dotc(kx + 15, 514, 4.2, INK)
+    c.flat(c.ring(kx - 26, 530, 8, 5), ORANGE, .7); c.flat(c.ring(kx + 26, 530, 8, 5), ORANGE, .7)
+    c.line([(kx - 12, 532), (kx, 540), (kx + 12, 532)], 2.4, amp=.2, step=6)
+    c.line([(kx - 20, 524), (kx - 6, 528)], 3, WOOD_DARK, amp=.1); c.line([(kx + 20, 524), (kx + 6, 528)], 3, WOOD_DARK, amp=.1)        # moustache
+    # counter with a bell
+    c0 = 1020
+    c.sh_oval(1470, 1052, 450, 12)
+    front = [(c0, 772), (1920, 772), (1920, 1046), (c0, 1046)]
+    def panels():
+        for i in range(6):
+            px = c0 + 24 + i * 150
+            c.shape([(px, 800), (px + 126, 800), (px + 126, 1020), (px, 1020)], WOOD, 1.6, dk(WOOD), amp=.5, step=30)
+    c.two(front, WOOD, 3, 6, 0, inner=panels)
+    c.two([(c0 - 16, 744), (1920, 744), (1920, 776), (c0 - 16, 776)], WOOD_DARK, 3, 3, 0, amp=.8)
+    c.two([(1140, 744), (1146, 722), (1176, 722), (1182, 744)], GOLD, 2.2, 3, 0, amp=.3); c.dotc(1161, 718, 5, INK)       # bell
+
+    # --- the shopping list hanging on the wall (the game writes the words on it) ---------------
+    p0, p1, py0, py1 = 1196, 1880, 258, 722
+    c.shadow([(p0 + 12, py1 + 12), (p1 + 12, py1 + 12), (p1 + 12, py0 + 20), (p1, py0 + 20), (p1, py1), (p0 + 12, py1)])
+    c.two([(p0 - 14, py0 - 6), (p1 + 14, py0 - 6), (p1 + 14, py0 + 22), (p0 - 14, py0 + 22)], WOOD_DARK, 2.6, 3, 0, amp=.6)
+    paper = [(p0, py0 + 18), (p1, py0 + 18), (p1, py1 - 14), (p1 - 24, py1), (p0 + 30, py1 - 6), (p0, py1 - 16)]
+    def rules():
+        for i in range(1, 9):
+            c.line([(p0 + 30, py0 + 60 + i * 50), (p1 - 30, py0 + 60 + i * 50)], 1.2, PAL['ice'], amp=.5)
+        c.line([(p0 + 62, py0 + 20), (p0 + 62, py1)], 1.4, PAL['skin'], amp=.4)
+    c.two(paper, WHITE, 2.8, 4, 5, inner=rules)
+    c.line([((p0 + p1) / 2, py0 - 6), ((p0 + p1) / 2, py0 - 44)], 2, amp=.2); c.dotc((p0 + p1) / 2, py0 - 46, 7, RED)
     out(c, BG, 'sprite_shop_clean', (1920, 1080))
 
 

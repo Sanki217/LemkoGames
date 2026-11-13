@@ -82,8 +82,8 @@ namespace Lemko
                 else if(control) { image.sprite=Look.Button; image.type=Image.Type.Sliced; image.color=Color.white; }
                 else if(Light(c)) { image.sprite=Look.Panel; image.type=Image.Type.Sliced; image.color=Look.Paper; }
             }
-            // World props that carry their own colour (the shop's shelf boards) become dark wood.
-            foreach(var board in FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None)) if(board.name.StartsWith("Shelf")) board.color=Look.Wood;
+            // World props that carry their own colour (the shop's shelf boards) are hidden: the shelves are drawn in the backdrop.
+            foreach(var board in FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None)) if(board.name.StartsWith("Shelf")) board.color=Color.clear;
             foreach(var text in root.GetComponentsInChildren<TMP_Text>(true)) {
                 var c=text.color;
                 text.color=Purple(c) ? Look.Brick : (c.r>.3f && c.r<.5f && c.g>.38f && c.g<.55f) ? Look.Muted : Look.Ink;

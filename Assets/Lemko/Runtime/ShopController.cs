@@ -21,6 +21,9 @@ namespace Lemko
         readonly List<TMP_Text> listRows=new List<TMP_Text>();
         public int HintsUsed { get; private set; }
         public void RecordHint() { if(round!=null) { HintsUsed++; session.RefreshHud(); } }
+        // Where the products stand in the shop drawn in the backdrop: wall shelf, market table, then the tall rack.
+        static readonly Vector2[] Stands={ new Vector2(-6.6f,1.55f),new Vector2(-4.75f,1.55f),new Vector2(-2.9f,1.55f),new Vector2(-6.6f,-.4f),new Vector2(-4.75f,-.4f),new Vector2(-2.9f,-.4f),
+            new Vector2(-.75f,1.55f),new Vector2(-.75f,-.4f),new Vector2(-6.6f,-2.2f),new Vector2(-4.75f,-2.2f),new Vector2(-2.9f,-2.2f),new Vector2(-.75f,-2.2f) };
         readonly List<WordView> views = new List<WordView>();
         List<VocabularyEntry> targets;
         ShopBasket round;
@@ -51,7 +54,7 @@ namespace Lemko
             if (worldRoot && (productSlots == null || productSlots.Length < Mathf.Min(definition.displayedProductCount,definition.products.Count))) {
                 feedback.text = "Add one scene product slot for every configured product."; return;
             }
-            if(worldRoot) worldRoot.gameObject.SetActive(true);
+            if(worldRoot) { worldRoot.gameObject.SetActive(true); for(int i=0;i<productSlots.Length && i<Stands.Length;i++) if(productSlots[i]) productSlots[i].localPosition=Stands[i]; }
             var products = new List<VocabularyEntry>(definition.products);
             Shuffle(products);
             products=PracticeSelection.Order(products,w=>w,session,definition.taskCount);
@@ -96,7 +99,7 @@ namespace Lemko
                 copy.transform.localPosition=basketStart+Vector3.right*basketViews.Count*basketSpacing;
                 copy.transform.localScale=Vector3.one*basketItemScale; basketViews.Add(copy);
             }
-            if(basketStatus) basketStatus.text="Basket: "+round.Count+"   ·   tap an item to put it back";
+            if(basketStatus) basketStatus.text="";   // the basket in the picture shows what is in it
         }
         public void SubmitBasket()
         {
