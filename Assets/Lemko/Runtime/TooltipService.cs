@@ -33,6 +33,13 @@ namespace Lemko
             Hide(); owner=requester; pendingWord=word; position=screenPosition; started=Time.unscaledTime; content=kind;
             if(progressRing) progressRing.SetProgress(0);
         }
+        // Immediate reveal for an explicit hint button; counted exactly like a held hint.
+        public void RevealNow(UnityEngine.Object requester,VocabularyEntry word,Vector2 screenPosition,HintContent kind=HintContent.Translation)
+        {
+            if(!word) return;
+            Hide(); owner=requester; pendingWord=word; position=screenPosition; started=Time.unscaledTime; content=kind;
+            Reveal();
+        }
         public void MovePointer(UnityEngine.Object requester,Vector2 screenPosition) {
             if(owner!=requester || (screenPosition-position).sqrMagnitude<=movementTolerance*movementTolerance) return;
             position=screenPosition; started=Time.unscaledTime; visible=false;

@@ -13,29 +13,32 @@ namespace Lemko
         public int InvitationsDelivered=>delivered.Count;
         protected override void BuildTask()
         {
-            submit.gameObject.SetActive(false); prompt.text="Deliver an invitation. From YOU, find: "+Current.word.lemko;
+            submit.gameObject.SetActive(false); prompt.text="Deliver an invitation to "+Look.Word(Current.word.lemko);
             foreach(var person in definition.people) {
                 var p=person; var token=Token(p.appearance,p.position,p.id,t=>Choose(p.id),p.id==definition.referencePerson ? "YOU" : null);
-                if(invited.Contains(p.id)) token.backing.color=new Color(.55f,.85f,.6f);
-                if(p.id==definition.referencePerson) { token.backing.color=new Color(.98f,.87f,.49f); token.caption.transform.localPosition=new Vector3(0,-.6f,0); token.caption.rectTransform.sizeDelta=new Vector2(1.7f,.4f); token.caption.enableAutoSizing=true; token.caption.fontSizeMin=1; token.caption.fontSizeMax=6; }
+                if(invited.Contains(p.id)) token.backing.color=Look.GoodSoft;
+                if(p.id==definition.referencePerson) { token.backing.color=Look.Honey; token.caption.transform.localPosition=new Vector3(0,-.6f,0); token.caption.rectTransform.sizeDelta=new Vector2(1.7f,.4f); token.caption.enableAutoSizing=true; token.caption.fontSizeMin=1; token.caption.fontSizeMax=6; }
                 if(!string.IsNullOrEmpty(p.parentId)) { var parent=definition.people.Find(x=>x.id==p.parentId); if(parent!=null) Link(parent.position,p.position); }
                 if(!string.IsNullOrEmpty(p.secondParentId)) { var parent=definition.people.Find(x=>x.id==p.secondParentId); if(parent!=null) Link(parent.position,p.position); }
             }
-            RefreshAlbum(); feedback.text="Invite the requested relative to our gathering. YOU is highlighted; every valid relative is accepted.";
+            RefreshAlbum(); feedback.text="Start from YOU and follow the lines.";
         }
         void Link(Vector2 a,Vector2 b)
         {
             var go=new GameObject("Family connection",typeof(SpriteRenderer)); go.transform.SetParent(taskRoot,false); go.transform.localPosition=(a+b)/2;
             go.transform.rotation=Quaternion.Euler(0,0,Mathf.Atan2(b.y-a.y,b.x-a.x)*Mathf.Rad2Deg);
-            go.transform.localScale=new Vector3(Vector2.Distance(a,b),.045f,1); var r=go.GetComponent<SpriteRenderer>(); r.sprite=tokenPrefab.backing.sprite; r.color=new Color(.48f,.56f,.62f); r.sortingOrder=-2;
+            go.transform.localScale=new Vector3(Vector2.Distance(a,b),.045f,1); var r=go.GetComponent<SpriteRenderer>(); r.sprite=tokenPrefab.backing.sprite; r.color=Look.Alpha(Look.Ink,.45f); r.sortingOrder=-2; Juice.Pop(go.transform,.1f);
         }
-        void RefreshAlbum() { if(album) album.text="Invitations delivered: "+delivered.Count+" / "+definition.tasksPerSession+"\n"+string.Join("  •  ",delivered); }
+        void RefreshAlbum() { if(album) album.text="Invited: "+delivered.Count+" / "+definition.tasksPerSession+"\n"+string.Join("  •  ",delivered); }
         public void Choose(string person) {
             if(!Ready || !definition.people.Exists(p=>p.id==person)) return;
             bool correct=Array.IndexOf(Current.validPeople,person)>=0;
-            if(Answer(correct,person,correct ? "Invitation delivered! This relative can join the gathering." : "Follow the connections from YOU." ) && correct) {
+            var chosen=tokens.Find(t=>t && t.Key==person);
+            if(!Answer(correct,person,correct ? "Invitation delivered!" : "Not this relative. Follow the lines from YOU." )) return;
+            if(!correct) { if(chosen) Juice.Shake(chosen.transform,.14f); return; }
+            {
                 invited.Add(person); delivered.Add(Current.word.lemko);
-                foreach(var token in tokens) if(token.Key==person) token.backing.color=new Color(.55f,.85f,.6f);
+                foreach(var token in tokens) if(token.Key==person) { token.backing.color=Look.GoodSoft; Juice.Hop(token.transform,.4f); }
                 HighlightPath(person); RefreshAlbum();
             }
         }
@@ -55,7 +58,7 @@ namespace Lemko
             for(string id=target; previous[id]!=null; id=previous[id]) {
                 var a=definition.people.Find(p=>p.id==id); var b=definition.people.Find(p=>p.id==previous[id]);
                 Link(a.position,b.position); var r=taskRoot.GetChild(taskRoot.childCount-1).GetComponent<SpriteRenderer>();
-                r.color=new Color(.43f,.33f,.84f); r.sortingOrder=-1;
+                r.color=Look.Brick; r.sortingOrder=-1;
             }
         }
         public override void Close() { base.Close(); invited.Clear(); delivered.Clear(); if(album) album.text=""; }

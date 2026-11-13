@@ -20,10 +20,10 @@ namespace Lemko
         public void Face(bool visible,bool picture,string text)
         {
             FaceUp=visible; view.worldPicture.gameObject.SetActive(visible && picture);
-            caption.gameObject.SetActive(!visible || !picture); caption.text=visible ? text : "?"; caption.color=visible ? new Color(.14f,.2f,.24f) : Color.white;
+            caption.gameObject.SetActive(!visible || !picture); caption.text=visible ? text : "?"; caption.color=visible ? Look.Ink : Look.Paper;
             var hint=GetComponent<HintPointer>(); hint.enabled=visible;
             if(view.worldSpeaker) view.worldSpeaker.SetActive(visible && view.Entry && view.Entry.pronunciation);
-            backing.color=visible ? new Color(.97f,.98f,1f) : new Color(.43f,.36f,.78f);
+            backing.color=visible ? Look.Paper : Look.Brick;
         }
         public void Click() => clicked?.Invoke(this);
         public void Available(bool value) { foreach(var r in GetComponentsInChildren<Renderer>()) r.enabled=value; foreach(var c in GetComponentsInChildren<Collider2D>()) c.enabled=value; }

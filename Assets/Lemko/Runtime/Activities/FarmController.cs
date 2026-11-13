@@ -1,3 +1,4 @@
+using TMPro;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -18,7 +19,8 @@ namespace Lemko
         protected override void BuildTask()
         {
             placed.Clear(); IsRepairTask=QuantityTasks && enableRepairTasks && (Correct+1)%Mathf.Max(2,repairEvery)==0;
-            prompt.text=QuantityTasks ? (IsRepairTask ? "Repair this pen: " : "Prepare this pen: ")+Current.quantity+" × "+Current.word.lemko : "Find this animal: "+Current.word.lemko;
+            prompt.text=QuantityTasks ? (IsRepairTask ? "Fix the pen: " : "Fill the pen: ")+Look.Word(Current.quantity+" × "+Current.word.lemko) : "Find "+Look.Word(Current.word.lemko);
+            counter=QuantityTasks ? Badge(new Vector2(5.6f,1.7f),.9f,Look.Honey) : null; if(counter) counter.text="0";
             Zone(new Vector2(2,-.5f),new Vector2(7,4),t=>Add(t.view.Entry));
             for(int i=0;i<definition.pool.Count;i++) Token(definition.pool[i],new Vector2(-5.8f+(i%2)*2,-.1f-(i/2)*1.8f),"tray",t=>Add(t.view.Entry),draggable:true);
             if(IsRepairTask) {
@@ -29,17 +31,20 @@ namespace Lemko
                 for(int i=0;i<count;i++) Add(Current.word);
                 if(variant==2) { var other=definition.pool.FirstOrDefault(w=>w!=Current.word); if(other) Add(other); }
             }
-            feedback.text=!QuantityTasks ? "Place the requested animal in the pen, then Submit. Complete Numbers to unlock quantity tasks." : (IsRepairTask ? "Something is wrong in this pen. Fix it for the gathering. " : "Help prepare the pens before the gathering. ")+"Drag animals into the pen (or click to add). Click a placed animal to remove it, then Submit.";
+            feedback.text=!QuantityTasks ? "Put the animal in the pen." : IsRepairTask ? "Something is wrong in this pen." : "Drag or tap animals into the pen. Tap one to remove it.";
         }
         public bool Add(VocabularyEntry word)
         {
             if(!Ready || !definition.pool.Contains(word) || placed.Count>=12) return false;
             if(!QuantityTasks) { foreach(var old in placed) { old.gameObject.SetActive(false); Destroy(old.gameObject); } placed.Clear(); }
-            var token=Token(word,Vector2.zero,"placed",Remove); placed.Add(token); Arrange(); PresentationMotion.Pulse(token.backing.transform,Session);
+            var token=Token(word,Vector2.zero,"placed",Remove); placed.Add(token); Arrange(); Juice.Drop(token.transform,1.1f); Juice.Dust(Juice.WorldToScreen(token.transform.position+Vector3.down*.4f)); Juice.Sound("drop",1+placed.Count*.05f);
             var idle=token.view.worldPicture.gameObject.AddComponent<AnimalIdle>(); idle.session=Session; return true;
         }
         public void Remove(ActivityToken token) { if(!Ready || !placed.Remove(token)) return; token.gameObject.SetActive(false); Destroy(token.gameObject); Arrange(); }
-        void Arrange() { for(int i=0;i<placed.Count;i++) { placed[i].transform.localPosition=new Vector2(-.4f+(i%4)*1.55f,.8f-(i/4)*1.35f); placed[i].transform.localScale=Vector3.one*.75f; } }
-        public override void Submit() => Answer(placed.Count==(QuantityTasks ? Current.quantity : 1) && placed.All(t=>t.view.Entry==Current.word),string.Join("|",placed.Select(t=>t.view.Entry.id).OrderBy(s=>s)),placed.Count==(QuantityTasks ? Current.quantity : 1) && placed.All(t=>t.view.Entry==Current.word) ? "This pen is ready for the gathering." : QuantityTasks ? (placed.Any(t=>t.view.Entry!=Current.word) ? "One of these animals is a different type. Remove it and try again." : "You have "+placed.Count+"; the request is "+Current.quantity+". Add or remove animals.") : "Choose the requested animal. You can replace it before submitting.");
+        TMP_Text counter;
+        protected override bool HasAnswer => placed.Count>0;
+        void Arrange() { if(counter) { counter.text=placed.Count.ToString(); Juice.Punch(counter.transform.parent,.25f,.25f); }
+            for(int i=0;i<placed.Count;i++) { placed[i].transform.localPosition=new Vector2(-.4f+(i%4)*1.55f,.8f-(i/4)*1.35f); placed[i].transform.localScale=Vector3.one*.75f; } }
+        public override void Submit() => Answer(placed.Count==(QuantityTasks ? Current.quantity : 1) && placed.All(t=>t.view.Entry==Current.word),string.Join("|",placed.Select(t=>t.view.Entry.id).OrderBy(s=>s)),placed.Count==(QuantityTasks ? Current.quantity : 1) && placed.All(t=>t.view.Entry==Current.word) ? "The pen is ready!" : QuantityTasks ? (placed.Any(t=>t.view.Entry!=Current.word) ? "One animal is a different kind." : "You have "+placed.Count+", not "+Current.quantity+".") : "That is a different animal.");
     }
 }

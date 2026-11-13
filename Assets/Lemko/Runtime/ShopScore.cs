@@ -12,5 +12,7 @@ namespace Lemko
             if(result == SelectionResult.Incorrect) { Streak=0; return 0; }
             int awarded=100 * NextMultiplier; Streak++; Points+=awarded; return awarded;
         }
+        // Extra points layered on top of the streak rule (Challenge mode only).
+        public void Bonus(int points) { if(points>0) Points+=points; }
     }
 }

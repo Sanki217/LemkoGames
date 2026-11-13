@@ -67,5 +67,13 @@ namespace Lemko.Editor
                 BuildTarget.StandaloneWindows64, BuildOptions.None);
             if (result.summary.result != BuildResult.Succeeded) throw new BuildFailedException(result.summary.result.ToString());
         }
+
+        [MenuItem("Lemko/Build/WebGL release")]
+        public static void WebGL()
+        {
+            var scenes = EditorBuildSettings.scenes.Where(s => s.enabled).Select(s => s.path).ToArray();
+            var result = BuildPipeline.BuildPlayer(scenes, "Builds/WebGLRelease", BuildTarget.WebGL, BuildOptions.None);
+            if (result.summary.result != BuildResult.Succeeded) throw new BuildFailedException(result.summary.result.ToString());
+        }
     }
 }
