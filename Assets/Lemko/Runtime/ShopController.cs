@@ -21,9 +21,28 @@ namespace Lemko
         readonly List<TMP_Text> listRows=new List<TMP_Text>();
         public int HintsUsed { get; private set; }
         public void RecordHint() { if(round!=null) { HintsUsed++; session.RefreshHud(); } }
-        // Where the products stand in the shop drawn in the backdrop: wall shelf, market table, then the tall rack.
-        static readonly Vector2[] Stands={ new Vector2(-6.6f,1.55f),new Vector2(-4.75f,1.55f),new Vector2(-2.9f,1.55f),new Vector2(-6.6f,-.4f),new Vector2(-4.75f,-.4f),new Vector2(-2.9f,-.4f),
-            new Vector2(-.75f,1.55f),new Vector2(-.75f,-.4f),new Vector2(-6.6f,-2.2f),new Vector2(-4.75f,-2.2f),new Vector2(-2.9f,-2.2f),new Vector2(-.75f,-2.2f) };
+        // Where the products lie in the shop drawn in the backdrop (x, y, tilt in degrees): three on the display table,
+        // two on the wall shelves, one in each crate and one on the rack. Slots 9 to 12 are spare places on the shelves.
+        static readonly Vector3[] Stands={ new Vector3(-6.75f,1.45f,8),new Vector3(-5.15f,1.2f,-7),new Vector3(-3.75f,1.65f,5),new Vector3(-1.9f,1.75f,-4),new Vector3(.75f,.1f,6),
+            new Vector3(-2.6f,-1.7f,-11),new Vector3(-.55f,-1.75f,9),new Vector3(3.15f,1.45f,-5),new Vector3(.6f,1.75f,4),new Vector3(-1.7f,.1f,-6),new Vector3(3.15f,-.35f,7),new Vector3(3.15f,-2.1f,-4) };
+        // The list is held in a hand in the bottom left corner, the basket stands in the bottom right one.
+        void Arrange()
+        {
+            for(int i=0;i<productSlots.Length && i<Stands.Length;i++) if(productSlots[i]) {
+                productSlots[i].localPosition=new Vector3(Stands[i].x,Stands[i].y,0); productSlots[i].localRotation=Quaternion.Euler(0,0,Stands[i].z);
+            }
+            basketStart=new Vector3(4.15f,-2.72f,0); basketSpacing=.5f; basketItemScale=.45f;
+            Place(shoppingList ? shoppingList.rectTransform : null,new Vector2(-5.6f,-.5f),new Vector2(300,40),.82f);
+            Place(listRoot,new Vector2(-5.6f,-2.75f),new Vector2(350,420),.72f);
+            if(finishButton) Place((RectTransform)finishButton.transform,new Vector2(.55f,-3.92f),new Vector2(300,54),1);
+        }
+        static void Place(RectTransform rect,Vector2 world,Vector2 size,float scale)
+        {
+            if(!rect) return;
+            var canvas=rect.GetComponentInParent<Canvas>(); if(!canvas) return;
+            rect.anchorMin=rect.anchorMax=rect.pivot=new Vector2(.5f,.5f); rect.sizeDelta=size; rect.localScale=Vector3.one*scale;
+            rect.position=canvas.rootCanvas.transform.TransformPoint(world*80f);   // the 1280 x 720 canvas shows 16 x 9 world units
+        }
         readonly List<WordView> views = new List<WordView>();
         List<VocabularyEntry> targets;
         ShopBasket round;
@@ -54,7 +73,7 @@ namespace Lemko
             if (worldRoot && (productSlots == null || productSlots.Length < Mathf.Min(definition.displayedProductCount,definition.products.Count))) {
                 feedback.text = "Add one scene product slot for every configured product."; return;
             }
-            if(worldRoot) { worldRoot.gameObject.SetActive(true); for(int i=0;i<productSlots.Length && i<Stands.Length;i++) if(productSlots[i]) productSlots[i].localPosition=Stands[i]; }
+            if(worldRoot) { worldRoot.gameObject.SetActive(true); Arrange(); }
             var products = new List<VocabularyEntry>(definition.products);
             Shuffle(products);
             products=PracticeSelection.Order(products,w=>w,session,definition.taskCount);

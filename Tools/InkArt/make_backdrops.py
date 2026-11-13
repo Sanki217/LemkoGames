@@ -438,132 +438,245 @@ def alphabet():
 
 # --- shop layout (1920x1080, matches the product slots and panels in Shop.unity) ---------
 def shop():
-    """A whole shop: wall shelf and market table on the left, a tall rack, the shopkeeper behind the counter,
-    the shopping list hanging on the right and the basket on the floor. World (wx, wy) is at 960 + wx*120, 540 - wy*120."""
+    """A whole shop, after Sanki's sketch: slanted display table (top left), shelf unit on the back wall, two crates on
+    the floor, a tall rack, the door and the shopkeeper behind the counter (right), the basket (bottom right) and a hand
+    holding the shopping list (bottom left). World (wx, wy) is at 960 + wx*120, 540 - wy*120; products are 162 x 144."""
     c = Scene(1920, 1080, 1.5, PAPER, 31)
     r = c.r
-    FLOOR = 800
+    FLOOR = 700
+    CREAM = PAL['cream']
     for i in range(0, 46):
         c.flat([(i * 44, 0), (i * 44 + 16, 0), (i * 44 + 16, FLOOR), (i * 44, FLOOR)], SAND, .3)
     # floorboards
     c.flat([(0, FLOOR), (1920, FLOOR), (1920, 1080), (0, 1080)], TONE1)
-    c.flat([(0, FLOOR), (1920, FLOOR), (1920, FLOOR + 26), (0, FLOOR + 26)], dk(TONE1), .6)
+    c.flat([(0, FLOOR), (1920, FLOOR), (1920, FLOOR + 30), (0, FLOOR + 30)], dk(TONE1), .6)
     for i in range(-8, 26):
         x = 960 + (i - 8) * 150
-        a, b = (960 + (x - 960) * .86, FLOOR + 4), (960 + (x - 960) * 1.4, 1080)
+        a, b = (960 + (x - 960) * .8, FLOOR + 4), (960 + (x - 960) * 1.5, 1080)
         c.line([a, b], 2, WOOD, amp=.8)
-        t = r.uniform(.2, .8); px, py = a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t
-        c.line([(px, py), (px + 120, py)], 1.4, WOOD, amp=.4)
-    c.flat([(0, FLOOR - 14), (1920, FLOOR - 14), (1920, FLOOR + 4), (0, FLOOR + 4)], WOOD_DARK)
-    c.line([(0, FLOOR - 14), (1920, FLOOR - 14)], 2.4, amp=1); c.line([(0, FLOOR + 4), (1920, FLOOR + 4)], 3, amp=1)
+        for t in (r.uniform(.15, .45), r.uniform(.55, .9)):
+            px, py = a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t
+            c.line([(px, py), (px + 150 * (.8 + t * .7), py)], 1.4, WOOD, amp=.4)
+    c.flat([(0, FLOOR - 16), (1920, FLOOR - 16), (1920, FLOOR + 4), (0, FLOOR + 4)], WOOD_DARK)
+    c.line([(0, FLOOR - 16), (1920, FLOOR - 16)], 2.4, amp=1); c.line([(0, FLOOR + 4), (1920, FLOOR + 4)], 3, amp=1)
 
-    # hanging lamps and strings of garlic and sausages along the ceiling (the middle stays free for the message)
-    for x in (150, 520, 1420, 1790):
-        c.line([(x, 0), (x, 150)], 2, amp=.2)
-        c.two([(x - 34, 196), (x - 14, 150), (x + 14, 150), (x + 34, 196)], PAL['gold'], 2.4, 3, 0, amp=.4); c.oval(x, 200, 12, 8, GOLD, 1.8)
-    c.line([(230, 110), (330, 136), (430, 110)], 1.8, amp=.6)
+    def jar(x, y, w, h, col, lid=WHITE):
+        c.two([(x - w / 2, y), (x - w / 2 - 2, y - h + 8), (x - w / 2 + 6, y - h), (x + w / 2 - 6, y - h), (x + w / 2 + 2, y - h + 8), (x + w / 2, y)], col, 2, 3, 0, amp=.3, step=10)
+        c.shape([(x - w / 2 + 3, y - h), (x + w / 2 - 3, y - h), (x + w / 2 - 3, y - h - 9), (x - w / 2 + 3, y - h - 9)], lid, 1.6, amp=.2)
+        c.shape([(x - w / 2 + 6, y - h * .62), (x + w / 2 - 6, y - h * .62), (x + w / 2 - 6, y - h * .28), (x - w / 2 + 6, y - h * .28)], WHITE, 1.2, amp=.2)
+
+    def bottle(x, y, h, col):
+        c.two([(x - 11, y), (x - 11, y - h * .58), (x - 5, y - h * .74), (x - 5, y - h), (x + 5, y - h), (x + 5, y - h * .74), (x + 11, y - h * .58), (x + 11, y)], col, 2, 3, 0, amp=.2, step=10)
+        c.shape([(x - 6, y - h), (x + 6, y - h), (x + 6, y - h - 7), (x - 6, y - h - 7)], WOOD, 1.4, amp=.1)
+        c.shape([(x - 8, y - h * .46), (x + 8, y - h * .46), (x + 8, y - h * .16), (x - 8, y - h * .16)], CREAM, 1.2, amp=.1)
+
+    def tin(x, y, w, h, col):
+        c.two([(x - w / 2, y), (x - w / 2, y - h), (x + w / 2, y - h), (x + w / 2, y)], col, 2, 3, 0, amp=.2, step=10)
+        c.line([(x - w / 2, y - h * .3), (x + w / 2, y - h * .3)], 1.2, amp=.1); c.line([(x - w / 2, y - h * .7), (x + w / 2, y - h * .7)], 1.2, amp=.1)
+
+    def sack(x, y, k=1.0, col=CREAM):
+        c.sh_oval(x + 6, y, 46 * k, 8 * k)
+        c.two(c.lumpy(x, y - 46 * k, 42 * k, 48 * k, 5, .12), col, 2.4, 4, 3, amp=.6, step=10)
+        c.two([(x - 14 * k, y - 90 * k), (x - 22 * k, y - 112 * k), (x, y - 104 * k), (x + 22 * k, y - 114 * k), (x + 14 * k, y - 90 * k)], col, 2, 2, 0, amp=.4, step=8)
+        c.line([(x - 15 * k, y - 91 * k), (x + 15 * k, y - 91 * k)], 2.4, WOOD_DARK, amp=.3)
+        c.line([(x - 18 * k, y - 50 * k), (x - 8 * k, y - 20 * k)], 1.2, dk(col), amp=.4); c.line([(x + 12 * k, y - 60 * k), (x + 20 * k, y - 30 * k)], 1.2, dk(col), amp=.4)
+
+    # --- ceiling: a lamp and strings of garlic and peppers (the top middle stays free for the message) ---
+    lx = 420
+    c.line([(lx, 0), (lx, 120)], 2, amp=.2)
+    c.two([(lx - 38, 170), (lx - 15, 120), (lx + 15, 120), (lx + 38, 170)], PAL['gold'], 2.4, 3, 0, amp=.4); c.oval(lx, 174, 13, 8, GOLD, 1.8)
+    c.line([(40, 96), (140, 128), (250, 100)], 1.8, amp=.6)
     for i in range(7):
-        t = (i + .5) / 7; x = 230 + 200 * t; y = 110 + 26 * 4 * t * (1 - t) * .95
-        c.two(c.lumpy(x, y + 16, 9, 12, 4, .2), (WHITE, WHITE, RED)[i % 3], 1.6, 2, 2, amp=.3, step=7)
+        t = (i + .5) / 7; x = 40 + 210 * t; y = 98 + 26 * 4 * t * (1 - t)
+        c.two(c.lumpy(x, y + 16, 9, 13, 4, .2), (WHITE, WHITE, RED)[i % 3], 1.6, 2, 2, amp=.3, step=7)
 
-    # --- wall shelf (products stand at py 354, on the board at 426) ----------------------------
-    x0, x1 = 54, 726
-    c.shadow([(x0 + 8, 446), (x1 + 8, 446), (x1 + 8, 460), (x0 + 8, 460)])
-    back = [(x0 + 14, 262), (x1 - 14, 262), (x1 - 14, 430), (x0 + 14, 430)]
-    def panel():
-        for i in range(1, 10):
-            c.line([(x0 + i * 70, 262), (x0 + i * 70, 430)], 1.4, dk(PAL['pale']), amp=.5)
-    c.two(back, PAL['pale'], 2.6, 4, 4, inner=panel)
-    c.two([(x0, 426), (x1, 426), (x1, 446), (x0, 446)], WOOD, 3, 3, 0, amp=.8)
-    c.two([(x0 + 6, 250), (x1 - 6, 250), (x1 - 6, 266), (x0 + 6, 266)], WOOD_DARK, 2.6, 3, 0, amp=.8)
-    for x in (x0 + 40, (x0 + x1) / 2, x1 - 40):
-        c.shape([(x - 8, 446), (x + 8, 446), (x + 8, 470), (x, 486), (x - 8, 470)], WOOD_DARK, 2, amp=.3)
-    # --- market table with a striped cloth (products stand at py 588) -------------------------
-    t0, t1 = 44, 736
-    c.sh_oval(390, 812, 360, 16)
-    for x in (t0 + 40, t1 - 40, t0 + 110, t1 - 110):
-        c.two([(x - 9, 700), (x + 9, 700), (x + 7, 806), (x - 7, 806)], WOOD_DARK, 2.4, 3, 0, amp=.4)
-    top = [(t0 + 46, 628), (t1 - 46, 628), (t1, 690), (t0, 690)]
-    c.two(top, WOOD, 3, 4, 4, inner=lambda: [c.line([(t0 + 60 + i * 90, 628), (t0 + 30 + i * 100, 690)], 1.4, dk(WOOD), amp=.4) for i in range(8)])
-    cloth = [(t0, 690), (t1, 690), (t1, 728), (t0, 728)]
-    def stripes():
-        for i in range(18):
+    # --- the door, top right (the counter hides its lower half) -------------------------------------
+    d0, d1, dt = 1650, 1884, 132
+    c.two([(d0 - 16, dt - 16), (d1 + 16, dt - 16), (d1 + 16, FLOOR - 16), (d0 - 16, FLOOR - 16)], WOOD_DARK, 3, 4, 0, amp=.6)
+    def leaf():
+        for i in range(1, 4):
+            c.line([(d0 + i * 58, dt), (d0 + i * 58, FLOOR)], 1.4, dk(WOOD), amp=.4)
+    c.two([(d0, dt), (d1, dt), (d1, FLOOR - 16), (d0, FLOOR - 16)], WOOD, 2.6, 5, 0, amp=.5, inner=leaf)
+    g = [(d0 + 34, dt + 34), (d1 - 34, dt + 34), (d1 - 34, dt + 250), (d0 + 34, dt + 250)]
+    def outside():
+        c.flat([(d0, dt + 170), (d1, dt + 150), (d1, dt + 260), (d0, dt + 260)], GRASS)
+        c.flat(c.lumpy(d0 + 80, dt + 150, 40, 46, 6, .2), LEAF); c.flat([(d0 + 76, dt + 180), (d0 + 84, dt + 180), (d0 + 84, dt + 230), (d0 + 76, dt + 230)], WOOD_DARK)
+        c.flat(c.lumpy(d1 - 70, dt + 70, 44, 16, 5, .2), WHITE)
+    c.flat(g, SKY); c.inside(g, outside); c.stroke(g, 2.4)
+    gx = (d0 + d1) / 2
+    c.line([(gx, dt + 34), (gx, dt + 250)], 2.4, amp=.2); c.line([(d0 + 34, dt + 142), (d1 - 34, dt + 142)], 2.4, amp=.2)
+    c.oval(d0 + 26, dt + 310, 8, 8, GOLD, 1.8)
+    c.line([(d0 + 30, dt - 16), (d0 + 30, dt - 46), (d0 + 62, dt - 46)], 2.2, amp=.2)                              # door bell
+    c.two([(d0 + 50, dt - 20), (d0 + 54, dt - 42), (d0 + 70, dt - 42), (d0 + 74, dt - 20)], GOLD, 1.8, 2, 0, amp=.2)
+
+    # --- slanted display table, top left (products lie on it around py 342..396) -----------------
+    t = [(64, 286), (566, 286), (606, 462), (18, 462)]
+    c.sh_oval(312, 722, 300, 14)
+    for x, y0 in ((52, 490), (572, 490), (96, 470), (530, 470)):
+        c.two([(x - 11, y0), (x + 11, y0), (x + 8, 716), (x - 8, 716)], WOOD_DARK, 2.4, 3, 0, amp=.4)
+    c.line([(60, 620), (566, 620)], 5, amp=.6); c.line([(60, 620), (566, 620)], 2.4, WOOD_DARK, amp=.6)
+    def cloth():
+        for i in range(-2, 16):
             if i % 2 == 0:
-                c.flat([(t0 + i * 40, 686), (t0 + i * 40 + 40, 686), (t0 + i * 40 + 40, 760), (t0 + i * 40, 760)], RED)
-    scallop = [(t0, 690), (t1, 690)] + [(t1 - i * 20, 722 + (8 if i % 2 else 0)) for i in range(0, int((t1 - t0) / 20) + 1)]
+                c.flat([(64 + i * 36 - 4, 286), (64 + i * 36 + 32, 286), (18 + i * 42 + 38, 462), (18 + i * 42 - 4, 462)], PAL['pale'])
+        c.line([(52, 322), (578, 322)], 1.6, RED, amp=.4); c.line([(26, 436), (600, 436)], 2, RED, amp=.4)
+    c.two(t, WHITE, 3, 4, 0, amp=.8, inner=cloth)
+    c.two([(64 - 6, 262), (566 + 6, 262), (566 + 6, 288), (64 - 6, 288)], WOOD, 2.6, 3, 0, amp=.6)          # raised back board
+    ap0, ap1 = 18, 606
+    scallop = [(ap0, 462), (ap1, 462)] + [(ap1 - i * 21, 496 + (9 if i % 2 else 0)) for i in range(0, int((ap1 - ap0) / 21) + 1)]
+    def stripes():
+        for i in range(16):
+            if i % 2 == 0:
+                c.flat([(ap0 + i * 42, 458), (ap0 + i * 42 + 42, 458), (ap0 + i * 42 + 42, 520), (ap0 + i * 42, 520)], RED)
     c.flat(scallop, WHITE); c.inside(scallop, stripes); c.stroke(scallop, 2.4)
-    # --- tall rack (products stand at py 354 and 588) -------------------------------------------
-    r0, r1 = 752, 988
-    c.sh_oval(876, 806, 140, 12)
-    rack = [(r0, 232), (r1, 232), (r1, 796), (r0, 796)]
+    sack(548, 716, .95); sack(476, 722, .7, SAND)
+
+    # --- shelf unit on the back wall (boards at py 408 and 606, cupboard below) --------------------
+    s0, s1 = 612, 1188
+    c.sh_oval(900, 708, 300, 10)
+    def back():
+        c.flat([(s0 + 14, 258), (s1 - 14, 258), (s1 - 14, 626), (s0 + 14, 626)], PAL['pale'])
+        for i in range(1, 9):
+            c.line([(s0 + 14 + i * 62, 258), (s0 + 14 + i * 62, 626)], 1.4, dk(PAL['pale']), amp=.5)
+        c.flat([(s0 + 14, 258), (s1 - 14, 258), (s1 - 14, 280), (s0 + 14, 280)], dk(PAL['pale']), .7)
+        c.flat([(s0 + 14, 426), (s1 - 14, 426), (s1 - 14, 448), (s0 + 14, 448)], dk(PAL['pale']), .7)
+    c.two([(s0, 244), (s1, 244), (s1, FLOOR + 4), (s0, FLOOR + 4)], WOOD, 3, 5, 0, inner=back)
+    c.stroke([(s0 + 14, 258), (s1 - 14, 258), (s1 - 14, 626), (s0 + 14, 626)], 1.8)
+    # background goods on the free parts of the boards
+    jar(852, 408, 40, 56, RED); jar(900, 408, 44, 70, GOLD); bottle(940, 408, 92, PAL['sage'])
+    jar(1150, 408, 40, 62, ORANGE); bottle(640, 408, 80, PAL['mint'])
+    tin(876, 606, 54, 44, PAL['sky']); tin(880, 562, 44, 38, RED); tin(934, 606, 46, 62, GOLD)
+    bottle(646, 606, 96, WOOD_DARK); bottle(1154, 606, 100, PAL['sage'])
+    for y in (408, 606):
+        c.two([(s0 + 6, y), (s1 - 6, y), (s1 - 6, y + 20), (s0 + 6, y + 20)], WOOD, 2.6, 3, 0, amp=.6)
+    for i in range(3):
+        x = s0 + 22 + i * 180
+        c.shape([(x, 640), (x + 172, 640), (x + 172, 690), (x, 690)], WOOD, 1.8, dk(WOOD), amp=.4, step=30)
+        c.oval(x + 86, 665, 6, 6, GOLD, 1.4)
+    c.two([(s0 - 12, 226), (s1 + 12, 226), (s1 + 12, 248), (s0 - 12, 248)], WOOD_DARK, 2.6, 3, 0, amp=.6)
+
+    # --- barrel with a scoop between the crates and the rack ---------------------------------------
+    bx = 1116
+    c.sh_oval(bx + 8, 812, 76, 12)
+    c.two([(bx - 58, 808), (bx - 70, 740), (bx - 58, 672), (bx + 58, 672), (bx + 70, 740), (bx + 58, 808)], WOOD, 2.8, 5, 0, amp=.5, step=12,
+          inner=lambda: [c.line([(bx - 40 + i * 27, 672), (bx - 46 + i * 31, 740), (bx - 40 + i * 27, 808)], 1.4, dk(WOOD), amp=.3) for i in range(4)])
+    for y, w in ((694, 62), (786, 62)):
+        c.line([(bx - w, y), (bx + w, y)], 6, amp=.3); c.line([(bx - w, y), (bx + w, y)], 3, TONE3, amp=.3)
+    c.oval(bx, 672, 58, 13, SAND, 2.2)
+    c.line([(bx + 14, 668), (bx + 50, 628)], 5, amp=.3); c.line([(bx + 14, 668), (bx + 50, 628)], 2.4, WOOD_DARK, amp=.3)
+
+    # --- two crates on the floor (products lie in them around py 744) -----------------------------
+    for cx, tilt in ((648, -5), (894, 6)):
+        c.sh_oval(cx + 8, 906, 126, 13)
+        c.two([(cx - 98, 742 + tilt), (cx + 98, 742 - tilt), (cx + 112, 808 - tilt), (cx - 112, 808 + tilt)], WOOD_DARK, 2.4, 0, 0, amp=.5)       # inside
+        for i in range(16):                                                                                                                     # straw
+            x = cx - 100 + i * 13 + r.uniform(-4, 4)
+            c.line([(x, 806), (x + r.uniform(-12, 12), 772 + r.uniform(-8, 8))], 1.8, GOLD, amp=.5)
+        fr = [(cx - 112, 806 + tilt), (cx + 112, 806 - tilt), (cx + 106, 900 - tilt * .5), (cx - 106, 900 + tilt * .5)]
+        def slats(cx=cx, tilt=tilt):
+            for j in (1, 2):
+                yy = 806 + j * 31
+                c.line([(cx - 112, yy + tilt * .8), (cx + 112, yy - tilt * .8)], 2, WOOD_DARK, amp=.5)
+            for i in range(5):
+                c.line([(cx - 90 + i * 45, 812 + j * 0), (cx - 60 + i * 45, 812)], 1.2, dk(WOOD), amp=.3)
+        c.two(fr, WOOD, 2.8, 4, 0, amp=.6, inner=slats)
+        for sx in (-1, 1):
+            c.two([(cx + sx * 112 - 9, 800 - sx * tilt), (cx + sx * 112 + 9, 800 - sx * tilt), (cx + sx * 106 + 9, 904), (cx + sx * 106 - 9, 904)], WOOD_DARK, 2, 2, 0, amp=.3)
+            c.dotc(cx + sx * 110, 820, 3, INK); c.dotc(cx + sx * 107, 884, 3, INK)
+
+    # --- tall rack (boards at py 444 and 660, products on all three levels) ------------------------
+    r0, r1 = 1224, 1452
+    c.sh_oval(1344, 880, 136, 12)
     def inside_rack():
-        c.flat([(r0 + 16, 248), (r1 - 16, 248), (r1 - 16, 780), (r0 + 16, 780)], PAL['cream'])
+        c.flat([(r0 + 16, 264), (r1 - 16, 264), (r1 - 16, 856), (r0 + 16, 856)], CREAM)
         for i in range(1, 6):
-            c.line([(r0 + 16 + i * 34, 248), (r0 + 16 + i * 34, 780)], 1.2, SAND, amp=.4)
-    c.two(rack, WOOD, 3, 5, 0, inner=inside_rack)
-    c.stroke([(r0 + 16, 248), (r1 - 16, 248), (r1 - 16, 780), (r0 + 16, 780)], 1.8)
-    for y in (426, 660):
+            c.line([(r0 + 16 + i * 33, 264), (r0 + 16 + i * 33, 856)], 1.2, SAND, amp=.4)
+        for y in (264, 462, 678):
+            c.flat([(r0 + 16, y), (r1 - 16, y), (r1 - 16, y + 22), (r0 + 16, y + 22)], SAND, .8)
+    c.two([(r0, 248), (r1, 248), (r1, 874), (r0, 874)], WOOD, 3, 5, 0, inner=inside_rack)
+    c.stroke([(r0 + 16, 264), (r1 - 16, 264), (r1 - 16, 856), (r0 + 16, 856)], 1.8)
+    for y in (444, 660):
         c.two([(r0 + 8, y), (r1 - 8, y), (r1 - 8, y + 18), (r0 + 8, y + 18)], WOOD, 2.6, 3, 0, amp=.6)
-    c.two([(r0 - 10, 214), (r1 + 10, 214), (r1 + 10, 236), (r0 - 10, 236)], WOOD_DARK, 2.6, 3, 0, amp=.6)
-    # jars on top of the rack, baskets on its bottom shelf
-    for i, col in enumerate((RED, GOLD, PAL['lime'], ORANGE)):
-        jx = r0 + 30 + i * 54
-        c.two([(jx - 16, 214), (jx - 18, 176), (jx + 18, 176), (jx + 16, 214)], col, 2, 3, 0, amp=.3); c.shape([(jx - 14, 176), (jx + 14, 176), (jx + 14, 166), (jx - 14, 166)], WHITE, 1.6, amp=.2)
-    for i in range(2):
-        bx = r0 + 70 + i * 100
-        for k in range(3):
-            c.oval(bx - 16 + k * 16, 716, 11, 11, (RED, LIME, ORANGE)[(i + k) % 3], 1.6, amp=.2)
-        c.two([(bx - 40, 722), (bx + 40, 722), (bx + 32, 778), (bx - 32, 778)], PAL['gold'], 2.2, 3, 0, amp=.4, inner=lambda bx=bx: c.hatch(bx - 40, 726, bx + 40, 778, gap=10, w=1.2, color=WOOD))
-    # --- the basket on the floor (picked products are shown along it, around py 912) -----------
-    b0, b1 = 96, 1000
-    c.sh_oval(548, 1004, 470, 14)
-    wick = [(b0 - 10, 906), (b1 + 10, 906), (b1 - 16, 996), (b0 + 16, 996)]
-    def weave():
-        for j in range(5):
-            c.line([(b0 - 10, 918 + j * 17), (b1 + 10, 918 + j * 17)], 1.6, WOOD, amp=.6)
-        for i in range(48):
-            c.line([(b0 + i * 20, 906), (b0 + i * 20 + (6 if i % 2 else -6), 996)], 1.2, WOOD, amp=.3)
-    c.two(wick, PAL['gold'], 3, 4, 0, inner=weave)
-    c.two([(b0 - 22, 892), (b1 + 22, 892), (b1 + 18, 914), (b0 - 18, 914)], WOOD, 2.6, 3, 0, amp=.6)
-    for x in (b0 - 6, b1 + 6):
-        c.line([(x, 892), (x + (-26 if x < 500 else 26), 850), (x + (-10 if x < 500 else 10), 826)], 4.5, amp=.5); c.line([(x, 892), (x + (-26 if x < 500 else 26), 850), (x + (-10 if x < 500 else 10), 826)], 2, WOOD, amp=.5)
+    c.two([(r0 + 4, 856), (r1 - 4, 856), (r1 - 4, 876), (r0 + 4, 876)], WOOD_DARK, 2.4, 3, 0, amp=.5)
+    c.two([(r0 - 10, 230), (r1 + 10, 230), (r1 + 10, 252), (r0 - 10, 252)], WOOD_DARK, 2.6, 3, 0, amp=.6)
+    for i, col in enumerate((RED, GOLD, LIME, ORANGE)):
+        jar(r0 + 34 + i * 54, 230, 36, 44, col)
 
-    # --- the shopkeeper behind the counter ----------------------------------------------------------
-    kx = 1104
-    c.two([(kx - 66, 760), (kx - 56, 596), (kx - 20, 572), (kx + 20, 572), (kx + 56, 596), (kx + 66, 760)], PAL['sage'], 3, 5, 0)       # shirt
-    c.two([(kx - 40, 760), (kx - 34, 610), (kx + 34, 610), (kx + 40, 760)], WHITE, 2.4, 4, 0)                                            # apron
-    c.line([(kx - 34, 612), (kx - 12, 574)], 2, amp=.2); c.line([(kx + 34, 612), (kx + 12, 574)], 2, amp=.2)
-    c.two([(kx - 12, 580), (kx + 12, 580), (kx + 10, 556), (kx - 10, 556)], SKIN, 2, 2, 0, amp=.2)
-    c.two(c.ring(kx, 512, 44, 46), SKIN, 3, 5, 5, amp=.5, step=8)
-    c.flat([(kx - 44, 506), (kx - 40, 474), (kx - 14, 458), (kx + 16, 458), (kx + 40, 474), (kx + 44, 506), (kx + 30, 486), (kx, 478), (kx - 30, 488)], WOOD_DARK)
-    c.line([(kx - 44, 506), (kx - 40, 474), (kx - 14, 458), (kx + 16, 458), (kx + 40, 474), (kx + 44, 506)], 2.6, amp=.5)
-    c.dotc(kx - 15, 514, 4.2, INK); c.dotc(kx + 15, 514, 4.2, INK)
-    c.flat(c.ring(kx - 26, 530, 8, 5), ORANGE, .7); c.flat(c.ring(kx + 26, 530, 8, 5), ORANGE, .7)
-    c.line([(kx - 12, 532), (kx, 540), (kx + 12, 532)], 2.4, amp=.2, step=6)
-    c.line([(kx - 20, 524), (kx - 6, 528)], 3, WOOD_DARK, amp=.1); c.line([(kx + 20, 524), (kx + 6, 528)], 3, WOOD_DARK, amp=.1)        # moustache
-    # counter with a bell
-    c0 = 1020
-    c.sh_oval(1470, 1052, 450, 12)
-    front = [(c0, 772), (1920, 772), (1920, 1046), (c0, 1046)]
+    # --- the shopkeeper behind the counter -----------------------------------------------------------
+    kx, ky = 1562, -168
+    c.two([(kx - 66, 760 + ky), (kx - 56, 596 + ky), (kx - 20, 572 + ky), (kx + 20, 572 + ky), (kx + 56, 596 + ky), (kx + 66, 760 + ky)], PAL['sage'], 3, 5, 0)       # shirt
+    c.two([(kx - 40, 760 + ky), (kx - 34, 610 + ky), (kx + 34, 610 + ky), (kx + 40, 760 + ky)], WHITE, 2.4, 4, 0)                                            # apron
+    c.line([(kx - 34, 612 + ky), (kx - 12, 574 + ky)], 2, amp=.2); c.line([(kx + 34, 612 + ky), (kx + 12, 574 + ky)], 2, amp=.2)
+    c.two([(kx - 12, 580 + ky), (kx + 12, 580 + ky), (kx + 10, 556 + ky), (kx - 10, 556 + ky)], SKIN, 2, 2, 0, amp=.2)
+    c.two(c.ring(kx, 512 + ky, 44, 46), SKIN, 3, 5, 5, amp=.5, step=8)
+    c.flat([(kx - 44, 506 + ky), (kx - 40, 474 + ky), (kx - 14, 458 + ky), (kx + 16, 458 + ky), (kx + 40, 474 + ky), (kx + 44, 506 + ky), (kx + 30, 486 + ky), (kx, 478 + ky), (kx - 30, 488 + ky)], WOOD_DARK)
+    c.line([(kx - 44, 506 + ky), (kx - 40, 474 + ky), (kx - 14, 458 + ky), (kx + 16, 458 + ky), (kx + 40, 474 + ky), (kx + 44, 506 + ky)], 2.6, amp=.5)
+    c.dotc(kx - 15, 514 + ky, 4.2, INK); c.dotc(kx + 15, 514 + ky, 4.2, INK)
+    c.flat(c.ring(kx - 26, 530 + ky, 8, 5), ORANGE, .7); c.flat(c.ring(kx + 26, 530 + ky, 8, 5), ORANGE, .7)
+    c.line([(kx - 12, 532 + ky), (kx, 540 + ky), (kx + 12, 532 + ky)], 2.4, amp=.2, step=6)
+    c.line([(kx - 20, 524 + ky), (kx - 6, 528 + ky)], 3, WOOD_DARK, amp=.1); c.line([(kx + 20, 524 + ky), (kx + 6, 528 + ky)], 3, WOOD_DARK, amp=.1)        # moustache
+    # counter with a bell and a till
+    c0 = 1478
+    c.sh_oval(1710, 824, 240, 12)
+    front = [(c0, 600), (1920, 600), (1920, 818), (c0, 818)]
     def panels():
-        for i in range(6):
-            px = c0 + 24 + i * 150
-            c.shape([(px, 800), (px + 126, 800), (px + 126, 1020), (px, 1020)], WOOD, 1.6, dk(WOOD), amp=.5, step=30)
+        for i in range(3):
+            px = c0 + 22 + i * 146
+            c.shape([(px, 628), (px + 124, 628), (px + 124, 796), (px, 796)], WOOD, 1.6, dk(WOOD), amp=.5, step=30)
     c.two(front, WOOD, 3, 6, 0, inner=panels)
-    c.two([(c0 - 16, 744), (1920, 744), (1920, 776), (c0 - 16, 776)], WOOD_DARK, 3, 3, 0, amp=.8)
-    c.two([(1140, 744), (1146, 722), (1176, 722), (1182, 744)], GOLD, 2.2, 3, 0, amp=.3); c.dotc(1161, 718, 5, INK)       # bell
+    c.two([(c0 - 16, 572), (1920, 572), (1920, 604), (c0 - 16, 604)], WOOD_DARK, 3, 3, 0, amp=.8)
+    c.two([(1668, 572), (1674, 550), (1704, 550), (1710, 572)], GOLD, 2.2, 3, 0, amp=.3); c.dotc(1689, 546, 5, INK)       # bell
+    tx = 1812                                                                                                           # till
+    c.two([(tx - 62, 572), (tx - 62, 520), (tx - 40, 482), (tx + 62, 482), (tx + 62, 572)], RED, 2.6, 4, 0, amp=.4)
+    c.shape([(tx - 30, 496), (tx + 48, 496), (tx + 48, 520), (tx - 30, 520)], WHITE, 1.6, amp=.2)
+    for i in range(4):
+        for j in range(2):
+            c.oval(tx - 30 + i * 24, 536 + j * 16, 6, 5, CREAM, 1.2, amp=.1)
+    c.two([(tx - 66, 572), (tx + 66, 572), (tx + 66, 560), (tx - 66, 560)], WOOD_DARK, 2, 2, 0, amp=.2)
+    c.line([(tx + 62, 500), (tx + 84, 488)], 3, amp=.2); c.dotc(tx + 86, 486, 6, INK)
 
-    # --- the shopping list hanging on the wall (the game writes the words on it) ---------------
-    p0, p1, py0, py1 = 1196, 1880, 258, 722
-    c.shadow([(p0 + 12, py1 + 12), (p1 + 12, py1 + 12), (p1 + 12, py0 + 20), (p1, py0 + 20), (p1, py1), (p0 + 12, py1)])
-    c.two([(p0 - 14, py0 - 6), (p1 + 14, py0 - 6), (p1 + 14, py0 + 22), (p0 - 14, py0 + 22)], WOOD_DARK, 2.6, 3, 0, amp=.6)
-    paper = [(p0, py0 + 18), (p1, py0 + 18), (p1, py1 - 14), (p1 - 24, py1), (p0 + 30, py1 - 6), (p0, py1 - 16)]
+    # --- the basket, bottom right (picked products show in its mouth around py 866) --------------
+    bcx = 1578
+    c.sh_oval(bcx + 10, 1062, 220, 14)
+    arch = [(bcx - 196, 902)] + [(bcx + math.cos(math.radians(a)) * 196, 902 - math.sin(math.radians(a)) * 150) for a in range(170, 5, -10)] + [(bcx + 196, 902)]
+    c.line(arch, 14, amp=.6); c.line(arch, 9, WOOD, amp=.6)
+    c.oval(bcx, 902, 204, 34, WOOD_DARK, 2.6)                                                       # mouth
+    def lining():
+        for i in range(-6, 7):
+            if i % 2 == 0:
+                c.flat([(bcx + i * 32, 880), (bcx + i * 32 + 32, 880), (bcx + i * 32 + 32, 950), (bcx + i * 32, 950)], RED)
+    cl = [(bcx - 190, 914)] + [(bcx - 190 + i * 38, 936 + (10 if i % 2 else -2)) for i in range(11)] + [(bcx + 190, 914)]
+    c.flat(cl, WHITE); c.inside(cl, lining); c.stroke(cl, 2)
+    body = [(bcx - 204, 906), (bcx - 150, 932), (bcx, 942), (bcx + 150, 932), (bcx + 204, 906), (bcx + 168, 1050), (bcx - 168, 1050)]
+    def weave():
+        for j in range(7):
+            c.line([(bcx - 210, 950 + j * 17), (bcx + 210, 950 + j * 17)], 1.6, WOOD, amp=.6)
+        for i in range(24):
+            c.line([(bcx - 210 + i * 18, 900), (bcx - 180 + i * 16 + (6 if i % 2 else -6), 1052)], 1.2, WOOD, amp=.3)
+    c.two(body, PAL['gold'], 3, 5, 0, amp=.6, inner=weave)
+    c.line([(bcx - 204, 906), (bcx - 150, 932), (bcx, 942), (bcx + 150, 932), (bcx + 204, 906)], 6, amp=.5)
+    c.line([(bcx - 204, 906), (bcx - 150, 932), (bcx, 942), (bcx + 150, 932), (bcx + 204, 906)], 3, WOOD, amp=.5)
+
+    # --- a hand holding the shopping list, bottom left (the game writes the words on the paper) ----
+    p0, p1, pt = 86, 478, 552
+    # sleeve and palm behind the paper
+    c.two([(-10, 1010), (40, 960), (96, 1000), (60, 1090), (-10, 1090)], PAL['blue'], 2.8, 4, 0, amp=.5)
+    c.two([(20, 968), (40, 900), (76, 876), (120, 884), (130, 1000), (88, 1036), (44, 1010)], SKIN, 2.8, 4, 0, amp=.6, step=12)
+    paper = [(p0, pt + 12), (p0 + 130, pt + 2), (p1 - 6, pt - 6), (p1 + 10, 1090), (p0 - 8, 1090)]
+    c.shadow([(x + 14, y + 12) for x, y in paper])
     def rules():
         for i in range(1, 9):
-            c.line([(p0 + 30, py0 + 60 + i * 50), (p1 - 30, py0 + 60 + i * 50)], 1.2, PAL['ice'], amp=.5)
-        c.line([(p0 + 62, py0 + 20), (p0 + 62, py1)], 1.4, PAL['skin'], amp=.4)
-    c.two(paper, WHITE, 2.8, 4, 5, inner=rules)
-    c.line([((p0 + p1) / 2, py0 - 6), ((p0 + p1) / 2, py0 - 44)], 2, amp=.2); c.dotc((p0 + p1) / 2, py0 - 46, 7, RED)
+            c.line([(p0 + 20, pt + 96 + i * 67), (p1 - 14, pt + 94 + i * 67)], 1.2, PAL['ice'], amp=.5)
+        c.line([(p0 + 16, pt + 84), (p1 - 12, pt + 80)], 1.8, PAL['skin'], amp=.4)
+        c.flat([(p1 - 46, pt - 8), (p1 + 12, pt - 8), (p1 + 12, pt + 44)], PAL['silver'], .8)                                # dog-ear
+    c.two(paper, WHITE, 2.8, 5, 0, amp=1.0, inner=rules)
+    c.line([(p1 - 46, pt - 4), (p1 - 40, pt + 40), (p1 + 6, pt + 46)], 1.8, amp=.4)
+    c.line([(p0 + 60, pt + 300), (p0 + 90, pt + 296)], 1, PAL['ice'], amp=.3)
+    # thumb over the paper
+    thumb = [(70, 1004), (96, 990), (150, 992), (196, 1004), (208, 1026), (194, 1046), (150, 1050), (104, 1056), (78, 1048)]
+    c.two(thumb, SKIN, 2.8, 3, 4, amp=.5, step=10)
+    c.line([(176, 1012), (198, 1020), (192, 1038)], 1.6, PAL['orange'], amp=.2)                                             # nail
+    c.line([(112, 1004), (118, 1016)], 1.4, PAL['orange'], amp=.2)
     out(c, BG, 'sprite_shop_clean', (1920, 1080))
 
 
