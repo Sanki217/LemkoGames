@@ -311,6 +311,7 @@ def windmill(c, x, y):
 
 def main():
     c = Scene(W, H, scale=2, bg=GRASS, seed=11, ysquash=1.25)
+    c.wob = .9; c.seg = 20
     r = c.r
     ground(c)
     spots = {k: world(*v) for k, v in dict(Shop=(-5.083, .233), FamilyTree=(4.333, -.033), Farm=(-3, .967), House=(2.25, 1.1),
@@ -324,14 +325,14 @@ def main():
 
     def clear(x, y, pad=1.0):
         """True when a spot is free of buildings, the square, the river and the paths."""
-        if any(abs(x - bx) < 215 * pad and -150 * pad < y - by < 95 * pad for bx, by in base.values()):
+        if any(abs(x - bx) < 250 * pad and -190 * pad < y - by < 100 * pad for bx, by in base.values()):
             return False
         if math.hypot((x - HUB[0]) / 175, (y - HUB[1]) / 105) < pad or near_river(x, y, 62 * pad):
             return False
         return all(math.hypot(x - px, y - py) > 34 * pad for a, m, b in curves for px, py in (bez(a, m, b, t / 8) for t in range(9)))
 
     # meadow marks and flower patches go under everything else
-    for i in range(520):
+    for i in range(170):
         x, y = r.uniform(10, W - 10), r.uniform(176, H - 6)
         if clear(x, y, .8):
             (c.tuft(x, y, r.uniform(.7, 1.1)) if i % 4 else c.tick(x, y, .9, PINE))
@@ -339,6 +340,10 @@ def main():
         x, y = r.uniform(30, W - 30), r.uniform(190, H - 14)
         if clear(x, y, .9):
             c.flowers(x, y, r.randint(4, 9), r.uniform(12, 26), ((WHITE, GOLD), (RED, ORANGE, GOLD), (WHITE, MAUVE), BLOOM)[i % 4])
+
+    def big(f, x, y, k):
+        """Draw something enlarged around its foot point: places and people are chunky, not map symbols."""
+        cr = c.c; cr.save(); cr.translate(x, y); cr.scale(k, k); cr.translate(-x, -y); f(); cr.restore()
 
     things = []                       # (sort y, draw function)
     def add(y, f): things.append((y, f))
@@ -354,14 +359,16 @@ def main():
              (1250, 300, 3), (860, 800, 4), (1330, 806, 4)]
     for wx, wy, n in woods:
         for i in range(n):
-            x = wx + (i % 4) * 34 + r.uniform(-10, 10) + (i // 4) * 17
-            y = wy + (i // 4) * 30 + r.uniform(-8, 8)
+            if i % 2:
+                continue
+            x = wx + (i % 4) * 36 + r.uniform(-10, 10) + (i // 4) * 26
+            y = wy + (i // 4) * 34 + r.uniform(-8, 8)
             if clear(x, y, .62) or y < 180:
-                add(y, lambda x=x, y=y, h=r.uniform(48, 70): c.pine(x, y, h))
+                add(y, lambda x=x, y=y, h=r.uniform(66, 92): c.pine(x, y, h))
     for i, (x, y) in enumerate([(560, 420), (1140, 476), (1400, 250), (1560, 660), (990, 262), (240, 250), (1250, 720), (700, 690), (180, 400),
                                 (520, 250), (1180, 220), (760, 330), (1660, 560), (420, 640), (1010, 700), (1480, 420)]):
         if clear(x, y, .7):
-            add(y, lambda x=x, y=y, i=i, rr=r.uniform(19, 27): (c.birch(x, y, rr) if i % 4 == 3 else c.tree(x, y, rr, (LEAF, LIME, LEAF)[i % 3], fruit=RED if i % 5 == 1 else None)))
+            add(y, lambda x=x, y=y, i=i, rr=r.uniform(27, 36): (c.birch(x, y, rr) if i % 4 == 3 else c.tree(x, y, rr, (LEAF, LIME, LEAF)[i % 3], fruit=RED if i % 5 == 1 else None)))
     for i in range(40):
         x, y = r.uniform(40, W - 40), r.uniform(200, H - 20)
         if clear(x, y, .85):
@@ -373,13 +380,13 @@ def main():
     add(640, lambda: c.cart(1218, 560, None))
     add(470, lambda: c.signpost(HUB[0] + 150, HUB[1] + 34)); add(430, lambda: c.lamp(HUB[0] - 150, HUB[1] + 24)); add(500, lambda: c.lamp(HUB[0] + 100, HUB[1] + 78))
     add(470, lambda: c.well(HUB[0] - 196, HUB[1] + 70))
-    add(560, lambda: c.sheep(480, 560, .8)); add(574, lambda: c.sheep(520, 576, .7, PAPER))
-    add(516, lambda: c.person(HUB[0] - 60, HUB[1] + 70, PAL['sky'], WOOD_DARK, .92)); add(520, lambda: c.person(HUB[0] + 36, HUB[1] + 82, RED, PAL['gold'], .9, skirt=True))
-    add(380, lambda: c.person(1240, 396, GOLD, PLUM, .85)); add(600, lambda: c.person(660, 548, PAL['mint'], PAL['grey2'], .85, hat=PAL['sand']))
+    add(560, lambda: big(lambda: c.sheep(480, 560, .8), 480, 560, 1.5)); add(574, lambda: big(lambda: c.sheep(520, 576, .7, PAPER), 520, 576, 1.5))
+    add(516, lambda: big(lambda: c.person(HUB[0] - 60, HUB[1] + 70, PAL['sky'], WOOD_DARK, .92), HUB[0] - 60, HUB[1] + 70, 1.5)); add(520, lambda: big(lambda: c.person(HUB[0] + 36, HUB[1] + 82, RED, PAL['gold'], .9, skirt=True), HUB[0] + 36, HUB[1] + 82, 1.5))
+    add(380, lambda: big(lambda: c.person(1240, 396, GOLD, PLUM, .85), 1240, 396, 1.5)); add(600, lambda: big(lambda: c.person(660, 548, PAL['mint'], PAL['grey2'], .85, hat=PAL['sand']), 660, 548, 1.5))
 
     draw = dict(Shop=shop, Farm=farm, House=cottage, FamilyTree=family, Memory=church, Numbers=numbers, Alphabet=school, Weather=windmill)
     for k, (x, y) in base.items():
-        add(y, lambda k=k, x=x, y=y: draw[k](c, x, y))
+        add(y, lambda k=k, x=x, y=y: big(lambda: draw[k](c, x, y), x, y + 20, 1.3))
     add(HUB[1] + 10, lambda: table(c))
     for _, f in sorted(things, key=lambda t: t[0]):
         f()

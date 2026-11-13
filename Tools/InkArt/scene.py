@@ -22,7 +22,7 @@ def dk(c):
 class Scene(Canvas):
     # ---- drawing helpers -----------------------------------------------------------
     def stroke(self, p, w=2.6, color=INK, closed=True):
-        self._path(p, closed); self.c.set_source_rgb(*rgb(color)); self.c.set_line_width(w * LWK); self.c.stroke()
+        self.pen(p, w * LWK, color, closed)
 
     def inside(self, p, fn):
         self._path(p, True); self.c.save(); self.c.clip(); fn(); self.c.restore()
@@ -82,18 +82,19 @@ class Scene(Canvas):
         self.two(self.lumpy(x, y - r * 2.1, r * .72, r * 1.05, 6, .2), LIME, 2.4, r * .16, r * .2, amp=.6, step=9)
 
     def pine(self, x, y, h=58, shade=PINE_DARK):
-        w = h * .56
-        self.shadow([(x - w * .4, y + 2), (x + w * .9, y + 6), (x + w * .5, y - 2)])
-        self.shape([(x - 3, y), (x - 3, y - h * .2), (x + 3, y - h * .2), (x + 3, y)], WOOD_DARK, 2, amp=.2)
+        """Chubby fir: three soft rounded tiers."""
+        w = h * .72
+        self.sh_oval(x + w * .2, y + 2, w * .5, h * .07)
+        self.two([(x - 4, y), (x - 4, y - h * .2), (x + 4, y - h * .2), (x + 4, y)], WOOD_DARK, 2, 2, 0)
+        old = self.rad; self.rad = h * .12
         for i in range(3):
-            base = y - h * (.12 + .24 * i)
-            top = base - h * (.42 if i < 2 else .5)
-            ww = w * (1 - .22 * i)
-            p = [(x - ww / 2, base), (x, top), (x + ww / 2, base), (x + ww * .27, base - 4), (x + ww * .08, base + 2), (x - ww * .14, base - 3), (x - ww * .3, base + 1)]
-            self.flat(p, PINE)
-            self.inside(p, lambda: self.flat([(x + ww * .04, base + 6), (x + ww * .02, top + (base - top) * .2), (x + ww, base + 6)], shade))
-            self.line(p + [p[0]], 2.3, amp=.5, step=12)
-            self.line([(x - ww * .2, base - (base - top) * .3), (x - ww * .08, base - (base - top) * .22)], 1.2, GRASS, amp=0)
+            base = y - h * (.1 + .25 * i)
+            top = base - h * (.44 if i < 2 else .5)
+            ww = w * (1 - .2 * i)
+            p = [(x - ww / 2, base), (x - ww * .2, top + (base - top) * .45), (x, top), (x + ww * .2, top + (base - top) * .45), (x + ww / 2, base), (x, base + h * .05)]
+            self.two(p, PINE, 2.3, ww * .16, 0, dark=shade)
+            self.line([(x - ww * .22, base - (base - top) * .3), (x - ww * .1, base - (base - top) * .5)], 1.6, GRASS_LIGHT)
+        self.rad = old
 
     def bush(self, x, y, r=16, flowers=None):
         p = self.lumpy(x, y - r * .6, r, r * .7, 5, .24)
@@ -279,27 +280,17 @@ class Scene(Canvas):
         self.two(p, fill, 2.4, 3, 4, amp=.5, step=9)
 
     def mountain(self, x, y, w=150, h=170, snow=True):
-        peak = (x + w * .04, y - h)
-        left, right = (x - w / 2, y), (x + w / 2, y)
-        self.flat([left, peak, right], TONE2)
-        self.flat([peak, right, (x + w * .1, y), (x + w * .02, y - h * .45)], TONE3)
-        # a second ridge and a few rock strokes give the faces some shape
-        self.flat([(x - w * .2, y), (x - w * .1, y - h * .42), (x - w * .02, y - h * .3), (x + w * .02, y)], PAL['grey2'], .45)
-        for i in range(5):
-            t = self.r.uniform(.15, .8); s = self.r.uniform(-.3, -.05)
-            px, py = x + w * s * (1 - t * .6), y - h * t * .55
-            self.line([(px, py), (px + 7, py + 10)], 1.2, PAL['grey2'], amp=.3, step=6)
-        if snow:
-            sy = y - h * .5
-            zig = [(x - w * .245, sy + 8), (x - w * .14, sy - 10), (x - w * .05, sy + 10), (x + w * .05, sy - 8),
-                   (x + w * .14, sy + 12), (x + w * .245, sy - 2)]
-            self.flat([zig[0], peak, zig[-1]] + zig[::-1][1:-1], WHITE)
-            self.flat([peak, zig[-1], zig[4], (x + w * .08, sy - 4)], STONE)
-            self.line(zig, 1.5, amp=.5, step=10)
-        self.line([left, peak, right], 2.8, amp=1.4, step=20)
-        self.line([peak, (x + w * .02, y - h * .62), (x + w * .07, y - h * .4)], 1.4, amp=.6, step=10)
+        """Soft rounded hill-mountain with a snow cap."""
+        old = self.rad; self.rad = w * .16
+        p = [(x - w * .62, y + 6), (x - w * .3, y - h * .55), (x, y - h), (x + w * .3, y - h * .55), (x + w * .62, y + 6)]
+        def cap():
+            self.flat([(x - w, y - h * 1.2), (x + w, y - h * 1.2), (x + w, y - h * .62), (x + w * .16, y - h * .7), (x, y - h * .56), (x - w * .16, y - h * .7), (x - w, y - h * .62)], WHITE)
+            for i in range(3):
+                px, py = x - w * .22 + i * w * .16, y - h * (.34 - i * .06)
+                self.line([(px, py), (px + 8, py + 9)], 1.6, TONE3, amp=0)
+        self.two(p, TONE2, 2.6, w * .13, 0, inner=cap if snow else None)
+        self.rad = old
 
-    # ---- buildings ---------------------------------------------------------------------
     def pane(self, wx, wy, ww=20, wh=22, glass=GOLD, shutters=None, box=True):
         if shutters:
             for s in (-1, 1):

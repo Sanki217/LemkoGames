@@ -7,30 +7,31 @@ import math, random
 import cairo
 
 # The game's 31-colour palette; these are the ones the scenery uses.
-INK = '#3d3333'
-WHITE = '#f1f6f0'
-PAPER = '#fee1b8'      # indoor walls
-TONE1 = '#d4c692'      # floors, paths, side walls
-TONE2 = '#bcad9f'      # rock, stone
-TONE3 = '#87857c'      # rock in shade
-GOLD = '#fdd179'
-RED = '#b55945'
-SKY = '#cae6d9'
-GRASS = '#89a477'
-GRASS_DARK = '#819447'
-GRASS_LIGHT = '#a4c5af'
-SHADOW = '#546756'     # ground shadows, drawn half transparent
-PINE = '#546756'
-PINE_DARK = '#2f4d2f'
-LEAF = '#819447'
-LEAF_DARK = '#44702d'
-WOOD = '#a57855'
-WOOD_DARK = '#734c44'
-WATER = '#96a9c1'
-WATER_DARK = '#6c81a1'
-STONE = '#d5d6db'
-NAVY = '#405273'
-ORANGE = '#eb9661'
+INK = '#3a160d'
+WHITE = '#fbf5d8'
+PAPER = '#f6e4b0'      # indoor walls
+TONE1 = '#e6c58f'      # floors, paths, side walls
+TONE2 = '#d2ac86'      # rock, stone
+TONE3 = '#97a2a6'      # rock in shade
+GOLD = '#f2c85f'
+RED = '#d5583a'
+SKY = '#e0ecc6'
+GRASS = '#a6c47e'
+GRASS_DARK = '#95ad4c'
+GRASS_LIGHT = '#bfd6a0'
+SHADOW = '#4a7a6c'     # ground shadows, drawn half transparent
+PINE = '#4a7a6c'
+PINE_DARK = '#386137'
+LEAF = '#95ad4c'
+LEAF_DARK = '#628745'
+WOOD = '#c07d45'
+WOOD_DARK = '#8a4b2c'
+WATER = '#9dc3cf'
+WATER_DARK = '#5b87a6'
+STONE = '#d5d8cf'
+NAVY = '#4a4b70'
+ORANGE = '#e68f4b'
+PALNAMES = {}          # sk fills this in so pen() understands palette names
 LWK = 1.75             # every outline is this much thicker than the first, thin version
 
 
@@ -54,46 +55,95 @@ class Canvas:
             self.c.set_source_rgb(*rgb(bg)); self.c.paint()
 
     # --- hand-drawn line helpers -------------------------------------------------
-    def wobble(self, pts, amp=1.3, step=16, closed=False):
-        """Resample a polyline and push each sample sideways by smooth noise."""
-        if closed:
-            pts = list(pts) + [pts[0]]
-        out = []
-        drift = 0.0
-        for (x0, y0), (x1, y1) in zip(pts, pts[1:]):
-            d = math.hypot(x1 - x0, y1 - y0)
-            n = max(1, int(d / step))
-            nx, ny = (-(y1 - y0) / d, (x1 - x0) / d) if d else (0, 0)
-            for i in range(n):
-                t = i / n
-                drift = drift * .55 + self.r.uniform(-amp, amp) * .75
-                edge = min(1.0, 3 * min(t, 1 - t) + .25)  # corners stay close to true position
-                out.append((x0 + (x1 - x0) * t + nx * drift * edge, y0 + (y1 - y0) * t + ny * drift * edge))
-        if not closed:
-            out.append(pts[-1])
-        return out
+    rad = 2.5       # every corner is rounded by this much: the style has no sharp points
 
-    def _path(self, pts, closed=False):
+    wob = .55       # how far the hand-drawn lines stray, in canvas pixels
+    seg = 12        # long edges get a point every this many pixels so they can stray too
+
+    def wobble(self, pts, amp=1.3, step=16, closed=False):
+        """Kept under its old name: returns the hand-drawn version of an outline."""
+        return self.hand(pts, closed)
+
+    def hand(self, pts, closed=True, amp=None):
+        """An outline as a hand would draw it: long edges get extra points and every point strays a little."""
+        amp = self.wob if amp is None else amp
+        p = list(pts); n = len(p)
+        out = []
+        for i in (range(n) if closed else range(n - 1)):
+            a = p[i]; b = p[(i + 1) % n]
+            d = math.hypot(b[0] - a[0], b[1] - a[1])
+            k = max(1, int(d / self.seg))
+            for j in range(k):
+                t = j / k
+                out.append((a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, j == 0))
+        if not closed:
+            out.append((p[-1][0], p[-1][1], True))
+        res = []; drift = 0.0; m = len(out)
+        for i, (x, y, corner) in enumerate(out):
+            x0, y0, _ = out[i - 1] if (closed or i > 0) else out[0]
+            x1, y1, _ = out[(i + 1) % m] if (closed or i < m - 1) else out[m - 1]
+            dx, dy = x1 - x0, y1 - y0
+            L = math.hypot(dx, dy) or 1
+            drift = drift * .6 + self.r.uniform(-amp, amp)
+            k = .7 if corner else 1
+            if not closed and i in (0, m - 1):
+                k = 0
+            res.append((x - dy / L * drift * k, y + dx / L * drift * k))
+        return res
+
+    def pen(self, p, w, color='ink', closed=True):
+        """Stroke with a slightly uneven weight, like a brush pen: a second, shifted pass thickens one diagonal."""
+        cr = self.c
+        cr.set_source_rgb(*rgb(PALNAMES.get(color, color)))
+        self._path(p, closed); cr.set_line_width(w * .88); cr.stroke()
+        if w >= 3:
+            cr.save(); cr.translate(w * .09, w * .12); self._path(p, closed); cr.set_line_width(w * .66); cr.stroke(); cr.restore()
+
+    def _path(self, pts, closed=False, rad=None):
+        """Polyline with every corner rounded."""
         c = self.c
-        c.new_path(); c.move_to(*pts[0])
-        for p in pts[1:]:
-            c.line_to(*p)
+        r = self.rad if rad is None else rad
+        pts = [p for i, p in enumerate(pts) if i == 0 or math.hypot(p[0] - pts[i - 1][0], p[1] - pts[i - 1][1]) > .01]
+        if closed and len(pts) > 1 and math.hypot(pts[0][0] - pts[-1][0], pts[0][1] - pts[-1][1]) < .01:
+            pts = pts[:-1]
+        c.new_path()
+        n = len(pts)
+        if n < 3 or r <= 0:
+            c.move_to(*pts[0])
+            for p in pts[1:]:
+                c.line_to(*p)
+            if closed:
+                c.close_path()
+            return
+        def corner(i, first):
+            P = pts[i]; A = pts[(i - 1) % n]; B = pts[(i + 1) % n]
+            da = math.hypot(A[0] - P[0], A[1] - P[1]); db = math.hypot(B[0] - P[0], B[1] - P[1])
+            d = min(r, da / 2, db / 2)
+            p1 = (P[0] + (A[0] - P[0]) / da * d, P[1] + (A[1] - P[1]) / da * d)
+            p2 = (P[0] + (B[0] - P[0]) / db * d, P[1] + (B[1] - P[1]) / db * d)
+            (c.move_to if first else c.line_to)(*p1)
+            c.curve_to(p1[0] + (P[0] - p1[0]) * .66, p1[1] + (P[1] - p1[1]) * .66, p2[0] + (P[0] - p2[0]) * .66, p2[1] + (P[1] - p2[1]) * .66, *p2)
         if closed:
+            for i in range(n):
+                corner(i, i == 0)
             c.close_path()
+        else:
+            c.move_to(*pts[0])
+            for i in range(1, n - 1):
+                corner(i, False)
+            c.line_to(*pts[-1])
 
     def line(self, pts, w=2.6, color=INK, amp=1.3, step=16):
-        self._path(self.wobble(pts, amp, step))
-        self.c.set_source_rgb(*rgb(color)); self.c.set_line_width(w * LWK); self.c.stroke()
+        self.pen(self.hand(pts, False) if len(pts) > 1 else pts, w * LWK, color, False)
 
     def shape(self, pts, fill=WHITE, w=2.6, color=INK, amp=1.3, step=16):
         p = self.wobble(pts, amp, step, closed=True)
         self._path(p, True)
         if fill:
-            self.c.set_source_rgb(*rgb(fill)); self.c.fill_preserve()
+            self.c.set_source_rgb(*rgb(fill)); self.c.fill()
+        self.c.new_path()
         if w:
-            self.c.set_source_rgb(*rgb(color)); self.c.set_line_width(w * LWK); self.c.stroke()
-        else:
-            self.c.new_path()
+            self.pen(p, w * LWK, color)
         return p
 
     def flat(self, pts, fill, alpha=1.0):

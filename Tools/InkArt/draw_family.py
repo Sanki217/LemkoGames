@@ -13,7 +13,9 @@ def person(c, cx, cy, s=1.0, sex='m', age='adult', hair='brown', shirt='blue', e
     kid = age in ('child', 'tot')
     if old:
         hair = 'silver' if age == 'elder' else 'white'
-    skin = 'cream'
+    skin = 'skin' if 'tan' in extra else 'cream'
+    HK = 1.24                      # the head is drawn larger than the body: big-headed characters
+    cr.save(); cr.scale(HK, HK)
     # long hair behind the head
     if sex == 'f' and not old and 'bun' not in extra and 'short' not in extra:
         if kid:
@@ -23,8 +25,9 @@ def person(c, cx, cy, s=1.0, sex='m', age='adult', hair='brown', shirt='blue', e
             c.poly([(-50, -8), (-46, -40), (0, -58), (46, -40), (50, -8), (54, 58), (30, 66), (-30, 66), (-54, 58)], hair, step=12)
     if 'bun' in extra:
         c.ell(0, -58, 17, 15, hair)
+    cr.restore()
     # body
-    w = 42 if kid else 64
+    w = 40 if kid else 58
     c.poly([(-w, 98), (-w + 4, 60), (-w * .42, 42), (w * .42, 42), (w - 4, 60), (w, 98)], shirt, step=12,
            inner=lambda: c.fill([(-13, 40), (13, 40), (0, 62)], skin))
     if 'vest' in extra:
@@ -34,7 +37,8 @@ def person(c, cx, cy, s=1.0, sex='m', age='adult', hair='brown', shirt='blue', e
             c.dot(-16 + i * 8, 62 + (4 - abs(i - 2) * 3), 4, 'brick')
     c.ln([(-13, 42), (0, 60), (13, 42)], 5)
     # head
-    c.ell(0, 0, 44, 46, skin)
+    cr.save(); cr.scale(HK, HK)
+    c.ell(0, 0, 46, 44, skin)
     # scarf for grandmothers
     if 'scarf' in extra:
         col_ = 'brick' if age == 'elder' else 'navy'
@@ -70,17 +74,18 @@ def person(c, cx, cy, s=1.0, sex='m', age='adult', hair='brown', shirt='blue', e
         for sg in (-1, 1):
             c.ell(sg * 17, ey, 12, 11, None, w=4.5)
         c.ln([(-5, ey), (5, ey)], 4)
-        c.dot(-17, ey, 3.6); c.dot(17, ey, 3.6)
+        c.dot(-17, ey, 4.2); c.dot(17, ey, 4.2); c.dot(-18.5, ey - 1.5, 1.5, 'white'); c.dot(15.5, ey - 1.5, 1.5, 'white')
     else:
-        c.dot(-16, ey, 5); c.dot(16, ey, 5)
-    c.blush(-27, 18, 7); c.blush(27, 18, 7)
+        c.bigeye(-17, ey + 1, 6.5, 8.5); c.bigeye(17, ey + 1, 6.5, 8.5)
+    c.blush(-29, 17, 7, 'rose'); c.blush(29, 17, 7, 'rose')
     if 'moustache' in extra:
         c.poly([(0, 16), (-22, 26), (-10, 14), (0, 12), (10, 14), (22, 26)], hair if not old else 'silver', step=8, w=5)
     elif 'beard' in extra:
         c.poly([(-32, 14), (-12, 20), (0, 16), (12, 20), (32, 14), (20, 46), (0, 56), (-20, 46)], hair, step=9, w=5.5)
         c.arc(0, 26, 7, 20, 160, 4)
     else:
-        c.smile(0, 20, 16)
+        c.mouth(0, 19, 8, 3.6)
+    cr.restore()
     cr.restore()
 
 
