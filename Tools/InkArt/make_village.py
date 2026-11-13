@@ -26,8 +26,8 @@ def ground(c):
             k = r.random()
             if k < .16 or k > .9:
                 c.flat([(cx, cy - step / 4), (cx + step / 2, cy), (cx, cy + step / 4), (cx - step / 2, cy)],
-                       '#D6CAB2' if k < .16 else '#E7DDCA')
-    cr.set_source_rgba(*rgb(WHITE), .55); cr.set_line_width(2)
+                       GRASS_DARK if k < .16 else GRASS_LIGHT, .35)
+    cr.set_source_rgba(*rgb(GRASS_LIGHT), .45); cr.set_line_width(2)
     for k in range(-30, 40):
         o = k * step / 2
         cr.move_to(-100, o + (-100) * .5); cr.line_to(W + 100, o + (W + 100) * .5); cr.stroke()
@@ -37,8 +37,8 @@ def ground(c):
 def river(c):
     pts = [(-40, 250), (60, 300), (110, 380), (70, 470), (40, 560), (110, 650), (190, 730), (230, 800), (250, 900)]
     cr = c.c
-    c._path(pts); cr.set_source_rgb(*rgb(TONE3)); cr.set_line_width(64); cr.stroke()
-    c._path(pts); cr.set_source_rgb(*rgb(TONE2)); cr.set_line_width(56); cr.stroke()
+    c._path(pts); cr.set_source_rgb(*rgb(WATER_DARK)); cr.set_line_width(64); cr.stroke()
+    c._path(pts); cr.set_source_rgb(*rgb(WATER)); cr.set_line_width(54); cr.stroke()
     n = len(pts)
     for side in (-1, 1):
         edge = []
@@ -50,7 +50,7 @@ def river(c):
     for x, y in [(50, 318), (92, 420), (58, 520), (96, 628), (168, 706), (226, 790)]:
         c.line([(x - 12, y), (x - 4, y - 4), (x + 4, y), (x + 12, y - 4)], 2, WHITE, amp=.3, step=6)
     # footbridge
-    c.shape([(20, 478), (120, 506), (112, 530), (12, 502)], WHITE, 2.6)
+    c.shape([(20, 478), (120, 506), (112, 530), (12, 502)], WOOD, 2.6)
     for i in range(1, 6):
         c.line([(20 + i * 17, 478 + i * 4.7), (12 + i * 17, 502 + i * 4.7)], 1.6, amp=.3)
 
@@ -61,18 +61,19 @@ def paths(c, centres, hub):
         mid = ((hub[0] + x) / 2, (hub[1] + y) / 2 + 26)
         pts = [hub, mid, (x, y + 16)]
         cr.new_path(); cr.move_to(*pts[0]); cr.curve_to(*mid, *mid, *pts[2])
-        cr.set_source_rgb(*rgb('#EDE4D2')); cr.set_line_width(30); cr.stroke()
+        cr.set_source_rgb(*rgb(TONE1)); cr.set_line_width(36); cr.stroke_preserve()
+        cr.set_source_rgb(*rgb(PAPER)); cr.set_line_width(26); cr.stroke()
         # stepping stones along the path
         for t in (.3, .5, .7):
             px = (1 - t) ** 2 * hub[0] + 2 * t * (1 - t) * mid[0] + t * t * x
             py = (1 - t) ** 2 * hub[1] + 2 * t * (1 - t) * mid[1] + t * t * (y + 16)
-            c.blob(px, py, 8, 4.5, WHITE, 1.8, bumps=4, lump=.15)
+            c.blob(px, py, 8, 4.5, STONE, 1.6, bumps=4, lump=.15)
 
 
 def table(c, x, y):
-    c.oval(x + 6, y + 30, 96, 26, TONE2, 0)
+    c.sh_oval(x + 6, y + 30, 96, 26)
     for dx, dy in [(-62, -6), (52, 16), (30, 34), (-84, 12)]:
-        c.line([(x + dx, y + dy), (x + dx, y + dy + 24)], 3.4, amp=.3)
+        c.line([(x + dx, y + dy), (x + dx, y + dy + 24)], 3.4, amp=.3); c.line([(x + dx, y + dy), (x + dx, y + dy + 24)], 1.6, WOOD, amp=.3)
     c.shape([(x - 66, y - 16), (x + 58, y + 6), (x + 34, y + 30), (x - 90, y + 8)], GOLD, 2.8)
     c.line([(x - 54, y - 6), (x + 44, y + 12)], 1.6, amp=.5)
     # bunting between two poles
@@ -87,26 +88,26 @@ def table(c, x, y):
 
 
 def shop(c, x, y):
-    a = c.house(x, y, 124, 76, 54, roof=WHITE)
+    a = c.house(x, y, 124, 76, 54, roof=LEAF_DARK, wall=PAPER)
     # striped awning over the front
     for i in range(6):
         x0 = x - 66 + i * 22
-        c.shape([(x0, y - 50), (x0 + 22, y - 50), (x0 + 22 - 6, y - 28), (x0 - 6, y - 28)], GOLD if i % 2 == 0 else WHITE, 2.2, amp=.4)
+        c.shape([(x0, y - 50), (x0 + 22, y - 50), (x0 + 22 - 6, y - 28), (x0 - 6, y - 28)], RED if i % 2 == 0 else WHITE, 2.2, amp=.4)
     # crates and a barrel
-    c.shape([(x - 92, y + 12), (x - 60, y + 16), (x - 60, y - 12), (x - 92, y - 16)], WHITE, 2.4, amp=.5)
+    c.shape([(x - 92, y + 12), (x - 60, y + 16), (x - 60, y - 12), (x - 92, y - 16)], WOOD, 2.4, amp=.5)
     c.line([(x - 92, y - 2), (x - 60, y + 2)], 1.6, amp=.3)
     for i in range(3):
         c.oval(x - 86 + i * 10, y - 20, 6, 6, RED if i != 1 else GOLD, 1.8)
-    c.shape([(x + 78, y + 24), (x + 76, y - 2), (x + 100, y - 2), (x + 98, y + 24)], TONE1, 2.4, amp=.5)
+    c.shape([(x + 78, y + 24), (x + 76, y - 2), (x + 100, y - 2), (x + 98, y + 24)], WOOD_DARK, 2.4, amp=.5)
     c.line([(x + 77, y + 8), (x + 99, y + 8)], 1.6, amp=.3)
 
 
 def farm(c, x, y):
-    c.house(x, y, 132, 70, 60, roof=WHITE, planks=True, windows=0, door=False, roof_h=64)
+    c.house(x, y, 132, 70, 60, roof=NAVY, wall=RED, side=WOOD_DARK, planks=True, windows=0, door=False, roof_h=64)
     # big barn door with a cross brace
-    c.shape([(x - 26, y), (x - 26, y - 46), (x + 26, y - 46), (x + 26, y)], TONE1, 2.6, amp=.4)
+    c.shape([(x - 26, y), (x - 26, y - 46), (x + 26, y - 46), (x + 26, y)], PAPER, 2.6, amp=.4)
     c.line([(x - 26, y - 46), (x + 26, y)], 2, amp=.3); c.line([(x + 26, y - 46), (x - 26, y)], 2, amp=.3)
-    c.oval(x, y - 66, 9, 9, INK, 2)
+    c.oval(x, y - 66, 9, 9, PAPER, 2)
     # haystacks
     c.blob(x + 118, y - 14, 26, 22, GOLD, 2.6, bumps=5, lump=.12)
     c.hatch(x + 102, y - 28, x + 130, y, gap=8, w=1.5)
@@ -117,19 +118,19 @@ def farm(c, x, y):
 
 
 def cottage(c, x, y):
-    c.house(x, y, 116, 72, 52, roof=GOLD, chimney=True)
+    c.house(x, y, 116, 72, 52, roof=ORANGE, wall=WHITE, side=STONE, chimney=True)
     c.bush(x - 78, y + 8, 15); c.bush(x + 88, y + 2, 12)
     c.line([(x - 100, y + 30), (x - 60, y + 36)], 2, amp=.6)
 
 
 def family(c, x, y):
-    c.house(x - 10, y, 104, 68, 48, roof=WHITE)
+    c.house(x - 10, y, 104, 68, 48, roof=NAVY, wall=PAPER)
     # the big family tree with golden fruit
     tx, ty = x + 104, y + 20
-    c.oval(tx + 10, ty + 4, 44, 12, TONE2, 0)
-    c.shape([(tx - 9, ty), (tx - 5, ty - 62), (tx + 5, ty - 62), (tx + 9, ty)], TONE2, 2.6, amp=.5)
+    c.sh_oval(tx + 10, ty + 4, 44, 12)
+    c.shape([(tx - 9, ty), (tx - 5, ty - 62), (tx + 5, ty - 62), (tx + 9, ty)], WOOD, 2.6, amp=.5)
     c.line([(tx, ty - 50), (tx - 26, ty - 80)], 2.6, amp=.5); c.line([(tx, ty - 54), (tx + 26, ty - 84)], 2.6, amp=.5)
-    c.blob(tx, ty - 108, 52, 46, WHITE, 2.8, bumps=8, lump=.2)
+    c.blob(tx, ty - 108, 52, 46, LEAF, 2.8, bumps=8, lump=.2)
     for dx, dy in [(-24, -118), (4, -132), (26, -108), (-8, -96), (18, -84), (-30, -92)]:
         c.oval(tx + dx, ty + dy, 5.5, 5.5, GOLD, 1.8)
     c.flag(x - 10, y - 126, 30, RED)
@@ -137,15 +138,15 @@ def family(c, x, y):
 
 def church(c, x, y):
     """Memory: a small wooden church with shingled tower, in the Carpathian style."""
-    c.house(x + 18, y, 100, 60, 50, roof=WHITE, windows=1, roof_h=52)
+    c.house(x + 18, y, 100, 60, 50, roof=WOOD_DARK, wall=WOOD, side=WOOD_DARK, windows=1, roof_h=52)
     # tower in front, left
     tx = x - 46
-    c.flat([(tx - 30, y + 6), (tx + 30, y + 10), (tx + 46, y + 2)], TONE2)
-    c.shape([(tx - 26, y + 4), (tx - 20, y - 92), (tx + 20, y - 92), (tx + 26, y + 4)], WHITE, 2.8)
-    c.flat([(tx + 8, y - 90), (tx + 19, y - 90), (tx + 25, y + 2), (tx + 12, y + 2)], TONE1)
+    c.shadow([(tx - 30, y + 6), (tx + 30, y + 10), (tx + 46, y + 2)])
+    c.shape([(tx - 26, y + 4), (tx - 20, y - 92), (tx + 20, y - 92), (tx + 26, y + 4)], WOOD, 2.8)
+    c.flat([(tx + 8, y - 90), (tx + 19, y - 90), (tx + 25, y + 2), (tx + 12, y + 2)], WOOD_DARK)
     for yy in (y - 24, y - 48, y - 70):
         c.line([(tx - 23, yy), (tx + 23, yy)], 1.5, amp=.4)
-    c.shape([(tx - 30, y - 90), (tx, y - 134), (tx + 30, y - 90)], WHITE, 2.8)
+    c.shape([(tx - 30, y - 90), (tx, y - 134), (tx + 30, y - 90)], '#593e47', 2.8)
     c.oval(tx, y - 142, 11, 12, GOLD, 2.4)
     c.line([(tx, y - 154), (tx, y - 174)], 2.4, amp=.2); c.line([(tx - 7, y - 166), (tx + 7, y - 166)], 2.4, amp=.2)
     c.shape([(tx - 8, y + 4), (tx - 8, y - 22), (tx + 8, y - 22), (tx + 8, y + 4)], INK, 2, amp=.3)
@@ -153,7 +154,7 @@ def church(c, x, y):
 
 
 def numbers(c, x, y):
-    c.house(x, y, 118, 70, 52, roof=WHITE)
+    c.house(x, y, 118, 70, 52, roof=WATER_DARK, wall=WHITE, side=STONE)
     # hanging number sign
     sx, sy = x - 92, y - 56
     c.line([(sx, y + 14), (sx, sy - 34)], 3, amp=.3); c.line([(sx, sy - 28), (sx + 34, sy - 28)], 2.6, amp=.3)
@@ -164,12 +165,12 @@ def numbers(c, x, y):
     c.line([(x + 70, y - 30), (x + 150, y - 44)], 1.8, amp=.5)
     for i in range(3):
         c.shape([(x + 82 + i * 22, y - 30 - i * 4), (x + 98 + i * 22, y - 33 - i * 4), (x + 98 + i * 22, y - 13 - i * 4), (x + 82 + i * 22, y - 10 - i * 4)],
-                (WHITE, GOLD, WHITE)[i], 1.8, amp=.3, step=8)
+                (WHITE, GOLD, ORANGE)[i], 1.8, amp=.3, step=8)
     c.line([(x + 150, y + 16), (x + 150, y - 46)], 3, amp=.3)
 
 
 def school(c, x, y):
-    a = c.house(x, y, 136, 74, 56, roof=WHITE, roof_h=54)
+    a = c.house(x, y, 136, 74, 56, roof=RED, wall=GOLD, side='#de9f47', roof_h=54)
     # bell turret on the ridge
     bx, by = x + 26, a['apex'][1] - 6
     c.shape([(bx - 12, by + 12), (bx - 12, by - 20), (bx + 12, by - 20), (bx + 12, by + 8)], WHITE, 2.4, amp=.4)
@@ -178,7 +179,7 @@ def school(c, x, y):
     # letter board
     sx, sy = x - 104, y - 34
     c.line([(sx - 16, y + 18), (sx - 10, sy - 4)], 2.6, amp=.3); c.line([(sx + 22, y + 22), (sx + 16, sy - 4)], 2.6, amp=.3)
-    c.shape([(sx - 24, sy - 30), (sx + 28, sy - 26), (sx + 28, sy + 12), (sx - 24, sy + 8)], GOLD, 2.6, amp=.5)
+    c.shape([(sx - 24, sy - 30), (sx + 28, sy - 26), (sx + 28, sy + 12), (sx - 24, sy + 8)], WHITE, 2.6, amp=.5)
     cr = c.c; cr.set_source_rgb(*rgb(INK)); cr.select_font_face('DejaVu Sans', cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
     cr.set_font_size(24); cr.move_to(sx - 17, sy + 2); cr.show_text('Аб')
     c.flag(x - 50, a['apex'][1] + 26, 34, RED, right=False)
@@ -186,12 +187,12 @@ def school(c, x, y):
 
 def windmill(c, x, y):
     """Weather: a windmill with a weather vane."""
-    c.oval(x + 14, y + 6, 64, 16, TONE2, 0)
+    c.sh_oval(x + 14, y + 6, 64, 16)
     c.shape([(x - 34, y + 4), (x - 22, y - 96), (x + 22, y - 96), (x + 34, y + 4)], WHITE, 2.8)
-    c.flat([(x + 8, y - 94), (x + 21, y - 94), (x + 33, y + 2), (x + 14, y + 2)], TONE1)
+    c.flat([(x + 8, y - 94), (x + 21, y - 94), (x + 33, y + 2), (x + 14, y + 2)], STONE)
     for yy in (y - 26, y - 52, y - 76):
         c.line([(x - 29, yy), (x + 29, yy)], 1.5, amp=.4)
-    c.shape([(x - 28, y - 94), (x, y - 128), (x + 28, y - 94)], GOLD, 2.8)
+    c.shape([(x - 28, y - 94), (x, y - 128), (x + 28, y - 94)], RED, 2.8)
     c.shape([(x - 9, y + 4), (x - 9, y - 26), (x + 9, y - 26), (x + 9, y + 4)], INK, 2, amp=.3)
     c.shape([(x - 7, y - 50), (x + 7, y - 50), (x + 7, y - 66), (x - 7, y - 66)], GOLD, 2, amp=.3)
     # sails
@@ -201,7 +202,7 @@ def windmill(c, x, y):
         ux, uy = math.cos(a), math.sin(a); vx, vy = -uy, ux
         p = [(hx + ux * 14, hy + uy * 14), (hx + ux * 74, hy + uy * 74), (hx + ux * 74 + vx * 20, hy + uy * 74 + vy * 20),
              (hx + ux * 22 + vx * 20, hy + uy * 22 + vy * 20)]
-        c.shape(p, WHITE, 2.2, amp=.5)
+        c.shape(p, PAPER, 2.2, amp=.5)
         for t in (.4, .6, .8):
             c.line([(hx + ux * 74 * t, hy + uy * 74 * t), (hx + ux * 74 * t + vx * 20, hy + uy * 74 * t + vy * 20)], 1.4, amp=.2)
         c.line([(hx, hy), (hx + ux * 76, hy + uy * 76)], 2.8, amp=.4)
@@ -211,7 +212,7 @@ def windmill(c, x, y):
 
 
 def main():
-    c = Canvas(W, H, scale=2, bg=TONE1, seed=11, ysquash=1.25)
+    c = Canvas(W, H, scale=2, bg=GRASS, seed=11, ysquash=1.25)
     ground(c)
     river(c)
     spots = {k: world(*v) for k, v in dict(Shop=(-5.083, .233), FamilyTree=(4.333, -.033), Farm=(-3, .967), House=(2.25, 1.1),
@@ -250,7 +251,7 @@ def main():
     for i in range(70):
         x, y = r.uniform(20, W - 20), r.uniform(150, H - 10)
         if all(abs(x - bx) > 150 or abs(y - by + 40) > 110 for bx, by in base.values()) and math.hypot(x - hub[0], y - hub[1]) > 150:
-            (c.tick if i % 3 else c.grass)(x, y)
+            (c.tick(x, y, color=PINE) if i % 3 else c.grass(x, y))
     for i in range(8):
         c.stones(r.uniform(100, W - 100), r.uniform(200, H - 30), r.randint(2, 3))
     for _, f in sorted(things, key=lambda t: t[0]):

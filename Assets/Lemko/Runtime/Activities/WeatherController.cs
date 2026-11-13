@@ -35,7 +35,7 @@ namespace Lemko
         void TemperatureChanged(float value) {
             if(temperatureLabel) temperatureLabel.text=value.ToString("0")+" °C";
             // The slider reads like a thermometer: cold blue rising to warm brick.
-            float t=Mathf.InverseLerp(temperature.minValue,temperature.maxValue,value); var warm=Color.Lerp(Look.Sand,Look.Brick,t);
+            float t=Mathf.InverseLerp(temperature.minValue,temperature.maxValue,value); var warm=Color.Lerp(Look.Water,Look.Brick,t);
             if(temperature.fillRect && temperature.fillRect.TryGetComponent<UnityEngine.UI.Graphic>(out var fill)) fill.color=warm;
             if(temperature.handleRect && temperature.handleRect.TryGetComponent<UnityEngine.UI.Graphic>(out var handle)) handle.color=warm;
         }

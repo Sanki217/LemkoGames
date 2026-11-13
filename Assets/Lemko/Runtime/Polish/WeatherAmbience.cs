@@ -29,7 +29,7 @@ namespace Lemko
         void Set(Mood value)
         {
             mood=value;
-            target=value==Mood.Sun ? Look.Alpha(Look.Honey,.22f) : value==Mood.Rain ? Look.Alpha(Look.Muted,.3f) : value==Mood.Snow ? new Color(1,1,1,.38f) : value==Mood.Dark ? new Color(.16f,.18f,.3f,.38f) : Color.clear;
+            target=value==Mood.Sun ? Look.Alpha(Look.Honey,.22f) : value==Mood.Rain ? Look.Alpha(Look.Water,.3f) : value==Mood.Snow ? new Color(1,1,1,.38f) : value==Mood.Dark ? new Color(.16f,.18f,.3f,.38f) : Color.clear;
         }
         void Update()
         {

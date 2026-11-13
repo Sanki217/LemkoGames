@@ -6,14 +6,32 @@ two warm accents, so every picture in the game shares one limited palette.
 import math, random
 import cairo
 
-INK = '#2A2420'
-WHITE = '#FBF7EE'
-PAPER = '#F1E9D8'
-TONE1 = '#E0D5C0'
-TONE2 = '#C8BAA1'
-TONE3 = '#9B8D79'
-GOLD = '#F0B429'
-RED = '#D8553A'
+# The game's 31-colour palette; these are the ones the scenery uses.
+INK = '#3d3333'
+WHITE = '#f1f6f0'
+PAPER = '#fee1b8'      # indoor walls
+TONE1 = '#d4c692'      # floors, paths, side walls
+TONE2 = '#bcad9f'      # rock, stone
+TONE3 = '#87857c'      # rock in shade
+GOLD = '#fdd179'
+RED = '#b55945'
+SKY = '#cae6d9'
+GRASS = '#89a477'
+GRASS_DARK = '#819447'
+GRASS_LIGHT = '#a4c5af'
+SHADOW = '#546756'     # ground shadows, drawn half transparent
+PINE = '#546756'
+PINE_DARK = '#2f4d2f'
+LEAF = '#819447'
+LEAF_DARK = '#44702d'
+WOOD = '#a57855'
+WOOD_DARK = '#734c44'
+WATER = '#96a9c1'
+WATER_DARK = '#6c81a1'
+STONE = '#d5d6db'
+NAVY = '#405273'
+ORANGE = '#eb9661'
+LWK = 1.75             # every outline is this much thicker than the first, thin version
 
 
 def rgb(h):
@@ -65,7 +83,7 @@ class Canvas:
 
     def line(self, pts, w=2.6, color=INK, amp=1.3, step=16):
         self._path(self.wobble(pts, amp, step))
-        self.c.set_source_rgb(*rgb(color)); self.c.set_line_width(w); self.c.stroke()
+        self.c.set_source_rgb(*rgb(color)); self.c.set_line_width(w * LWK); self.c.stroke()
 
     def shape(self, pts, fill=WHITE, w=2.6, color=INK, amp=1.3, step=16):
         p = self.wobble(pts, amp, step, closed=True)
@@ -73,14 +91,20 @@ class Canvas:
         if fill:
             self.c.set_source_rgb(*rgb(fill)); self.c.fill_preserve()
         if w:
-            self.c.set_source_rgb(*rgb(color)); self.c.set_line_width(w); self.c.stroke()
+            self.c.set_source_rgb(*rgb(color)); self.c.set_line_width(w * LWK); self.c.stroke()
         else:
             self.c.new_path()
         return p
 
-    def flat(self, pts, fill):
+    def flat(self, pts, fill, alpha=1.0):
         """Unoutlined fill (shadows, ground patches)."""
-        self._path(pts, True); self.c.set_source_rgb(*rgb(fill)); self.c.fill()
+        self._path(pts, True); self.c.set_source_rgba(*rgb(fill), alpha); self.c.fill()
+
+    def shadow(self, pts):
+        self.flat(pts, SHADOW, .45)
+
+    def sh_oval(self, cx, cy, rx, ry):
+        self.flat([(cx + math.cos(6.2832 * i / 30) * rx, cy + math.sin(6.2832 * i / 30) * ry) for i in range(30)], SHADOW, .45)
 
     def blob(self, cx, cy, rx, ry, fill=WHITE, w=2.6, bumps=9, lump=.16, amp=.8, color=INK):
         """A lumpy closed outline: tree crowns, bushes, clouds, stones."""
@@ -108,49 +132,50 @@ class Canvas:
     # --- landscape pieces ---------------------------------------------------------
     def grass(self, x, y, k=1.0):
         for dx in (-5, 0, 5):
-            self.line([(x + dx * k, y), (x + dx * k * 1.5, y - 6 * k)], 1.8, amp=.3, step=5)
+            self.line([(x + dx * k, y), (x + dx * k * 1.5, y - 6 * k)], 1.6, PINE, amp=.3, step=5)
 
     def tick(self, x, y, k=1.0, color=INK):
         self.line([(x - 6 * k, y - 3 * k), (x - 2 * k, y), (x + 1 * k, y - 4 * k), (x + 5 * k, y)], 1.8, color, amp=.2, step=5)
 
-    def pine(self, x, y, h=58, shade=TONE2):
+    def pine(self, x, y, h=58, shade=PINE_DARK):
         """x,y is the foot of the trunk."""
-        w = h * .52
-        self.flat([(x - w * .5, y + 2), (x + w * .9, y + 6), (x + w * .5, y - 2)], TONE2)
-        self.line([(x, y), (x, y - h * .2)], 3.2, amp=.2)
+        w = h * .56
+        self.shadow([(x - w * .5, y + 2), (x + w * .9, y + 6), (x + w * .5, y - 2)])
+        self.shape([(x - 3, y), (x - 3, y - h * .2), (x + 3, y - h * .2), (x + 3, y)], WOOD_DARK, 2, amp=.2)
         tiers = 3
         for i in range(tiers):
             base = y - h * (.12 + .24 * i)
             top = base - h * (.42 if i < tiers - 1 else .5)
             ww = w * (1 - .22 * i)
-            self.shape([(x - ww / 2, base), (x, top), (x + ww / 2, base)], WHITE, 2.4, amp=.7, step=10)
-            self.flat([(x + ww * .08, base - 2), (x + ww * .02, top + (base - top) * .3), (x + ww / 2 - 4, base - 2)], shade)
+            p = [(x - ww / 2, base), (x, top), (x + ww / 2, base)]
+            self.shape(p, PINE, 0)
+            self.flat([(x + ww * .06, base), (x + ww * .02, top + (base - top) * .25), (x + ww / 2 - 2, base)], shade)
+            self.line(p + [p[0]], 2.4, amp=.7, step=10)
         return self
 
-    def tree(self, x, y, r=24, fill=WHITE):
-        self.oval(x + r * .35, y + 3, r * .9, r * .28, TONE2, 0)
-        self.shape([(x - 4, y), (x - 3, y - r * 1.1), (x + 3, y - r * 1.1), (x + 4, y)], TONE2, 2.2, amp=.3, step=8)
+    def tree(self, x, y, r=24, fill=LEAF):
+        self.oval(x + r * .35, y + 3, r * .9, r * .28, SHADOW, 0) if False else self.shadow([(x - r * .5, y + 2), (x + r * .3, y + r * .3), (x + r * 1.2, y + 3), (x + r * .3, y - r * .22)])
+        self.shape([(x - 4, y), (x - 3, y - r * 1.1), (x + 3, y - r * 1.1), (x + 4, y)], WOOD, 2.2, amp=.3, step=8)
         self.blob(x, y - r * 1.75, r, r * .92, fill, 2.4, bumps=7, lump=.2)
-        self.line([(x - r * .35, y - r * 1.6), (x - r * .1, y - r * 1.45)], 1.8, amp=.2, step=6)
-        self.line([(x + r * .15, y - r * 2.0), (x + r * .4, y - r * 1.9)], 1.8, amp=.2, step=6)
+        self.line([(x - r * .35, y - r * 1.6), (x - r * .1, y - r * 1.45)], 1.6, LEAF_DARK, amp=.2, step=6)
+        self.line([(x + r * .15, y - r * 2.0), (x + r * .4, y - r * 1.9)], 1.6, LEAF_DARK, amp=.2, step=6)
 
     def bush(self, x, y, r=16):
-        self.blob(x, y - r * .6, r, r * .7, WHITE, 2.2, bumps=5, lump=.22)
+        self.blob(x, y - r * .6, r, r * .7, LEAF, 2.2, bumps=5, lump=.22)
 
     def mountain(self, x, y, w=150, h=170, snow=True):
         """x,y is the middle of the base."""
         peak = (x + w * .04, y - h)
         left, right = (x - w / 2, y), (x + w / 2, y)
-        self.shape([left, peak, right], TONE2, 2.8, amp=1.6, step=20)
-        # shaded right flank
+        self.shape([left, peak, right], TONE2, 0)
         self.flat([peak, right, (x + w * .12, y)], TONE3)
         if snow:
             sy = y - h * .45
             zig = [(x - w * .28, sy + 8), (x - w * .14, sy - 12), (x - w * .04, sy + 10), (x + w * .06, sy - 8),
                    (x + w * .15, sy + 12), (x + w * .26, sy - 2)]
-            self.shape([(x - w * .28, sy + 8), peak, (x + w * .26, sy - 2)] + zig[::-1][1:-1], WHITE, 0)
-            self.flat([peak, (x + w * .26, sy - 2), (x + w * .15, sy + 12), (x + w * .09, sy - 4)], TONE1)
-            self.line(zig, 2.0, amp=.6, step=10)
+            self.flat([(x - w * .28, sy + 8), peak, (x + w * .26, sy - 2)] + zig[::-1][1:-1], WHITE)
+            self.flat([peak, (x + w * .26, sy - 2), (x + w * .15, sy + 12), (x + w * .09, sy - 4)], STONE)
+            self.line(zig, 1.6, amp=.6, step=10)
         self.line([left, peak, right], 2.8, amp=1.6, step=20)
 
     def cloud(self, x, y, w=90, fill=WHITE):
@@ -158,19 +183,19 @@ class Canvas:
 
     def stones(self, x, y, n=3):
         for i in range(n):
-            self.blob(x + i * 13 + self.r.uniform(-3, 3), y + self.r.uniform(-3, 3), 7, 5, TONE1, 2, bumps=4, lump=.15)
+            self.blob(x + i * 13 + self.r.uniform(-3, 3), y + self.r.uniform(-3, 3), 7, 5, STONE, 1.6, bumps=4, lump=.15)
 
     def fence(self, x0, y0, x1, y1, posts=6):
         for i in range(posts):
             t = i / (posts - 1)
             x, y = x0 + (x1 - x0) * t, y0 + (y1 - y0) * t
-            self.line([(x, y), (x, y - 20)], 3, amp=.3)
-        self.line([(x0, y0 - 14), (x1, y1 - 14)], 2.2, amp=.8)
-        self.line([(x0, y0 - 6), (x1, y1 - 6)], 2.2, amp=.8)
+            self.shape([(x - 3, y), (x - 3, y - 20), (x + 3, y - 20), (x + 3, y)], WOOD, 1.8, amp=.3)
+        for d in (14, 6):
+            self.line([(x0, y0 - d), (x1, y1 - d)], 3.2, amp=.8); self.line([(x0, y0 - d), (x1, y1 - d)], 1.2, WOOD, amp=.8)
 
     # --- buildings ------------------------------------------------------------------
-    def house(self, x, y, w=120, h=78, depth=56, roof=WHITE, wall=WHITE, roof_h=58, door=True, windows=2,
-              chimney=False, planks=False, shingles=True):
+    def house(self, x, y, w=120, h=78, depth=56, roof=RED, wall=PAPER, roof_h=58, door=True, windows=2,
+              chimney=False, planks=False, shingles=True, side=None):
         """Oblique little house. x,y is the middle of the front wall's ground line.
         Returns handy anchor points."""
         sk = .36                       # how much the side wall rises as it goes back
@@ -182,9 +207,9 @@ class Canvas:
         bapex = (apex[0] + depth, apex[1] - depth * sk)
         ov = 9
         # ground shadow
-        self.flat([(fl[0] - 6, y + 4), (fr[0], y + 9), (br[0] + 26, br[1] + 12), (br[0] + 10, br[1] - 4)], TONE2)
+        self.shadow([(fl[0] - 6, y + 4), (fr[0], y + 9), (br[0] + 26, br[1] + 12), (br[0] + 10, br[1] - 4)])
         # side wall, front wall
-        self.shape([fr, br, btr, tr], TONE1, 2.6)
+        self.shape([fr, br, btr, tr], side or TONE1, 2.6)
         self.shape([fl, fr, tr, apex, tl], wall, 2.6)
         if planks:
             for i in range(1, 5):
@@ -202,11 +227,11 @@ class Canvas:
         self.line([(tl[0] - ov, tl[1] + ov * .5), (apex[0] - 2, apex[1] - 3), (tr[0] + ov, tr[1] + ov * .5)], 3.0)
         if chimney:
             cx, cy = x + depth * .7, apex[1] + roof_h * .2 - depth * .2
-            self.shape([(cx - 8, cy + 14), (cx - 8, cy - 18), (cx + 8, cy - 18), (cx + 8, cy + 20)], WHITE, 2.4, amp=.4)
+            self.shape([(cx - 8, cy + 14), (cx - 8, cy - 18), (cx + 8, cy - 18), (cx + 8, cy + 20)], TONE2, 2.4, amp=.4)
             self.smoke(cx, cy - 24)
         if door:
-            self.shape([(x - 12, y), (x - 12, y - h * .52), (x + 12, y - h * .52), (x + 12, y)], INK, 2.2, amp=.4)
-            self.c.set_source_rgb(*rgb(WHITE)); self.c.arc(x + 6, y - h * .26, 1.8, 0, 6.3); self.c.fill()
+            self.shape([(x - 12, y), (x - 12, y - h * .52), (x + 12, y - h * .52), (x + 12, y)], WOOD_DARK, 2.2, amp=.4)
+            self.c.set_source_rgb(*rgb(GOLD)); self.c.arc(x + 6, y - h * .26, 1.8, 0, 6.3); self.c.fill()
         for i in range(windows):
             wx = x + (-1 if i == 0 else 1) * w * .31
             wy = y - h * .56
@@ -214,7 +239,7 @@ class Canvas:
             self.line([(wx, wy - 11), (wx, wy + 11)], 1.5, amp=.2); self.line([(wx - 10, wy), (wx + 10, wy)], 1.5, amp=.2)
         # side window
         sx, sy = (fr[0] + br[0]) / 2, (fr[1] + br[1]) / 2 - h * .55
-        self.shape([(sx - 8, sy - 8), (sx + 8, sy - 14), (sx + 8, sy + 6), (sx - 8, sy + 12)], INK, 2, amp=.3)
+        self.shape([(sx - 8, sy - 8), (sx + 8, sy - 14), (sx + 8, sy + 6), (sx - 8, sy + 12)], NAVY, 2, amp=.3)
         return dict(apex=apex, bapex=bapex, fl=fl, fr=fr, br=br, tl=tl, tr=tr)
 
     def smoke(self, x, y):
