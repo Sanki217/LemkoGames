@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0442\u0435\u0442\u0430"
   polish: ciocia
   english: aunt
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: b5316027051c43899e4a72f4616a9b7c, type: 3}
   pronunciation: {fileID: 8300000, guid: 8023dd871c654d36b04445a56e3ff3af, type: 3}
   tags:
   - family

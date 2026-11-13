@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0432 \u043D\u043E\u0447\u044B"
   polish: w nocy
   english: at night
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: d1cb042f74904a33b50c2ca7175e997c, type: 3}
   pronunciation: {fileID: 8300000, guid: 14086ae10ea64bf9a1a48bef1fd93618, type: 3}
   tags:
   - weather

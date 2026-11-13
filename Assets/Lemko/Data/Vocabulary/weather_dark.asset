@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0442\u0435\u043C\u043D\u043E"
   polish: ciemno
   english: dark
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: afb1978f7bdf4566aeebdc409bd756ab, type: 3}
   pronunciation: {fileID: 8300000, guid: 87e23e9cca564219a29c0180296834c0, type: 3}
   tags:
   - weather

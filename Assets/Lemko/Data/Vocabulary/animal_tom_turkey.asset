@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043F\u0443\u043B\u044F\u043A"
   polish: indyk
   english: tom turkey
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: cacfa899158d4c04bf749eed565e6399, type: 3}
   pronunciation: {fileID: 8300000, guid: fddf0647369640f2a118635688d73dcd, type: 3}
   tags:
   - farm

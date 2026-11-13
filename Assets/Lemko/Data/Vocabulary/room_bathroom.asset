@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043B\u0430\u0437\u043D\u0438\u0447\u043A\u0430"
   polish: "\u0142azienka"
   english: bathroom
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: cc1c0f8235c5410ebbae25c991f8217b, type: 3}
   pronunciation: {fileID: 8300000, guid: fd9ca8be82104e0790fcf8fb737c3955, type: 3}
   tags:
   - house

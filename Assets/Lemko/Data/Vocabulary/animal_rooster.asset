@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043A\u043E\u0433\u0443\u0442"
   polish: kogut
   english: rooster
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 3ea3a3bd52644a60ab7ee27bf4b9831f, type: 3}
   pronunciation: {fileID: 8300000, guid: 027a4130f49442e195e3d33c5f42a7dd, type: 3}
   tags:
   - farm

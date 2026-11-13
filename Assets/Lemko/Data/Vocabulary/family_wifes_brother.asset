@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0431\u0440\u0430\u0442 \u0436\u0435\u043D\u044B"
   polish: "szwagier (brat \u017Cony)"
   english: wifes brother
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 5dbcb960abfc481087a0528c2814a06c, type: 3}
   pronunciation: {fileID: 8300000, guid: cc7857a447d84380b51dd97c3a350dfd, type: 3}
   tags:
   - family

@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043F\u0443\u043B\u044C\u0447\u0430"
   polish: indyczek
   english: turkey poult
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 36c206f64f024a8183ebd544ffa0ca7d, type: 3}
   pronunciation: {fileID: 8300000, guid: f940d67135bf42239854c29460ef8c31, type: 3}
   tags:
   - farm

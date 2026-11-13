@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0434\u0443\u044F\u0432\u0438\u0446\u044F"
   polish: wichura
   english: windstorm
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 8b370d837eb84446a5cdbd74a26e91d6, type: 3}
   pronunciation: {fileID: 8300000, guid: 4f01dccfdb1143689c4137f9397c5e0b, type: 3}
   tags:
   - weather

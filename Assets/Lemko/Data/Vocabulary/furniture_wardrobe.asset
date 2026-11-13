@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0448\u0430\u0444\u0430"
   polish: szafa
   english: wardrobe
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: d9880c98b15b450480487b1f1ec48084, type: 3}
   pronunciation: {fileID: 8300000, guid: b2d7d9b8274a4176b9968c3abe350d0e, type: 3}
   tags:
   - house

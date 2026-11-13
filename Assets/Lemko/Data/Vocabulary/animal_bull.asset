@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0431\u044B\u043A"
   polish: byk
   english: bull
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 0f20b16677284ee4b1959f5c1d7b1582, type: 3}
   pronunciation: {fileID: 8300000, guid: f526f6ede525481ca35c84840883cf1a, type: 3}
   tags:
   - farm

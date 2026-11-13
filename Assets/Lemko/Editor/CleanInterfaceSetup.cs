@@ -14,7 +14,7 @@ namespace Lemko.Editor {
         [MenuItem("Lemko/Setup/Apply clean interface")]
         public static void Apply() {
             if(!Application.isBatchMode && !EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
-            foreach(string path in new[]{"Assets/Lemko/Sprites/UI/ui_card.png","Assets/Lemko/Sprites/UI/ui_button.png","Assets/Lemko/Sprites/Placeholders/Backgrounds/sprite_shop_clean.png"}) {
+            foreach(string path in new[]{"Assets/Lemko/Sprites/UI/ui_card.png","Assets/Lemko/Sprites/UI/ui_button.png"}) {
                 var i=(TextureImporter)AssetImporter.GetAtPath(path); i.textureType=TextureImporterType.Sprite; i.spriteImportMode=SpriteImportMode.Single;
                 i.spritePixelsPerUnit=path.Contains("sprite_shop") ? 120 : 64; i.spriteBorder=path.Contains("sprite_shop") ? Vector4.zero : Vector4.one*18;
                 i.alphaIsTransparency=true; i.mipmapEnabled=false; i.textureCompression=TextureImporterCompression.Uncompressed; i.SaveAndReimport();
@@ -49,7 +49,7 @@ namespace Lemko.Editor {
                 if(s.tooltip.waiting) { var cue=s.tooltip.waiting.GetComponentInChildren<TMP_Text>(true); if(cue) { cue.color=Ink; cue.outlineWidth=0; } s.tooltip.progressRing.color=Purple; s.tooltip.progressRing.trackColor=new Color(.8f,.84f,.88f); }
                 foreach(var panel in new[]{s.resultsPanel,s.exhaustedPanel}) if(panel) { var image=panel.GetComponent<Image>(); if(image) { image.sprite=card; image.type=Image.Type.Sliced; image.color=Color.white; } }
                 if(s.activity) {
-                    var bg=s.activity.worldRoot.Find("Editable background"); if(bg) bg.GetComponent<SpriteRenderer>().color=Paper;
+                    var bg=s.activity.worldRoot.Find("Editable background"); if(bg) bg.GetComponent<SpriteRenderer>().color=Color.white;
                     var panel=s.shopPanel.GetComponent<Image>(); if(panel) { panel.color=Color.clear; panel.raycastTarget=false; }
                     s.activity.prompt.fontSize=28; s.activity.feedback.fontSize=18;
                     s.activity.submit.GetComponentInChildren<TMP_Text>().text="Check answer";

@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043A\u043D\u0438\u0436\u043A\u044B"
   polish: "ksi\u0105\u017Cki"
   english: books
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 98bf3989ce064ca290d95c8ac15c142e, type: 3}
   pronunciation: {fileID: 8300000, guid: d1dcba2c96f84d5da25a72d5582da958, type: 3}
   tags:
   - house

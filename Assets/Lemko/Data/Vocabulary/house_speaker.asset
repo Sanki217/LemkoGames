@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0433\u043E\u043B\u043E\u0441\u043D\u0438\u043A"
   polish: "g\u0142o\u015Bnik"
   english: speaker
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 925197d74bb84880969ecb6b1eb6229a, type: 3}
   pronunciation: {fileID: 8300000, guid: af943788c84846c49fc10a76be400e26, type: 3}
   tags:
   - house

@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0441\u044C\u0432\u0456\u0442\u043B\u0438\u0446\u044F"
   polish: salon
   english: living room
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: d933f4ed5bc74d8c8854f828bf859939, type: 3}
   pronunciation: {fileID: 8300000, guid: 2ffe6681e9a24c5aa0502df6ac657ed8, type: 3}
   tags:
   - house

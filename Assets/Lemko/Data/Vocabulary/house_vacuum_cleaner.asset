@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043E\u0434\u043F\u043E\u0440\u043E\u0448\u0430\u0447"
   polish: odkurzacz
   english: vacuum cleaner
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 9c412d5d872f46748fd40d3aa91d8b3c, type: 3}
   pronunciation: {fileID: 8300000, guid: 0dc8dab6238541feadcd0f796f38c88c, type: 3}
   tags:
   - house

@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0445\u043C\u0430\u0440\u0438\u0442 \u0441\u044F"
   polish: "chmurzy si\u0119"
   english: it is getting cloudy
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 302e5488ffe04596a4d0cf580ed485ca, type: 3}
   pronunciation: {fileID: 8300000, guid: 2cdda51ca7c746e5bf23419717da4a81, type: 3}
   tags:
   - weather

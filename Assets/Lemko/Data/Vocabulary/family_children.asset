@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0434\u0456\u0442\u0438"
   polish: dzieci
   english: children
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 33e7b1eb39db46f69ddf76cbb98f6213, type: 3}
   pronunciation: {fileID: 8300000, guid: 4a23cbfef7924672bc34eca7d751cc14, type: 3}
   tags:
   - family

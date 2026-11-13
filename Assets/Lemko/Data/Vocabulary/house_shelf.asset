@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043F\u043E\u043B\u0438\u0447\u043A\u0430"
   polish: "p\xF3\u0142ka"
   english: shelf
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 7582a09d5a3e4d2f914aef321013737e, type: 3}
   pronunciation: {fileID: 8300000, guid: 4fdee24b01e242028671a89a3f296e1c, type: 3}
   tags:
   - house

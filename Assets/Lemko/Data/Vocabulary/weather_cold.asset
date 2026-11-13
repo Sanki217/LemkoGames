@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0441\u0442\u0443\u0434\u0435\u043D\u043E"
   polish: zimno
   english: cold
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 400c4b4c5a9d433c84d7b2c2bc87729b, type: 3}
   pronunciation: {fileID: 8300000, guid: 7cd3f435fa0842f99e29bb761f84627c, type: 3}
   tags:
   - weather

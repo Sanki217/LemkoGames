@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043A\u0443\u0437\u0438\u043D\u043A\u0430"
   polish: kuzynka
   english: female cousin
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: a8f90b1ed0274de294c420848d77bc2c, type: 3}
   pronunciation: {fileID: 8300000, guid: a048cfd125074601a53dce654571bc36, type: 3}
   tags:
   - family

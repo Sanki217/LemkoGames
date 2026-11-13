@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u044F\u0433\u043D\u044F"
   polish: "jagni\u0119"
   english: lamb
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 463929bce92a4bb6bf8d3c87ea2d1b77, type: 3}
   pronunciation: {fileID: 8300000, guid: b9c5eb8855ad409f9da9118b7c4f31c9, type: 3}
   tags:
   - farm

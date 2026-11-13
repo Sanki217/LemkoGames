@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0433\u0430\u0447\u0430"
   polish: "\u017Arebak"
   english: foal
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 97cfb30f130443fca4f9887bee522665, type: 3}
   pronunciation: {fileID: 8300000, guid: cb5e7b2fad734793b4fb4380e2260749, type: 3}
   tags:
   - farm

@@ -25,6 +25,7 @@ namespace Lemko.Editor
             {
                 if (!entry || !words.TryGetValue(entry.id, out var row) || entry.lemko != row["text_lemko"] ||
                     entry.polish != row["text_pl"] || entry.english != row["text_en"] ||
+                    !entry.sprite || entry.sprite.name != row["sprite_id"] ||
                     entry.audioId != row["audio_id"] || entry.pronunciation != VocabularyImporter.Resolve<UnityEngine.AudioClip>(row["audio_id"], true))
                     throw new BuildFailedException("Reimport the master vocabulary. Mismatch at " + entry);
             }
@@ -36,6 +37,8 @@ namespace Lemko.Editor
                 var path = AssetDatabase.GUIDToAssetPath(guid);
                 var activity = AssetDatabase.LoadAssetAtPath<ActivityDefinition>(path);
                 if (activity.Validate() != null) throw new BuildFailedException(path + ": " + activity.Validate());
+                if (activity.kind == ActivityKind.Memory && !new System.Collections.Generic.HashSet<VocabularyEntry>(activity.pool).SetEquals(database.entries))
+                    throw new BuildFailedException("Memory must include every word in the master vocabulary.");
                 if (activity.kind == ActivityKind.Alphabet)
                 {
                     var letters = rows.Where(AlphabetMasterImporter.IsLetter).ToDictionary(r => r["id"]);

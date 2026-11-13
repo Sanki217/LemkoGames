@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0440\u0443\u0447\u043D\u0438\u043A"
   polish: "r\u0119cznik"
   english: towel
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 240b2ea570094e9090768658f00297c2, type: 3}
   pronunciation: {fileID: 8300000, guid: 61e2ba92fdda43f983dbf342cd10d044, type: 3}
   tags:
   - house

@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043F\u043E\u0432\u0456\u0442\u0440\u044F"
   polish: powietrze
   english: air
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: f54bd27946e5491d9d0d3f50b7991263, type: 3}
   pronunciation: {fileID: 8300000, guid: 907da68fc2df41c5af474f59689ece54, type: 3}
   tags:
   - weather

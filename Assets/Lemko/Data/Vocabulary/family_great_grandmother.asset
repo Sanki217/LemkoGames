@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043F\u0440\u0430\u0431\u0430\u0431\u0430"
   polish: prababcia
   english: great grandmother
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 975c95a544d040438b19b2cc713a3c20, type: 3}
   pronunciation: {fileID: 8300000, guid: c3a6d85b0ca34ff0abe6800f07d26ae4, type: 3}
   tags:
   - family

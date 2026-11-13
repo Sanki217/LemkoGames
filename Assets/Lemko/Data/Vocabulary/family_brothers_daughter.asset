@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0431\u0440\u0430\u0442\u0430\u043D\u0438\u0446\u044F"
   polish: bratanica
   english: brothers daughter
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 1324f7bdc8414483b83019eebc6b21cc, type: 3}
   pronunciation: {fileID: 8300000, guid: cb251c40c021462fbf9579dd8552b1f9, type: 3}
   tags:
   - family

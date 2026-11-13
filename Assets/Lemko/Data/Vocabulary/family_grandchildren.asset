@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0432\u043D\u0443\u043A\u044B"
   polish: wnukowie
   english: grandchildren
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: db9c814dd4504b40baa60dacbce57fe7, type: 3}
   pronunciation: {fileID: 8300000, guid: 9bde523780974168bab19f71b626aee8, type: 3}
   tags:
   - family

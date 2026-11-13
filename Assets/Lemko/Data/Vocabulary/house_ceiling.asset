@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043F\u043E\u0432\u0430\u043B\u0430"
   polish: sufit
   english: ceiling
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 1ec27c97bb72438196e4a1bf38094b89, type: 3}
   pronunciation: {fileID: 8300000, guid: d98d3faaa20a482c9dd8da156db65917, type: 3}
   tags:
   - house

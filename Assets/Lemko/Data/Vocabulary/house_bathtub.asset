@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0432\u0430\u043D\u043E\u0432"
   polish: wanna
   english: bathtub
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: e6b60adb9b96457c82b1c470c3229fc8, type: 3}
   pronunciation: {fileID: 8300000, guid: 2d313975847b4700a350c0aa6011a898, type: 3}
   tags:
   - house

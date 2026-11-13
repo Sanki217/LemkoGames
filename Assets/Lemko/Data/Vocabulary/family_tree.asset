@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0434\u0435\u0440\u0435\u0432\u043E \u0440\u043E\u0434\u0443"
   polish: drzewo genealogiczne
   english: family tree
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 352b2c8d8fe34eb88f8b936149f65e85, type: 3}
   pronunciation: {fileID: 8300000, guid: d22d48b7dae14867a1c140315902ed0f, type: 3}
   tags:
   - family

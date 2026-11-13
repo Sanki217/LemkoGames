@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043E\u0442\u0435\u0446 \u0436\u0435\u043D\u044B"
   polish: "te\u015B\u0107 (ojciec \u017Cony)"
   english: wifes father
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: e827594dcc84450fa9947eb9467e3c41, type: 3}
   pronunciation: {fileID: 8300000, guid: a10c8e59bf08489397e86b843724e245, type: 3}
   tags:
   - family

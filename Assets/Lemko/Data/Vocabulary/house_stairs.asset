@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0441\u0445\u043E\u0434\u044B"
   polish: schody
   english: stairs
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: d6647d26b9de4aabb99ce57f27e98fd4, type: 3}
   pronunciation: {fileID: 8300000, guid: d17637d953d94959bba79114a27c6c8a, type: 3}
   tags:
   - house

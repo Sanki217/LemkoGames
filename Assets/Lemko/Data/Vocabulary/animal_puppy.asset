@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043F\u0441\u044F"
   polish: "szczeni\u0119"
   english: puppy
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: c22fa0e247814e4d93c6e4726e73180a, type: 3}
   pronunciation: {fileID: 8300000, guid: 344a6574562643c58b0a0f7c7f4575c2, type: 3}
   tags:
   - farm

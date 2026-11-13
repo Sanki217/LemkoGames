@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043C\u0456\u0441\u044F\u0446"
   polish: "ksi\u0119\u017Cyc"
   english: moon
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: b73a753268d34194b9fd3c9bb78a9f97, type: 3}
   pronunciation: {fileID: 8300000, guid: cfa954aa803a40acb95217476eb1d51d, type: 3}
   tags:
   - weather

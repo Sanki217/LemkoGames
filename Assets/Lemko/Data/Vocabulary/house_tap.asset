@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043A\u0440\u0430\u043D"
   polish: kran
   english: tap
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 281737a4145243b9a46f2f52ac697c0c, type: 3}
   pronunciation: {fileID: 8300000, guid: 735133886f3c4e44b00392a32a26c60a, type: 3}
   tags:
   - house

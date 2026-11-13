@@ -17,7 +17,7 @@ MonoBehaviour:
     \u0434\u0432\u043E\u0440\u0456?"
   polish: Jaka temperatura na plusie?
   english: What is the temperature above zero?
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: bddec2332f134f7c892dbfe59f1fd780, type: 3}
   pronunciation: {fileID: 8300000, guid: ee8e5401e77a4e4ab8cc329fd2f170c7, type: 3}
   tags:
   - weather

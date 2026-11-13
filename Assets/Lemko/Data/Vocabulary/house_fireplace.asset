@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043A\u043E\u043C\u0438\u043D\u043E\u043A"
   polish: kominek
   english: fireplace
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 4999c018ab794e03a1f0436f53fe59d7, type: 3}
   pronunciation: {fileID: 8300000, guid: ed052ad7801d4f0da6365f633968c082, type: 3}
   tags:
   - house

@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u042F\u043A\u0456\u0439 \u0432\u0435\u043B\u0438\u043A\u0456\u0439 \u043C\u043E\u0440\u043E\u0437?"
   polish: Jaka temperatura na minusie?
   english: How far below zero is the temperature?
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: c0ecf6362c224a2eae8a835d3881e13f, type: 3}
   pronunciation: {fileID: 8300000, guid: 74de5bfcfc8b41fb932fac21a9751ad3, type: 3}
   tags:
   - weather

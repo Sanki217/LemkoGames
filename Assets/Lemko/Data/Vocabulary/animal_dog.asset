@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043F\u0435\u0441"
   polish: pies
   english: dog
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: d628274bedde4eea8fde1b02b11d55c0, type: 3}
   pronunciation: {fileID: 8300000, guid: a4ce916f2dac43f1904ed4036bfcd2ff, type: 3}
   tags:
   - farm

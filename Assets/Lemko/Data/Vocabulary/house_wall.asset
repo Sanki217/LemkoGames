@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0441\u0442\u0456\u043D\u0430"
   polish: "\u015Bciana"
   english: wall
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 3c715a184152411998f92b1cd46df924, type: 3}
   pronunciation: {fileID: 8300000, guid: 7143361ab3154283b0e5108b8777e019, type: 3}
   tags:
   - house

@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0448\u0430\u043C\u043F\u043E\u043D"
   polish: szampon
   english: shampoo
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 518a80a1dd05466f8e346b9750a2a4de, type: 3}
   pronunciation: {fileID: 8300000, guid: 3655c173b0684f3c843eeb416c7170ba, type: 3}
   tags:
   - house

@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043A\u043E\u0442\u044F"
   polish: "koci\u0119"
   english: kitten
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 3746ed73ee014940848dc023d95fae6b, type: 3}
   pronunciation: {fileID: 8300000, guid: ec396da3e75a4c9c95c4b32f037d4684, type: 3}
   tags:
   - farm

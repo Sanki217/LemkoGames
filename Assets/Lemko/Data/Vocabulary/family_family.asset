@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0440\u043E\u0434\u0438\u043D\u0430"
   polish: rodzina
   english: family
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: e784fae7114d4e208d2d5e903aed3a67, type: 3}
   pronunciation: {fileID: 8300000, guid: ee44aec836874ff7a8725d912836f3a0, type: 3}
   tags:
   - family

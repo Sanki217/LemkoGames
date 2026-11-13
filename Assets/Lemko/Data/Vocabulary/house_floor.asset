@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043F\u0456\u0434\u043B\u043E\u0433\u0430"
   polish: "pod\u0142oga"
   english: floor
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: ac82dbc2452b4a7689ece61f866b4132, type: 3}
   pronunciation: {fileID: 8300000, guid: a0b8c4f9b6934d76a561b46846bb6638, type: 3}
   tags:
   - house

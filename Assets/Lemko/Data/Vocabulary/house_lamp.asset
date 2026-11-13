@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043B\u044F\u043C\u043F\u0430"
   polish: lampa
   english: lamp
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 2a8369941e084c979d0f46d564ff8dca, type: 3}
   pronunciation: {fileID: 8300000, guid: 587d544288854edc852d2b9bfb54c6ad, type: 3}
   tags:
   - house

@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0434\u0432\u0435\u0440\u0456"
   polish: drzwi
   english: door
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 665c803b5c8f4de49999e7d9e6f683fc, type: 3}
   pronunciation: {fileID: 8300000, guid: 6dd3f8f8c14f4898b5e48ce133da3322, type: 3}
   tags:
   - house

@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043C\u0456\u0442\u043B\u0430"
   polish: "miot\u0142a"
   english: broom
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 5e17431a9bd24ff8a2868cc65e5487e6, type: 3}
   pronunciation: {fileID: 8300000, guid: 39fc2f22a98246caa82b8fe600d9f105, type: 3}
   tags:
   - house

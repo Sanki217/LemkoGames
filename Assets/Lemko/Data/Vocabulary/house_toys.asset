@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0447\u0430\u0447\u043A\u0430"
   polish: zabawki
   english: toys
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 5e77c82c859b40c8908e015d0af0bc20, type: 3}
   pronunciation: {fileID: 8300000, guid: 60bc9296954846a6b404b0b930c15ed1, type: 3}
   tags:
   - house

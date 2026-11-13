@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0433\u0440\u0435\u0431\u0456\u043D"
   polish: "grzebie\u0144"
   english: comb
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 6f95805006774d20805e539d0424eb4e, type: 3}
   pronunciation: {fileID: 8300000, guid: dfaf2aef6dac4973b1c8708256d048fb, type: 3}
   tags:
   - house

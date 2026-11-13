@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043F\u0430\u0441\u0442\u0430 \u0434\u043E \u0437\u0443\u0431\u0456\u0432"
   polish: "pasta do z\u0119b\xF3w"
   english: toothpaste
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: a77df7dee2ca45d88e84d40a9fdd97e0, type: 3}
   pronunciation: {fileID: 8300000, guid: c10edce2537d4d4aaf1642a1fbb17085, type: 3}
   tags:
   - house

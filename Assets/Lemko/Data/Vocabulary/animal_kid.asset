@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043A\u0456\u0437\u044F"
   polish: "ko\u017Al\u0105tko"
   english: kid
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: d15405e6293745119751abffb4f67c91, type: 3}
   pronunciation: {fileID: 8300000, guid: 59c0125396ac4cdfb46c350470544d35, type: 3}
   tags:
   - farm

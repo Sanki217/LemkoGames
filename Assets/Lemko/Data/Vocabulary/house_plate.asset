@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0442\u0430\u043D\u0456\u0440"
   polish: talerz
   english: plate
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: dcdd23149e2947e68a72d7705f69ba12, type: 3}
   pronunciation: {fileID: 8300000, guid: f8c84c1eb5844d4b863d38158c8d8d34, type: 3}
   tags:
   - house

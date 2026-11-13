@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0441\u0442\u0430\u044F\u043B \u0441\u044C\u043D\u0456\u0433"
   polish: "stopnia\u0142 \u015Bnieg"
   english: the snow melted
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 74e99d48daab43a194625d80eb8f6b45, type: 3}
   pronunciation: {fileID: 8300000, guid: 23cc04a00bc74d6fa2c0c697357afdf1, type: 3}
   tags:
   - weather

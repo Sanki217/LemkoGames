@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043D\u0456\u0436"
   polish: "n\xF3\u017C"
   english: knife
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 41a8d37b70804bbf9d57a2901fa9c789, type: 3}
   pronunciation: {fileID: 8300000, guid: f6fe40a143354f05ad51395b9d68acff, type: 3}
   tags:
   - house

@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0433\u0443\u0441\u044F"
   polish: "g\u0105ska"
   english: gosling
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 14e9587b842d4f9f90948d9a5eb514ec, type: 3}
   pronunciation: {fileID: 8300000, guid: 7b48344467ad4bd88131c9b96953ea82, type: 3}
   tags:
   - farm

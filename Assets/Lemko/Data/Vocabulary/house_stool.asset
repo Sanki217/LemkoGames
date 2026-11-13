@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0441\u0442\u0456\u043B\u044C\u0447\u044B\u043A"
   polish: taboret
   english: stool
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: c22c14d839074ad6b08005f42bbe9130, type: 3}
   pronunciation: {fileID: 8300000, guid: 31e0f9bc23df4bd68c238daa48fe9f61, type: 3}
   tags:
   - house

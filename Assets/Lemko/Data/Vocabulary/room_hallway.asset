@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043A\u043E\u0440\u0438\u0442\u0430\u0440"
   polish: korytarz
   english: hallway
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: a9886eccfeb4426091e36af329f3c268, type: 3}
   pronunciation: {fileID: 8300000, guid: 31f5c5dd912442f587ef2741ab282d06, type: 3}
   tags:
   - house

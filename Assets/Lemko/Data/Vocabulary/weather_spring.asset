@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u044F\u0440"
   polish: wiosna
   english: spring
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 09d41e06681a4da782c7cfb163efe88e, type: 3}
   pronunciation: {fileID: 8300000, guid: 1d198394d7ab4c628268b6e38f3884be, type: 3}
   tags:
   - weather

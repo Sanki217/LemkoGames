@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0441\u0442\u0443\u0434\u0456\u043D"
   polish: bardzo zimno
   english: very cold
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: bc63df3cf0484bf694a2750f74c294ef, type: 3}
   pronunciation: {fileID: 8300000, guid: f690ff37e60e480582d22eb5cfeadb51, type: 3}
   tags:
   - weather

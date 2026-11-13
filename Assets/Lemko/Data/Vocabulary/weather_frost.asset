@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043C\u043E\u0440\u043E\u0437"
   polish: "mr\xF3z"
   english: frost
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: e902ce28fdbe4bfca3c7441234a17f70, type: 3}
   pronunciation: {fileID: 8300000, guid: fae6fde457fd4f45a9a7d8640162d3c1, type: 3}
   tags:
   - weather

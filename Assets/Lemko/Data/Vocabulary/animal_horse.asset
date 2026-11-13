@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043A\u0456\u043D"
   polish: "ko\u0144"
   english: horse
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: de57c9c21aa84d8f9a3a9a517c1aa2f3, type: 3}
   pronunciation: {fileID: 8300000, guid: 7bf6e1cf192c4374a4e9c0962bdfb8cf, type: 3}
   tags:
   - farm

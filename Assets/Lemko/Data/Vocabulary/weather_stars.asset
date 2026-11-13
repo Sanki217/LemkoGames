@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0437\u044C\u0432\u0456\u0437\u0434\u044B"
   polish: gwiazdy
   english: stars
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 68f43abea1994a078a000128440f733c, type: 3}
   pronunciation: {fileID: 8300000, guid: e0b62e0012e44ce88faae97a87d8ded3, type: 3}
   tags:
   - weather

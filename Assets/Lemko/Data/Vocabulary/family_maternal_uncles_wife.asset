@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0443\u0439\u0447\u044B\u043D\u0430"
   polish: wujenka
   english: maternal uncles wife
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: ec0b380dc3624bb68995e5270b3af1d1, type: 3}
   pronunciation: {fileID: 8300000, guid: 9e6b9f07c002472382f12ec1061174f9, type: 3}
   tags:
   - family

@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0449\u0456\u0442\u043E\u0447\u043A\u0430 \u0434\u043E \u0437\u0443\u0431\u0456\u0432"
   polish: "szczoteczka do z\u0119b\xF3w"
   english: toothbrush
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: c263606f5da24165b22b76393f0341a4, type: 3}
   pronunciation: {fileID: 8300000, guid: a5c555d5609240c6bb9f70406f5b611c, type: 3}
   tags:
   - house

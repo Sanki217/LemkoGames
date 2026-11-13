@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0448\u0430\u0444\u043A\u0430"
   polish: szafka
   english: cabinet
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: c7c0b74c48164bffb4e71af57bccd31f, type: 3}
   pronunciation: {fileID: 8300000, guid: 9980fddc6ce4469e88c48bf1aea0832b, type: 3}
   tags:
   - house

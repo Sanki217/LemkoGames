@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043B\u0436\u044B\u0446\u044F"
   polish: "\u0142y\u017Cka"
   english: spoon
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 983e175a24e14b61aa54ccc68a5bf44c, type: 3}
   pronunciation: {fileID: 8300000, guid: d0a5af9cecb043f08cf7538b0ae7b610, type: 3}
   tags:
   - house

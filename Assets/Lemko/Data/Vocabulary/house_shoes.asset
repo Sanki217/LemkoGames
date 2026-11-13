@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0447\u0435\u0440\u0435\u0432\u0456\u043A\u044B"
   polish: buty
   english: shoes
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 96eca6211a794283bb52b704261cec91, type: 3}
   pronunciation: {fileID: 8300000, guid: 9155d3d9c4524c30a62a2f4f5bc673c4, type: 3}
   tags:
   - house

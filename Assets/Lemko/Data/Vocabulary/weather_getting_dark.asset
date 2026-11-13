@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0437\u043C\u0435\u0440\u043A\u0430\u0442 \u0441\u044F"
   polish: zmierzcha
   english: it is getting dark
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 2187315f6a1849849c24d3decdcfc20c, type: 3}
   pronunciation: {fileID: 8300000, guid: 0a7df610b207419b87fcbd837014198a, type: 3}
   tags:
   - weather

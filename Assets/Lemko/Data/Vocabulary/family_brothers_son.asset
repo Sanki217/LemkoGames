@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0431\u0440\u0430\u0442\u0430\u043D\u043E\u043A"
   polish: bratanek
   english: brothers son
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: e1aa56aa3b36440bbeb2383cd193a598, type: 3}
   pronunciation: {fileID: 8300000, guid: 2f59a2a50230402a8f79b2aef737d472, type: 3}
   tags:
   - family

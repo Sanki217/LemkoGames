@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043F\u0430\u043F\u0456\u0440"
   polish: papier
   english: paper
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 54ec533293d044faa011482e71198586, type: 3}
   pronunciation: {fileID: 8300000, guid: 8ce947a791e7415588da77384e99f747, type: 3}
   tags:
   - house

@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0431\u0430\u0440\u0430\u043D"
   polish: baran
   english: ram
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 7e81943e11c4453c9d574925018ceaa4, type: 3}
   pronunciation: {fileID: 8300000, guid: 00c9922e4860493396f0f9623c8ac0af, type: 3}
   tags:
   - farm

@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043C\u0443\u0436"
   polish: "m\u0105\u017C"
   english: husband
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 296b8074f68845cead068fbeb22d28bc, type: 3}
   pronunciation: {fileID: 8300000, guid: 7d95473544404bac9cac36465d3152bb, type: 3}
   tags:
   - family

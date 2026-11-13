@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043F\u0430\u043D\u043E\u0432\u043A\u0430"
   polish: patelnia
   english: frying pan
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 6a10da3f984c468997c7823307096913, type: 3}
   pronunciation: {fileID: 8300000, guid: 73ad057334b6488dadb8221daa82b09b, type: 3}
   tags:
   - house

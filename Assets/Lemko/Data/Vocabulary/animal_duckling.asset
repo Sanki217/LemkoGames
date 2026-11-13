@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043A\u0430\u0447\u0430\u0442\u043A\u043E"
   polish: "kacz\u0105tko"
   english: duckling
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 2e4a6837f6684c0dbc28a8f9c5ce929f, type: 3}
   pronunciation: {fileID: 8300000, guid: f2152f8ee9334a019e25f76fa11c15b0, type: 3}
   tags:
   - farm

@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0437\u043E\u0448\u044B\u0442"
   polish: zeszyt
   english: notebook
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 39693fb5d9cd42228d5affb2cb5e173d, type: 3}
   pronunciation: {fileID: 8300000, guid: ebe5db1428ab498bbf4b94061b6f0c28, type: 3}
   tags:
   - house

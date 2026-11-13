@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043B\u0435\u0434\u0456\u0432\u043A\u0430"
   polish: "lod\xF3wka"
   english: refrigerator
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: b8d6cab5676f488a9aa7966891893245, type: 3}
   pronunciation: {fileID: 8300000, guid: 480d144b47fb4de8b57b1cc18e0b839e, type: 3}
   tags:
   - house

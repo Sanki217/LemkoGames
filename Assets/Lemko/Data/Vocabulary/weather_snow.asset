@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0441\u044C\u043D\u0456\u0433"
   polish: "\u015Bnieg"
   english: snow
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: fc48c6eeaa39433c985aea03b53bc44e, type: 3}
   pronunciation: {fileID: 8300000, guid: 8c3d407c58a4459abd0f32132685740e, type: 3}
   tags:
   - weather

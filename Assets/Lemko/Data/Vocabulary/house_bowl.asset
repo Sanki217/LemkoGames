@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043C\u0438\u0441\u043A\u0430"
   polish: miska
   english: bowl
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: e6488a1bcd274adba4043ce054970814, type: 3}
   pronunciation: {fileID: 8300000, guid: 2c89302058ab43dda93298ba3ab7105f, type: 3}
   tags:
   - house

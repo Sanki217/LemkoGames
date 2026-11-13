@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043F\u0440\u0430\u043B\u044C\u043A\u0430"
   polish: pralka
   english: washing machine
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 3e867743ea6044ed8ec9a5eb01f33ff4, type: 3}
   pronunciation: {fileID: 8300000, guid: 52b7eb5baf6c44fd9030ea6aa17c14f7, type: 3}
   tags:
   - house

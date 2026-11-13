@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0434\u0437\u044B\u0491\u0430\u0440"
   polish: zegar
   english: clock
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: e663e2d89d93414384e0fb512e08a90a, type: 3}
   pronunciation: {fileID: 8300000, guid: 7ca83976a2824d8c833b477aaf129811, type: 3}
   tags:
   - house

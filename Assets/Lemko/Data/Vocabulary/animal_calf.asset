@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0442\u0435\u043B\u044F"
   polish: "ciel\u0119"
   english: calf
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 618889701cfe4d359bf3fc8fb5a96fcd, type: 3}
   pronunciation: {fileID: 8300000, guid: d72058f6028c464283490bd3c5330312, type: 3}
   tags:
   - farm

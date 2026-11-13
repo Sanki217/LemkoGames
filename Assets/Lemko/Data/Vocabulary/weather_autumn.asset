@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043E\u0441\u0456\u043D"
   polish: "jesie\u0144"
   english: autumn
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: de4a65d5da5a462ea0a31f2ba9d68d0a, type: 3}
   pronunciation: {fileID: 8300000, guid: b40554c8575c4b1e9a412a669e273299, type: 3}
   tags:
   - weather

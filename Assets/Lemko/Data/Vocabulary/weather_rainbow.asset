@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0434\u0443\u0433\u0430"
   polish: "t\u0119cza"
   english: rainbow
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 9396f338ed8d4ebebb436354b97b3572, type: 3}
   pronunciation: {fileID: 8300000, guid: 2a6ed423933c4a738f1fca20849f5ff6, type: 3}
   tags:
   - weather

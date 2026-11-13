@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0433\u043E\u0440\u043D\u044F\u0442\u043A\u043E"
   polish: kubek
   english: mug
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: f1c53e0b9e2a46c2af8cf4850291aebf, type: 3}
   pronunciation: {fileID: 8300000, guid: 8942c78859b8464fb009fde6315cf342, type: 3}
   tags:
   - house

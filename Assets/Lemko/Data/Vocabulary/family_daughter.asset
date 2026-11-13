@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0434\u0456\u0432\u043A\u0430"
   polish: "c\xF3rka"
   english: daughter
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 22f048d52a64447280873f62f7082bd1, type: 3}
   pronunciation: {fileID: 8300000, guid: e448aaa5456348d183e2f6e121dfb1f0, type: 3}
   tags:
   - family

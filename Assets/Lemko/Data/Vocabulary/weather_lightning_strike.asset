@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043F\u0435\u0440\u0443\u043D"
   polish: piorun
   english: lightning strike
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 074761fe7b6e4da2831f8a931a7d6d0f, type: 3}
   pronunciation: {fileID: 8300000, guid: ce208f3e3e8148369c3e4e504bfe2241, type: 3}
   tags:
   - weather

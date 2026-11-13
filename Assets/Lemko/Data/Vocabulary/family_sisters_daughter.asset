@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0441\u0435\u0441\u0442\u0440\u0435\u043D\u0438\u0446\u044F"
   polish: siostrzenica
   english: sisters daughter
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 0609e6b81d5b4ccfa57a3dd2bf4d9e89, type: 3}
   pronunciation: {fileID: 8300000, guid: 8e2a3d99d139499ba9f1ed7600d55cdd, type: 3}
   tags:
   - family

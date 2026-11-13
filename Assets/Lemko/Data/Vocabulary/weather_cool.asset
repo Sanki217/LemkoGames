@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0445\u043E\u043B\u043E\u0434\u043D\u043E"
   polish: "ch\u0142odno"
   english: cool
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: b9e99ff07c094019a32f04c4943c62f5, type: 3}
   pronunciation: {fileID: 8300000, guid: a770b20fd70140629bc1c8f8d72c910e, type: 3}
   tags:
   - weather

@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0434\u043E\u0439\u0434\u0436"
   polish: deszcz
   english: rain
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 5f74b76624da48f2bc2d3198fed59837, type: 3}
   pronunciation: {fileID: 8300000, guid: 81aa11d1e3e64b41b103a4071c4eeb0a, type: 3}
   tags:
   - weather

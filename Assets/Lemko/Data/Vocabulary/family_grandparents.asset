@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0434\u0456\u0434\u043E\u0432\u0435"
   polish: dziadkowie
   english: grandparents
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 43e0cb2b322c4f8d8a449492662f4de5, type: 3}
   pronunciation: {fileID: 8300000, guid: fc9a7259c6214b959a6e466bfd39d908, type: 3}
   tags:
   - family

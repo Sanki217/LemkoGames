@@ -31,7 +31,15 @@ namespace Lemko
             submit.gameObject.SetActive(false); speak.interactable=false; prompt.text="Match each picture with its Lemko word";
             picture.Clear(); matched.Clear(); first=null; evaluating=false; pairsFound=0;
             var pool=definition.pool.Distinct().ToList(); Shuffle(pool);
-            pool=pool.OrderByDescending(w=>Session.ReviewPriority(w)).ThenByDescending(w=>Session.Progress.encountered.Contains(w.id)).Take(definition.pairs).ToList();
+            // Mix subjects so closely related concepts seldom compete on the same board.
+            // Rotate in unseen words while keeping a familiar item for review.
+            var encountered=new HashSet<string>(Session.Progress.encountered);
+            var review=pool.Where(w=>encountered.Contains(w.id)).OrderByDescending(Session.ReviewPriority).Take(1);
+            var candidates=review.Concat(pool.Where(w=>!encountered.Contains(w.id))).Concat(pool).Distinct().ToList();
+            var subjects=new HashSet<string>();
+            pool=candidates.Where(w=>subjects.Add(w.tags?.FirstOrDefault() ?? "")).Take(definition.pairs).ToList();
+            if(pool.Count<definition.pairs)
+                pool.AddRange(candidates.Except(pool).Take(definition.pairs-pool.Count).ToList());
             boardWords.Clear(); boardWords.AddRange(pool); checkWords.Clear(); checkWords.AddRange(pool.Take(Mathf.Clamp(associationChecks,0,2)));
             var cards=pool.SelectMany(w=>new[]{(w,true),(w,false)}).ToList(); Shuffle(cards);
             for(int i=0;i<cards.Count;i++) {

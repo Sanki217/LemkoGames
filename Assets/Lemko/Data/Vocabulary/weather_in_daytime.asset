@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0432 \u0434\u0435\u043D"
   polish: "w dzie\u0144"
   english: in the daytime
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: d56c1344d7b24f6ea0f1beba59ced1b4, type: 3}
   pronunciation: {fileID: 8300000, guid: f9752f6df1b64fb2bc9c32f1ae9fb589, type: 3}
   tags:
   - weather

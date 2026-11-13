@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043A\u0443\u0440\u044F"
   polish: "piskl\u0119"
   english: chick
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: f7d7f43d57764686a434d5b65768a5a6, type: 3}
   pronunciation: {fileID: 8300000, guid: 35e0fa7171b84c97a66a397df6d59b50, type: 3}
   tags:
   - farm

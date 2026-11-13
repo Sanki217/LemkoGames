@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0441\u043E\u043D\u0446\u0435"
   polish: "s\u0142o\u0144ce"
   english: sun
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 74a5a72233f446848886d0bbaa735065, type: 3}
   pronunciation: {fileID: 8300000, guid: 69f09b2c88ad4c5ea45a4affd56a5405, type: 3}
   tags:
   - weather

@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0433\u0443\u0441"
   polish: "g\u0119\u015B"
   english: goose
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 94954ab6bfef4f37a32a41f672da8145, type: 3}
   pronunciation: {fileID: 8300000, guid: c96fa49a22d44060a439c9a47f9295a8, type: 3}
   tags:
   - farm

@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0432\u044B\u0433\u043B\u044F\u0434"
   polish: okno
   english: window
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: f47e840f86944a548dbfd7ed13e6a6fb, type: 3}
   pronunciation: {fileID: 8300000, guid: f65465fb68f6415bab1251015d59c846, type: 3}
   tags:
   - house

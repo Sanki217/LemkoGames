@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0440\u043E\u0437\u0432\u0438\u0434\u043D\u044F\u0442 \u0441\u044F"
   polish: "robi si\u0119 jasno"
   english: it is getting light
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 98c9c796994e4a8eb4baad32068eaeb3, type: 3}
   pronunciation: {fileID: 8300000, guid: 15f86fa97ecd4368a4f5f37ecc2614c5, type: 3}
   tags:
   - weather

@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0440\u0430\u0434\u0456\u043E"
   polish: radio
   english: radio
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 808d0c7cb4cd4e819caa97d8c762c746, type: 3}
   pronunciation: {fileID: 8300000, guid: 0db7fe72cf51476984865fbf34db4af0, type: 3}
   tags:
   - house

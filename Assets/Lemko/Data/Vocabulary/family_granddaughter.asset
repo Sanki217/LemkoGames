@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0432\u043D\u0443\u0447\u043A\u0430"
   polish: wnuczka
   english: granddaughter
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 2d166c5560894518a1cd42ec2d083dbf, type: 3}
   pronunciation: {fileID: 8300000, guid: f65cc94685314101a96350073c56dd5a, type: 3}
   tags:
   - family

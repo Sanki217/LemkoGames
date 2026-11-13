@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0441\u0435\u0441\u0442\u0440\u0435\u043D\u0435\u0446"
   polish: siostrzeniec
   english: sisters son
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 8a479dfa222c4716b1c2588fdfd5ddfe, type: 3}
   pronunciation: {fileID: 8300000, guid: deef73b6198a4282afa02484e3dfd376, type: 3}
   tags:
   - family

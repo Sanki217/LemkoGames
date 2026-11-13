@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043C\u044B\u0434\u043B\u043E"
   polish: "myd\u0142o"
   english: soap
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 13dbdc732a104b5db1c70073e72fcdb4, type: 3}
   pronunciation: {fileID: 8300000, guid: 76a7e282447e4b00837690ef4d3b19c6, type: 3}
   tags:
   - house

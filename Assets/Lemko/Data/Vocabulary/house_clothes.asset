@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043B\u0430\u0445\u044B"
   polish: ubrania
   english: clothes
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 088d7de051d94177b671708859da1ef6, type: 3}
   pronunciation: {fileID: 8300000, guid: 1688354322f643cda81d050496484d84, type: 3}
   tags:
   - house

@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043F\u0435\u0446"
   polish: kuchenka
   english: stove
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 87002abdec034394916e0df455e6e280, type: 3}
   pronunciation: {fileID: 8300000, guid: a5b273d455654ff594f51b0b59ba4e18, type: 3}
   tags:
   - house

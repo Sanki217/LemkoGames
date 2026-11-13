@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0432\u0438\u043B\u043A\u044B"
   polish: widelec
   english: fork
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 48889be42b644ea8bb20a47f6c7d531d, type: 3}
   pronunciation: {fileID: 8300000, guid: f4ea2d59516f485393b141276cfcb8bc, type: 3}
   tags:
   - house

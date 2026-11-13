@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0441\u0442\u0440\u044B\u043A\u043E"
   polish: stryjek
   english: paternal uncle
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: d1ccb17dc6a34cdd820a8ed7f91539c7, type: 3}
   pronunciation: {fileID: 8300000, guid: 80550d579e364a10a3e141a0cd0268d4, type: 3}
   tags:
   - family

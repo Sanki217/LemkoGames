@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043C\u0430\u0442\u0456\u0440 \u043C\u0443\u0436\u0430"
   polish: "te\u015Bciowa (matka m\u0119\u017Ca)"
   english: husbands mother
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 1d740b80688d48fe89bb22c3a91d871b, type: 3}
   pronunciation: {fileID: 8300000, guid: eefc897f1d514fe888ec1dd59380df51, type: 3}
   tags:
   - family

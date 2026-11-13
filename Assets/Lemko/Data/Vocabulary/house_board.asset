@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0442\u0430\u0431\u043B\u0438\u0446\u044F"
   polish: tablica
   english: board
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 75d8a1d0f340401f88d8ee44aaabf0ff, type: 3}
   pronunciation: {fileID: 8300000, guid: 8c1152c178f14de68328790c9b4e1946, type: 3}
   tags:
   - house

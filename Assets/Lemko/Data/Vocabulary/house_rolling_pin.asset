@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043A\u0430\u0442\u0443\u043B\u044C\u043A\u0430"
   polish: "wa\u0142ek do ciasta"
   english: rolling pin
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: a6ba78e4ad1941b98b6f7c1631b47a04, type: 3}
   pronunciation: {fileID: 8300000, guid: 26db81bfd15e47bc851c18b61c90df2a, type: 3}
   tags:
   - house

@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043B\u0456\u0442\u043E"
   polish: lato
   english: summer
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 8a4403c8d2a64f99b224cf17c8411c91, type: 3}
   pronunciation: {fileID: 8300000, guid: 9f1ea67adf2141e89aba9f90c1c7d1a1, type: 3}
   tags:
   - weather

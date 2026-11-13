@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0442\u0435\u043B\u0435\u0432\u0456\u0437\u043E\u0440"
   polish: telewizor
   english: television
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: e5282996f393475aa61559b9df19d15a, type: 3}
   pronunciation: {fileID: 8300000, guid: ccc39fe1d06f4272ab3d86868dde7078, type: 3}
   tags:
   - house

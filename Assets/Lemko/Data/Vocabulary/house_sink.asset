@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0437\u043B\u0438\u0432"
   polish: zlew
   english: sink
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: ebc7cac01550498ba5be4c523c682295, type: 3}
   pronunciation: {fileID: 8300000, guid: e871c68545324e09a2aad71b49c1659e, type: 3}
   tags:
   - house

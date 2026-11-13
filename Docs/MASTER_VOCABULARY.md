@@ -1,6 +1,6 @@
 # One vocabulary sheet for the whole game
 
-Edit **Content/CSV/vocabulary_master.csv**. This is the only spreadsheet required for the normal workflow. It currently contains 344 words and 34 alphabet entries, including reference-only content; not every row is selected for active gameplay.
+Edit **Content/CSV/vocabulary_master.csv**. This is the only spreadsheet required for the normal workflow. It currently contains 344 words and 34 alphabet entries, with every word available in Memory and every letter available to Alphabet.
 
 1. Open the file in Excel using UTF-8 (Data > From Text/CSV if characters look wrong).
 2. Edit words, translations, asset keys, tags and the done checklist. Keep established IDs unchanged.
@@ -14,7 +14,7 @@ Columns: id, text_lemko, text_pl, text_en, sprite_id, audio_id, tags, done, lett
 
 The importer updates existing shared vocabulary assets in place. All eight games retain their references. It never rebuilds activity pools, task quantities, weather temperatures, family answers, people/layouts, furniture/room requests or other gameplay settings. Alphabet rows update only the letter definitions, as described below. Tags are descriptive metadata; changing a tag does not silently change gameplay.
 
-New rows create vocabulary assets, but do not automatically appear in games. Assign them in the Inspector to the appropriate definition under Assets/Lemko/Data/Activities (or Assets/Lemko/Data/Shop.asset). Add explicit task criteria where required. Use **Lemko > Content > Edit activity settings in Inspector** as a shortcut. Adding a language word does not invent a relationship, number value or weather criterion.
+New rows create vocabulary assets, but do not automatically appear in games. Assign them in the Inspector to the appropriate definition under Assets/Lemko/Data/Activities (or Assets/Lemko/Data/Shop.asset). Include each new illustrated word in the Memory pool. Add explicit task criteria for other activities where required. Use **Lemko > Content > Edit activity settings in Inspector** as a shortcut. Adding a language word does not invent a relationship, number value or weather criterion.
 
 Removing a CSV row does not delete its asset or remove it from a game. The importer warns and preserves it; explicitly remove its Inspector references if you no longer want it used. This protects existing hand-authored work and saves. Missing optional art/audio remains a warning; invalid/duplicate IDs or missing required translations prevent import before vocabulary assets are changed.
 

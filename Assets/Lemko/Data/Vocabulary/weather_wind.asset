@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0432\u0456\u0442\u0435\u0440"
   polish: wiatr
   english: wind
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 202034073b634cec9de20cd0ab768ab6, type: 3}
   pronunciation: {fileID: 8300000, guid: 66127227b87745af9e7623276ca0e070, type: 3}
   tags:
   - weather

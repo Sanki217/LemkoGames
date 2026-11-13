@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0445\u043C\u0430\u0440\u044B"
   polish: chmury
   english: clouds
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 3dd490934e0541b3b7d45863294ea695, type: 3}
   pronunciation: {fileID: 8300000, guid: ca909aaddac849598a17fea21bb74e63, type: 3}
   tags:
   - weather

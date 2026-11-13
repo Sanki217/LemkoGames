@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0447\u0430\u0439\u043D\u0438\u043A"
   polish: czajnik
   english: kettle
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 6aed1721be134d5e873abcbd0b9918e2, type: 3}
   pronunciation: {fileID: 8300000, guid: 3f6e0e19b0ef4fcc9323af64a4e9dfac, type: 3}
   tags:
   - house

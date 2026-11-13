@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0431\u0443\u0440\u044F"
   polish: burza
   english: storm
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: f339c235690e4105bf79fd80d93d0e3f, type: 3}
   pronunciation: {fileID: 8300000, guid: 4daf4b536351467390806f587d5a54a3, type: 3}
   tags:
   - weather

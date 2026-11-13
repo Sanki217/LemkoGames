@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043A\u043E\u043C\u043F\u0443\u0442\u0435\u0440"
   polish: komputer
   english: computer
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: fc3ec9ad29714f7e9dca8b1097f3b01f, type: 3}
   pronunciation: {fileID: 8300000, guid: e53df649397541589b3458857603f409, type: 3}
   tags:
   - house

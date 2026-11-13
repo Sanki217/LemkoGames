@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0433\u043E\u0440\u043D\u0435\u0446"
   polish: garnek
   english: pot
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: f962289bebcc4b16a26e35539a7e71cd, type: 3}
   pronunciation: {fileID: 8300000, guid: 9b588bf38a01403da17b7586835fa366, type: 3}
   tags:
   - house

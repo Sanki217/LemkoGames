@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0441\u043F\u0435\u043A\u043E\u0442\u0430"
   polish: skwar
   english: scorching heat
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 69f34e073ba04fa3b19af16a3694a505, type: 3}
   pronunciation: {fileID: 8300000, guid: 17b6b4017ec04e1985708b781328717b, type: 3}
   tags:
   - weather

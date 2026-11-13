@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043A\u043E\u0437\u0430"
   polish: koza
   english: goat
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: fea99ce1cab343dfac4fbb6b13782320, type: 3}
   pronunciation: {fileID: 8300000, guid: 175e9e6743ff4002a25a3a6cdbde0674, type: 3}
   tags:
   - farm

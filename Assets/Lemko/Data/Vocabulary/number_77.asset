@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0441\u0456\u043C\u0434\u0435\u0441\u044F\u0442 \u0441\u0456\u043C"
   polish: 77
   english: 77
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: b02df569472b4cbaa141bbdddc137b49, type: 3}
   pronunciation: {fileID: 0}
   tags:
   - numbers

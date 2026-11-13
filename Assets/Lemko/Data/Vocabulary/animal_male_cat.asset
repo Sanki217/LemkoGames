@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u043A\u0456\u0442"
   polish: kot
   english: cat
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 50601ede0c0240d3963fb631ccb42b83, type: 3}
   pronunciation: {fileID: 8300000, guid: 096910868f134df9b9961698b4a01157, type: 3}
   tags:
   - farm

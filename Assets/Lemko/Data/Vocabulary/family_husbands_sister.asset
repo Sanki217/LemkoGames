@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0441\u0435\u0441\u0442\u0440\u0430 \u043C\u0443\u0436\u0430"
   polish: "szwagierka (siostra m\u0119\u017Ca)"
   english: husbands sister
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: e412ed1a0ba74505b2310da1f0415b96, type: 3}
   pronunciation: {fileID: 8300000, guid: eed88df47d0447b6bae3a98a6e0ff5d6, type: 3}
   tags:
   - family

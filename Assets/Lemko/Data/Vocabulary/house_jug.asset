@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0434\u0437\u0431\u0430\u043D\u043E\u043A"
   polish: dzbanek
   english: jug
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 02bc68a553984e6abf3feca6e0dfe3df, type: 3}
   pronunciation: {fileID: 8300000, guid: a725d0fbf3b2451397becce73da3331e, type: 3}
   tags:
   - house

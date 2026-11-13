@@ -16,7 +16,7 @@ MonoBehaviour:
   lemko: "\u0440\u043E\u0441\u043B\u0438\u043D\u0430"
   polish: "ro\u015Blina"
   english: plant
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: c9ee9c16b58c4b92abc7a6f4e627b3ca, type: 3}
   pronunciation: {fileID: 8300000, guid: 115fbe04109d49d58ee6059b12a470f5, type: 3}
   tags:
   - house
