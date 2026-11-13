@@ -97,6 +97,16 @@ namespace Lemko
             float d=Mathf.Min(Vector2.Distance(new Vector2(x,y),new Vector2(42,26))-22,Mathf.Min(Vector2.Distance(new Vector2(x,y),new Vector2(70,34))-27,Vector2.Distance(new Vector2(x,y),new Vector2(96,24))-19));
             d=Mathf.Min(d,RoundBox(x-22,y-6,84,22,10));
             return new Color(1,1,1,Cover(d)); });
+        // A round paper badge with a little loudspeaker: the "hear this word" button on every card.
+        public static Sprite Speaker=>Make("lemko_speaker",64,64,(x,y)=> {
+            float d=Vector2.Distance(new Vector2(x,y),new Vector2(32,32))-30;
+            var c=Color.Lerp(Paper,Ink,1-Cover(d+4.5f));
+            float box=RoundBox(x-15,y-25,11,14,2);
+            float t=Mathf.Clamp01((x-24)/11f); float cone=Mathf.Max(Mathf.Abs(y-32)-(7+t*8),Mathf.Max(24-x,x-35));
+            var p=new Vector2(x-34,y-32); float r=p.magnitude; bool front=x>39 && Mathf.Abs(p.y)<p.x*1.15f;
+            float wave=front ? Mathf.Min(Mathf.Abs(r-11),Mathf.Abs(r-18))-1.6f : 9;
+            float glyph=Mathf.Min(Mathf.Min(box,cone),wave);
+            c=Color.Lerp(c,Ink,Cover(glyph)); c.a=Cover(d); return c; });
         public static Sprite Bulb=>Make("lemko_bulb",48,48,(x,y)=> {
             float glass=Vector2.Distance(new Vector2(x,y),new Vector2(24,29))-13; float neck=RoundBox(x-18,y-6,12,12,2); float d=Mathf.Min(glass,neck);
             var c=Color.Lerp(Color.white,new Color(.3f,.25f,.25f,1),1-Cover(d+2.5f)); c.a=Cover(d); return c; });

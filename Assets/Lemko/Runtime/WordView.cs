@@ -61,6 +61,21 @@ namespace Lemko
             if(selectButton) { selectButton.interactable = word; selectButton.image.color = Look.Paper; }
             if(audioButton) audioButton.interactable = word && word.pronunciation;
             if(worldSpeaker) worldSpeaker.SetActive(word && word.pronunciation);
+            SpeakerIcon();
+        }
+        // The speaker used to be the word "Play"; it is a small loudspeaker badge in the same place.
+        void SpeakerIcon()
+        {
+            if(!worldSpeaker || worldSpeaker.transform.Find("Speaker icon")) return;
+            var icon=new GameObject("Speaker icon",typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
+            icon.transform.SetParent(worldSpeaker.transform,false); icon.sprite=Look.Speaker; icon.sortingOrder=20;
+            foreach(var text in worldSpeaker.GetComponentsInChildren<TMP_Text>(true)) {
+                icon.transform.position=text.transform.position;
+                if(text.TryGetComponent<Renderer>(out var mesh)) { icon.sortingLayerID=mesh.sortingLayerID; icon.sortingOrder=mesh.sortingOrder; mesh.enabled=false; }
+                text.text="";
+            }
+            float parent=Mathf.Max(.0001f,Mathf.Abs(worldSpeaker.transform.lossyScale.x));
+            icon.transform.localScale=Vector3.one*(.34f/(icon.sprite.bounds.size.x*parent));
         }
         public void Select() { if (entry && !submitted && (!selectButton || selectButton.interactable)) selected?.Invoke(this); }
         public void Speak() { if (entry && audioService) audioService.Play(entry.pronunciation); }

@@ -66,31 +66,34 @@ namespace Lemko
         }
 
         // ---------- village ----------
-        readonly List<Transform> clouds=new List<Transform>(); readonly Dictionary<VillageHotspot,SpriteRenderer[]> houseStars=new Dictionary<VillageHotspot,SpriteRenderer[]>();
+        readonly Dictionary<VillageHotspot,SpriteRenderer[]> houseStars=new Dictionary<VillageHotspot,SpriteRenderer[]>();
         TMP_Text journalLabel; int shownWords=-1; VillageHotspot bobbing;
         void BuildVillage()
         {
             foreach(var spot in session.storyView.worldLocations ?? new VillageHotspot[0]) {
                 if(!spot || !spot.label) continue;
-                spot.label.color=Look.Ink;
-                // A small paper sign behind each name, and up to three stars earned at that place this session.
-                var sign=new GameObject("Paper sign",typeof(SpriteRenderer)).GetComponent<SpriteRenderer>(); sign.transform.SetParent(spot.label.transform.parent,false);
-                sign.transform.localPosition=spot.label.transform.localPosition+new Vector3(0,0,.01f); sign.sprite=Look.Panel; sign.drawMode=SpriteDrawMode.Sliced; sign.size=new Vector2(2.5f,.78f); sign.color=Look.Paper; sign.sortingOrder=-1;
+                // One small name tag under each building, and up to three stars earned there this session.
+                var label=spot.label; label.color=Look.Ink; label.fontSize*=.82f; label.textWrappingMode=TextWrappingModes.NoWrap; label.alignment=TextAlignmentOptions.Center;
+                float scale=label.transform.localScale.x; var wanted=label.GetPreferredValues(label.text)*scale;
+                var sign=new GameObject("Name tag",typeof(SpriteRenderer)).GetComponent<SpriteRenderer>(); sign.transform.SetParent(label.transform.parent,false);
+                sign.transform.localPosition=label.transform.localPosition+new Vector3(0,0,.01f); sign.sprite=Look.Panel; sign.drawMode=SpriteDrawMode.Sliced;
+                sign.size=new Vector2(wanted.x+.5f,Mathf.Max(.46f,wanted.y+.2f)); sign.color=Look.Paper; sign.sortingOrder=-1;
                 var stars=new SpriteRenderer[3]; int earned=SessionStats.StarsFor(spot.activityId);
                 for(int i=0;i<3;i++) {
                     var star=new GameObject("House star",typeof(SpriteRenderer)).GetComponent<SpriteRenderer>(); star.transform.SetParent(spot.transform,false);
-                    star.transform.localPosition=spot.label.transform.localPosition+new Vector3((i-1)*.3f,-.56f,0); star.transform.localScale=Vector3.one*(.28f/Look.Star.bounds.size.x);
+                    star.transform.localPosition=label.transform.localPosition+new Vector3((i-1)*.3f,-.42f,0); star.transform.localScale=Vector3.one*(.28f/Look.Star.bounds.size.x);
                     star.sprite=Look.Star; star.color=Look.Honey; star.sortingOrder=5; star.enabled=i<earned; stars[i]=star;
                 }
                 houseStars[spot]=stars;
             }
-            if(!GameSession.ReducedMotion) for(int i=0;i<3;i++) {
-                var cloud=new GameObject("Drifting cloud",typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
-                cloud.sprite=Look.Cloud; cloud.color=new Color(1,1,1,.75f); cloud.sortingOrder=-15;
-                cloud.transform.position=new Vector3(-7+i*6.5f,2.3f+i%2*.55f,0); cloud.transform.localScale=Vector3.one*(1.5f+i*.35f); clouds.Add(cloud.transform);
-            }
+            // The map speaks for itself: the long texts go, and the two village buttons sit in the bottom corners.
+            var view=session.storyView;
+            foreach(var text in new[]{view.title,view.introduction,view.status,session.modeDescription,session.villageStatus}) if(text) text.gameObject.SetActive(false);
+            foreach(var button in root.GetComponentsInChildren<Button>(true)) if(button.name=="Village") button.gameObject.SetActive(false);
+            if(session.modeButton) Corner((RectTransform)session.modeButton.transform,new Vector2(516,-318));
             if(session.villagePanel) {
-                var journal=session.villagePanel.transform.Find("Word journal"); if(journal) journalLabel=journal.GetComponentInChildren<TMP_Text>(true);
+                var journal=session.villagePanel.transform.Find("Word journal");
+                if(journal) { journalLabel=journal.GetComponentInChildren<TMP_Text>(true); Corner((RectTransform)journal,new Vector2(-516,-318)); }
             }
             int lit=Mathf.Min(LanternCount,session.Progress.story.contributions.Count);
             if(lit>SessionStats.LanternsShown) StartCoroutine(LightLanterns(SessionStats.LanternsShown,lit));
@@ -98,6 +101,12 @@ namespace Lemko
             if(SessionStats.Goal==0) ShowTitle();
             else if(SessionStats.GoalReached(session.Progress) && !SessionStats.FinaleShown) StartCoroutine(FinaleSoon());
             else if(SessionStats.FinaleShown) Festival();
+        }
+        static void Corner(RectTransform rect,Vector2 position)
+        {
+            rect.anchorMin=rect.anchorMax=rect.pivot=new Vector2(.5f,.5f); rect.sizeDelta=new Vector2(216,50);
+            rect.position=rect.GetComponentInParent<Canvas>().rootCanvas.transform.TransformPoint(position);
+            var label=rect.GetComponentInChildren<TMP_Text>(true); if(label) { label.enableAutoSizing=true; label.fontSizeMin=12; label.fontSizeMax=20; label.textWrappingMode=TextWrappingModes.NoWrap; }
         }
         IEnumerator LightLanterns(int from,int to)
         {
@@ -110,7 +119,6 @@ namespace Lemko
         }
         void RefreshVillage()
         {
-            foreach(var cloud in clouds) if(cloud) { var p=cloud.position; p.x+=Time.unscaledDeltaTime*.16f*cloud.localScale.x; if(p.x>11) p.x=-11; cloud.position=p; }
             int words=session.Progress.encountered.Count;
             if(journalLabel && words!=shownWords) { shownWords=words; journalLabel.text="Journal · "+words+(words==1 ? " word" : " words"); }
             // The suggested next place bobs so the eye finds it.
@@ -129,10 +137,10 @@ namespace Lemko
         // ---------- title screen ----------
         RectTransform Overlay(string name)
         {
-            var overlay=Picture(root,name,Look.Square,Look.Alpha(Look.Peach,.97f),Vector2.zero,Vector2.zero); overlay.raycastTarget=true;
+            var overlay=Picture(root,name,Look.Square,Look.Alpha(Look.Ink,.6f),Vector2.zero,Vector2.zero); overlay.raycastTarget=true;
             var rect=overlay.rectTransform; rect.anchorMin=Vector2.zero; rect.anchorMax=Vector2.one; rect.offsetMin=rect.offsetMax=Vector2.zero; rect.SetAsLastSibling();
             var content=Box(rect,"Content",Vector2.zero,new Vector2(1280,720));
-            var trim=Picture(content,"Awning trim",Look.Awning,Color.white,new Vector2(0,348),new Vector2(1296,24)); trim.type=Image.Type.Tiled; trim.pixelsPerUnitMultiplier=1.16f;
+            Picture(content,"Card",Look.Panel,Look.Peach,Vector2.zero,new Vector2(1180,660),true);
             return content;
         }
         void ShowTitle()

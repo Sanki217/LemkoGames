@@ -11,11 +11,11 @@ namespace Lemko
         public SpriteRenderer highlight;
         bool ready,hover,recommended;
         public bool Recommended=>recommended;
-        public void Recommend(bool value) { recommended=value; if(value) label.text+="\nGo here next"; Draw(); }
+        public void Recommend(bool value) { recommended=value; Draw(); }
         public void Refresh(bool completed) {
             ready=completed; recommended=false;
             string name=activityId=="FamilyTree" ? "Family Tree" : activityId;
-            label.text=name+(completed ? "\nReady - revisit" : activityId=="Farm" && !session.FarmQuantitiesUnlocked ? "\nLearn animal names" : "");
+            label.text=name;   // one short name tag; the ring and the stars say the rest
             Draw();
         }
         void Draw() { if(highlight) { highlight.enabled=hover || ready || recommended; highlight.color=hover ? Color.white : recommended ? Look.Alpha(Look.Honey,.95f) : Look.Alpha(Look.GoodSoft,.85f); } }
