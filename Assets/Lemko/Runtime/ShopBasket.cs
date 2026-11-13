@@ -23,6 +23,14 @@ namespace Lemko
             if(!selected.Remove(id)) selected.Add(id); return true;
         }
         public bool Contains(string id)=>selected.Contains(id);
+        public bool IsRequired(string id)=>required.Contains(id);
+        // Picking one product at a time: a product from the list goes into the basket, any other counts as one mistake (once).
+        public SelectionResult Pick(string id)
+        {
+            if(Complete || id==null || !available.Contains(id) || selected.Contains(id)) return SelectionResult.Ignored;
+            if(!required.Contains(id)) { if(!rejected.Add(id)) return SelectionResult.Ignored; Mistakes++; return SelectionResult.Incorrect; }
+            selected.Add(id); if(required.SetEquals(selected)) Complete=true; return SelectionResult.Correct;
+        }
         public SelectionResult Submit()
         {
             if(Complete || selected.Count==0) return SelectionResult.Ignored;

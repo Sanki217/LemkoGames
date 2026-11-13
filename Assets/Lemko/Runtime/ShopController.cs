@@ -25,7 +25,7 @@ namespace Lemko
         // two on the wall shelves, one in each crate and one on the rack. Slots 9 to 12 are spare places on the shelves.
         static readonly Vector3[] Stands={ new Vector3(-6.75f,1.45f,8),new Vector3(-5.15f,1.2f,-7),new Vector3(-3.75f,1.65f,5),new Vector3(-1.9f,1.75f,-4),new Vector3(.75f,.1f,6),
             new Vector3(-2.6f,-1.7f,-11),new Vector3(-.55f,-1.75f,9),new Vector3(3.15f,1.45f,-5),new Vector3(.6f,1.75f,4),new Vector3(-1.7f,.1f,-6),new Vector3(3.15f,-.35f,7),new Vector3(3.15f,-2.1f,-4) };
-        // The list is held in a hand in the bottom left corner, the basket stands in the bottom right one.
+        // The list lies in the bottom left corner, the basket stands in the bottom right one.
         void Arrange()
         {
             for(int i=0;i<productSlots.Length && i<Stands.Length;i++) if(productSlots[i]) {
@@ -34,7 +34,6 @@ namespace Lemko
             basketStart=new Vector3(4.15f,-2.72f,0); basketSpacing=.5f; basketItemScale=.45f;
             Place(shoppingList ? shoppingList.rectTransform : null,new Vector2(-5.6f,-.5f),new Vector2(300,40),.82f);
             Place(listRoot,new Vector2(-5.6f,-2.75f),new Vector2(350,420),.72f);
-            if(finishButton) Place((RectTransform)finishButton.transform,new Vector2(.55f,-3.92f),new Vector2(300,54),1);
         }
         static void Place(RectTransform rect,Vector2 world,Vector2 size,float scale)
         {
@@ -95,57 +94,52 @@ namespace Lemko
                 listRows.Add(row);
             }
             feedback.text = "Find everything on the list.";
-            finishButton.gameObject.SetActive(true); finishButton.GetComponentInChildren<TMP_Text>().text="Check basket"; GameEvents.Started(); UpdateBasket(); UpdateList();
+            if(finishButton) finishButton.gameObject.SetActive(false); GameEvents.Started(); UpdateBasket(); UpdateList();
         }
         static void Shuffle<T>(List<T> items)
         {
             for (int i = items.Count - 1; i > 0; i--) { int j = Random.Range(0, i + 1); (items[i], items[j]) = (items[j], items[i]); }
         }
+        // One click decides: a product from the list flies into the basket and is crossed off, anything else is a mistake.
         void Select(WordView view)
         {
-            if(!active || !session.CanAnswer || !round.Toggle(view.Entry.id)) return;
-            session.tooltip.Hide(); UpdateBasket(); session.RefreshHud(); Juice.Punch(view.transform,.14f); Juice.Sound(round.Contains(view.Entry.id) ? "pickup" : "drop");
-            if(round.Contains(view.Entry.id)) { var copy=basketViews.Find(v=>v.Entry==view.Entry); if(copy) PresentationMotion.Travel(copy.transform,view.transform.position,session); }
+            if(!active || !session.CanAnswer || round==null) return;
+            var result=round.Pick(view.Entry.id);
+            if(result==SelectionResult.Ignored) return;
+            session.tooltip.Hide();
+            if(result==SelectionResult.Incorrect) {
+                session.RecordAnswer(view.Entry,false); score.Apply(result); Juice.Shake(view.transform,.12f);
+                feedback.text="That is not on the list."+(round.Mistakes>=2 ? " Look for: "+string.Join(", ",targets.Where(w=>round.Missing.Contains(w.id)).Select(w=>w.lemko)) : "");
+                session.PresentFeedback(false); GameEvents.Answer(false,0,0); session.Wrong(); session.RefreshHud(); return;
+            }
+            session.RecordAnswer(view.Entry,true); int awarded=score.Apply(result);
+            Vector3 from=view.transform.position; UpdateBasket(); UpdateList(); session.RefreshHud(); Juice.Sound("pickup");
+            var copy=basketViews.Find(v=>v.Entry==view.Entry); if(copy) PresentationMotion.Travel(copy.transform,from,session);
+            int row=targets.IndexOf(view.Entry); if(row>=0 && row<listRows.Count) Juice.Punch(listRows[row].transform,.18f);
+            SessionStats.BestStreak=Mathf.Max(SessionStats.BestStreak,score.Streak); GameEvents.Answer(true,awarded,score.Streak);
+            if(!round.Complete) { feedback.text=round.Missing.Length==1 ? "One more thing." : round.Missing.Length+" more things."; return; }
+            active=false; feedback.text="Everything on the list!"; session.PresentFeedback(true); StartCoroutine(FinishSoon());
         }
         void UpdateBasket()
         {
             foreach(var view in basketViews) if(view) { view.gameObject.SetActive(false); Destroy(view.gameObject); }
             basketViews.Clear();
             foreach(var view in views) {
-                bool selected=round.Contains(view.Entry.id); view.SetSelected(selected);
+                bool selected=round.Contains(view.Entry.id); view.gameObject.SetActive(!selected);   // a picked product leaves its shelf
                 if(!selected || !basketRoot) continue;
-                var copy=Instantiate(wordPrefab,basketRoot); copy.Bind(view.Entry,session.tooltip,session.audioService,Select);
+                var copy=Instantiate(wordPrefab,basketRoot); copy.Bind(view.Entry,session.tooltip,session.audioService,_=>{});
                 copy.transform.localPosition=basketStart+Vector3.right*basketViews.Count*basketSpacing;
                 copy.transform.localScale=Vector3.one*basketItemScale; basketViews.Add(copy);
             }
             if(basketStatus) basketStatus.text="";   // the basket in the picture shows what is in it
         }
-        public void SubmitBasket()
-        {
-            if(!active || !session.CanAnswer) return;
-            var result=round.Submit();
-            if(result==SelectionResult.Ignored) { feedback.text=round.Count==0 ? "The basket is empty." : "Change something in the basket first."; return; }
-            if(result==SelectionResult.Incorrect) {
-                foreach(var word in targets.Where(w=>round.Missing.Contains(w.id))) session.RecordAnswer(word,false);
-                foreach(var view in views.Where(w=>round.Extra.Contains(w.Entry.id))) session.RecordAnswer(view.Entry,false);
-                score.Apply(result);
-                feedback.text=round.Missing.Length+" missing · "+round.Extra.Length+" extra."+(round.Mistakes>=2 ? " Look for: "+string.Join(", ",targets.Where(w=>round.Missing.Contains(w.id)).Select(w=>w.lemko)) : "");
-                session.PresentFeedback(false); GameEvents.Answer(false,0,0); session.Wrong(); return;
-            }
-            int awarded=0;
-            foreach(var word in targets) { session.RecordAnswer(word,true); awarded+=score.Apply(SelectionResult.Correct); }
-            active=false; UpdateList(); session.RefreshHud();
-            foreach(var view in views) if(round.Contains(view.Entry.id)) view.Mark(true);
-            finishButton.gameObject.SetActive(false);
-            feedback.text="Everything on the list!"; session.PresentFeedback(true);
-            SessionStats.BestStreak=Mathf.Max(SessionStats.BestStreak,score.Streak); GameEvents.Answer(true,awarded,score.Streak);
-            StartCoroutine(FinishSoon());
-        }
+        // Kept for older callers: there is no basket check any more, every click is judged at once.
+        public void SubmitBasket() { }
         void UpdateList()
         {
             if(listRoot && listRowPrefab) {
                 shoppingList.text=definition.shoppingListTitle;
-                for(int i=0;i<targets.Count;i++) { listRows[i].text=targets[i].lemko; listRows[i].color=round.Complete ? Look.Good : Look.Ink; if(round.Complete) Juice.Punch(listRows[i].transform,.18f,.3f,i*.07f); }
+                for(int i=0;i<targets.Count;i++) { listRows[i].text=targets[i].lemko; bool got=round.Contains(targets[i].id); listRows[i].color=got ? Look.Good : Look.Ink; listRows[i].fontStyle=got ? FontStyles.Strikethrough : FontStyles.Normal; }
             } else shoppingList.text=definition.shoppingListTitle+"\n\n"+string.Join("\n",targets.Select(w=>w.lemko));
         }
         // Results open by themselves after a short celebration.
@@ -154,7 +148,7 @@ namespace Lemko
             while(session && session.menu && session.menu.IsOpen) yield return null;
             if(session && round!=null && round.Complete) session.Finish(true);
         }
-        public void Complete() { if(round==null || !session) return; if(round.Complete) session.Finish(true); else SubmitBasket(); }
+        public void Complete() { if(round!=null && session && round.Complete) session.Finish(true); }
         public void Close()
         {
             if(session) session.StopFeedback();
