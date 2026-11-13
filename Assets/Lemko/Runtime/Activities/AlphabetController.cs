@@ -22,13 +22,15 @@ namespace Lemko
             building=true; IsRepairTask=enableRepairLabels && (Correct+1)%Mathf.Max(2,repairEvery)==0;
             prompt.text=(IsRepairTask ? "Fix the label: " : "Spell in Lemko: ")+Look.Word(Current.word.polish); prompt.GetComponent<HintPointer>().Bind(Current.word,Session.tooltip,HintContent.LemkoSpelling);
             if(hintControl) hintControl.Bind(Current.word,Session.tooltip,HintContent.LemkoSpelling);
-            var picture=Token(Current.word,new Vector2(-5.7f,1.2f),"object",t=>Speak());
+            var picture=Token(Current.word,new Vector2(-6.85f,.45f),"object",t=>Speak());
             picture.GetComponent<HintPointer>().Bind(Current.word,Session.tooltip,HintContent.LemkoSpelling);
             spelling=SpellingRules.Elements(Current.word.lemko); filled=new string[spelling.Count]; tiles.Clear(); used.Clear(); slots.Clear();
             for(int i=0;i<spelling.Count;i++) {
-                int index=i; var pos=new Vector2(-(spelling.Count-1)*Spacing*.5f+i*Spacing,-.4f); bool fixedSlot=SpellingRules.Fixed(spelling[i]); filled[i]=fixedSlot ? spelling[i] : "";
+                // The fields sit on the blackboard drawn in the backdrop; long words close up to fit it.
+                float step=Mathf.Min(Spacing,11.2f/spelling.Count);
+                int index=i; var pos=new Vector2(BoardCentre.x-(spelling.Count-1)*step*.5f+i*step,BoardCentre.y); bool fixedSlot=SpellingRules.Fixed(spelling[i]); filled[i]=fixedSlot ? spelling[i] : "";
                 var slot=Token(Current.word,pos,"slot",t=>Remove(index),fixedSlot?spelling[i]:"_",false); StyleLetter(slot,false); slot.GetComponent<HintPointer>().enabled=false; slots.Add(slot);
-                if(!fixedSlot) Zone(pos,TileSize+new Vector2(.02f,.04f),t=>Place(int.Parse(t.Key),index));
+                if(!fixedSlot) Zone(pos,TileSize+new Vector2(.02f,.04f),t=>Place(int.Parse(t.Key),index)).GetComponent<SpriteRenderer>().color=Color.clear;
             }
             var letters=SpellingRules.Letters(Current.word.lemko);
             var extras=SpellingRules.Letters(definition.extraLetters);
@@ -37,7 +39,7 @@ namespace Lemko
                 Shuffle(extras);
             }
             letters.AddRange(extras.Take(4)); Shuffle(letters);
-            for(int i=0;i<letters.Count;i++) { int tile=i; var token=Token(Current.word,new Vector2(-5.5f*Spacing+(i%12)*Spacing,-1.65f-(i/12)*(TileSize.y+.23f)),i.ToString(),t=>PlaceFirst(tile),letters[i],false,true); StyleLetter(token,true); token.GetComponent<HintPointer>().enabled=false; tiles[i]=token; }
+            for(int i=0;i<letters.Count;i++) { int tile=i; var token=Token(Current.word,new Vector2(BoardCentre.x-5.5f*Spacing+(i%12)*Spacing,-1.72f-(i/12)*(TileSize.y+.2f)),i.ToString(),t=>PlaceFirst(tile),letters[i],false,true); StyleLetter(token,true); token.GetComponent<HintPointer>().enabled=false; tiles[i]=token; }
             if(IsRepairTask) {
                 var positions=Enumerable.Range(0,spelling.Count).Where(i=>!SpellingRules.Fixed(spelling[i])).ToList(); Shuffle(positions);
                 foreach(int index in positions.Skip(Mathf.Max(1,missingLetters))) FillCorrect(index);
@@ -45,6 +47,7 @@ namespace Lemko
             }
             feedback.text=(IsRepairTask ? "Add the missing letters. " : "")+"Tap or drag letters. Tap a slot to undo."; building=false;
         }
+        static readonly Vector2 BoardCentre=new Vector2(.6f,.42f);
         bool building;
         protected override bool HasAnswer => used.Count>0;
         // Filling the last slot checks the label, exactly as pressing Check would.
@@ -58,7 +61,8 @@ namespace Lemko
             token.transform.localScale=Vector3.one;
             var size=token.backing.sprite.bounds.size;
             token.backing.transform.localScale=new Vector3(TileSize.x/size.x,TileSize.y/size.y,1);
-            token.backing.color=tile ? Look.Honey : Look.Empty;
+            // Fields are chalk boxes with chalk letters; the loose tiles stay yellow cards.
+            token.backing.color=tile ? Look.Honey : Look.Alpha(Look.Paper,.16f); if(!tile) token.caption.color=Look.Paper;
             token.GetComponent<BoxCollider2D>().size=TileSize;
             token.caption.rectTransform.sizeDelta=TileSize-new Vector2(.07f,.06f);
         }
