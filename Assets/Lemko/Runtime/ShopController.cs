@@ -21,17 +21,24 @@ namespace Lemko
         readonly List<TMP_Text> listRows=new List<TMP_Text>();
         public int HintsUsed { get; private set; }
         public void RecordHint() { if(round!=null) { HintsUsed++; session.RefreshHud(); } }
-        // Where the products lie in the shop drawn in the backdrop (x, y, tilt in degrees): three on the display table,
-        // two on the wall shelves, one in each crate and one on the rack. Slots 9 to 12 are spare places on the shelves.
+        // Where the products lie in the shop drawn in the backdrop: three on the display table, two on the wall shelves,
+        // one in each crate and one on the rack. Slots 9 to 12 are spare places on the shelves. (The third number was a
+        // tilt; pixel art is never turned, so it is no longer used.)
         static readonly Vector3[] Stands={ new Vector3(-6.75f,1.45f,8),new Vector3(-5.15f,1.2f,-7),new Vector3(-3.75f,1.65f,5),new Vector3(-1.9f,1.75f,-4),new Vector3(.75f,.1f,6),
             new Vector3(-2.6f,-1.7f,-11),new Vector3(-.55f,-1.75f,9),new Vector3(3.15f,1.45f,-5),new Vector3(.6f,1.75f,4),new Vector3(-1.7f,.1f,-6),new Vector3(3.15f,-.35f,7),new Vector3(3.15f,-2.1f,-4) };
         // The list lies in the bottom left corner, the basket stands in the bottom right one.
         void Arrange()
         {
             for(int i=0;i<productSlots.Length && i<Stands.Length;i++) if(productSlots[i]) {
-                productSlots[i].localPosition=new Vector3(Stands[i].x,Stands[i].y,0); productSlots[i].localRotation=Quaternion.Euler(0,0,Stands[i].z);
+                productSlots[i].localPosition=Pixels.Snap(new Vector3(Stands[i].x,Stands[i].y,0)); productSlots[i].localRotation=Quaternion.identity; productSlots[i].localScale=Vector3.one;
             }
-            basketStart=new Vector3(4.15f,-2.72f,0); basketSpacing=.5f; basketItemScale=.45f;
+            // Picked products stand in the basket at their full size; the front of the basket is drawn over them.
+            basketStart=new Vector3(4.05f,-2.65f,0); basketSpacing=.55f; basketItemScale=1;
+            if(!basketFront && basketRoot) {
+                basketFront=new GameObject("Basket front",typeof(SpriteRenderer)).GetComponent<SpriteRenderer>(); basketFront.transform.SetParent(worldRoot,false);
+                basketFront.sprite=Resources.Load<Sprite>("Shop/basket_front"); basketFront.sortingOrder=12;
+                basketFront.transform.position=new Vector3(5.15f,-3.7f,0);   // where Tools/InkArt/make_backdrops.py cut it out of the backdrop
+            }
             Place(shoppingList ? shoppingList.rectTransform : null,new Vector2(-5.6f,-.5f),new Vector2(300,40),.82f);
             Place(listRoot,new Vector2(-5.6f,-2.75f),new Vector2(350,420),.72f);
         }
@@ -42,6 +49,7 @@ namespace Lemko
             rect.anchorMin=rect.anchorMax=rect.pivot=new Vector2(.5f,.5f); rect.sizeDelta=size; rect.localScale=Vector3.one*scale;
             rect.position=canvas.rootCanvas.transform.TransformPoint(world*80f);   // the 1280 x 720 canvas shows 16 x 9 world units
         }
+        SpriteRenderer basketFront;
         readonly List<WordView> views = new List<WordView>();
         List<VocabularyEntry> targets;
         ShopBasket round;
@@ -85,6 +93,7 @@ namespace Lemko
                 var parent = worldRoot ? productSlots[views.Count] : productRoot;
                 var view = Instantiate(wordPrefab, parent); views.Add(view);
                 view.Bind(word, session.tooltip, session.audioService, Select);
+                if(worldRoot) view.SpeakerOnPicture();
                 session.Encounter(word);
             }
             if(listRoot && listRowPrefab) foreach(var word in targets) {
@@ -128,8 +137,12 @@ namespace Lemko
                 bool selected=round.Contains(view.Entry.id); view.gameObject.SetActive(!selected);   // a picked product leaves its shelf
                 if(!selected || !basketRoot) continue;
                 var copy=Instantiate(wordPrefab,basketRoot); copy.Bind(view.Entry,session.tooltip,session.audioService,_=>{});
-                copy.transform.localPosition=basketStart+Vector3.right*basketViews.Count*basketSpacing;
-                copy.transform.localScale=Vector3.one*basketItemScale; basketViews.Add(copy);
+                copy.transform.localPosition=Pixels.Snap(basketStart+Vector3.right*basketViews.Count*basketSpacing);
+                copy.transform.localScale=Vector3.one*basketItemScale;
+                // In the basket a product is only a picture: no loudspeaker, and a later one stands in front of an earlier one.
+                if(copy.worldSpeaker) copy.worldSpeaker.SetActive(false);
+                if(copy.worldPicture) copy.worldPicture.sortingOrder=2+basketViews.Count;
+                basketViews.Add(copy);
             }
             if(basketStatus) basketStatus.text="";   // the basket in the picture shows what is in it
         }

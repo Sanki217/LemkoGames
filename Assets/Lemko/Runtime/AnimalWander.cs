@@ -22,7 +22,7 @@ namespace Lemko {
             }
             var next=Vector2.MoveTowards(at,target,speed*Time.unscaledDeltaTime);
             transform.localPosition=new Vector3(next.x,next.y,transform.localPosition.z);
-            Step(Mathf.Abs(Mathf.Sin((Time.unscaledTime+phase)*8f))*.04f);
+            Step(Mathf.Sin((Time.unscaledTime+phase)*8f)>0 ? Pixels.Unit : 0);   // a one pixel step
             if(next==target) { walking=false; wait=Random.Range(1.2f,3.5f); }
         }
         void Step(float lift) { if(picture) picture.transform.localPosition=pictureHome+Vector3.up*lift; }

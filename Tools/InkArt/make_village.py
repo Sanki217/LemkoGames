@@ -2,10 +2,15 @@
 import math, sys
 from pathlib import Path
 from scene import *
+import ink as kit
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / 'Assets/Lemko/Sprites/Placeholders/Village'
 W, H = 1920, 864          # the scene shows this sprite at 0.8 height, so draw it flatter
+if kit.PIX:
+    # The pixel map fills the whole 16 x 9 screen at 40 pixels per unit: one pixel is 3 units here, world y 4.5 lies
+    # 192 above the old top edge (that band is sky) and world y -4.5 lies at 888.
+    TOP, H = -192, 888
 HUB = (950, 440)
 RIVER = [(-40, 236), (60, 290), (116, 372), (76, 462), (44, 552), (112, 644), (192, 724), (232, 796), (252, 900)]
 
@@ -32,6 +37,20 @@ def ground(c):
     for i in range(48):
         x = i * 41 + r.uniform(-8, 8)
         c.flat(c.lumpy(x, 150 + r.uniform(-10, 10), r.uniform(26, 40), r.uniform(16, 26), 5, .3), PINE, .55)
+
+
+def sky(c):
+    """The band above the mountains: sky, a far range and a few clouds. The game's lanterns hang in front of it."""
+    r = c.r
+    c.flat([(-10, TOP - 10), (W + 10, TOP - 10), (W + 10, 150), (-10, 150)], PAL['sky'])
+    for i in range(9):                                                   # paler air towards the horizon
+        c.flat(c.lumpy(110 + i * 220 + r.uniform(-40, 40), 60 + r.uniform(-12, 12), r.uniform(150, 230), r.uniform(50, 80), 6, .2), PAL['ice'])
+    for x, y, w, h in [(330, 60, 260, 200), (700, 40, 300, 170), (1060, 50, 280, 190), (1450, 44, 300, 200), (1740, 20, 220, 150), (40, 30, 240, 160)]:
+        p = [(x - w * .62, y + 40), (x - w * .3, y - h * .55), (x, y - h), (x + w * .3, y - h * .55), (x + w * .62, y + 40)]
+        c.flat(c.hand(p), PAL['silver'])
+        c.flat(c.hand([(x - w * .2, y - h * .7), (x, y - h), (x + w * .2, y - h * .7), (x + w * .08, y - h * .76), (x, y - h * .64), (x - w * .08, y - h * .76)]), WHITE)
+    for x, y, w in [(210, -126, 150), (620, -150, 110), (930, -120, 170), (1290, -146, 120), (1640, -124, 160), (1850, -160, 90), (420, -96, 90)]:
+        c.cloud(x, y, w)
 
 
 def river(c):
@@ -310,9 +329,14 @@ def windmill(c, x, y):
 
 
 def main():
-    c = Scene(W, H, scale=2, bg=GRASS, seed=11, ysquash=1.25)
+    if kit.PIX:
+        c = Scene(W, 1080, bg=GRASS, seed=11); c.c.translate(0, -TOP)
+    else:
+        c = Scene(W, H, scale=2, bg=GRASS, seed=11, ysquash=1.25)
     c.wob = .9; c.seg = 20
     r = c.r
+    if kit.PIX:
+        sky(c)
     ground(c)
     spots = {k: world(*v) for k, v in dict(Shop=(-5.083, .233), FamilyTree=(4.333, -.033), Farm=(-3, .967), House=(2.25, 1.1),
                                            Memory=(-4.5, -2.033), Numbers=(-1.417, -1.967), Alphabet=(2.917, -2.033),
@@ -391,6 +415,14 @@ def main():
     for _, f in sorted(things, key=lambda t: t[0]):
         f()
     out = sys.argv[1] if len(sys.argv) > 1 else str(OUT / 'sprite_village_map.png')
+    if kit.PIX:
+        kit.save_pixels(c, out, False, 1 / 3, (640, 360))
+        # hover ring: a golden loop two pixels thick, 88 x 30 pixels
+        ring = Canvas(264, 90, bg=None, seed=3)
+        ring.oval(132, 45, 124, 37, None, 4.2, GOLD)
+        ring.pixels(88, 30, cairo.Matrix(1 / 3, 0, 0, 1 / 3, 0, 0)).image().save(
+            str(OUT / 'sprite_location_ring.png') if len(sys.argv) <= 1 else str(Path(out).with_name('sprite_location_ring.png')))
+        return
     c.save(out, (1920, 1080))
     # hover ring: a hand-drawn golden loop
     ring = Canvas(128, 64, scale=4, bg=None, seed=3)
@@ -399,4 +431,5 @@ def main():
         ring.save(str(OUT / 'sprite_location_ring.png'), (128, 64))
 
 
-main()
+if __name__ == '__main__':
+    main()

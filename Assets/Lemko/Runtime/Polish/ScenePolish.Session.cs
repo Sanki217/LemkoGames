@@ -26,7 +26,8 @@ namespace Lemko
             Label(resultCard,"Title",result.complete ? Pretty(result.activity)+" complete!" : "Good try!",40,Look.Ink,new Vector2(0,170),new Vector2(760,56));
             for(int i=0;i<3;i++) {
                 bool earned=i<result.stars;
-                var star=Picture(resultCard,"Star",Look.Star,earned ? Look.Honey : Look.Empty,new Vector2((i-1)*92,92),new Vector2(i==1 ? 88 : 74,i==1 ? 88 : 74));
+                var shape=Look.StarOf(i==1 ? 44 : 36);   // big stars drawn at their own size, the middle one a little bigger
+                var star=Picture(resultCard,"Star",shape,earned ? Look.Honey : Look.Empty,new Vector2((i-1)*92,92),Pixels.UiSize(shape));
                 if(earned) { Juice.Pop(star.transform,.35f+i*.3f); int index=i; StartCoroutine(StarLands(star,.5f+i*.3f,index)); }
             }
             Label(resultCard,"Star rule","finish   ·   one mistake or fewer   ·   no hints",15,Look.Muted,new Vector2(0,38),new Vector2(760,24),false);
@@ -76,12 +77,12 @@ namespace Lemko
                 var label=spot.label; label.color=Look.Ink; label.fontSize*=.82f; label.textWrappingMode=TextWrappingModes.NoWrap; label.alignment=TextAlignmentOptions.Center;
                 float scale=label.transform.localScale.x; var wanted=label.GetPreferredValues(label.text)*scale;
                 var sign=new GameObject("Name tag",typeof(SpriteRenderer)).GetComponent<SpriteRenderer>(); sign.transform.SetParent(label.transform.parent,false);
-                sign.transform.localPosition=label.transform.localPosition+new Vector3(0,0,.01f); sign.sprite=Look.Panel; sign.drawMode=SpriteDrawMode.Sliced;
-                sign.size=new Vector2(wanted.x+.5f,Mathf.Max(.46f,wanted.y+.2f)); sign.color=Look.Paper; sign.sortingOrder=-1;
+                sign.transform.localPosition=Pixels.Snap(label.transform.localPosition+new Vector3(0,0,.01f));
+                Pixels.Card(sign,new Vector2(wanted.x+.5f,Mathf.Max(.5f,wanted.y+.2f)),Look.Chip); sign.color=Look.Paper; sign.sortingOrder=-1;
                 var stars=new SpriteRenderer[3]; int earned=SessionStats.StarsFor(spot.activityId);
                 for(int i=0;i<3;i++) {
                     var star=new GameObject("House star",typeof(SpriteRenderer)).GetComponent<SpriteRenderer>(); star.transform.SetParent(spot.transform,false);
-                    star.transform.localPosition=label.transform.localPosition+new Vector3((i-1)*.3f,-.42f,0); star.transform.localScale=Vector3.one*(.28f/Look.Star.bounds.size.x);
+                    star.transform.localPosition=Pixels.Snap(label.transform.localPosition+new Vector3((i-1)*.375f,-.45f,0));   // 14 pixel stars, a pixel apart
                     star.sprite=Look.Star; star.color=Look.Honey; star.sortingOrder=5; star.enabled=i<earned; stars[i]=star;
                 }
                 houseStars[spot]=stars;
@@ -104,7 +105,7 @@ namespace Lemko
         }
         static void Corner(RectTransform rect,Vector2 position)
         {
-            rect.anchorMin=rect.anchorMax=rect.pivot=new Vector2(.5f,.5f); rect.sizeDelta=new Vector2(216,50);
+            rect.anchorMin=rect.anchorMax=rect.pivot=new Vector2(.5f,.5f); rect.sizeDelta=new Vector2(216,52);
             rect.position=rect.GetComponentInParent<Canvas>().rootCanvas.transform.TransformPoint(position);
             var label=rect.GetComponentInChildren<TMP_Text>(true); if(label) { label.enableAutoSizing=true; label.fontSizeMin=12; label.fontSizeMax=20; label.textWrappingMode=TextWrappingModes.NoWrap; }
         }
@@ -151,7 +152,7 @@ namespace Lemko
             var row=Box(content,"Places",new Vector2(0,20),new Vector2(900,90));
             var contributions=session.story ? session.story.contributions : null; int shown=0;
             if(contributions!=null) foreach(var c in contributions) if(c!=null && c.illustration && shown<8) {
-                var icon=Picture(row,"Place",c.illustration,Color.white,new Vector2((shown-3.5f)*104,0),new Vector2(84,84)); icon.preserveAspect=true; Juice.Pop(icon.transform,.3f+shown*.06f); shown++;
+                var icon=Picture(row,"Place",c.illustration,Color.white,new Vector2((shown-3.5f)*104,0),Pixels.UiSize(c.illustration)); Juice.Pop(icon.transform,.3f+shown*.06f); shown++;
             }
             Choice(content,"Quick visit","3 places  ·  about 10 minutes",new Vector2(-190,-130),Look.Paper,3);
             Choice(content,"The gathering","all 8 places  ·  about 30 minutes",new Vector2(190,-130),Look.Honey,8);
@@ -179,14 +180,14 @@ namespace Lemko
             var database=session.journal ? session.journal.database : null; int guest=0;
             if(database) foreach(var word in database.entries) {
                 if(!word || !word.sprite || word.tags==null || !word.tags.Contains("family") || guest>=7) continue;
-                var face=Picture(content,"Guest",word.sprite,Color.white,new Vector2((guest-3)*118,150),new Vector2(96,96)); face.preserveAspect=true;
+                var face=Picture(content,"Guest",word.sprite,Color.white,new Vector2((guest-3)*118,150),Pixels.UiSize(word.sprite));
                 Juice.Pop(face.transform,.4f+guest*.1f); Juice.Hop(face.transform,18,1.6f+guest*.12f); guest++;
             }
             Picture(content,"Table",Look.Button,Look.Sand,new Vector2(0,30),new Vector2(980,70),true);
             int gift=0; var done=session.Progress.story.contributions;
             if(session.story) foreach(var id in done) {
                 var c=session.story.Find(id); if(c==null || !c.illustration) continue;
-                var item=Picture(content,"Contribution",c.illustration,Color.white,new Vector2((gift-(done.Count-1)*.5f)*112,62),new Vector2(88,88)); item.preserveAspect=true;
+                var item=Picture(content,"Contribution",c.illustration,Color.white,new Vector2(Pixels.SnapUi((gift-(done.Count-1)*.5f)*112),78),Pixels.UiSize(c.illustration));
                 Juice.Pop(item.transform,1.1f+gift*.14f); gift++;
             }
             int minutes=Mathf.Max(1,Mathf.RoundToInt((Time.realtimeSinceStartup-SessionStats.StartedAt)/60f));

@@ -11,9 +11,9 @@ namespace Lemko
             if(!taskRoot || !word) return;
             var ambience=taskRoot.GetComponentInChildren<WeatherAmbience>();
             if(!ambience) {
-                var go=new GameObject("Weather ambience",typeof(SpriteRenderer)); go.transform.SetParent(taskRoot,false); go.transform.localPosition=new Vector3(0,-.6f,0);
+                var go=new GameObject("Weather ambience",typeof(SpriteRenderer)); go.transform.SetParent(taskRoot,false); go.transform.position=Vector3.zero;
                 ambience=go.AddComponent<WeatherAmbience>(); ambience.tint=go.GetComponent<SpriteRenderer>(); ambience.tint.sprite=Look.Square; ambience.tint.sortingOrder=-9;
-                var size=Look.Square.bounds.size; go.transform.localScale=new Vector3(16.2f/size.x,7.8f/size.y,1); ambience.tint.color=Color.clear;
+                var size=Look.Square.bounds.size; go.transform.localScale=new Vector3(16/size.x,9/size.y,1); ambience.tint.color=Color.clear;   // the whole picture
             }
             ambience.Set(Read(word.id));
         }

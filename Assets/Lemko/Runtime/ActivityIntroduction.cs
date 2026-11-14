@@ -31,7 +31,7 @@ namespace Lemko {
             title.text=definition.title; story.text=definition.story;
             instructions.text=definition.activityId=="Farm" && !session.FarmQuantitiesUnlocked && !string.IsNullOrWhiteSpace(definition.beforeNumbers) ? definition.beforeNumbers : definition.instructions;
             support.text="Stuck? Right-click a word or picture, or tap the lightbulb, to see what it means.";
-            illustration.sprite=definition.illustration; illustration.enabled=definition.illustration;
+            illustration.sprite=definition.illustration; illustration.enabled=definition.illustration; Pixels.Native(illustration);
             session.tooltip.Hide(); session.audioService.Stop();
             panel.SetActive(true); transform.SetAsLastSibling(); opened=Time.unscaledTime;
         }

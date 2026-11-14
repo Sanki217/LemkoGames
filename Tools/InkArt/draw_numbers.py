@@ -37,8 +37,14 @@ def ticket(c, text, rows=None):
     cut = 16
     pts = [(L + cut, T), (R - cut, T), (R, T + cut), (R, (T + B) / 2 - 14), (R - 12, (T + B) / 2), (R, (T + B) / 2 + 14), (R, B - cut), (R - cut, B),
            (L + cut, B), (L, B - cut), (L, (T + B) / 2 + 14), (L + 12, (T + B) / 2), (L, (T + B) / 2 - 14), (L, T + cut)]
+    wd = 13
+    if ink.PIX and n >= 3:
+        # long numbers are small on the ticket: keep the digits two pixels thick instead of hairlines
+        k = 46 / max(R - L, B - T)
+        wd = 2.3 / k / LWK / .88
+        c.pixopts = dict(thin_ink=1.5)
     cr = c.c
-    cr.save(); cr.translate((L + R) / 2, (T + B) / 2); cr.rotate(-.04); cr.translate(-(L + R) / 2, -(T + B) / 2)
+    cr.save(); cr.translate((L + R) / 2, (T + B) / 2); cr.rotate(-.04 if not ink.PIX else 0); cr.translate(-(L + R) / 2, -(T + B) / 2)
     c.poly(pts, colr, step=14, sx=6, sy=7)
     c.ln([(L + 22, T + 12), (R - 22, T + 12)], 3.5, SHADE[colr], amp=.3); c.ln([(L + 22, B - 12), (R - 22, B - 12)], 3.5, SHADE[colr], amp=.3)
     for j, row in enumerate(rows):
@@ -48,7 +54,7 @@ def ticket(c, text, rows=None):
             p = [(x0 + off + i * (dw + gap) + x * dw, y0 + j * (dh + rgap) + y * dh) for x, y in pts]
             if curved:
                 p = smooth(p)
-            c.line(p, 13, col('ink'), .9, 10)
+            c.line(p, wd, col('ink'), .9, 10)
     cr.restore()
 
 

@@ -1,7 +1,8 @@
-"""The 44 family pictures: doodle portraits, each with its own look, plus a small relation
-chain underneath (red dot = you, circle = woman, square = man, double line = marriage,
-a step up or down = a generation)."""
+"""The 44 family pictures: doodle portraits, each with its own look. The smooth pictures also carry a small relation
+chain underneath (red dot = you, circle = woman, square = man, double line = marriage, a step up or down = a
+generation); the pixel pictures leave it out."""
 from sk import *
+import ink as kit
 
 HAIRS = ['brown', 'ink', 'gold', 'brick', 'wood', 'plum']
 
@@ -171,7 +172,8 @@ def make():
         c = Sp(100 + i)
         kid = age in ('child', 'tot')
         person(c, 128, 88 if not kid else 96, 1.0 if age != 'tot' else .86, sex, age, hair, shirt, extra)
-        chain(c, P(path), sex)
+        if not kit.PIX:          # at 48 pixels the chain is only a scribble, so the portrait gets the whole picture
+            chain(c, P(path), sex)
         c.out(ACT, 'family_' + name)
     def pair(name, a, b, seed, s=.78):
         c = Sp(seed); person(c, 84, 120, s, *a); person(c, 176, 132, s, *b); c.out(ACT, 'family_' + name)

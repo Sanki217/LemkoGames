@@ -15,7 +15,7 @@ namespace Lemko
         protected override List<LearningTask> AvailableTasks() => definition.tasks.Where(t=>!QuantityTasks || t.quantity<=maximumQuantity).GroupBy(t=>QuantityTasks ? t.id : t.word.id).Select(g=>g.First()).ToList();
         protected override string ValidateContent() { var error=base.ValidateContent(); return error ?? (AvailableTasks().Count==0 ? "No Farm tasks in the selected quantity range." : null); }
         // The fenced pasture drawn in the backdrop: animals put there wander inside it.
-        static readonly Rect Pasture=new Rect(-2.2f,-2.5f,7.4f,2.2f);
+        static readonly Rect Pasture=new Rect(-1.8f,-2f,6.8f,2f);
         readonly List<ActivityToken> placed=new List<ActivityToken>();
         // Every task brings a fresh group to the shelter: the animal asked for and five others from the whole farm.
         const int ShelterSize=6;
@@ -31,7 +31,11 @@ namespace Lemko
             // The animals wait in the shelter on the left.
             var others=definition.pool.Where(w=>w && w!=Current.word).Distinct().ToList(); Shuffle(others);
             shelter.Clear(); shelter.Add(Current.word); shelter.AddRange(others.Take(ShelterSize-1)); Shuffle(shelter);
-            for(int i=0;i<shelter.Count;i++) Token(shelter[i],new Vector2(-7f+(i%2)*1.7f,1.5f-(i/2)*1.65f),"tray",t=>Add(t.view.Entry),draggable:true).transform.localScale=Vector3.one*.92f;
+            // They stand in the stalls drawn in the backdrop, at full size and without a card behind them.
+            for(int i=0;i<shelter.Count;i++) {
+                var token=Token(shelter[i],new Vector2(-7f+(i%2)*1.675f,1.4f-(i/2)*1.65f),"tray",t=>Add(t.view.Entry),draggable:true);
+                token.backing.enabled=false; token.view.SpeakerOnPicture();
+            }
             if(IsRepairTask) {
                 // Rotate missing, extra and wrong-animal arrangements; every one can be corrected using the tray.
                 int variant=((Correct+1)/Mathf.Max(2,repairEvery)-1)%3;
@@ -49,8 +53,8 @@ namespace Lemko
             if(!QuantityTasks) { foreach(var old in placed) { old.gameObject.SetActive(false); Destroy(old.gameObject); } placed.Clear(); }
             var spot=at ?? new Vector2(Random.Range(Pasture.xMin,Pasture.xMax),Random.Range(Pasture.yMin,Pasture.yMax));
             spot=new Vector2(Mathf.Clamp(spot.x,Pasture.xMin,Pasture.xMax),Mathf.Clamp(spot.y,Pasture.yMin,Pasture.yMax));
-            var token=Token(word,spot,"placed",Remove); placed.Add(token); token.transform.localScale=Vector3.one*.8f;
-            token.backing.color=Color.clear; if(token.view.worldSpeaker) token.view.worldSpeaker.SetActive(false); Arrange(); Juice.Drop(token.transform,1.1f); Juice.Dust(Juice.WorldToScreen(token.transform.position+Vector3.down*.4f)); Juice.Sound("drop",1+placed.Count*.05f);
+            var token=Token(word,spot,"placed",Remove); placed.Add(token);
+            token.backing.enabled=false; if(token.view.worldSpeaker) token.view.worldSpeaker.SetActive(false); Arrange(); Juice.Drop(token.transform,1.1f); Juice.Dust(Juice.WorldToScreen(token.transform.position+Vector3.down*.4f)); Juice.Sound("drop",1+placed.Count*.05f);
             var wander=token.gameObject.AddComponent<AnimalWander>(); wander.session=Session; wander.area=Pasture; wander.picture=token.view.worldPicture; return true;
         }
         public void Remove(ActivityToken token) { if(!Ready || !placed.Remove(token)) return; token.gameObject.SetActive(false); Destroy(token.gameObject); Arrange(); }

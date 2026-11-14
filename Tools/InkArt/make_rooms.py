@@ -11,6 +11,7 @@ Usage: python3 make_rooms.py [preview dir]
 import math, sys
 from pathlib import Path
 from scene import *
+import ink as kit
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / 'Assets/Lemko/Resources/Rooms'
@@ -26,6 +27,8 @@ def out(c, name, size):
     folder = PREVIEW or OUT
     folder.mkdir(parents=True, exist_ok=True)
     path = str(folder / (name + '.png'))
+    if kit.PIX:
+        return kit.save_pixels(c, path)
     c.save(path, size)
     import numpy as np
     from PIL import Image
@@ -560,5 +563,6 @@ def bar():
     out(c, 'furniture_bar', (BW, BH))
 
 
-for make in (living_room, bedroom, kitchen, bathroom, bar):
-    make()
+if __name__ == '__main__':
+    for make in (living_room, bedroom, kitchen, bathroom, bar):
+        make()
