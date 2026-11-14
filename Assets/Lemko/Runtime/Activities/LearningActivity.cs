@@ -37,7 +37,7 @@ namespace Lemko
         protected TMP_Text Badge(Vector2 position,float size,Color color)
         {
             var go=new GameObject("Counter badge",typeof(SpriteRenderer)); go.transform.SetParent(taskRoot,false); go.transform.localPosition=position;
-            var disc=go.GetComponent<SpriteRenderer>(); disc.sprite=Look.Dot; disc.color=color; disc.sortingOrder=6; go.transform.localScale=Vector3.one*(size/disc.sprite.bounds.size.x);
+            var disc=go.GetComponent<SpriteRenderer>(); disc.sprite=Look.Disc(Mathf.RoundToInt(size*Pixels.PerUnit*.5f)*2); disc.color=color; disc.sortingOrder=6;
             var label=new GameObject("Count",typeof(TextMeshPro)).GetComponent<TextMeshPro>(); label.transform.SetParent(go.transform,false);
             label.font=tokenPrefab.caption.font; label.fontSize=3.2f; label.fontStyle=FontStyles.Bold; label.alignment=TextAlignmentOptions.Center; label.color=Look.Ink; label.sortingOrder=7;
             label.rectTransform.sizeDelta=new Vector2(.6f,.5f); return label;
@@ -59,7 +59,9 @@ namespace Lemko
             string error=ValidateContent();
             if(error!=null) { prompt.text="Content needs attention"; feedback.text=error; Debug.LogError(error,this); return; }
             order=AvailableTasks(); Shuffle(order);
-            order=PracticeSelection.Order(order,t=>t.word,session,Total); Running=true; goldenIndex=Random.Range(0,Mathf.Max(1,Total)); worldRoot.gameObject.SetActive(true); taskRoot.localPosition=contentOffset; taskRoot.localScale=Vector3.one*contentScale;
+            order=PracticeSelection.Order(order,t=>t.word,session,Total); Running=true; goldenIndex=Random.Range(0,Mathf.Max(1,Total)); worldRoot.gameObject.SetActive(true);
+            // Pixel art is never scaled, so the scene's content scale is not used: every game lays its pieces out at full size.
+            taskRoot.localPosition=Pixels.Snap((Vector3)contentOffset); taskRoot.localScale=Vector3.one;
             submit.onClick.RemoveListener(Submit); submit.onClick.AddListener(Submit);
             next.onClick.RemoveListener(Advance); next.onClick.AddListener(Advance);
             speak.onClick.RemoveListener(Speak); speak.onClick.AddListener(Speak);
@@ -110,15 +112,17 @@ namespace Lemko
         public void Speak() { if(Current!=null) Session.audioService.Play(Current.word.pronunciation); }
         protected ActivityToken Token(VocabularyEntry word,Vector2 position,string key,System.Action<ActivityToken> click,string text=null,bool picture=true,bool draggable=false)
         {
-            var token=Instantiate(tokenPrefab,taskRoot); token.transform.localPosition=position;
-            token.Bind(word,Session,key,click,text,picture); tokens.Add(token); token.backing.color=Look.Paper;
+            var token=Instantiate(tokenPrefab,taskRoot); token.transform.localPosition=Pixels.Snap((Vector3)position);
+            token.Bind(word,Session,key,click,text,picture); tokens.Add(token); token.backing.color=Look.Paper; Pixels.Card(token.backing,CardSize);
             if(draggable) { var drag=token.gameObject.AddComponent<WorldDrag>(); drag.token=token; }
             if(word) Session.Encounter(word); if(!quietSpawn) GameEvents.Spawned(token); return token;
         }
+        // The card a picture or a word lies on: 72 x 66 pixels.
+        public static readonly Vector2 CardSize=new Vector2(1.8f,1.65f);
         protected WorldDropZone Zone(Vector2 position,Vector2 size,System.Func<ActivityToken,bool> accept)
         {
             var go=new GameObject("Placement zone",typeof(BoxCollider2D),typeof(WorldDropZone),typeof(SpriteRenderer)); go.transform.SetParent(taskRoot,false); go.transform.localPosition=position;
-            go.GetComponent<BoxCollider2D>().size=size; var renderer=go.GetComponent<SpriteRenderer>(); renderer.sprite=tokenPrefab.backing.sprite; renderer.drawMode=SpriteDrawMode.Sliced; renderer.size=size; renderer.color=Look.Alpha(Look.Sage,.55f); renderer.sortingOrder=-1;
+            go.GetComponent<BoxCollider2D>().size=size; var renderer=go.GetComponent<SpriteRenderer>(); Pixels.Card(renderer,size,Look.Panel); renderer.color=Look.Alpha(Look.Sage,.55f); renderer.sortingOrder=-1;
             var zone=go.GetComponent<WorldDropZone>(); zone.dropped=accept; return zone;
         }
         protected void ClearTask() { Session?.StopFeedback(); if(hintControl) hintControl.Cancel(); StopAllCoroutines(); Session?.tooltip.Hide(); foreach(Transform t in taskRoot) { t.gameObject.SetActive(false); Destroy(t.gameObject); } tokens.Clear(); }

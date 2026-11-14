@@ -37,7 +37,7 @@ class Scene(Canvas):
                 inner()
         self.inside(p, light)
         if w:
-            self.stroke(p, w)
+            self.edge(p, w * LWK)
         return p
 
     def ring(self, cx, cy, rx, ry, n=28):

@@ -43,7 +43,7 @@ namespace Lemko
             boardWords.Clear(); boardWords.AddRange(pool); checkWords.Clear(); checkWords.AddRange(pool.Take(Mathf.Clamp(associationChecks,0,2)));
             var cards=pool.SelectMany(w=>new[]{(w,true),(w,false)}).ToList(); Shuffle(cards);
             for(int i=0;i<cards.Count;i++) {
-                var card=cards[i]; var token=Token(card.w,new Vector2(-5.4f+(i%4)*3.5f,1.3f-(i/4)*1.85f),"card_"+i,Choose);
+                var card=cards[i]; var token=Token(card.w,new Vector2(-5.4f+(i%4)*3.5f,1f-(i/4)*1.85f),"card_"+i,Choose);
                 picture[token]=card.Item2; token.Face(false,card.Item2,card.w.lemko);
             }
             feedback.text="Turn over two cards.";

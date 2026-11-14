@@ -55,12 +55,11 @@ namespace Lemko
             yield return new WaitForSecondsRealtime(.55f);
             if(Ready && System.Array.TrueForAll(filled,f=>f!="")) Submit();
         }
-        Vector2 TileSize => Session.presentation ? Session.presentation.letterSize : new Vector2(.72f,.82f);
-        float Spacing => Session.presentation ? Session.presentation.letterSpacing : .96f;
+        Vector2 TileSize => Pixels.Even(Session.presentation ? Session.presentation.letterSize : new Vector2(.72f,.82f));
+        float Spacing => Pixels.Snap(Session.presentation ? Session.presentation.letterSpacing : .96f);
         void StyleLetter(ActivityToken token,bool tile) {
             token.transform.localScale=Vector3.one;
-            var size=token.backing.sprite.bounds.size;
-            token.backing.transform.localScale=new Vector3(TileSize.x/size.x,TileSize.y/size.y,1);
+            Pixels.Card(token.backing,TileSize);
             // Fields are chalk boxes with chalk letters; the loose tiles stay yellow cards.
             token.backing.color=tile ? Look.Honey : Look.Alpha(Look.Paper,.16f); if(!tile) token.caption.color=Look.Paper;
             token.GetComponent<BoxCollider2D>().size=TileSize;

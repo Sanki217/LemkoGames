@@ -7,7 +7,7 @@ namespace Lemko {
         void Update() {
             if(!session || session.Progress==null) return;
             float t=(Time.unscaledTime+phase)%5f;
-            float lift=!session.Progress.reducedMotion && session.CanAnswer && t<.45f ? Mathf.Sin(t/.45f*Mathf.PI)*.045f : 0;
+            float lift=!session.Progress.reducedMotion && session.CanAnswer && t<.45f ? Pixels.Snap(Mathf.Sin(t/.45f*Mathf.PI)*.05f) : 0;
             transform.localPosition=home+Vector3.up*lift;
         }
         void OnDisable() { transform.localPosition=home; }
