@@ -10,8 +10,8 @@ namespace Lemko
         void Awake() { control=GetComponent<Selectable>(); }
         bool Live=>!control || control.IsInteractable();
         public void OnPointerEnter(PointerEventData e) { if(Live) Juice.Punch(transform,.05f,.18f); }
-        public void OnPointerDown(PointerEventData e) { if(Live) Juice.Squash(transform,.09f); }
-        public void OnPointerClick(PointerEventData e) { if(Live) Juice.Sound("click"); }
+        public void OnPointerDown(PointerEventData e) { if(Live && e.button==PointerEventData.InputButton.Left) Juice.Squash(transform,.09f); }
+        public void OnPointerClick(PointerEventData e) { if(Live && e.button==PointerEventData.InputButton.Left) Juice.Sound("click"); }
     }
     public static class PolishBootstrap
     {

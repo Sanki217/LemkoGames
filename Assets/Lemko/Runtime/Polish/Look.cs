@@ -107,6 +107,19 @@ namespace Lemko
             float wave=front ? Mathf.Min(Mathf.Abs(r-11),Mathf.Abs(r-18))-1.6f : 9;
             float glyph=Mathf.Min(Mathf.Min(box,cone),wave);
             c=Color.Lerp(c,Ink,Cover(glyph)); c.a=Cover(d); return c; });
+        // Its partner, "show me what this means": the same badge with a light bulb.
+        public static Sprite HintBadge=>Make("lemko_hint",64,64,(x,y)=> {
+            float d=Vector2.Distance(new Vector2(x,y),new Vector2(32,32))-30;
+            var c=Color.Lerp(Paper,Ink,1-Cover(d+4.5f));
+            float glass=Vector2.Distance(new Vector2(x,y),new Vector2(32,37))-12.5f; float neck=RoundBox(x-26,y-13,12,13,2); float glyph=Mathf.Min(glass,neck);
+            c=Color.Lerp(c,Ink,Cover(glyph)); c=Color.Lerp(c,Honey,Cover(glyph+3.5f)); c.a=Cover(d); return c; });
+        // A chunky "next" arrow pointing right; flip it for "previous".
+        public static Sprite Chevron=>Make("lemko_chevron",64,64,(x,y)=>new Color(1,1,1,Cover(Mathf.Min(Stroke(x,y,24,12,44,32),Stroke(x,y,44,32,24,52))-6.5f)));
+        static float Stroke(float x,float y,float ax,float ay,float bx,float by)
+        {
+            var p=new Vector2(x-ax,y-ay); var line=new Vector2(bx-ax,by-ay);
+            return (p-line*Mathf.Clamp01(Vector2.Dot(p,line)/line.sqrMagnitude)).magnitude;
+        }
         public static Sprite Bulb=>Make("lemko_bulb",48,48,(x,y)=> {
             float glass=Vector2.Distance(new Vector2(x,y),new Vector2(24,29))-13; float neck=RoundBox(x-18,y-6,12,12,2); float d=Mathf.Min(glass,neck);
             var c=Color.Lerp(Color.white,new Color(.227f,.086f,.051f,1),1-Cover(d+2.5f)); c.a=Cover(d); return c; });

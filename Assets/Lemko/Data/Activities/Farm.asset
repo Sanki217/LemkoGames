@@ -16,8 +16,30 @@ MonoBehaviour:
   tasksPerSession: 5
   pool:
   - {fileID: 11400000, guid: c691971d68e330945a3a203256883f20, type: 2}
-  - {fileID: 11400000, guid: b671db1845137f14ea58c17c3f6bc517, type: 2}
+  - {fileID: 11400000, guid: 8a67773f20fa9df43a7d406580f2b8f2, type: 2}
+  - {fileID: 11400000, guid: a9fc7c5f43fcc834ba8062a8edf43e42, type: 2}
+  - {fileID: 11400000, guid: 05bdfda9957c7fb41adf16487055574e, type: 2}
+  - {fileID: 11400000, guid: 8e29d9d08e69dc74b85b9569ea9f7e0e, type: 2}
+  - {fileID: 11400000, guid: a53d2233c76385f40bd36160c0811a98, type: 2}
+  - {fileID: 11400000, guid: 67a5acffe1a70d7428978254b320fa46, type: 2}
+  - {fileID: 11400000, guid: 0232291bd19cb9043a16594375a361a9, type: 2}
   - {fileID: 11400000, guid: c3772226de5ad61468b3d1388bbf2062, type: 2}
+  - {fileID: 11400000, guid: b0b6d10881fd3cb498edbe24d4859b0e, type: 2}
+  - {fileID: 11400000, guid: 99ebdda9537b1914eb0763aca3d5c8c1, type: 2}
+  - {fileID: 11400000, guid: b022ef4f9a298454ea6a14f7e660777c, type: 2}
+  - {fileID: 11400000, guid: b41d8fb289d38ab4791d15a145c9d843, type: 2}
+  - {fileID: 11400000, guid: fd4e54fa9011b1c4db6c0d80970a4bbe, type: 2}
+  - {fileID: 11400000, guid: b66bbf6ab1de97b4fba730cbb209598e, type: 2}
+  - {fileID: 11400000, guid: d013908a9d0efde42919a44af8f2f785, type: 2}
+  - {fileID: 11400000, guid: 22a61523acc0a7f4e892545117fd2f42, type: 2}
+  - {fileID: 11400000, guid: e5e5f5dbd22e41747ae3d583747e72af, type: 2}
+  - {fileID: 11400000, guid: 9c64fa94b16d6a64bb38ce1c853e65d7, type: 2}
+  - {fileID: 11400000, guid: ebea1cd3c8fc06c40a4cc3297188b997, type: 2}
+  - {fileID: 11400000, guid: 9a648ebda81d778448d3316f40f9f655, type: 2}
+  - {fileID: 11400000, guid: b671db1845137f14ea58c17c3f6bc517, type: 2}
+  - {fileID: 11400000, guid: 28380d1dcb3735b4888a287aae6e4ad7, type: 2}
+  - {fileID: 11400000, guid: d19180022c597fe439a63b75903e4394, type: 2}
+  - {fileID: 11400000, guid: eaa9ed9ada6c454439b521da4d5a0b74, type: 2}
   tasks:
   - id: cow_2
     word: {fileID: 11400000, guid: c691971d68e330945a3a203256883f20, type: 2}
@@ -53,6 +75,406 @@ MonoBehaviour:
     validPeople: []
   - id: sheep_2
     word: {fileID: 11400000, guid: c3772226de5ad61468b3d1388bbf2062, type: 2}
+    context: {fileID: 0}
+    quantity: 2
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: cow_1
+    word: {fileID: 11400000, guid: c691971d68e330945a3a203256883f20, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: cow_3
+    word: {fileID: 11400000, guid: c691971d68e330945a3a203256883f20, type: 2}
+    context: {fileID: 0}
+    quantity: 3
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: bull_2
+    word: {fileID: 11400000, guid: 8a67773f20fa9df43a7d406580f2b8f2, type: 2}
+    context: {fileID: 0}
+    quantity: 2
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: bull_4
+    word: {fileID: 11400000, guid: 8a67773f20fa9df43a7d406580f2b8f2, type: 2}
+    context: {fileID: 0}
+    quantity: 4
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: calf_3
+    word: {fileID: 11400000, guid: a9fc7c5f43fcc834ba8062a8edf43e42, type: 2}
+    context: {fileID: 0}
+    quantity: 3
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: calf_5
+    word: {fileID: 11400000, guid: a9fc7c5f43fcc834ba8062a8edf43e42, type: 2}
+    context: {fileID: 0}
+    quantity: 5
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: hen_4
+    word: {fileID: 11400000, guid: 05bdfda9957c7fb41adf16487055574e, type: 2}
+    context: {fileID: 0}
+    quantity: 4
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: hen_1
+    word: {fileID: 11400000, guid: 05bdfda9957c7fb41adf16487055574e, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: rooster_5
+    word: {fileID: 11400000, guid: 8e29d9d08e69dc74b85b9569ea9f7e0e, type: 2}
+    context: {fileID: 0}
+    quantity: 5
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: rooster_2
+    word: {fileID: 11400000, guid: 8e29d9d08e69dc74b85b9569ea9f7e0e, type: 2}
+    context: {fileID: 0}
+    quantity: 2
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: chick_1
+    word: {fileID: 11400000, guid: a53d2233c76385f40bd36160c0811a98, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: chick_3
+    word: {fileID: 11400000, guid: a53d2233c76385f40bd36160c0811a98, type: 2}
+    context: {fileID: 0}
+    quantity: 3
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: goat_2
+    word: {fileID: 11400000, guid: 67a5acffe1a70d7428978254b320fa46, type: 2}
+    context: {fileID: 0}
+    quantity: 2
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: goat_4
+    word: {fileID: 11400000, guid: 67a5acffe1a70d7428978254b320fa46, type: 2}
+    context: {fileID: 0}
+    quantity: 4
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: kid_3
+    word: {fileID: 11400000, guid: 0232291bd19cb9043a16594375a361a9, type: 2}
+    context: {fileID: 0}
+    quantity: 3
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: kid_5
+    word: {fileID: 11400000, guid: 0232291bd19cb9043a16594375a361a9, type: 2}
+    context: {fileID: 0}
+    quantity: 5
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: sheep_4
+    word: {fileID: 11400000, guid: c3772226de5ad61468b3d1388bbf2062, type: 2}
+    context: {fileID: 0}
+    quantity: 4
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: sheep_3
+    word: {fileID: 11400000, guid: c3772226de5ad61468b3d1388bbf2062, type: 2}
+    context: {fileID: 0}
+    quantity: 3
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: ram_5
+    word: {fileID: 11400000, guid: b0b6d10881fd3cb498edbe24d4859b0e, type: 2}
+    context: {fileID: 0}
+    quantity: 5
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: ram_2
+    word: {fileID: 11400000, guid: b0b6d10881fd3cb498edbe24d4859b0e, type: 2}
+    context: {fileID: 0}
+    quantity: 2
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: lamb_1
+    word: {fileID: 11400000, guid: 99ebdda9537b1914eb0763aca3d5c8c1, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: lamb_3
+    word: {fileID: 11400000, guid: 99ebdda9537b1914eb0763aca3d5c8c1, type: 2}
+    context: {fileID: 0}
+    quantity: 3
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: male_cat_2
+    word: {fileID: 11400000, guid: b022ef4f9a298454ea6a14f7e660777c, type: 2}
+    context: {fileID: 0}
+    quantity: 2
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: male_cat_4
+    word: {fileID: 11400000, guid: b022ef4f9a298454ea6a14f7e660777c, type: 2}
+    context: {fileID: 0}
+    quantity: 4
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: kitten_3
+    word: {fileID: 11400000, guid: b41d8fb289d38ab4791d15a145c9d843, type: 2}
+    context: {fileID: 0}
+    quantity: 3
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: kitten_5
+    word: {fileID: 11400000, guid: b41d8fb289d38ab4791d15a145c9d843, type: 2}
+    context: {fileID: 0}
+    quantity: 5
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: dog_4
+    word: {fileID: 11400000, guid: fd4e54fa9011b1c4db6c0d80970a4bbe, type: 2}
+    context: {fileID: 0}
+    quantity: 4
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: dog_1
+    word: {fileID: 11400000, guid: fd4e54fa9011b1c4db6c0d80970a4bbe, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: puppy_5
+    word: {fileID: 11400000, guid: b66bbf6ab1de97b4fba730cbb209598e, type: 2}
+    context: {fileID: 0}
+    quantity: 5
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: puppy_2
+    word: {fileID: 11400000, guid: b66bbf6ab1de97b4fba730cbb209598e, type: 2}
+    context: {fileID: 0}
+    quantity: 2
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: goose_1
+    word: {fileID: 11400000, guid: d013908a9d0efde42919a44af8f2f785, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: goose_3
+    word: {fileID: 11400000, guid: d013908a9d0efde42919a44af8f2f785, type: 2}
+    context: {fileID: 0}
+    quantity: 3
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: gosling_2
+    word: {fileID: 11400000, guid: 22a61523acc0a7f4e892545117fd2f42, type: 2}
+    context: {fileID: 0}
+    quantity: 2
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: gosling_4
+    word: {fileID: 11400000, guid: 22a61523acc0a7f4e892545117fd2f42, type: 2}
+    context: {fileID: 0}
+    quantity: 4
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: duck_3
+    word: {fileID: 11400000, guid: e5e5f5dbd22e41747ae3d583747e72af, type: 2}
+    context: {fileID: 0}
+    quantity: 3
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: duck_5
+    word: {fileID: 11400000, guid: e5e5f5dbd22e41747ae3d583747e72af, type: 2}
+    context: {fileID: 0}
+    quantity: 5
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: duckling_4
+    word: {fileID: 11400000, guid: 9c64fa94b16d6a64bb38ce1c853e65d7, type: 2}
+    context: {fileID: 0}
+    quantity: 4
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: duckling_1
+    word: {fileID: 11400000, guid: 9c64fa94b16d6a64bb38ce1c853e65d7, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: horse_5
+    word: {fileID: 11400000, guid: ebea1cd3c8fc06c40a4cc3297188b997, type: 2}
+    context: {fileID: 0}
+    quantity: 5
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: horse_2
+    word: {fileID: 11400000, guid: ebea1cd3c8fc06c40a4cc3297188b997, type: 2}
+    context: {fileID: 0}
+    quantity: 2
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: foal_1
+    word: {fileID: 11400000, guid: 9a648ebda81d778448d3316f40f9f655, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: foal_3
+    word: {fileID: 11400000, guid: 9a648ebda81d778448d3316f40f9f655, type: 2}
+    context: {fileID: 0}
+    quantity: 3
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: pig_2
+    word: {fileID: 11400000, guid: b671db1845137f14ea58c17c3f6bc517, type: 2}
+    context: {fileID: 0}
+    quantity: 2
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: pig_4
+    word: {fileID: 11400000, guid: b671db1845137f14ea58c17c3f6bc517, type: 2}
+    context: {fileID: 0}
+    quantity: 4
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: piglet_3
+    word: {fileID: 11400000, guid: 28380d1dcb3735b4888a287aae6e4ad7, type: 2}
+    context: {fileID: 0}
+    quantity: 3
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: piglet_5
+    word: {fileID: 11400000, guid: 28380d1dcb3735b4888a287aae6e4ad7, type: 2}
+    context: {fileID: 0}
+    quantity: 5
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: tom_turkey_4
+    word: {fileID: 11400000, guid: d19180022c597fe439a63b75903e4394, type: 2}
+    context: {fileID: 0}
+    quantity: 4
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: tom_turkey_1
+    word: {fileID: 11400000, guid: d19180022c597fe439a63b75903e4394, type: 2}
+    context: {fileID: 0}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: turkey_poult_5
+    word: {fileID: 11400000, guid: eaa9ed9ada6c454439b521da4d5a0b74, type: 2}
+    context: {fileID: 0}
+    quantity: 5
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: turkey_poult_2
+    word: {fileID: 11400000, guid: eaa9ed9ada6c454439b521da4d5a0b74, type: 2}
     context: {fileID: 0}
     quantity: 2
     minTemperature: 0
