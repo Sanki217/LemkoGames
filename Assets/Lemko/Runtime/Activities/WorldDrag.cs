@@ -13,7 +13,7 @@ namespace Lemko
         public bool BlocksClick => dragging || Time.frameCount<=suppressClickUntil;
         HintPointer hint;
         bool restoreHint;
-        public void OnBeginDrag(PointerEventData e) { dragging=true; origin=transform.position; hint=GetComponent<HintPointer>(); restoreHint=hint && hint.enabled; if(hint) hint.enabled=false; if(token.view.tooltip) token.view.tooltip.Hide(); }
+        public void OnBeginDrag(PointerEventData e) { if(e.button!=PointerEventData.InputButton.Left) return; dragging=true; origin=transform.position; hint=GetComponent<HintPointer>(); restoreHint=hint && hint.enabled; if(hint) hint.enabled=false; if(token.view.tooltip) token.view.tooltip.Hide(); }
         public void OnDrag(PointerEventData e) { if(!dragging) return; var p=Camera.main.ScreenToWorldPoint(e.position); transform.position=new Vector3(p.x,p.y,origin.z-1);
             ClearPreview();
             foreach(var hit in Physics2D.OverlapPointAll(p)) if(hit.GetComponent<WorldDropZone>()) {

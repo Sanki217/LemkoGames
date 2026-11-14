@@ -27,6 +27,8 @@ namespace Lemko
         float started;
         bool visible;
         public bool IsVisibleFor(UnityEngine.Object requester) => visible && owner==requester;
+        // The ring that fills during a touch hold needs no caption.
+        void Awake() { if(waiting) foreach(var caption in waiting.GetComponentsInChildren<TMP_Text>(true)) caption.text=""; }
         public void Show(UnityEngine.Object requester, VocabularyEntry word, Vector2 screenPosition, HintContent kind=HintContent.Translation)
         {
             if(owner==requester && pendingWord==word && content==kind) return;

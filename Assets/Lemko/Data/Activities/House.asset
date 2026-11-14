@@ -18,6 +18,60 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 36cae511a74eba84ab6f2d12a127ee92, type: 2}
   - {fileID: 11400000, guid: 78e31d0042f57d44aa282b7183663f4c, type: 2}
   - {fileID: 11400000, guid: df0045a52743e2948a5f06a12801bb81, type: 2}
+  - {fileID: 11400000, guid: 1b98af44fa31db844bdb36883639630c, type: 2}
+  - {fileID: 11400000, guid: 0ca739f6a2b5edb428d16388d3f18448, type: 2}
+  - {fileID: 11400000, guid: edca81202c97f0f488a3639f7580e459, type: 2}
+  - {fileID: 11400000, guid: 0d502813cfb2ae24b8414f8b56c555bc, type: 2}
+  - {fileID: 11400000, guid: ca71114b69a07a646adefb4997bc996e, type: 2}
+  - {fileID: 11400000, guid: 0ee85500f32324e4baacced2724044cf, type: 2}
+  - {fileID: 11400000, guid: 8b1c06276b676b24784620b9542fde37, type: 2}
+  - {fileID: 11400000, guid: faa90df1e8d679f4395017c33633c7d7, type: 2}
+  - {fileID: 11400000, guid: 1a8d2487a1fda29499483fdf2e68677a, type: 2}
+  - {fileID: 11400000, guid: 6cc1d61bf84c55b4d973a0471e6786fa, type: 2}
+  - {fileID: 11400000, guid: 8e45acca5143776439bae8eea0e183b8, type: 2}
+  - {fileID: 11400000, guid: 358953b70cd287f4e8ff92f82afeb9f2, type: 2}
+  - {fileID: 11400000, guid: 7a902cbdd8425894da898138f25cabe8, type: 2}
+  - {fileID: 11400000, guid: 3a25afbc15a5a3841b5b36d51acc57de, type: 2}
+  - {fileID: 11400000, guid: 2c219d99ae32c6a49a0b49d9858a60a0, type: 2}
+  - {fileID: 11400000, guid: 611a006dc65edca4daf8d3ac855ef393, type: 2}
+  - {fileID: 11400000, guid: a02f2f4c26605754a8d30845e5ed4540, type: 2}
+  - {fileID: 11400000, guid: b722ee5fb2e62cb48a83b5473e223051, type: 2}
+  - {fileID: 11400000, guid: 06cf7bd5b8c3f544b844da681ae3f317, type: 2}
+  - {fileID: 11400000, guid: ea656c486abdeed4ba6e0ab90a49cb58, type: 2}
+  - {fileID: 11400000, guid: 0624bbf03d6f81f44a57605ef1341d2e, type: 2}
+  - {fileID: 11400000, guid: 2911284f2ce26ff418e4734f89e24416, type: 2}
+  - {fileID: 11400000, guid: ce945b42854f7544391bf68b79131bfd, type: 2}
+  - {fileID: 11400000, guid: 36c7a4384cc5f724e8e93bfb9a6e46c3, type: 2}
+  - {fileID: 11400000, guid: 34a519925d36ae54aa8f2fb8a4f8f9ff, type: 2}
+  - {fileID: 11400000, guid: b5ebe1c68cdbc294e9a85b0e414a2e37, type: 2}
+  - {fileID: 11400000, guid: 23bde71b595f59d4cb33a8f1ccb3f6ad, type: 2}
+  - {fileID: 11400000, guid: 6fadc37bc8a8ae94faf523c57c6c102d, type: 2}
+  - {fileID: 11400000, guid: e8e92bf141b20fd4584849bda3976a2e, type: 2}
+  - {fileID: 11400000, guid: ee3bc9d9f41cd47498bac5f6a589784e, type: 2}
+  - {fileID: 11400000, guid: d88b27cfae8d56d40bdfc65b0a27fc2b, type: 2}
+  - {fileID: 11400000, guid: 5dab159d3e01a6644ad12e424394005c, type: 2}
+  - {fileID: 11400000, guid: 58775497a8102484d9b240dd36b2aa4d, type: 2}
+  - {fileID: 11400000, guid: 8a653408b2f50134490b3dadb1d9fad3, type: 2}
+  - {fileID: 11400000, guid: bad5b9c989a4c3747b402f67b10179b1, type: 2}
+  - {fileID: 11400000, guid: 6b6529f0b6c96424e80706b3d8a70655, type: 2}
+  - {fileID: 11400000, guid: fbcd907edafc5514eb44664d39d91e62, type: 2}
+  - {fileID: 11400000, guid: 769f488417d4b0847a94759667b3076a, type: 2}
+  - {fileID: 11400000, guid: 938ca50f3a600cc4dba185f9572ce303, type: 2}
+  - {fileID: 11400000, guid: 19b944da1d8ecc942b48e9875ec30228, type: 2}
+  - {fileID: 11400000, guid: 072ffd1780c8411419ca04cab87d1316, type: 2}
+  - {fileID: 11400000, guid: 589888135da2b2d45a6c23975bb72ade, type: 2}
+  - {fileID: 11400000, guid: 4eeb3ea68b1532943a5ba5afe5d7cd9e, type: 2}
+  - {fileID: 11400000, guid: 2773e993f77d2bc44bf9c37e6e357c36, type: 2}
+  - {fileID: 11400000, guid: aca013daef2094844a9a0bff4188f76a, type: 2}
+  - {fileID: 11400000, guid: dc2b5450c06b1b945814769089aa210f, type: 2}
+  - {fileID: 11400000, guid: 1020011c6edd5b44f97d1ec2999c3f26, type: 2}
+  - {fileID: 11400000, guid: 612c91f1804e4584dbe9e66e7bcad6cd, type: 2}
+  - {fileID: 11400000, guid: 4b27d258c5ae5384497372344f31a30e, type: 2}
+  - {fileID: 11400000, guid: b6da865e2efde1b4c91e4fb3cfb08a50, type: 2}
+  - {fileID: 11400000, guid: 4ba834f00267e654c920832d0e1f86b8, type: 2}
+  - {fileID: 11400000, guid: e77c7f08e87f9ca47bedff65b52bb07e, type: 2}
+  - {fileID: 11400000, guid: c4793aa44cb9db14798156217556427b, type: 2}
+  - {fileID: 11400000, guid: 29723acaa844c784286ac305be1e9296, type: 2}
   tasks:
   - id: chair_kitchen
     word: {fileID: 11400000, guid: 36cae511a74eba84ab6f2d12a127ee92, type: 2}
@@ -59,9 +113,443 @@ MonoBehaviour:
     maxTemperature: 20
     request: 
     validPeople: []
+  - id: sofa_living_room
+    word: {fileID: 11400000, guid: 1b98af44fa31db844bdb36883639630c, type: 2}
+    context: {fileID: 11400000, guid: 2147d1152f69b6847b508f9c3d6dffb6, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: television_living_room
+    word: {fileID: 11400000, guid: 0ca739f6a2b5edb428d16388d3f18448, type: 2}
+    context: {fileID: 11400000, guid: 2147d1152f69b6847b508f9c3d6dffb6, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: carpet_living_room
+    word: {fileID: 11400000, guid: edca81202c97f0f488a3639f7580e459, type: 2}
+    context: {fileID: 11400000, guid: 2147d1152f69b6847b508f9c3d6dffb6, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: fireplace_living_room
+    word: {fileID: 11400000, guid: 0d502813cfb2ae24b8414f8b56c555bc, type: 2}
+    context: {fileID: 11400000, guid: 2147d1152f69b6847b508f9c3d6dffb6, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: books_living_room
+    word: {fileID: 11400000, guid: ca71114b69a07a646adefb4997bc996e, type: 2}
+    context: {fileID: 11400000, guid: 2147d1152f69b6847b508f9c3d6dffb6, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: shelf_living_room
+    word: {fileID: 11400000, guid: 0ee85500f32324e4baacced2724044cf, type: 2}
+    context: {fileID: 11400000, guid: 2147d1152f69b6847b508f9c3d6dffb6, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: radio_living_room
+    word: {fileID: 11400000, guid: 8b1c06276b676b24784620b9542fde37, type: 2}
+    context: {fileID: 11400000, guid: 2147d1152f69b6847b508f9c3d6dffb6, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: speaker_living_room
+    word: {fileID: 11400000, guid: faa90df1e8d679f4395017c33633c7d7, type: 2}
+    context: {fileID: 11400000, guid: 2147d1152f69b6847b508f9c3d6dffb6, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: clock_living_room
+    word: {fileID: 11400000, guid: 1a8d2487a1fda29499483fdf2e68677a, type: 2}
+    context: {fileID: 11400000, guid: 2147d1152f69b6847b508f9c3d6dffb6, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: painting_living_room
+    word: {fileID: 11400000, guid: 6cc1d61bf84c55b4d973a0471e6786fa, type: 2}
+    context: {fileID: 11400000, guid: 2147d1152f69b6847b508f9c3d6dffb6, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: plant_living_room
+    word: {fileID: 11400000, guid: 8e45acca5143776439bae8eea0e183b8, type: 2}
+    context: {fileID: 11400000, guid: 2147d1152f69b6847b508f9c3d6dffb6, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: lamp_living_room
+    word: {fileID: 11400000, guid: 358953b70cd287f4e8ff92f82afeb9f2, type: 2}
+    context: {fileID: 11400000, guid: 2147d1152f69b6847b508f9c3d6dffb6, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: game_living_room
+    word: {fileID: 11400000, guid: 7a902cbdd8425894da898138f25cabe8, type: 2}
+    context: {fileID: 11400000, guid: 2147d1152f69b6847b508f9c3d6dffb6, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: computer_living_room
+    word: {fileID: 11400000, guid: 3a25afbc15a5a3841b5b36d51acc57de, type: 2}
+    context: {fileID: 11400000, guid: 2147d1152f69b6847b508f9c3d6dffb6, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: small_table_living_room
+    word: {fileID: 11400000, guid: 2c219d99ae32c6a49a0b49d9858a60a0, type: 2}
+    context: {fileID: 11400000, guid: 2147d1152f69b6847b508f9c3d6dffb6, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: vacuum_cleaner_living_room
+    word: {fileID: 11400000, guid: 611a006dc65edca4daf8d3ac855ef393, type: 2}
+    context: {fileID: 11400000, guid: 2147d1152f69b6847b508f9c3d6dffb6, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: pillow_bedroom
+    word: {fileID: 11400000, guid: a02f2f4c26605754a8d30845e5ed4540, type: 2}
+    context: {fileID: 11400000, guid: 1c86c99dbd2871d4ab4c9de970c7f534, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: wardrobe_bedroom
+    word: {fileID: 11400000, guid: b722ee5fb2e62cb48a83b5473e223051, type: 2}
+    context: {fileID: 11400000, guid: 1c86c99dbd2871d4ab4c9de970c7f534, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: small_lamp_bedroom
+    word: {fileID: 11400000, guid: 06cf7bd5b8c3f544b844da681ae3f317, type: 2}
+    context: {fileID: 11400000, guid: 1c86c99dbd2871d4ab4c9de970c7f534, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: clothes_bedroom
+    word: {fileID: 11400000, guid: ea656c486abdeed4ba6e0ab90a49cb58, type: 2}
+    context: {fileID: 11400000, guid: 1c86c99dbd2871d4ab4c9de970c7f534, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: chest_bedroom
+    word: {fileID: 11400000, guid: 0624bbf03d6f81f44a57605ef1341d2e, type: 2}
+    context: {fileID: 11400000, guid: 1c86c99dbd2871d4ab4c9de970c7f534, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: toys_bedroom
+    word: {fileID: 11400000, guid: 2911284f2ce26ff418e4734f89e24416, type: 2}
+    context: {fileID: 11400000, guid: 1c86c99dbd2871d4ab4c9de970c7f534, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: shoes_bedroom
+    word: {fileID: 11400000, guid: ce945b42854f7544391bf68b79131bfd, type: 2}
+    context: {fileID: 11400000, guid: 1c86c99dbd2871d4ab4c9de970c7f534, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: stove_kitchen
+    word: {fileID: 11400000, guid: 36c7a4384cc5f724e8e93bfb9a6e46c3, type: 2}
+    context: {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: refrigerator_kitchen
+    word: {fileID: 11400000, guid: 34a519925d36ae54aa8f2fb8a4f8f9ff, type: 2}
+    context: {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: sink_kitchen
+    word: {fileID: 11400000, guid: b5ebe1c68cdbc294e9a85b0e414a2e37, type: 2}
+    context: {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: cabinet_kitchen
+    word: {fileID: 11400000, guid: 23bde71b595f59d4cb33a8f1ccb3f6ad, type: 2}
+    context: {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: stool_kitchen
+    word: {fileID: 11400000, guid: 6fadc37bc8a8ae94faf523c57c6c102d, type: 2}
+    context: {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: pot_kitchen
+    word: {fileID: 11400000, guid: e8e92bf141b20fd4584849bda3976a2e, type: 2}
+    context: {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: frying_pan_kitchen
+    word: {fileID: 11400000, guid: ee3bc9d9f41cd47498bac5f6a589784e, type: 2}
+    context: {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: kettle_kitchen
+    word: {fileID: 11400000, guid: d88b27cfae8d56d40bdfc65b0a27fc2b, type: 2}
+    context: {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: plate_kitchen
+    word: {fileID: 11400000, guid: 5dab159d3e01a6644ad12e424394005c, type: 2}
+    context: {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: bowl_kitchen
+    word: {fileID: 11400000, guid: 58775497a8102484d9b240dd36b2aa4d, type: 2}
+    context: {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: mug_kitchen
+    word: {fileID: 11400000, guid: 8a653408b2f50134490b3dadb1d9fad3, type: 2}
+    context: {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: glass_kitchen
+    word: {fileID: 11400000, guid: bad5b9c989a4c3747b402f67b10179b1, type: 2}
+    context: {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: jug_kitchen
+    word: {fileID: 11400000, guid: 6b6529f0b6c96424e80706b3d8a70655, type: 2}
+    context: {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: spoon_kitchen
+    word: {fileID: 11400000, guid: fbcd907edafc5514eb44664d39d91e62, type: 2}
+    context: {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: fork_kitchen
+    word: {fileID: 11400000, guid: 769f488417d4b0847a94759667b3076a, type: 2}
+    context: {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: knife_kitchen
+    word: {fileID: 11400000, guid: 938ca50f3a600cc4dba185f9572ce303, type: 2}
+    context: {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: rolling_pin_kitchen
+    word: {fileID: 11400000, guid: 19b944da1d8ecc942b48e9875ec30228, type: 2}
+    context: {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: can_kitchen
+    word: {fileID: 11400000, guid: 072ffd1780c8411419ca04cab87d1316, type: 2}
+    context: {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: bottle_kitchen
+    word: {fileID: 11400000, guid: 589888135da2b2d45a6c23975bb72ade, type: 2}
+    context: {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: broom_kitchen
+    word: {fileID: 11400000, guid: 4eeb3ea68b1532943a5ba5afe5d7cd9e, type: 2}
+    context: {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: bathtub_bathroom
+    word: {fileID: 11400000, guid: 2773e993f77d2bc44bf9c37e6e357c36, type: 2}
+    context: {fileID: 11400000, guid: 178be5c47322a0248874ca4552b5a7ea, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: washing_machine_bathroom
+    word: {fileID: 11400000, guid: aca013daef2094844a9a0bff4188f76a, type: 2}
+    context: {fileID: 11400000, guid: 178be5c47322a0248874ca4552b5a7ea, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: mirror_bathroom
+    word: {fileID: 11400000, guid: dc2b5450c06b1b945814769089aa210f, type: 2}
+    context: {fileID: 11400000, guid: 178be5c47322a0248874ca4552b5a7ea, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: tap_bathroom
+    word: {fileID: 11400000, guid: 1020011c6edd5b44f97d1ec2999c3f26, type: 2}
+    context: {fileID: 11400000, guid: 178be5c47322a0248874ca4552b5a7ea, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: towel_bathroom
+    word: {fileID: 11400000, guid: 612c91f1804e4584dbe9e66e7bcad6cd, type: 2}
+    context: {fileID: 11400000, guid: 178be5c47322a0248874ca4552b5a7ea, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: soap_bathroom
+    word: {fileID: 11400000, guid: 4b27d258c5ae5384497372344f31a30e, type: 2}
+    context: {fileID: 11400000, guid: 178be5c47322a0248874ca4552b5a7ea, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: shampoo_bathroom
+    word: {fileID: 11400000, guid: b6da865e2efde1b4c91e4fb3cfb08a50, type: 2}
+    context: {fileID: 11400000, guid: 178be5c47322a0248874ca4552b5a7ea, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: toothbrush_bathroom
+    word: {fileID: 11400000, guid: 4ba834f00267e654c920832d0e1f86b8, type: 2}
+    context: {fileID: 11400000, guid: 178be5c47322a0248874ca4552b5a7ea, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: toothpaste_bathroom
+    word: {fileID: 11400000, guid: e77c7f08e87f9ca47bedff65b52bb07e, type: 2}
+    context: {fileID: 11400000, guid: 178be5c47322a0248874ca4552b5a7ea, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: hairbrush_bathroom
+    word: {fileID: 11400000, guid: c4793aa44cb9db14798156217556427b, type: 2}
+    context: {fileID: 11400000, guid: 178be5c47322a0248874ca4552b5a7ea, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
+  - id: comb_bathroom
+    word: {fileID: 11400000, guid: 29723acaa844c784286ac305be1e9296, type: 2}
+    context: {fileID: 11400000, guid: 178be5c47322a0248874ca4552b5a7ea, type: 2}
+    quantity: 1
+    minTemperature: 0
+    maxTemperature: 20
+    request: 
+    validPeople: []
   rooms:
-  - {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+  - {fileID: 11400000, guid: 2147d1152f69b6847b508f9c3d6dffb6, type: 2}
   - {fileID: 11400000, guid: 1c86c99dbd2871d4ab4c9de970c7f534, type: 2}
+  - {fileID: 11400000, guid: b0b1f0c2da18ff4408be43b7a7d74363, type: 2}
+  - {fileID: 11400000, guid: 178be5c47322a0248874ca4552b5a7ea, type: 2}
   referencePerson: you
   people: []
   pairs: 4

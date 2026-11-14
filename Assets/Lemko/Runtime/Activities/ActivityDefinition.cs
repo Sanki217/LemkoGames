@@ -53,7 +53,6 @@ namespace Lemko
         {
             if(tasksPerSession<1 || tasksPerSession>20) return "Session must contain 1–20 tasks.";
             if(pool.Exists(w=>!w) || rooms.Exists(w=>!w)) return "Null vocabulary reference.";
-            if((kind==ActivityKind.Farm || kind==ActivityKind.House) && pool.Count>4) return "This prototype tray supports at most four distinct items.";
             if(kind==ActivityKind.Weather && pool.Count>6) return "This prototype supports at most six weather options.";
             if(kind==ActivityKind.Memory) return pairs<2 || pairs>6 || new HashSet<VocabularyEntry>(pool).Count<pairs ? "Memory needs 2–6 pairs and enough distinct words." : null;
             if(kind==ActivityKind.Alphabet && alphabetLetters!=null) {

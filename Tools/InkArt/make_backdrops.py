@@ -255,8 +255,8 @@ def farm():
     c.fence(bl[0], bl[1], br[0], br[1], 12)                          # front rail
     c.cart(960, H - 18); c.bush(1004, H - 66, 18, RED)
 
-    # the shelter on the left where the animals wait: plank wall, straw floor and a shingled roof
-    x0, x1, top, bot = -6, 226, 60, 286
+    # the shelter on the left where six animals wait in three rows: plank wall, straw floor and a shingled roof
+    x0, x1, top, bot = -6, 226, 60, 374
     c.shadow([(x0, bot + 6), (x1 + 16, bot + 6), (x1 + 4, bot - 8), (x0, bot - 8)])
     wall = [(x0, top + 8), (x1, top + 8), (x1, bot - 26), (x0, bot - 26)]
     def boards():
@@ -266,7 +266,8 @@ def farm():
     c.two(wall, WOOD, 2.6, 5, 0, inner=boards)
     straw = [(x0, bot - 30), (x1 + 6, bot - 30), (x1 + 18, bot), (x0, bot)]
     c.two(straw, GOLD, 2.4, 3, 3, inner=lambda: c.hatch(x0, bot - 28, x1 + 10, bot, gap=9, w=1.2, color=PAL['gold']))
-    c.line([(x0, top + 118), (x1, top + 118)], 3.2, amp=.5); c.line([(x0, top + 118), (x1, top + 118)], 1.4, WOOD_DARK, amp=.5)   # rail between the rows
+    for rail in (156, 265):                                                                                                   # rails between the rows
+        c.line([(x0, rail), (x1, rail)], 3.2, amp=.5); c.line([(x0, rail), (x1, rail)], 1.4, WOOD_DARK, amp=.5)
     for px in (4, 112, 220):
         c.two([(px - 5, bot - 2), (px - 5, top + 6), (px + 5, top + 6), (px + 5, bot - 2)], WOOD_DARK, 2, 2, 0, amp=.3)
     roof = [(x0, top - 22), (x1 + 4, top - 22), (x1 + 22, top + 12), (x0, top + 12)]
@@ -277,7 +278,7 @@ def farm():
             for j in range(3):
                 c.line([(x0 + i * 10 + (j % 2) * 5, top - 22 + j * 11), (x0 + i * 10 + (j % 2) * 5 + 2, top - 11 + j * 11)], 1, dk(RED), amp=0)
     c.two(roof, RED, 2.6, 3, 4, inner=tiles)
-    c.hen(60, bot + 26, 1.2); c.hen(100, bot + 38, 1, PAL['wood']); c.barrel(200, bot + 44, 1.1); c.tree(262, hz + 60, 20)
+    c.hen(60, bot + 30, 1.2); c.hen(104, bot + 44, 1, PAL['wood']); c.barrel(262, bot + 20, 1.1); c.tree(262, hz + 60, 20)
     c.fence(-6, H - 14, 150, H - 30, 6)
     out(c, BG, 'scene_Farm', (2048, 960))
 

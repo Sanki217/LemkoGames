@@ -6,8 +6,10 @@ A new launch or a new Editor Play session starts with default settings and an em
 
 ## Hints
 
-Keep the mouse still over a hintable word or object. After **0.5 seconds** the circle appears and fills over **1 second**, then the hint is shown. Mouse hover does not require pressing a button. Explicit hint controls and touch use press-and-hold/release.
+**Right-click** a hintable word or picture and its meaning appears at once. It stays until the pointer leaves that word or picture, or until it is clicked. Pointing at something without clicking never loads a hint. The light-bulb button beside the loudspeaker shows the meaning of the word the current task asks for.
 
-Movement beyond a small four-pixel tolerance restarts the delay and hides a revealed tooltip. Leaving, dragging, disabling or rebinding the target cancels. Only the reveal counts as a used hint. Alphabet still reveals Lemko spelling; ordinary targets reveal the selected translation. Face-down Memory cards remain private.
+On a touch screen, press and hold: after **0.5 seconds** a ring appears and fills over **1 second**, then the hint is shown. Moving the finger more than a small four-pixel tolerance restarts the delay; lifting it cancels.
 
-On each scene's TooltipService, `Still Seconds` controls the first wait, `Hold Seconds` controls the ring fill, and `Movement Tolerance` controls pointer jitter tolerance.
+Only the reveal counts as a used hint, once per word in an activity round. Alphabet still reveals Lemko spelling; ordinary targets reveal the selected translation. Face-down Memory cards remain private.
+
+On each scene's TooltipService, `Still Seconds` controls the first wait of a touch hold, `Hold Seconds` controls the ring fill, and `Movement Tolerance` controls finger jitter tolerance.

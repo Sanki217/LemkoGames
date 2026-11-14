@@ -17,6 +17,9 @@ namespace Lemko
         // The fenced pasture drawn in the backdrop: animals put there wander inside it.
         static readonly Rect Pasture=new Rect(-2.2f,-2.5f,7.4f,2.2f);
         readonly List<ActivityToken> placed=new List<ActivityToken>();
+        // Every task brings a fresh group to the shelter: the animal asked for and five others from the whole farm.
+        const int ShelterSize=6;
+        readonly List<VocabularyEntry> shelter=new List<VocabularyEntry>();
         public IReadOnlyList<ActivityToken> Placed => placed;
         protected override void BuildTask()
         {
@@ -26,14 +29,16 @@ namespace Lemko
             var zone=Zone(new Vector2(1.5f,-1.3f),new Vector2(8.4f,3.3f),t=>Add(t.view.Entry));
             zone.droppedAt=(t,point)=>Add(t.view.Entry,taskRoot.InverseTransformPoint(point)); zone.GetComponent<SpriteRenderer>().color=Color.clear;
             // The animals wait in the shelter on the left.
-            for(int i=0;i<definition.pool.Count;i++) Token(definition.pool[i],new Vector2(-7f+(i%2)*1.7f,1.5f-(i/2)*1.65f),"tray",t=>Add(t.view.Entry),draggable:true).transform.localScale=Vector3.one*.92f;
+            var others=definition.pool.Where(w=>w && w!=Current.word).Distinct().ToList(); Shuffle(others);
+            shelter.Clear(); shelter.Add(Current.word); shelter.AddRange(others.Take(ShelterSize-1)); Shuffle(shelter);
+            for(int i=0;i<shelter.Count;i++) Token(shelter[i],new Vector2(-7f+(i%2)*1.7f,1.5f-(i/2)*1.65f),"tray",t=>Add(t.view.Entry),draggable:true).transform.localScale=Vector3.one*.92f;
             if(IsRepairTask) {
                 // Rotate missing, extra and wrong-animal arrangements; every one can be corrected using the tray.
                 int variant=((Correct+1)/Mathf.Max(2,repairEvery)-1)%3;
                 int count=variant==1 ? Mathf.Min(12,Current.quantity+1) : Mathf.Max(0,Current.quantity-1);
                 if(variant==1 && count==Current.quantity) count=Current.quantity-1;
                 for(int i=0;i<count;i++) Add(Current.word);
-                if(variant==2) { var other=definition.pool.FirstOrDefault(w=>w!=Current.word); if(other) Add(other); }
+                if(variant==2) { var other=shelter.FirstOrDefault(w=>w!=Current.word); if(other) Add(other); }
             }
             feedback.text=!QuantityTasks ? "Put the animal in the pasture." : IsRepairTask ? "Something is wrong in this pen." : "Drag or tap animals into the pen. Tap one to remove it.";
         }

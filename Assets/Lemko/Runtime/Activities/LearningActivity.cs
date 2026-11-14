@@ -73,8 +73,8 @@ namespace Lemko
             if(hintControl) { hintControl.gameObject.SetActive(false); hintControl.Bind(Current?.word,Session.tooltip); }
             speak.interactable=Current!=null && Current.word.pronunciation;
             BuildTask();
-            speak.GetComponentInChildren<TMP_Text>().text="Listen"; speak.gameObject.SetActive(speak.interactable);
-            submit.GetComponentInChildren<TMP_Text>().text="Check";
+            var listen=speak.GetComponentInChildren<TMP_Text>(true); if(listen) listen.text="Listen"; speak.gameObject.SetActive(speak.interactable);
+            var check=submit.GetComponentInChildren<TMP_Text>(true); if(check) check.text="Check";
             Session.RefreshHud(); GameEvents.Started();
         }
         protected virtual string ValidateContent()=>definition.Validate();
@@ -95,7 +95,7 @@ namespace Lemko
                 SessionStats.BestStreak=Mathf.Max(SessionStats.BestStreak,score.Streak);
                 GameEvents.Answer(true,awarded+bonus,score.Streak); ContinueSoon();
             }
-            else { rejected=signature; Mistakes++; score.Apply(SelectionResult.Incorrect); feedback.text=explanation+(Mistakes>=2 ? " Tap the lightbulb for help." : ""); Session.PresentFeedback(false); GameEvents.Answer(false,0,0); Session.Wrong(); }
+            else { rejected=signature; Mistakes++; score.Apply(SelectionResult.Incorrect); feedback.text=explanation+(Mistakes>=2 ? " Right-click a word, or tap the lightbulb, for help." : ""); Session.PresentFeedback(false); GameEvents.Answer(false,0,0); Session.Wrong(); }
             Session.RefreshHud(); return true;
         }
         // Moves on by itself after a short celebration; waits while a menu or the help card is open.

@@ -16,8 +16,8 @@ MonoBehaviour:
   title: Finish the labels
   story: Some labels still need to be written or repaired. Help spell the words in
     Lemko.
-  instructions: '1. Look at the picture and its meaning. Hold either for the Lemko
-    spelling.
+  instructions: '1. Look at the picture and its meaning. Right-click either for the
+    Lemko spelling.
 
     2. Click or drag letters into the slots. Tap a filled slot to
     return its letter.

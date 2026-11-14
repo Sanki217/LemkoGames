@@ -16,8 +16,9 @@ MonoBehaviour:
   title: Make the house welcoming
   story: Our neighbours are making space for the gathering. Put the requested furniture
     in the right room.
-  instructions: "1. Read the furniture and room request. Use the arrows to change
-    rooms.\n2. Drag furniture into the room. Drag to move it; tap to remove it.\n3.
-    Choose Check answer from any room \u2014 the saved placement is what matters."
+  instructions: "1. Read which piece goes in which room. The arrows at the sides
+    of the screen take you through the house.\n2. Find the piece in the bar at the
+    bottom and drag it into the right room.\n3. Pieces you have placed stay there.
+    Drag one to move it."
   beforeNumbers: 
   illustration: {fileID: 21300000, guid: a59575459d406a144a7b70794338b0a5, type: 3}
