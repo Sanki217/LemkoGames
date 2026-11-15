@@ -36,6 +36,8 @@ namespace Lemko
             var encountered=new HashSet<string>(Session.Progress.encountered);
             var review=pool.Where(w=>encountered.Contains(w.id)).OrderByDescending(Session.ReviewPriority).Take(1);
             var candidates=review.Concat(pool.Where(w=>!encountered.Contains(w.id))).Concat(pool).Distinct().ToList();
+            // Several words share a painted picture (sun, sunny, bright); a board never holds two of them.
+            var pictures=new HashSet<Sprite>(); candidates=candidates.Where(w=>!w.sprite || pictures.Add(w.sprite)).ToList();
             var subjects=new HashSet<string>();
             pool=candidates.Where(w=>subjects.Add(w.tags?.FirstOrDefault() ?? "")).Take(definition.pairs).ToList();
             if(pool.Count<definition.pairs)
