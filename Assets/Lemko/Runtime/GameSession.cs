@@ -124,7 +124,8 @@ namespace Lemko
             introduction.Show(this,null);
         }
         public void OpenSuggestedActivity() { if(resultsPanel && resultsPanel.activeSelf && !string.IsNullOrEmpty(suggestedActivity)) OpenActivity(suggestedActivity); }
-        void RecordHint()=>RegisterHint(tooltip.RevealedWord);
+        // A hint also says the word aloud.
+        void RecordHint() { var word=tooltip.RevealedWord; if(word && word.pronunciation) audioService.Play(word.pronunciation); RegisterHint(word); }
         public void RegisterHint(VocabularyEntry word) {
             if(!word) return;
             supportedWords.Add(word.id);
@@ -176,9 +177,9 @@ namespace Lemko
         {
             tooltip.ReducedMotion=Progress.reducedMotion;
             if(answerFeedback) answerFeedback.reducedMotion=Progress.reducedMotion;
-            tooltip.English=Progress.english; audioService.SetMuted(Progress.muted);
+            tooltip.English=Progress.english; Lang.Polish=!Progress.english; audioService.SetMuted(Progress.muted);
             muteButton.GetComponentInChildren<TMP_Text>(true).text=Progress.muted ? "Audio: off" : "Audio: on";
-            languageButton.GetComponentInChildren<TMP_Text>(true).text=Progress.english ? "Hints: English" : "Hints: Polish";
+            languageButton.GetComponentInChildren<TMP_Text>(true).text=Progress.english ? "Language: English" : "Language: Polish";
         }
         static void Hide(GameObject panel) { if(panel) panel.SetActive(false); }
         void Clear()

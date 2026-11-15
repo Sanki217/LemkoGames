@@ -28,6 +28,8 @@ namespace Lemko
         {
             foreach(var session in Object.FindObjectsByType<GameSession>(FindObjectsSortMode.None))
                 if(session.hud && session.tooltip && !session.GetComponent<ScenePolish>()) session.gameObject.AddComponent<ScenePolish>();
+            foreach(var session in Object.FindObjectsByType<GameSession>(FindObjectsSortMode.None))
+                if(!session.GetComponent<LangApply>()) session.gameObject.AddComponent<LangApply>();
         }
     }
 }

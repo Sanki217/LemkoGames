@@ -20,7 +20,7 @@ namespace Lemko
         protected override void BuildTask()
         {
             building=true; IsRepairTask=enableRepairLabels && (Correct+1)%Mathf.Max(2,repairEvery)==0;
-            prompt.text=(IsRepairTask ? "Fix the label: " : "Spell in Lemko: ")+Look.Word(Current.word.polish); prompt.GetComponent<HintPointer>().Bind(Current.word,Session.tooltip,HintContent.LemkoSpelling);
+            prompt.text=(IsRepairTask ? "Fix the label: " : "Spell in Lemko: ")+Look.Word(Current.word.Translation(Session.Progress.english)); prompt.GetComponent<HintPointer>().Bind(Current.word,Session.tooltip,HintContent.LemkoSpelling);
             if(hintControl) hintControl.Bind(Current.word,Session.tooltip,HintContent.LemkoSpelling);
             var picture=Token(Current.word,new Vector2(-6.85f,.45f),"object",t=>Speak());
             picture.GetComponent<HintPointer>().Bind(Current.word,Session.tooltip,HintContent.LemkoSpelling);

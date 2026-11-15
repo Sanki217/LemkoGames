@@ -33,7 +33,7 @@ namespace Lemko
         void Refresh() {
             motionLabel.text=session.Progress.reducedMotion ? "Motion: reduced" : "Motion: standard";
             audioButton.GetComponentInChildren<TMP_Text>().text=session.Progress.muted ? "Audio: off" : "Audio: on";
-            language.GetComponentInChildren<TMP_Text>().text=session.Progress.english ? "Hints: English" : "Hints: Polish";
+            language.GetComponentInChildren<TMP_Text>().text=session.Progress.english ? "Language: English" : "Language: Polish";
         }
         void ToggleMotion() { session.ToggleReducedMotion(); Refresh(); }
 

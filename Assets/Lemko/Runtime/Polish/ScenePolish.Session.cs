@@ -74,7 +74,7 @@ namespace Lemko
                 if(!spot || !spot.label) continue;
                 // One small name tag under each building, and up to three stars earned there this session.
                 var label=spot.label; label.color=Look.Ink; label.fontSize*=.82f; label.textWrappingMode=TextWrappingModes.NoWrap; label.alignment=TextAlignmentOptions.Center;
-                float scale=label.transform.localScale.x; var wanted=label.GetPreferredValues(label.text)*scale;
+                float scale=label.transform.localScale.x; var wanted=label.GetPreferredValues(Lang.T(label.text))*scale;
                 var sign=new GameObject("Name tag",typeof(SpriteRenderer)).GetComponent<SpriteRenderer>(); sign.transform.SetParent(label.transform.parent,false);
                 sign.transform.localPosition=Pixels.Snap(label.transform.localPosition+new Vector3(0,0,.01f));
                 Pixels.Card(sign,new Vector2(wanted.x+.5f,Mathf.Max(.5f,wanted.y+.2f)),Look.Chip); sign.color=Look.Paper; sign.sortingOrder=-1;
@@ -156,7 +156,11 @@ namespace Lemko
             Choice(content,"Quick visit","3 places  ·  about 10 minutes",new Vector2(-190,-130),Look.Paper,3);
             Choice(content,"The gathering","all 8 places  ·  about 30 minutes",new Vector2(190,-130),Look.Honey,8);
             Label(content,"Note","Nothing is saved: every visit starts fresh.",17,Look.Muted,new Vector2(0,-250),new Vector2(900,28),false);
+            // The language can be chosen before anything else; the same switch is in the menu.
+            Button language=null;
+            language=PushButton(content,LanguageName(),new Vector2(430,-270),new Vector2(250,48),Look.Paper,()=> { session.ToggleLanguage(); language.GetComponentInChildren<TMP_Text>().text=LanguageName(); },18);
         }
+        string LanguageName()=>session.Progress.english ? "Language: English" : "Language: Polish";
         void Choice(RectTransform content,string name,string detail,Vector2 position,Color color,int goal)
         {
             var button=PushButton(content,name,position,new Vector2(340,110),color,()=> {
