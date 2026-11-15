@@ -21,8 +21,9 @@ namespace Lemko
         // A width or height in interface units whose half is still a whole pixel (for boxes placed by their middle).
         public static float EvenUi(float v)=>Mathf.Max(2*Ui,Mathf.Round(v/(2*Ui))*2*Ui);
         public static Vector2 EvenUi(Vector2 size)=>new Vector2(EvenUi(size.x),EvenUi(size.y));
-        // How big a picture is in the interface when its pixels are the game's pixels.
-        public static Vector2 UiSize(Sprite sprite)=>sprite ? sprite.rect.size*Ui : Vector2.zero;
+        // How big a picture is in the interface: its size in world units, at 80 interface units to a world unit. For the
+        // pixel-art pieces (40 to a unit) that is two units a pixel; the painted word pictures carry more pixels a unit.
+        public static Vector2 UiSize(Sprite sprite)=>sprite ? sprite.rect.size*(PerUnit*Ui/sprite.pixelsPerUnit) : Vector2.zero;
         public static void Native(Image image)
         {
             if(!image || !image.sprite) return;
