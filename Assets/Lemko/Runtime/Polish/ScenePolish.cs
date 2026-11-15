@@ -155,10 +155,11 @@ namespace Lemko
             scoreText=Label(scorePill.transform,"Points","0",22,Look.Ink,new Vector2(14,1),new Vector2(96,34));
             bonusRing=Picture(scorePill.transform,"Quick bonus",Look.Disc(12),Look.Honey,new Vector2(88,0),Pixels.UiSize(Look.Disc(12)));
             bonusRing.type=Image.Type.Filled; bonusRing.fillMethod=Image.FillMethod.Radial360; bonusRing.fillOrigin=(int)Image.Origin360.Top; bonusRing.fillClockwise=false;
-            streakPill=Picture(hudRow,"Streak",Look.Chip,Look.Honey,Vector2.zero,new Vector2(76,40),true);
-            streakText=Label(streakPill.transform,"Multiplier","x2",22,Look.Ink,new Vector2(0,1),new Vector2(70,34));
-            goldenPill=Picture(hudRow,"Golden word",Look.Chip,Look.Honey,Vector2.zero,new Vector2(172,40),true);
-            Label(goldenPill.transform,"Label","Golden word x2",17,Look.Ink,new Vector2(0,1),new Vector2(160,34));
+            // The multiplier is written inside the score tag, after the points, instead of on a tag of its own.
+            streakPill=Picture(scorePill.transform,"Streak",Look.Chip,Look.Honey,new Vector2(54,0),new Vector2(52,28),true);
+            streakText=Label(streakPill.transform,"Multiplier","x2",17,Look.Ink,new Vector2(0,1),new Vector2(48,24));
+            goldenPill=Picture(hudRow,"Golden word",Look.Chip,Look.Honey,Vector2.zero,new Vector2(108,40),true);
+            Label(goldenPill.transform,"Label","Golden x2",17,Look.Ink,new Vector2(0,1),new Vector2(100,34));
             RefreshHud(true);
         }
         void RefreshHud(bool force=false)
@@ -173,6 +174,8 @@ namespace Lemko
                 points=Activity.Points; multiplier=Activity.Multiplier;
             } else if(Shop && Shop.HasRound) { total=Shop.TargetCount; filled=Mathf.Min(total,Shop.BasketCount); points=Shop.Points; multiplier=Shop.NextMultiplier; }
             else if(InVillage) { total=LanternCount; filled=Mathf.Min(total,session.Progress.story.contributions.Count); points=SessionStats.TotalStars; }
+            // Task dots are gone from the games; only the village keeps its row of lanterns.
+            if(!InVillage) total=0;
             total=Mathf.Min(total,pips.Count);
             if(force || lives!=shownLives) {
                 if(!force && lives>=0 && lives<shownLives && lives<hearts.Count) { Juice.Shake(heartsPill.transform,8); Juice.Sound("heart"); }
@@ -191,18 +194,20 @@ namespace Lemko
                 shownPips=total; shownFilled=filled; pipsPill.gameObject.SetActive(total>0); pipsPill.rectTransform.sizeDelta=new Vector2(total*24+28,40);
             }
             targetScore=points; if(force || !playing) shownScore=points;
-            // While playing only the task dots show: points and streaks are counted but stay off the screen. The village shows the stars earned.
-            scorePill.gameObject.SetActive(InVillage);
-            bool streak=false;
+            scorePill.gameObject.SetActive(playing || InVillage);
+            bool streak=playing && multiplier>=2;
             if(force || multiplier!=shownStreak) {
                 if(!force && streak && multiplier>shownStreak) Juice.Punch(streakPill.transform,.35f,.35f);
                 shownStreak=multiplier; streakText.text="x"+multiplier; streakPill.gameObject.SetActive(streak);
+                scorePill.rectTransform.sizeDelta=new Vector2(streak ? 196 : 140,40);
+                foreach(RectTransform child in scorePill.transform) if(child!=streakPill.rectTransform && child!=bonusRing.rectTransform) child.anchoredPosition=new Vector2((child.name=="Star" ? -46 : 14)-(streak ? 28 : 0),child.anchoredPosition.y);
+                streakPill.rectTransform.anchoredPosition=new Vector2(64,0); bonusRing.rectTransform.anchoredPosition=new Vector2(streak ? 116 : 88,0);
             }
             float bonus=Activity ? Activity.QuickBonus : 0; bonusRing.gameObject.SetActive(bonus>0); bonusRing.fillAmount=bonus;
             bool golden=Activity && Activity.GoldenTask && !Activity.Locked; if(golden!=goldenPill.gameObject.activeSelf) { goldenPill.gameObject.SetActive(golden); if(golden) Juice.Pop(goldenPill.transform); }
             // Lay the visible pills out from the left edge.
             float x=-624;
-            foreach(var pill in new[]{heartsPill,pipsPill,scorePill,streakPill,goldenPill}) {
+            foreach(var pill in new[]{heartsPill,pipsPill,scorePill,goldenPill}) {
                 if(!pill.gameObject.activeSelf) continue;
                 float w=pill.rectTransform.sizeDelta.x+(pill==scorePill && bonusRing.gameObject.activeSelf ? 32 : 0);
                 pill.rectTransform.anchoredPosition=new Vector2(x+pill.rectTransform.sizeDelta.x*.5f,0); x+=w+8;
