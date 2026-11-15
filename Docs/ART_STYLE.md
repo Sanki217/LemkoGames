@@ -1,4 +1,29 @@
-# Pixel art — 2026-11-14
+# Art style and motion — 2026-11-15
+
+The game is drawn in a smooth, painted sticker style: soft round shapes with a dark brown outline. The word pictures and room pieces come from the painted sprite sheets. Backgrounds and the interface art are being replaced in the same style; the pixel-art backdrops still in the project are placeholders.
+
+## Rules the game follows
+
+- **Sizes.** The world is 16 × 9 units, and the interface canvas is 1280 × 720 with 80 interface units to a world unit. A word picture is 192 px at 160 px per unit (1.2 units). A room piece is drawn at 160 px per unit.
+- **Smooth drawing.** Pictures use bilinear filtering with mipmaps. The camera fits the whole world to the window at any size, with a dark frame for other window shapes. Nothing snaps to a pixel grid.
+- **Interface shapes in code.** `Runtime/Polish/Look.cs` draws cards, badges and icons as distance fields, four texture pixels per design pixel, with smooth edges. Their sizes match the old pixel versions.
+- **Motion** (`Runtime/Polish/Motion.cs`, called through `Juice`):
+  - Things squash and stretch. They pop in past their size, stretch when they hop and squash when they land.
+  - Cards flip by narrowing to their edge.
+  - Pieces sway slightly while they wait (`Juice.Idle`) and rise under the pointer (`Juice.Hover`). A held piece leans into the drag (`Juice.Hold`).
+  - Everything is layered on the resting position, scale and turn, so game code may keep moving things.
+- **Pieces** (`Runtime/Polish/TokenFeel.cs`):
+  - Every token casts a soft shadow the shape of its card.
+  - A piece dropped where it does not fit floats back home.
+- **Effects** (`Juice`):
+  - Correct answers burst into twinkles, soft glows and a widening ring.
+  - Confetti flutters down.
+  - Rain falls as soft streaks and snow as glowing flakes.
+  - Faint motes drift up through every scene.
+  - All of it respects Reduced motion.
+
+## Earlier pixel-art notes (superseded)
+
 
 The whole game is pixel art on one grid. The 16 × 9 world is 640 × 360 picture pixels, so there are 40 pixels to a world unit, and every picture is shown at exactly that size.
 

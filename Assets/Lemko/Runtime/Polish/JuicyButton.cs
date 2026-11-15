@@ -3,14 +3,16 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 namespace Lemko
 {
-    // Every button answers the pointer: a small swell on hover and a squash on press.
-    public sealed class JuicyButton : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler, IPointerClickHandler
+    // Every button answers the pointer: it rises a little under it, squashes when pressed and springs back.
+    public sealed class JuicyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerClickHandler
     {
         Selectable control;
         void Awake() { control=GetComponent<Selectable>(); }
         bool Live=>!control || control.IsInteractable();
-        public void OnPointerEnter(PointerEventData e) { if(Live) Juice.Punch(transform,.05f,.18f); }
-        public void OnPointerDown(PointerEventData e) { if(Live && e.button==PointerEventData.InputButton.Left) Juice.Squash(transform,.09f); }
+        public void OnPointerEnter(PointerEventData e) { if(Live) Juice.Hover(transform,true); }
+        public void OnPointerExit(PointerEventData e) { Juice.Hover(transform,false); }
+        public void OnPointerDown(PointerEventData e) { if(Live && e.button==PointerEventData.InputButton.Left) Juice.Squash(transform,.16f); }
+        void OnDisable() { Juice.Hover(transform,false); }
         public void OnPointerClick(PointerEventData e) { if(Live && e.button==PointerEventData.InputButton.Left) Juice.Sound("click"); }
     }
     public static class PolishBootstrap
