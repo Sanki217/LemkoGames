@@ -30,11 +30,10 @@ namespace Lemko
                 var star=Picture(resultCard,"Star",shape,earned ? Look.Honey : Look.Empty,new Vector2((i-1)*92,92),Pixels.UiSize(shape));
                 if(earned) { Juice.Pop(star.transform,.35f+i*.3f); int index=i; StartCoroutine(StarLands(star,.5f+i*.3f,index)); }
             }
-            Label(resultCard,"Star rule","finish   ·   one mistake or fewer   ·   no hints",15,Look.Muted,new Vector2(0,38),new Vector2(760,24),false);
             var points=Label(resultCard,"Points","0 points",34,Look.Ink,new Vector2(0,-4),new Vector2(760,46));
             StartCoroutine(CountUp(points,result.points));
             string stats=result.correct+" correct   ·   "+result.mistakes+(result.mistakes==1 ? " mistake" : " mistakes")+"   ·   "+result.hints+(result.hints==1 ? " hint" : " hints")
-                +"   ·   best this session "+result.best+(result.practice ? "" : "   ·   "+session.Lives+" hearts left");
+                ;
             Label(resultCard,"Stats",stats,18,Look.Muted,new Vector2(0,-42),new Vector2(770,26),false);
             string note=(result.contribution??"").Split('\n')[0];
             if(note.Length>0) Label(resultCard,"Contribution",note,19,Look.Good,new Vector2(0,-74),new Vector2(770,28));
