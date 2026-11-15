@@ -191,8 +191,9 @@ namespace Lemko
                 shownPips=total; shownFilled=filled; pipsPill.gameObject.SetActive(total>0); pipsPill.rectTransform.sizeDelta=new Vector2(total*24+28,40);
             }
             targetScore=points; if(force || !playing) shownScore=points;
-            scorePill.gameObject.SetActive(playing || InVillage);
-            bool streak=playing && multiplier>=2;
+            // While playing only the task dots show: points and streaks are counted but stay off the screen. The village shows the stars earned.
+            scorePill.gameObject.SetActive(InVillage);
+            bool streak=false;
             if(force || multiplier!=shownStreak) {
                 if(!force && streak && multiplier>shownStreak) Juice.Punch(streakPill.transform,.35f,.35f);
                 shownStreak=multiplier; streakText.text="x"+multiplier; streakPill.gameObject.SetActive(streak);

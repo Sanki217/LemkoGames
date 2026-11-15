@@ -27,22 +27,16 @@ namespace Lemko
             for(int i=0;i<3;i++) {
                 bool earned=i<result.stars;
                 var shape=Look.StarOf(i==1 ? 44 : 36);   // big stars drawn at their own size, the middle one a little bigger
-                var star=Picture(resultCard,"Star",shape,earned ? Look.Honey : Look.Empty,new Vector2((i-1)*92,92),Pixels.UiSize(shape));
+                var star=Picture(resultCard,"Star",shape,earned ? Look.Honey : Look.Empty,new Vector2((i-1)*92,70),Pixels.UiSize(shape));
                 if(earned) { Juice.Pop(star.transform,.35f+i*.3f); int index=i; StartCoroutine(StarLands(star,.5f+i*.3f,index)); }
             }
-            Label(resultCard,"Star rule","finish   ·   one mistake or fewer   ·   no hints",15,Look.Muted,new Vector2(0,38),new Vector2(760,24),false);
-            var points=Label(resultCard,"Points","0 points",34,Look.Ink,new Vector2(0,-4),new Vector2(760,46));
-            StartCoroutine(CountUp(points,result.points));
-            string stats=result.correct+" correct   ·   "+result.mistakes+(result.mistakes==1 ? " mistake" : " mistakes")+"   ·   "+result.hints+(result.hints==1 ? " hint" : " hints")
-                +"   ·   best this session "+result.best+(result.practice ? "" : "   ·   "+session.Lives+" hearts left");
-            Label(resultCard,"Stats",stats,18,Look.Muted,new Vector2(0,-42),new Vector2(770,26),false);
             string note=(result.contribution??"").Split('\n')[0];
-            if(note.Length>0) Label(resultCard,"Contribution",note,19,Look.Good,new Vector2(0,-74),new Vector2(770,28));
+            if(note.Length>0) Label(resultCard,"Contribution",note,19,Look.Good,new Vector2(0,-20),new Vector2(770,28));
             if(result.revisit.Count>0) {
-                Label(resultCard,"Revisit label","Practise next:",18,Look.Ink,new Vector2(-300,-118),new Vector2(160,30));
+                Label(resultCard,"Revisit label","Practise next:",18,Look.Ink,new Vector2(-300,-90),new Vector2(160,30));
                 for(int i=0;i<result.revisit.Count;i++) {
                     var word=result.revisit[i]; Button chip=null;
-                    chip=PushButton(resultCard,word.lemko,new Vector2(-110+i*200,-118),new Vector2(186,44),Look.Peach,()=> {
+                    chip=PushButton(resultCard,word.lemko,new Vector2(-110+i*200,-90),new Vector2(186,44),Look.Peach,()=> {
                         session.audioService.Play(word.pronunciation);
                         session.tooltip.RevealNow(this,word,Juice.UiToScreen((RectTransform)chip.transform)); StopCoroutine(nameof(HideHint)); StartCoroutine(nameof(HideHint));
                     },20);
@@ -59,11 +53,6 @@ namespace Lemko
             yield return new WaitForSecondsRealtime(delay);
             if(!star) yield break;
             Juice.Sparkle(Juice.UiToScreen(star.rectTransform),10); Juice.Sound("star",1+index*.12f);
-        }
-        IEnumerator CountUp(TMP_Text label,int target)
-        {
-            if(!GameSession.ReducedMotion) for(float t=0;t<1;t+=Time.unscaledDeltaTime/.9f) { if(!label) yield break; label.text=Mathf.RoundToInt(target*(1-(1-t)*(1-t)))+" points"; yield return null; }
-            if(label) { label.text=target+" points"; Juice.Punch(label.transform,.12f,.25f); }
         }
 
         // ---------- village ----------
@@ -91,7 +80,8 @@ namespace Lemko
             var view=session.storyView;
             foreach(var text in new[]{view.title,view.introduction,view.status,session.modeDescription,session.villageStatus}) if(text) text.gameObject.SetActive(false);
             foreach(var button in root.GetComponentsInChildren<Button>(true)) if(button.name=="Village") button.gameObject.SetActive(false);
-            if(session.modeButton) Corner((RectTransform)session.modeButton.transform,new Vector2(516,-318));
+            // One way to play: mistakes never block the game, so there is no mode switch.
+            if(session.modeButton) session.modeButton.gameObject.SetActive(false);
             if(session.villagePanel) {
                 var journal=session.villagePanel.transform.Find("Word journal");
                 if(journal) { journalLabel=journal.GetComponentInChildren<TMP_Text>(true); Corner((RectTransform)journal,new Vector2(-516,-318)); }
