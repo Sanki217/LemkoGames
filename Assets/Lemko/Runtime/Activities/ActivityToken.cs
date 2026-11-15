@@ -26,7 +26,25 @@ namespace Lemko
             backing.color=visible ? Look.Paper : Look.Brick;
         }
         public void Click() => clicked?.Invoke(this);
-        public void Available(bool value) { foreach(var r in GetComponentsInChildren<Renderer>()) r.enabled=value; foreach(var c in GetComponentsInChildren<Collider2D>()) c.enabled=value; }
+        // Hiding a token remembers what was showing, so bringing it back does not also switch on parts that were
+        // meant to stay off (such as the picture frame behind a letter tile).
+        readonly System.Collections.Generic.List<Behaviour> hiddenParts=new System.Collections.Generic.List<Behaviour>();
+        readonly System.Collections.Generic.List<Renderer> hiddenRenderers=new System.Collections.Generic.List<Renderer>();
+        bool hidden;
+        public void Available(bool value)
+        {
+            if(value==!hidden) return;
+            if(!value) {
+                hiddenRenderers.Clear(); hiddenParts.Clear();
+                foreach(var r in GetComponentsInChildren<Renderer>(true)) if(r.enabled) { hiddenRenderers.Add(r); r.enabled=false; }
+                foreach(var c in GetComponentsInChildren<Collider2D>(true)) if(c.enabled) { hiddenParts.Add(c); c.enabled=false; }
+            } else {
+                foreach(var r in hiddenRenderers) if(r) r.enabled=true;
+                foreach(var c in hiddenParts) if(c) c.enabled=true;
+                hiddenRenderers.Clear(); hiddenParts.Clear();
+            }
+            hidden=!value;
+        }
         void OnDisable() { clicked=null; }
     }
 }
