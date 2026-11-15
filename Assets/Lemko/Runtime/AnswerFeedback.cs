@@ -26,10 +26,7 @@ namespace Lemko
             float elapsed=0; Color tint=message.color;
             while(elapsed<duration) {
                 float t=elapsed/Mathf.Max(.1f,duration);
-                // A small single pulse, with no shaking or flashing.
-                float scale=1+Mathf.Sin(t*Mathf.PI)*scaleAmount;
-                message.transform.localScale=messageScale*scale;
-                if(correct) hud.transform.localScale=hudScale*scale;
+                // The colour settles back; nothing is enlarged, so the pixels around the text stay put.
                 message.color=Color.Lerp(tint,originalColor,t);
                 elapsed+=Time.unscaledDeltaTime; yield return null;
             }

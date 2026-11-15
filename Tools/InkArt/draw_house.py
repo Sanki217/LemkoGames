@@ -653,12 +653,38 @@ def make():
         c = Sp(400 + i); room(c, w, fl, things, tiles); c.out(ACT, 'room_' + name)
 
 
+# Sizes of the pieces once they stand in a room (the House game lists the same groups): a bed is not the size of a spoon.
+LONG = {'furniture_bed', 'house_sofa', 'house_bathtub', 'house_carpet'}
+LARGE = {'furniture_wardrobe', 'furniture_table', 'house_refrigerator', 'house_fireplace', 'house_stove', 'house_cabinet', 'house_washing_machine',
+         'house_shelf', 'house_sink'}
+SMALL = {'house_mug', 'house_plate', 'house_bowl', 'house_glass', 'house_jug', 'house_spoon', 'house_fork', 'house_knife', 'house_soap', 'house_shampoo',
+         'house_toothbrush', 'house_toothpaste', 'house_hairbrush', 'house_comb', 'house_can', 'house_bottle', 'house_pot', 'house_frying_pan',
+         'house_kettle', 'house_rolling_pin', 'house_pillow', 'house_tap', 'house_shoes', 'house_game', 'house_books', 'house_small_lamp', 'house_radio',
+         'house_clock', 'house_towel'}
+PIECES = ROOT / 'Assets/Lemko/Resources/Pieces'
+
+
+def pieces(folder=None):
+    """Pixel art only. Every piece once more at the size it has in a room, drawn at that size (never a scaled word
+    picture), so its pixels are as big as everyone else's: 36, 58, 88 or 106 pixels across."""
+    folder = Path(folder) if folder else PIECES
+    folder.mkdir(parents=True, exist_ok=True)
+    for i, (name, f) in enumerate(D.items()):
+        wid = ('furniture_' if name in ('bed', 'chair', 'table', 'wardrobe') else 'house_') + name
+        k = 2.3 if wid in LONG else 1.9 if wid in LARGE else .78 if wid in SMALL else 1.25
+        box = int(round(46 * k / 2)) * 2
+        c = Sp(300 + i); f(c)
+        c.px(box, box + 2).image().save(str(folder / (wid + '.png')), optimize=True)
+
+
 NAMES = None
 if __name__ == '__main__':
     import sk
     if len(sys.argv) > 1:
         sk.PREVIEW = sys.argv[1]
     make()
+    if ink.PIX:
+        pieces(sys.argv[1] + '/pieces' if len(sys.argv) > 1 else None)
     if len(sys.argv) > 1:
         names = [('furniture_' if n in ('bed', 'chair', 'table', 'wardrobe') else 'house_') + n for n in D] + ['room_' + r for r in 'bathroom bedroom hallway kitchen living_room'.split()]
         sheet(names[:40], ACT, sys.argv[1] + '/_house1.png', cols=8, cell=170)

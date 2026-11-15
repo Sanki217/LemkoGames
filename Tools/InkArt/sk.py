@@ -20,6 +20,9 @@ SHADE = dict(white='bone', bone='sand', maroon='plum', silver='ice', ice='sky', 
              cream='sand', sand='taupe', taupe='wood', grey2='grey1', grey1='ink', skin='orange', orange='brick', brick='maroon',
              brown='plum', plum='ink', mauve='plum', wood='brown', gold='wood', yellow='gold', lime='green', green='dgreen',
              dgreen='forest', forest='slate', pine='forest', sage='pine', mint='sage', pale='mint', ink='ink', pink='rose', rose='maroon')
+# what a cast shadow turns a colour into in pixel art: one gentle step, where SHADE would jump too far
+CAST = dict(sage='green', mint='sage', pale='mint', green='dgreen', cream='sand', sand='taupe', taupe='wood', white='bone', bone='sand',
+            silver='grey2', ice='silver', pink='rose', skin='taupe', yellow='gold', gold='wood')
 LW = 7.0
 ink.PALNAMES.update(PAL)
 ROOT = Path(__file__).resolve().parents[2]
@@ -62,7 +65,7 @@ class Sp(Canvas):
             cr.save(); cr.clip()
             if dark:
                 self._path([(x - sx * k, y - sy * k) for x, y in p], True); cr.set_source_rgb(*rgb(col(fill))); cr.fill()
-            if (shine if shine is not None else (big > 56 and fill not in ('white', 'cream', 'bone', 'ink', 'pale', 'skin'))):
+            if not ink.PIX and (shine if shine is not None else (big > 56 and fill not in ('white', 'cream', 'bone', 'ink', 'pale', 'skin'))):
                 L = max(6, min(13, big * .11))
                 cr.set_source_rgb(*mix(col(fill), '#fff6da', .5)); cr.set_line_width(3.2 + big * .012)
                 for fx, fy in ((.31, .19), (.19, .34)):
@@ -74,7 +77,7 @@ class Sp(Canvas):
         else:
             cr.new_path()
         if w:
-            self.pen(p, w, color)
+            (self.edge if fill else self.pen)(p, w, color)
         return p
 
     def blobp(self, pts, fill='white', rounds=3, **k):
@@ -85,6 +88,13 @@ class Sp(Canvas):
         """Several shapes fused into one silhouette with a single outline around all of them.
         shapes: list of (points, fill, keyword arguments for poly)."""
         hs = [self.hand(p) for p, f, k in shapes]
+        if ink.PIX:
+            for h, (p, f, k) in zip(hs, shapes):
+                self.poly(h, f, w=0, raw=True, **k)
+            for i, h in enumerate(hs):
+                self._path(h, True, add=i > 0)
+            self.c.outline(col('ink'))
+            return
         for h in hs:
             self.pen(h, LW * 2)
         for h, (p, f, k) in zip(hs, shapes):
@@ -152,6 +162,8 @@ class Sp(Canvas):
         """The plain dark oval eye of the characters (the reference has no highlight dots)."""
         if shut:
             self.arc(x, y + 2, rx, 200, 340, 5, ry=ry * .7); return
+        if ink.PIX:
+            self.c.block(x, y, rx, ry, col('ink')); return
         self.fe(x, y, rx, ry, 'ink')
 
     def mouth(self, x, y, w=9, lw=4):
@@ -164,6 +176,8 @@ class Sp(Canvas):
     def blush(self, x, y, r=7, color='rose'):
         """Cheek: a soft oval with three little hatch strokes, as in the reference."""
         self.fe(x, y, r, r * .68, color)
+        if ink.PIX:
+            return
         cr = self.c; cr.set_source_rgb(*rgb(col(SHADE.get(color, 'maroon')))); cr.set_line_width(max(1.6, r * .22))
         for i in (-1, 0, 1):
             cr.move_to(x + i * r * .5 - r * .14, y + r * .32); cr.line_to(x + i * r * .5 + r * .14, y - r * .32); cr.stroke()
@@ -180,9 +194,23 @@ class Sp(Canvas):
         """Small patch of ground under scenery."""
         return self.poly([(x0, y), (x0 + 26, y - 14), ((x0 + x1) / 2, y - 20), (x1 - 22, y - 12), (x1, y), (x1 - 14, y + 16), (x0 + 14, y + 16)], fill, step=12)
 
+    def px(self, box=46, frame=48, **k):
+        """The drawing as pixel art: scaled so that it fills a box x box square in the middle of a frame x frame picture.
+        Word pictures are 48 pixels: 1.2 world units at the game's 40 pixels per unit."""
+        x0, y0, x1, y1 = self.c.bounds()
+        s = min(box / (x1 - x0), box / (y1 - y0))
+        w, h = (x1 - x0) * s, (y1 - y0) * s
+        m = cairo.Matrix(s, 0, 0, s, round((frame - w) / 2) - x0 * s, round((frame - h) / 2) - y0 * s)
+        return self.pixels(frame, frame, m, **k)
+
     def out(self, folder, name, fit=.94):
-        """Crop to the drawing, scale it to fill the frame, and save a 512 px picture."""
+        """Crop to the drawing, scale it to fill the frame, and save the picture (512 px smooth, or 48 px pixel art)."""
         from PIL import Image
+        if ink.PIX:
+            target = Path(PREVIEW) if PREVIEW else folder
+            res = self.px(**getattr(self, 'pixopts', {})).image()
+            res.save(target / ('sprite_' + name + '.png'), optimize=True)
+            return res
         buf = io.BytesIO(); self.surface.write_to_png(buf); buf.seek(0)
         im = Image.open(buf).convert('RGBA')
         box = im.getchannel('A').point(lambda v: 255 if v > 8 else 0).getbbox()
@@ -225,6 +253,10 @@ def sheet(names, folder, path, cols=8, cell=150, bg='#f9f0cc'):
     rows = (len(names) + cols - 1) // cols
     sh = Image.new('RGB', (cols * cell, rows * cell), bg)
     for k, n in enumerate(names):
-        im = Image.open(target / ('sprite_' + n + '.png')).convert('RGBA').resize((cell - 10, cell - 10), Image.Resampling.LANCZOS)
-        sh.paste(im, ((k % cols) * cell + 5, (k // cols) * cell + 5), im)
+        im = Image.open(target / ('sprite_' + n + '.png')).convert('RGBA')
+        if ink.PIX:
+            z = max(1, (cell - 10) // im.width); im = im.resize((im.width * z, im.height * z), Image.Resampling.NEAREST)
+        else:
+            im = im.resize((cell - 10, cell - 10), Image.Resampling.LANCZOS)
+        sh.paste(im, ((k % cols) * cell + (cell - im.width) // 2, (k // cols) * cell + (cell - im.height) // 2), im)
     sh.save(path)

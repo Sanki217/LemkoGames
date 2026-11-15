@@ -28,6 +28,7 @@ namespace Lemko
             Theme(); BuildHud(); BuildFlow();
             if(InVillage) BuildVillage();
             foreach(var button in root.GetComponentsInChildren<Button>(true)) if(!button.GetComponent<JuicyButton>()) button.gameObject.AddComponent<JuicyButton>();
+            Crisp();
             built=true;
             if(pendingResult!=null) { var r=pendingResult; pendingResult=null; ShowResult(r); }
         }
@@ -40,6 +41,8 @@ namespace Lemko
         }
         Image Picture(Transform parent,string name,Sprite sprite,Color color,Vector2 position,Vector2 size,bool sliced=false)
         {
+            // Pictures stand on whole pixels, and a card's sides are an even number of them, so its outline stays crisp.
+            position=Pixels.SnapUi(position); if(sliced && size!=Vector2.zero) size=Pixels.EvenUi(size);
             var image=Box(parent,name,position,size).gameObject.AddComponent<Image>(); image.sprite=sprite; image.color=color; image.raycastTarget=false;
             if(sliced) image.type=Image.Type.Sliced; return image;
         }
@@ -61,18 +64,49 @@ namespace Lemko
             colors.selectedColor=Color.white; colors.disabledColor=new Color(.82f,.82f,.82f,.55f); colors.colorMultiplier=1; control.colors=colors;
         }
 
+        // ---------- pixels ----------
+        // The scenes were laid out for smooth pictures that were stretched to fit. Pixel art is shown at its own size:
+        // every backdrop is the whole 640 x 360 picture, so it sits in the middle of the view at scale one.
+        static void Unscale()
+        {
+            foreach(var picture in FindObjectsByType<SpriteRenderer>(FindObjectsInactive.Include,FindObjectsSortMode.None)) {
+                string n=picture.name; var t=picture.transform;
+                if(n=="Editable background" || n=="Illustrated village map" || n.EndsWith("Shop Background")) { t.position=new Vector3(0,0,t.position.z); t.localScale=Vector3.one; t.localRotation=Quaternion.identity; }
+                else if(n=="Ready and hover highlight" || n.StartsWith("Contribution ")) {
+                    // At full size two of the village's gifts would stand on a roof: they move onto the grass beside it.
+                    if(n=="Contribution Farm") t.position=new Vector3(-.75f,1.05f,t.position.z);
+                    else if(n=="Contribution Numbers") t.position=new Vector3(-2.45f,-2.05f,t.position.z);
+                    Pixels.Native(t);
+                }
+            }
+        }
+        // Interface pictures are pixel art too. At a whole-number size an interface unit can be one and a half screen
+        // pixels (1080p), so a card that starts on an odd unit would have ragged edges: every such picture is moved
+        // onto whole screen pixels, and nine-slice cards get an even size. Done once, behind the scene cover.
+        void Crisp()
+        {
+            Canvas.ForceUpdateCanvases();
+            foreach(var image in root.GetComponentsInChildren<Image>(true)) {
+                if(!image.sprite || !image.sprite.texture || image.sprite.texture.filterMode!=FilterMode.Point) continue;
+                var rect=image.rectTransform;
+                if(rect.anchorMin==rect.anchorMax && image.type==Image.Type.Sliced) rect.sizeDelta=new Vector2(Mathf.Max(Pixels.Ui,Pixels.SnapUi(rect.sizeDelta.x)),Mathf.Max(Pixels.Ui,Pixels.SnapUi(rect.sizeDelta.y)));
+                Pixels.Seat(rect);
+            }
+        }
+
         // ---------- theme ----------
         static bool Purple(Color c)=>c.b>c.r+.15f && c.b>c.g+.15f;
         static bool Light(Color c)=>Mathf.Min(c.r,Mathf.Min(c.g,c.b))>.8f;
         static bool SkyScene() { string n=UnityEngine.SceneManagement.SceneManager.GetActiveScene().name; return n=="Farm" || n=="FamilyTree" || n=="Weather" || n=="Memory" || n=="Alphabet"; }
         void Theme()
         {
-            if(Camera.main) Camera.main.backgroundColor=InVillage ? Look.Grass : SkyScene() ? Look.Mint : Look.Peach;   // matches the top edge of each backdrop
+            if(Camera.main) Camera.main.backgroundColor=Look.Night;   // only seen around the picture, as part of the dark frame
+            Unscale();
             foreach(var image in root.GetComponentsInChildren<Image>(true)) {
                 string n=image.name; var c=image.color;
                 if(n=="Clean top bar") { image.color=Color.clear; image.raycastTarget=false; continue; }   // the HUD floats over the picture
                 if(n=="Illustration" || n=="Picture" || n=="Handle" || c.a<.05f) continue;
-                if(n=="Modal input blocker") { image.color=Look.Alpha(Look.Ink,.55f); continue; }
+                if(n=="Modal input blocker") { image.sprite=null; image.color=Look.Alpha(Look.Ink,.55f); continue; }   // a plain veil, without a card's cut corners
                 if(n=="Click or tap anywhere") { image.color=Look.Mint; continue; }
                 var control=image.GetComponent<Selectable>();
                 if(control is Button) {
@@ -111,18 +145,19 @@ namespace Lemko
         void BuildHud()
         {
             hudRow=Box(root,"Icon HUD",new Vector2(0,320),new Vector2(1280,60)); hudRow.SetSiblingIndex(session.hud.transform.GetSiblingIndex()+1);
-            heartsPill=Picture(hudRow,"Hearts",Look.Pill,Look.Paper,Vector2.zero,new Vector2(160,40),true);
-            for(int i=0;i<Mathf.Min(8,session.shop ? session.shop.startingLives : 5);i++) hearts.Add(Picture(heartsPill.transform,"Heart",Look.Heart,Look.Brick,Vector2.zero,new Vector2(24,24)));
-            pipsPill=Picture(hudRow,"Progress",Look.Pill,Look.Paper,Vector2.zero,new Vector2(160,40),true);
-            for(int i=0;i<12;i++) pips.Add(Picture(pipsPill.transform,"Pip",Look.Dot,Look.Empty,Vector2.zero,new Vector2(18,18)));
-            scorePill=Picture(hudRow,"Score",Look.Pill,Look.Paper,Vector2.zero,new Vector2(140,40),true);
-            Picture(scorePill.transform,"Star",Look.Star,Look.Honey,new Vector2(-46,0),new Vector2(28,28));
+            // Every icon is shown at its own size (two interface units per pixel) and every tag has even sides.
+            heartsPill=Picture(hudRow,"Hearts",Look.Chip,Look.Paper,Vector2.zero,new Vector2(160,40),true);
+            for(int i=0;i<Mathf.Min(8,session.shop ? session.shop.startingLives : 5);i++) hearts.Add(Picture(heartsPill.transform,"Heart",Look.Heart,Look.Brick,Vector2.zero,Pixels.UiSize(Look.Heart)));
+            pipsPill=Picture(hudRow,"Progress",Look.Chip,Look.Paper,Vector2.zero,new Vector2(160,40),true);
+            for(int i=0;i<12;i++) pips.Add(Picture(pipsPill.transform,"Pip",Look.Dot,Look.Empty,Vector2.zero,Pixels.UiSize(Look.Dot)));
+            scorePill=Picture(hudRow,"Score",Look.Chip,Look.Paper,Vector2.zero,new Vector2(140,40),true);
+            Picture(scorePill.transform,"Star",Look.Star,Look.Honey,new Vector2(-46,0),Pixels.UiSize(Look.Star));
             scoreText=Label(scorePill.transform,"Points","0",22,Look.Ink,new Vector2(14,1),new Vector2(96,34));
-            bonusRing=Picture(scorePill.transform,"Quick bonus",Look.Dot,Look.Honey,new Vector2(88,0),new Vector2(26,26));
+            bonusRing=Picture(scorePill.transform,"Quick bonus",Look.Disc(12),Look.Honey,new Vector2(88,0),Pixels.UiSize(Look.Disc(12)));
             bonusRing.type=Image.Type.Filled; bonusRing.fillMethod=Image.FillMethod.Radial360; bonusRing.fillOrigin=(int)Image.Origin360.Top; bonusRing.fillClockwise=false;
-            streakPill=Picture(hudRow,"Streak",Look.Pill,Look.Honey,Vector2.zero,new Vector2(74,40),true);
+            streakPill=Picture(hudRow,"Streak",Look.Chip,Look.Honey,Vector2.zero,new Vector2(76,40),true);
             streakText=Label(streakPill.transform,"Multiplier","x2",22,Look.Ink,new Vector2(0,1),new Vector2(70,34));
-            goldenPill=Picture(hudRow,"Golden word",Look.Pill,Look.Honey,Vector2.zero,new Vector2(170,40),true);
+            goldenPill=Picture(hudRow,"Golden word",Look.Chip,Look.Honey,Vector2.zero,new Vector2(172,40),true);
             Label(goldenPill.transform,"Label","Golden word x2",17,Look.Ink,new Vector2(0,1),new Vector2(160,34));
             RefreshHud(true);
         }
@@ -142,18 +177,18 @@ namespace Lemko
             if(force || lives!=shownLives) {
                 if(!force && lives>=0 && lives<shownLives && lives<hearts.Count) { Juice.Shake(heartsPill.transform,8); Juice.Sound("heart"); }
                 shownLives=lives; heartsPill.gameObject.SetActive(lives>=0);
-                for(int i=0;i<hearts.Count;i++) { hearts[i].color=i<lives ? Look.Brick : Look.Empty; hearts[i].rectTransform.anchoredPosition=new Vector2((i-(hearts.Count-1)*.5f)*27,0); }
-                heartsPill.rectTransform.sizeDelta=new Vector2(hearts.Count*27+24,40);
+                for(int i=0;i<hearts.Count;i++) { hearts[i].color=i<lives ? Look.Brick : Look.Empty; hearts[i].rectTransform.anchoredPosition=new Vector2((i-(hearts.Count-1)*.5f)*28,0); }
+                heartsPill.rectTransform.sizeDelta=new Vector2(hearts.Count*28+24,40);
             }
             if(force || total!=shownPips || filled!=shownFilled) {
                 bool lantern=InVillage;
                 for(int i=0;i<pips.Count;i++) {
                     pips[i].gameObject.SetActive(i<total); if(i>=total) continue;
-                    pips[i].sprite=lantern ? Look.Lantern : Look.Dot; pips[i].rectTransform.sizeDelta=lantern ? new Vector2(18,24) : new Vector2(18,18);
+                    pips[i].sprite=lantern ? Look.Lantern : Look.Dot; pips[i].rectTransform.sizeDelta=Pixels.UiSize(pips[i].sprite);
                     pips[i].color=i<filled ? (lantern ? Look.Honey : Look.Good) : Look.Empty; pips[i].rectTransform.anchoredPosition=new Vector2((i-(total-1)*.5f)*24,0);
                     if(!force && i<filled && i>=shownFilled) Juice.Punch(pips[i].transform,.6f,.35f);
                 }
-                shownPips=total; shownFilled=filled; pipsPill.gameObject.SetActive(total>0); pipsPill.rectTransform.sizeDelta=new Vector2(total*24+26,40);
+                shownPips=total; shownFilled=filled; pipsPill.gameObject.SetActive(total>0); pipsPill.rectTransform.sizeDelta=new Vector2(total*24+28,40);
             }
             targetScore=points; if(force || !playing) shownScore=points;
             scorePill.gameObject.SetActive(playing || InVillage);
@@ -165,11 +200,11 @@ namespace Lemko
             float bonus=Activity ? Activity.QuickBonus : 0; bonusRing.gameObject.SetActive(bonus>0); bonusRing.fillAmount=bonus;
             bool golden=Activity && Activity.GoldenTask && !Activity.Locked; if(golden!=goldenPill.gameObject.activeSelf) { goldenPill.gameObject.SetActive(golden); if(golden) Juice.Pop(goldenPill.transform); }
             // Lay the visible pills out from the left edge.
-            float x=-622;
+            float x=-624;
             foreach(var pill in new[]{heartsPill,pipsPill,scorePill,streakPill,goldenPill}) {
                 if(!pill.gameObject.activeSelf) continue;
-                float w=pill.rectTransform.sizeDelta.x+(pill==scorePill && bonusRing.gameObject.activeSelf ? 30 : 0);
-                pill.rectTransform.anchoredPosition=new Vector2(x+pill.rectTransform.sizeDelta.x*.5f,0); x+=w+10;
+                float w=pill.rectTransform.sizeDelta.x+(pill==scorePill && bonusRing.gameObject.activeSelf ? 32 : 0);
+                pill.rectTransform.anchoredPosition=new Vector2(x+pill.rectTransform.sizeDelta.x*.5f,0); x+=w+8;
             }
         }
         void LateUpdate()
@@ -217,8 +252,9 @@ namespace Lemko
                 if(headlineCard.gameObject.activeSelf!=show) headlineCard.gameObject.SetActive(show);
                 if(show) {
                     var box=headline.rectTransform.sizeDelta;
-                    headlineCard.rectTransform.sizeDelta=new Vector2(Mathf.Clamp(headline.preferredWidth+64,220,box.x+40),Mathf.Clamp(headline.preferredHeight+20,54,130));
-                    headlineCard.rectTransform.anchoredPosition=headline.rectTransform.anchoredPosition;
+                    // Sides of whole pixels around a middle on a whole pixel, so the card's outline stays crisp.
+                    headlineCard.rectTransform.sizeDelta=Pixels.EvenUi(new Vector2(Mathf.Clamp(headline.preferredWidth+64,220,box.x+40),Mathf.Clamp(headline.preferredHeight+20,54,130)));
+                    headlineCard.rectTransform.anchoredPosition=Pixels.SnapUi(headline.rectTransform.anchoredPosition);
                 }
             }
             if(hintButton) {

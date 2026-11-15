@@ -33,6 +33,7 @@ NAVY = '#4a4b70'
 ORANGE = '#e68f4b'
 PALNAMES = {}          # sk fills this in so pen() understands palette names
 LWK = 1.75             # every outline is this much thicker than the first, thin version
+PIX = True             # draw pixel art (see pix.py); False draws the earlier smooth ink pictures
 
 
 def rgb(h):
@@ -40,14 +41,46 @@ def rgb(h):
     return tuple(int(h[i:i + 2], 16) / 255 for i in (0, 2, 4))
 
 
+def soften(px, line='#b9764a', haze='#f9f0cc', amount=.1):
+    """Backdrops stand back: their dark lines turn orange-brown and every colour moves a little towards cream,
+    so the dark-outlined game pieces in front stand out. Works colour by colour, so the picture stays on a palette."""
+    import numpy as np, pix
+    table = {}
+    hz = rgb(haze)
+    for v in np.unique(px.rgb[px.solid]):
+        v = int(v)
+        c = rgb(line) if v == pix.pack(INK) else ((v >> 16 & 255) / 255, (v >> 8 & 255) / 255, (v & 255) / 255)
+        r, g, b = (int(round((c[i] + (hz[i] - c[i]) * amount) * 255)) for i in range(3))
+        table[v] = (r << 16) | (g << 8) | b
+    return pix.remap(px, table)
+
+
+def save_pixels(c, path, soft=True, k=1 / 3, frame=None, shift=(0, 0), **opts):
+    """Save a backdrop as pixel art. k is pixels per drawing unit: a third for the 1920 x 1080 pictures, which gives
+    the game's 640 x 360 screen at 40 pixels per world unit. Sizes are kept even so a centred picture sits on the grid."""
+    import cairo as _cairo
+    if frame is None:
+        frame = tuple(int(math.ceil(v * k / 2 - 1e-6)) * 2 for v in (c.w, c.h))
+    opts.setdefault('thin_ink', 3.4); opts.setdefault('thin', 1.8)
+    px = c.pixels(frame[0], frame[1], _cairo.Matrix(k, 0, 0, k, shift[0], shift[1]), open_edges=False, **opts)
+    if soft:
+        px = soften(px)
+    px.image().convert('RGB').save(path)
+    return px
+
+
 class Canvas:
     def __init__(self, w, h, scale=2, bg=PAPER, seed=7, ysquash=1.0):
         """w,h are logical pixels. ysquash stretches the drawing vertically for sprites
         that the scene shows squashed (the village map is shown at 0.8 height)."""
         self.w, self.h, self.s = w, h, scale
-        self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, int(w * scale), int(h * scale * ysquash))
-        self.c = cairo.Context(self.surface)
-        self.c.scale(scale, scale * ysquash)
+        if PIX:
+            import pix
+            self.c = pix.Recorder(w, h); self.surface = self.c.surface
+        else:
+            self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, int(w * scale), int(h * scale * ysquash))
+            self.c = cairo.Context(self.surface)
+            self.c.scale(scale, scale * ysquash)
         self.c.set_line_cap(cairo.LINE_CAP_ROUND)
         self.c.set_line_join(cairo.LINE_JOIN_ROUND)
         self.r = random.Random(seed)
@@ -66,7 +99,7 @@ class Canvas:
 
     def hand(self, pts, closed=True, amp=None):
         """An outline as a hand would draw it: long edges get extra points and every point strays a little."""
-        amp = self.wob if amp is None else amp
+        amp = 0 if PIX else self.wob if amp is None else amp      # pixel art keeps its edges clean
         p = list(pts); n = len(p)
         out = []
         for i in (range(n) if closed else range(n - 1)):
@@ -96,17 +129,30 @@ class Canvas:
         cr = self.c
         cr.set_source_rgb(*rgb(PALNAMES.get(color, color)))
         self._path(p, closed); cr.set_line_width(w * .88); cr.stroke()
-        if w >= 3:
+        if w >= 3 and not PIX:
             cr.save(); cr.translate(w * .09, w * .12); self._path(p, closed); cr.set_line_width(w * .66); cr.stroke(); cr.restore()
 
-    def _path(self, pts, closed=False, rad=None):
-        """Polyline with every corner rounded."""
+    def edge(self, p, w, color='ink'):
+        """Outline of a shape that has just been filled. Pixel art gives it a one pixel edge instead of a pen stroke."""
+        if PIX:
+            self._path(p, True); self.c.outline(PALNAMES.get(color, color))
+        else:
+            self.pen(p, w, color)
+
+    def pixels(self, W, H, matrix, **k):
+        """The picture as pixel art on a W x H grid; matrix maps the drawing's units to pixels."""
+        import pix, sk
+        return pix.render(self.c.ops, W, H, matrix, sk.PAL, sk.SHADE, cast=sk.CAST, **k)
+
+    def _path(self, pts, closed=False, rad=None, add=False):
+        """Polyline with every corner rounded. add=True keeps the path built so far (several outlines in one)."""
         c = self.c
         r = self.rad if rad is None else rad
         pts = [p for i, p in enumerate(pts) if i == 0 or math.hypot(p[0] - pts[i - 1][0], p[1] - pts[i - 1][1]) > .01]
         if closed and len(pts) > 1 and math.hypot(pts[0][0] - pts[-1][0], pts[0][1] - pts[-1][1]) < .01:
             pts = pts[:-1]
-        c.new_path()
+        if not add:
+            c.new_path()
         n = len(pts)
         if n < 3 or r <= 0:
             c.move_to(*pts[0])
@@ -143,7 +189,7 @@ class Canvas:
             self.c.set_source_rgb(*rgb(fill)); self.c.fill()
         self.c.new_path()
         if w:
-            self.pen(p, w * LWK, color)
+            (self.edge if fill else self.pen)(p, w * LWK, color)
         return p
 
     def flat(self, pts, fill, alpha=1.0):
@@ -151,10 +197,12 @@ class Canvas:
         self._path(pts, True); self.c.set_source_rgba(*rgb(fill), alpha); self.c.fill()
 
     def shadow(self, pts):
+        if PIX:
+            self._path(pts, True); self.c.shade(); return
         self.flat(pts, SHADOW, .45)
 
     def sh_oval(self, cx, cy, rx, ry):
-        self.flat([(cx + math.cos(6.2832 * i / 30) * rx, cy + math.sin(6.2832 * i / 30) * ry) for i in range(30)], SHADOW, .45)
+        self.shadow([(cx + math.cos(6.2832 * i / 30) * rx, cy + math.sin(6.2832 * i / 30) * ry) for i in range(30)])
 
     def blob(self, cx, cy, rx, ry, fill=WHITE, w=2.6, bumps=9, lump=.16, amp=.8, color=INK):
         """A lumpy closed outline: tree crowns, bushes, clouds, stones."""

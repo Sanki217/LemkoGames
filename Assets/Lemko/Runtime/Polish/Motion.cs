@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Lemko
 {
-    // Layered, transient motion for one transform. Effects multiply the resting scale and add to the resting
-    // position, so game code may keep setting scale and position while an effect plays. Presentation only.
+    // Layered, transient motion for one transform. The game is pixel art, so nothing is ever stretched: every effect
+    // is a small move in whole picture pixels (a hop, a nudge, a shake) added to the resting position, and game code
+    // may keep setting the position while an effect plays. Presentation only.
     public sealed class Motion : MonoBehaviour
     {
         public enum Kind { Pop, Punch, Squash, Shake, Hop, Travel, Flip, Bob, Breathe, Drop }
@@ -17,7 +18,7 @@ namespace Lemko
             if(loop) effects.RemoveAll(e=>e.kind==kind);
             effects.Add(new Effect { kind=kind, start=Time.unscaledTime+delay, duration=Mathf.Max(.01f,duration), amount=amount, from=from, mid=mid, loop=loop });
             enabled=true;
-            if(kind==Kind.Pop) LateUpdate(); // hide at once, so nothing shows at full size before its turn
+            if(kind==Kind.Pop) LateUpdate(); // hide at once, so nothing shows before its turn
         }
         public void Stop(Kind kind) { effects.RemoveAll(e=>e.kind==kind); }
         void Capture()
@@ -29,30 +30,40 @@ namespace Lemko
         void LateUpdate()
         {
             Capture();
-            var scale=Vector3.one; var offset=Vector3.zero; float now=Time.unscaledTime;
+            // One picture pixel: a fortieth of a unit in the world, two units in the interface.
+            float px=transform is RectTransform ? Pixels.Ui : Pixels.Unit;
+            bool hidden=false; var offset=Vector3.zero; float now=Time.unscaledTime;
             for(int i=effects.Count-1;i>=0;i--) {
                 var e=effects[i]; float t=(now-e.start)/e.duration;
-                if(t<0) { if(e.kind==Kind.Pop) scale=Vector3.zero; continue; }
+                if(t<0) { if(e.kind==Kind.Pop) hidden=true; continue; }
                 if(t>=1 && !e.loop) { if(e.mid!=null && !e.midDone) { e.midDone=true; e.mid(); } effects.RemoveAt(i); continue; }
                 switch(e.kind) {
-                    case Kind.Pop: scale*=BackOut(t); break;
-                    case Kind.Punch: scale*=1+e.amount*Mathf.Sin(t*Mathf.PI); break;
-                    case Kind.Squash: { float s=e.amount*Mathf.Sin(t*Mathf.PI*2)*(1-t); scale=Vector3.Scale(scale,new Vector3(1+s,1-s,1)); break; }
-                    case Kind.Shake: offset.x+=e.amount*Mathf.Sin(t*Mathf.PI*6)*(1-t); break;
-                    case Kind.Hop: offset.y+=e.amount*4*t*(1-t); break;
-                    case Kind.Travel: { float k=1-Mathf.Pow(1-t,3); offset+=(e.from-restPosition)*(1-k)+Vector3.up*(e.amount*Mathf.Sin(t*Mathf.PI)); scale*=1+.09f*Mathf.Sin(t*Mathf.PI); break; }
+                    // Appears a few pixels up and settles into place.
+                    case Kind.Pop: offset.y+=px*Mathf.Round(4*(1-t)*(1-t)); break;
+                    // A quick nod upwards: one to four pixels, by strength.
+                    case Kind.Punch: offset.y+=px*Mathf.Round(Mathf.Clamp(e.amount*12,1,4)*Mathf.Sin(t*Mathf.PI)); break;
+                    // Pressed down by a pixel.
+                    case Kind.Squash: offset.y-=px*Mathf.Round(Mathf.Sin(t*Mathf.PI)); break;
+                    case Kind.Shake: offset.x+=Whole(e.amount*Mathf.Sin(t*Mathf.PI*6)*(1-t),px); break;
+                    case Kind.Hop: offset.y+=Whole(e.amount*4*t*(1-t),px); break;
+                    case Kind.Travel: {
+                        float k=1-Mathf.Pow(1-t,3); var d=(e.from-restPosition)*(1-k)+Vector3.up*(e.amount*Mathf.Sin(t*Mathf.PI));
+                        offset+=new Vector3(Whole(d.x,px),Whole(d.y,px),0); break; }
+                    // A card turns over with a little jump; the faces swap at the top of it.
                     case Kind.Flip:
                         if(t>=.5f && !e.midDone) { e.midDone=true; e.mid?.Invoke(); Capture(); }
-                        scale.x*=Mathf.Max(.02f,Mathf.Abs(Mathf.Cos(t*Mathf.PI))); break;
-                    case Kind.Bob: offset.y+=e.amount*Mathf.Sin(t*Mathf.PI*2); break;
-                    case Kind.Breathe: scale*=1+e.amount*(.5f+.5f*Mathf.Sin(t*Mathf.PI*2)); break;
-                    case Kind.Drop: offset.y+=e.amount*(1-BounceOut(t)); break;
+                        offset.y+=px*Mathf.Round(3*Mathf.Sin(t*Mathf.PI)); break;
+                    case Kind.Bob: offset.y+=Whole(e.amount*Mathf.Sin(t*Mathf.PI*2),px); break;
+                    // A slow one pixel rise and fall.
+                    case Kind.Breathe: offset.y+=px*Mathf.Round(.5f+.5f*Mathf.Sin(t*Mathf.PI*2)); break;
+                    case Kind.Drop: offset.y+=Whole(e.amount*(1-BounceOut(t)),px); break;
                 }
             }
-            transform.localScale=lastScale=Vector3.Scale(restScale,scale);
+            transform.localScale=lastScale=hidden ? Vector3.zero : restScale;
             transform.localPosition=lastPosition=restPosition+offset;
             if(effects.Count==0) { captured=false; enabled=false; }
         }
+        static float Whole(float distance,float pixel)=>Mathf.Round(distance/pixel)*pixel;
         void OnDisable()
         {
             // Finish cleanly: pending flips still turn their card, and the transform returns to rest.
@@ -60,7 +71,6 @@ namespace Lemko
             effects.Clear();
             if(captured) { transform.localScale=restScale; transform.localPosition=restPosition; captured=false; }
         }
-        static float BackOut(float t) { const float c=1.70158f; t-=1; return 1+(c+1)*t*t*t+c*t*t; }
         static float BounceOut(float t)
         {
             const float n=7.5625f, d=2.75f;

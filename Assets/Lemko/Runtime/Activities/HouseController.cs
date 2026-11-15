@@ -26,16 +26,11 @@ namespace Lemko
         // The layout lives here rather than in the scene, so the scene file needs no editing.
         static readonly Rect Floor=new Rect(-6.3f,-2.2f,12.6f,3.9f);        // where the middle of a piece may stand
         static readonly Rect DropArea=new Rect(-8f,-2.95f,16f,7.45f);       // everything above the bar
-        const float BarTop=-2.95f, BarY=-3.75f, BarStep=1.62f, BarScale=.88f, HeaderY=292;
+        const float BarTop=-2.95f, BarY=-3.75f, BarStep=1.625f, HeaderY=292;
         const int BarSize=9;
-        // Pieces come in four rough sizes once they stand in a room, so a bed is not the size of a spoon.
-        static readonly HashSet<string> Long=new HashSet<string> { "furniture_bed","house_sofa","house_bathtub","house_carpet" };
-        static readonly HashSet<string> Large=new HashSet<string> { "furniture_wardrobe","furniture_table","house_refrigerator","house_fireplace",
-            "house_stove","house_cabinet","house_washing_machine","house_shelf","house_sink" };
-        static readonly HashSet<string> Small=new HashSet<string> { "house_mug","house_plate","house_bowl","house_glass","house_jug","house_spoon","house_fork","house_knife",
-            "house_soap","house_shampoo","house_toothbrush","house_toothpaste","house_hairbrush","house_comb","house_can","house_bottle","house_pot","house_frying_pan",
-            "house_kettle","house_rolling_pin","house_pillow","house_tap","house_shoes","house_game","house_books","house_small_lamp","house_radio","house_clock","house_towel" };
-        static float Size(VocabularyEntry word)=>Long.Contains(word.id) ? 2.3f : Large.Contains(word.id) ? 1.9f : Small.Contains(word.id) ? .78f : 1.25f;
+        // Pieces come in four rough sizes once they stand in a room, so a bed is not the size of a spoon. Each size is
+        // a picture of its own in Resources/Pieces, drawn at that size (Tools/InkArt/draw_house.py lists the same groups);
+        // in the bar every piece is its ordinary 48 pixel word picture. Nothing is ever scaled.
 
         sealed class PlacedItem { public int id, room; public VocabularyEntry word; public Vector2 position; }
         readonly List<PlacedItem> placed=new List<PlacedItem>();
@@ -89,18 +84,24 @@ namespace Lemko
             drop.GetComponent<BoxCollider2D>().size=DropArea.size; drop.GetComponent<WorldDropZone>().droppedAt=Drop;
             quietSpawn=!popBar;
             for(int i=0;i<bar.Count;i++)
-                Bare(Token(bar[i],new Vector2((i-(bar.Count-1)*.5f)*BarStep,BarY),"tray",t=>PlaceAt(t.view.Entry,FreeSpot()),draggable:true),BarScale,40);
+                Bare(Token(bar[i],new Vector2((i-(bar.Count-1)*.5f)*BarStep,BarY),"tray",t=>PlaceAt(t.view.Entry,FreeSpot()),draggable:true),null,40);
             quietSpawn=!popRoom;
             foreach(var item in placed.Where(p=>p.room==room)) {
                 // Pieces lower in the room stand in front of those further up.
-                Bare(Token(item.word,item.position,"placed_"+item.id,Say,draggable:true),furnitureScale*Size(item.word),4+Mathf.RoundToInt((Floor.yMax-item.position.y)*4));
+                Bare(Token(item.word,item.position,"placed_"+item.id,Say,draggable:true),Resources.Load<Sprite>("Pieces/"+item.word.id),4+Mathf.RoundToInt((Floor.yMax-item.position.y)*4));
             }
             quietSpawn=false;
         }
         // A piece in the house is just its picture: no card behind it and no loudspeaker badge.
-        static void Bare(ActivityToken token,float scale,int order)
+        // "big" is the room-size picture of a piece that stands in the room (none for a piece in the bar).
+        static void Bare(ActivityToken token,Sprite big,int order)
         {
-            token.transform.localScale=Vector3.one*scale; token.backing.enabled=false;
+            token.backing.enabled=false;
+            if(big && token.view.worldPicture) {
+                token.view.worldPicture.sprite=big;
+                // The piece is picked up by its picture, whatever its size.
+                var size=big.bounds.size; token.GetComponent<BoxCollider2D>().size=new Vector2(Mathf.Max(.9f,size.x*.9f),Mathf.Max(.9f,size.y*.9f));
+            }
             var at=token.transform.localPosition; token.transform.localPosition=new Vector3(at.x,at.y,-.01f*order);   // the piece in front is also the one a click reaches
             if(token.view.worldSpeaker) token.view.worldSpeaker.SetActive(false);
             if(token.view.selectionMarker) token.view.selectionMarker.enabled=false;
@@ -124,21 +125,11 @@ namespace Lemko
             var layer=new GameObject(name,typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
             layer.transform.SetParent(worldRoot,false); layer.sortingOrder=order; return layer;
         }
-        // The room always fills the window, whatever its shape; the bar keeps its place under the pieces.
+        // The room is the whole 640 x 360 picture and the bar lies along its bottom edge, both at their own size.
         void Fit()
         {
-            var view=Camera.main; if(!view) return;
-            float height=view.orthographicSize*2, width=height*view.aspect;
-            if(backdrop && backdrop.sprite) {
-                var size=backdrop.sprite.bounds.size;
-                backdrop.transform.position=new Vector3(view.transform.position.x,view.transform.position.y,3);
-                backdrop.transform.localScale=Vector3.one*Mathf.Max(width/size.x,height/size.y);
-            }
-            if(shelf && shelf.sprite) {
-                var size=shelf.sprite.bounds.size;
-                shelf.transform.position=new Vector3(view.transform.position.x,BarTop-size.y*.5f,2);
-                shelf.transform.localScale=new Vector3(Mathf.Max(1,width/size.x),1,1);
-            }
+            if(backdrop && backdrop.sprite) { backdrop.transform.position=new Vector3(0,0,3); backdrop.transform.localScale=Vector3.one; }
+            if(shelf && shelf.sprite) { shelf.transform.position=new Vector3(0,Pixels.Snap(BarTop-shelf.sprite.bounds.size.y*.5f),2); shelf.transform.localScale=Vector3.one; }
         }
 
         // ---------- the screen furniture: arrows at the sides, the task along the top ----------
@@ -160,14 +151,13 @@ namespace Lemko
             var rect=(RectTransform)button.transform; rect.anchoredPosition=new Vector2(direction*590,60); rect.sizeDelta=new Vector2(64,104);
             foreach(var label in button.GetComponentsInChildren<TMP_Text>(true)) label.text="";
             var arrow=new GameObject("Chevron",typeof(RectTransform),typeof(Image)); arrow.transform.SetParent(rect,false);
-            var mark=(RectTransform)arrow.transform; mark.sizeDelta=new Vector2(44,44); mark.anchoredPosition=new Vector2(direction*2,3); mark.localScale=new Vector3(direction,1,1);
+            var mark=(RectTransform)arrow.transform; mark.sizeDelta=Pixels.UiSize(Look.Chevron); mark.anchoredPosition=new Vector2(direction*2,2); mark.localScale=new Vector3(direction,1,1);
             var image=arrow.GetComponent<Image>(); image.sprite=Look.Chevron; image.color=Look.Ink; image.raycastTarget=false;
         }
         void LateUpdate()
         {
             if(!Running || !arranged) return;
             if(submit.gameObject.activeSelf) submit.gameObject.SetActive(false);   // pieces are judged as they are set down
-            Fit();
             // "Place X" and "in Z" sit side by side along the top, followed by the loudspeaker and the light bulb.
             float first=prompt.preferredWidth, second=requestedRoomLabel.preferredWidth;
             var a=prompt.rectTransform; var b=requestedRoomLabel.rectTransform; var listen=(RectTransform)speak.transform;
@@ -175,13 +165,14 @@ namespace Lemko
             // Only when the words change, so a shake or a pulse on the task is left alone in between.
             var words=new Vector3(first,second,listen.sizeDelta.x); if(words==laidOut) return; laidOut=words;
             a.sizeDelta=new Vector2(Mathf.Max(first+24,180),56); b.sizeDelta=new Vector2(second+24,56);
-            float w1=Mathf.Max(220,first+64), w2=Mathf.Max(150,second+56), tail=14+listen.sizeDelta.x+8+52;
-            float x=-(w1+10+w2+tail)*.5f;
+            // Whole pixels throughout, so the cards keep crisp edges.
+            float w1=Pixels.EvenUi(Mathf.Max(220,first+64)), w2=Pixels.EvenUi(Mathf.Max(150,second+56)), tail=14+listen.sizeDelta.x+8+52;
+            float x=Pixels.SnapUi(-(w1+10+w2+tail)*.5f);
             a.anchoredPosition=new Vector2(x+w1*.5f,HeaderY); b.anchoredPosition=new Vector2(x+w1+10+w2*.5f,HeaderY);
             listen.anchoredPosition=new Vector2(x+w1+10+w2+14+listen.sizeDelta.x*.5f,HeaderY);
             if(roomCard) {
                 roomCard.color=Look.Paper; roomCard.rectTransform.anchoredPosition=b.anchoredPosition;
-                roomCard.rectTransform.sizeDelta=new Vector2(w2,Mathf.Clamp(prompt.preferredHeight+20,54,130));
+                roomCard.rectTransform.sizeDelta=new Vector2(w2,Pixels.EvenUi(Mathf.Clamp(prompt.preferredHeight+20,54,130)));
             }
         }
 
@@ -193,7 +184,7 @@ namespace Lemko
             if(token.Key.StartsWith("placed_") && int.TryParse(token.Key.Substring(7),out int id)) return Move(id,local);
             return token.Key=="tray" && PlaceAt(token.view.Entry,local);
         }
-        static Vector2 Clamp(Vector2 p)=>new Vector2(Mathf.Clamp(p.x,Floor.xMin,Floor.xMax),Mathf.Clamp(p.y,Floor.yMin,Floor.yMax));
+        static Vector2 Clamp(Vector2 p)=>Pixels.Snap(new Vector2(Mathf.Clamp(p.x,Floor.xMin,Floor.xMax),Mathf.Clamp(p.y,Floor.yMin,Floor.yMax)));
         // Somewhere near the front of the room that is not already taken.
         Vector2 FreeSpot()
         {

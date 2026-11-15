@@ -21,14 +21,16 @@ namespace Lemko
         public GameObject worldSpeaker;
         public Vector2 pictureBounds = new Vector2(1.5f, 1.65f);
         bool submitted;
-        Vector3 restingScale; bool hovering;
+        float lifted; bool hovering;
         GameSession owner;
         public void OnPointerEnter(PointerEventData e) { hovering=true; }
         public void OnPointerExit(PointerEventData e) { hovering=false; }
         void LateUpdate() {
             if(!worldPicture || !worldPicture.gameObject.activeInHierarchy || !owner || owner.Progress==null) return;
-            bool lift=hovering && !submitted && owner.CanAnswer && !owner.Progress.reducedMotion;
-            worldPicture.transform.localScale=Vector3.Lerp(worldPicture.transform.localScale,restingScale*(lift?1.055f:1),1-Mathf.Exp(-18*Time.unscaledDeltaTime));
+            // Pixel art is never enlarged: a picture under the pointer rises by one pixel instead. Only the change is
+            // applied, so anything else that moves the picture (a strolling animal) keeps working.
+            float lift=hovering && !submitted && owner.CanAnswer && !owner.Progress.reducedMotion ? Pixels.Unit : 0;
+            if(lift!=lifted && !(worldPicture.TryGetComponent<Motion>(out var moving) && moving.enabled)) { worldPicture.transform.localPosition+=Vector3.up*(lift-lifted); lifted=lift; }
         }
         HintPointer hint;
         [SerializeField] Color idleColor = new Color(.39f, .53f, .39f);
@@ -51,13 +53,10 @@ namespace Lemko
             if (worldPicture) {
                 worldPicture.sprite = word && word.sprite ? word.sprite : placeholderSprite;
                 worldPicture.color = word && word.sprite ? Color.white : Look.Sand;
-                if (worldPicture.sprite) {
-                    var size = worldPicture.sprite.bounds.size;
-                    float scale = Mathf.Min(pictureBounds.x / size.x, pictureBounds.y / size.y);
-                    worldPicture.transform.localScale = Vector3.one * scale;
-                }
+                // Every picture is shown at its own size: 40 pixels to a unit, like everything else in the game.
+                worldPicture.transform.localPosition-=Vector3.up*lifted; lifted=0;
+                Pixels.Native(worldPicture.transform);
             }
-            if(worldPicture) restingScale=worldPicture.transform.localScale;
             if(selectButton) { selectButton.interactable = word; selectButton.image.color = Look.Paper; }
             if(audioButton) audioButton.interactable = word && word.pronunciation;
             if(worldSpeaker) worldSpeaker.SetActive(word && word.pronunciation);
@@ -68,15 +67,17 @@ namespace Lemko
         {
             if(!worldSpeaker || worldSpeaker.transform.Find("Speaker icon")) return;
             var icon=new GameObject("Speaker icon",typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
-            icon.transform.SetParent(worldSpeaker.transform,false); icon.sprite=Look.Speaker; icon.sortingOrder=20;
+            icon.transform.SetParent(worldSpeaker.transform,false); icon.sprite=Look.SpeakerSmall; icon.sortingOrder=20;
             foreach(var text in worldSpeaker.GetComponentsInChildren<TMP_Text>(true)) {
                 icon.transform.position=text.transform.position;
                 if(text.TryGetComponent<Renderer>(out var mesh)) { icon.sortingLayerID=mesh.sortingLayerID; icon.sortingOrder=mesh.sortingOrder; mesh.enabled=false; }
                 text.text="";
             }
             float parent=Mathf.Max(.0001f,Mathf.Abs(worldSpeaker.transform.lossyScale.x));
-            icon.transform.localScale=Vector3.one*(.34f/(icon.sprite.bounds.size.x*parent));
+            icon.transform.localScale=Vector3.one/parent;   // the badge at its own pixel size
         }
+        // A picture with no card behind it wears its loudspeaker on its own corner.
+        public void SpeakerOnPicture() { if(worldSpeaker) worldSpeaker.transform.localPosition=new Vector3(.5f,.5f,worldSpeaker.transform.localPosition.z); }
         public void Select() { if (entry && !submitted && (!selectButton || selectButton.interactable)) selected?.Invoke(this); }
         public void Speak() { if (entry && audioService) audioService.Play(entry.pronunciation); }
         public void OnPointerClick(PointerEventData e) { if ((!TryGetComponent<WorldDrag>(out var drag) || !drag.BlocksClick) && worldPicture && e.button == PointerEventData.InputButton.Left && (!hint || !hint.BlocksSelection)) Select(); }

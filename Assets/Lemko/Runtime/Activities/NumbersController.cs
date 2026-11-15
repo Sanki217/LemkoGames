@@ -27,15 +27,18 @@ namespace Lemko
             var options=AvailableTasks().Select(t=>t.quantity).Distinct().Where(n=>n!=Current.quantity).ToList(); Shuffle(options);
             options=options.Take(3).ToList(); options.Add(Current.quantity); Shuffle(options); Options=options.ToArray();
             for(int i=0;i<Options.Length;i++) {
-                int n=Options[i]; var ticket=Token(Current.word,new Vector2(-4.5f+i*3,0),n.ToString(),t=>Choose(n),n.ToString(),false);
+                int n=Options[i]; var ticket=Token(Current.word,new Vector2(-4.5f+i*3,-.55f),n.ToString(),t=>Choose(n),n.ToString(),false);
                 ticket.GetComponent<HintPointer>().enabled=false; ticket.backing.color=Look.Honey;
             }
             for(int i=0;i<Mathf.Min(5,issued.Count);i++) DrawIssued(issued[issued.Count-Mathf.Min(5,issued.Count)+i],i);
             feedback.text="";
         }
+        static readonly Vector2 IssuedSize=new Vector2(.9f,.8f);
         ActivityToken DrawIssued(int number,int position) {
-            var token=Token(Current.word,new Vector2(-2.4f+position*1.2f,-1.8f),"issued",null,number.ToString(),false);
-            token.transform.localScale=Vector3.one*.45f; token.GetComponent<HintPointer>().enabled=false; token.backing.color=Look.GoodSoft;
+            var token=Token(Current.word,new Vector2(-2.4f+position*1.2f,-2.3f),"issued",null,number.ToString(),false);
+            // A ticket that has been handed out is a small card of its own, not a shrunken big one.
+            Pixels.Card(token.backing,IssuedSize); token.GetComponent<BoxCollider2D>().size=IssuedSize; token.caption.rectTransform.sizeDelta=IssuedSize-new Vector2(.15f,.15f);
+            token.GetComponent<HintPointer>().enabled=false; token.backing.color=Look.GoodSoft;
             return token;
         }
         public void Choose(int number) {

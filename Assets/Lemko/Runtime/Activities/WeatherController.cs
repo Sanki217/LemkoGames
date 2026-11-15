@@ -25,9 +25,9 @@ namespace Lemko
             temperature.onValueChanged.AddListener(TemperatureChanged); TemperatureChanged(temperature.value);
             for(int i=0;i<definition.pool.Count;i++) { var word=definition.pool[i]; Token(word,new Vector2(-1.8f+(i%3)*2.5f,.8f-(i/3)*2),"weather",t=>Choose(word)); }
             var preview=new GameObject("Outing blanket",typeof(SpriteRenderer)); preview.transform.SetParent(taskRoot,false); preview.transform.localPosition=previewPosition;
-            blanket=preview.GetComponent<SpriteRenderer>(); blanket.sprite=tokenPrefab.backing.sprite; blanket.drawMode=SpriteDrawMode.Sliced; blanket.size=new Vector2(2.4f,.85f); blanket.color=Look.Sage; blanket.sortingOrder=-1;
+            blanket=preview.GetComponent<SpriteRenderer>(); Pixels.Card(blanket,new Vector2(2.4f,.85f)); blanket.color=Look.Sage; blanket.sortingOrder=-1;
             var icon=new GameObject("Outing supplies",typeof(SpriteRenderer)); icon.transform.SetParent(preview.transform,false); supplies=icon.GetComponent<SpriteRenderer>(); supplies.sprite=outingIllustration; supplies.sortingOrder=2;
-            if(outingIllustration) icon.transform.localScale=Vector3.one*(.8f/Mathf.Max(outingIllustration.bounds.size.x,outingIllustration.bounds.size.y));
+            icon.transform.localPosition=new Vector3(0,.45f,0);   // at its own size, standing on the blanket
             icon.SetActive(false);
             feedback.text="Pick the weather and set "+Current.minTemperature+" to "+Current.maxTemperature+" °C.";
         }
@@ -42,7 +42,6 @@ namespace Lemko
         public void Choose(VocabularyEntry word) { if(!Ready || !definition.pool.Contains(word)) return; selected=word;
             if(!weatherPreview) { var go=new GameObject("Selected weather preview",typeof(SpriteRenderer)); go.transform.SetParent(taskRoot,false); go.transform.localPosition=new Vector3(-5.5f,2.05f,0); weatherPreview=go.GetComponent<SpriteRenderer>(); weatherPreview.sortingOrder=3; }
             weatherPreview.sprite=word.sprite;
-            if(word.sprite) weatherPreview.transform.localScale=Vector3.one*(1.1f/Mathf.Max(word.sprite.bounds.size.x,word.sprite.bounds.size.y));
             PresentationMotion.Pulse(weatherPreview.transform,Session);
             WeatherAmbience.Show(taskRoot,word);
             foreach(var t in tokens) if(t.Key=="weather") { t.backing.color=t.view.Entry==word ? Look.Honey : Look.Paper; if(t.view.Entry==word) Juice.Punch(t.transform,.12f); } }

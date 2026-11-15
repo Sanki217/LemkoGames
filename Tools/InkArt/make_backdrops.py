@@ -7,18 +7,24 @@ Usage: python3 make_backdrops.py [preview dir]
 import math, sys
 from pathlib import Path
 from scene import *
+import ink as kit
 
 ROOT = Path(__file__).resolve().parents[2]
 BG = ROOT / 'Assets/Lemko/Sprites/Placeholders/Backgrounds'
 ROOMS = ROOT / 'Assets/Lemko/Sprites/Placeholders/Rooms'
 PREVIEW = Path(sys.argv[1]) if len(sys.argv) > 1 else None
 W, H = 1024, 480
+# The pixel art picture fills the whole 16 x 9 screen, which reaches a little beyond the 1024 x 480 drawing:
+# scenes paint from XL to XR and from YT (behind the score row) to YB.
+XL, XR, YT, YB = -8, W + 8, -92, H + 14
 
 
 def out(c, folder, name, size, soft=True):
     """Save a backdrop. Like the street behind the characters in the reference picture, a backdrop is drawn with
     pale orange-brown lines and slightly hazy colours, so the dark-outlined game pieces in front stand out."""
     path = str((PREVIEW or folder) / (name + '.png'))
+    if kit.PIX:
+        return pixel_out(c, path, soft)
     c.save(path, size)
     if not soft:
         return
@@ -30,6 +36,17 @@ def out(c, folder, name, size, soft=True):
     im = im + (line - im) * w
     im = im + (haze - im) * .1
     Image.fromarray(im.round().astype('uint8')).save(path)
+
+
+def pixel_out(c, path, soft=True):
+    """Save a backdrop as pixel art on the game's 640 x 360 grid (40 pixels per world unit).
+    The 1024 x 480 activity scenes keep their place in the world (they are centred on world y = -0.6) and the picture
+    now reaches every edge of the screen: a scene must paint from x = -7 to 1031 and from y = -91 to 493.
+    The 1920 x 1080 shop is simply a third of its size."""
+    if c.w == W and c.h == H:
+        k = 632 / W
+        return kit.save_pixels(c, path, soft, k, (640, 360), (320 - W / 2 * k, 204 - H / 2 * k))
+    return kit.save_pixels(c, path, soft, 640 / c.w)
 
 
 def grid(c, y0, w=W, h=H, step=150, alpha=.5, color=WHITE):
@@ -51,14 +68,14 @@ def outdoor(seed, horizon=118):
 def land(c, horizon):
     r = c.r
     # far hills and a forest band soften the horizon
-    far = [(0, horizon - 4), (120, horizon - 30), (260, horizon - 12), (400, horizon - 36), (560, horizon - 14), (700, horizon - 34), (860, horizon - 16), (W, horizon - 30)]
-    c.flat(far + [(W, horizon + 20), (0, horizon + 20)], GRASS_LIGHT)
+    far = [(XL, horizon - 4), (120, horizon - 30), (260, horizon - 12), (400, horizon - 36), (560, horizon - 14), (700, horizon - 34), (860, horizon - 16), (XR, horizon - 30)]
+    c.flat(far + [(XR, horizon + 20), (XL, horizon + 20)], GRASS_LIGHT)
     c.line(far, 1.6, PINE, amp=1)
     for i in range(30):
         x = i * 36 + r.uniform(-8, 8)
         c.flat(c.lumpy(x, horizon + r.uniform(-4, 6), r.uniform(20, 30), r.uniform(10, 16), 5, .3), PINE, .5)
-    pts = [(0, horizon + 8), (140, horizon - 6), (330, horizon + 6), (520, horizon - 8), (720, horizon + 4), (900, horizon - 6), (W, horizon + 6)]
-    c.flat(pts + [(W, H), (0, H)], GRASS)
+    pts = [(XL, horizon + 8), (140, horizon - 6), (330, horizon + 6), (520, horizon - 8), (720, horizon + 4), (900, horizon - 6), (XR, horizon + 6)]
+    c.flat(pts + [(XR, YB), (XL, YB)], GRASS)
     for i in range(22):
         c.flat(c.lumpy(r.uniform(-20, W + 20), r.uniform(horizon + 30, H + 10), r.uniform(60, 150), r.uniform(18, 40), 6, .25), (GRASS_LIGHT, GRASS_DARK)[i % 2], .28)
     c.line(pts, 2.6, amp=1.2)
@@ -85,35 +102,35 @@ def indoor(seed, floor=330, planks=True, wall=PAPER, pattern='stripes'):
     c = Scene(W, H, 2, wall, seed)
     d = dk(wall)
     if pattern == 'stripes':
-        for i in range(0, 44):
-            c.flat([(i * 24, 0), (i * 24 + 9, 0), (i * 24 + 9, floor), (i * 24, floor)], d, .28)
+        for i in range(-1, 44):
+            c.flat([(i * 24, YT), (i * 24 + 9, YT), (i * 24 + 9, floor), (i * 24, floor)], d, .28)
     else:
-        for i in range(26):
-            for j in range(7):
+        for i in range(-1, 27):
+            for j in range(-3, 7):
                 x, y = 20 + i * 40 + (j % 2) * 20, 16 + j * 38
                 c.flat([(x, y - 5), (x + 4, y), (x, y + 5), (x - 4, y)], d, .5)
     # wooden panelling under a rail
     top = floor - 74
-    c.flat([(0, top), (W, top), (W, floor), (0, floor)], d)
-    for i in range(0, 20):
+    c.flat([(XL, top), (XR, top), (XR, floor), (XL, floor)], d)
+    for i in range(-1, 20):
         x = i * 54 + 10
         c.shape([(x, top + 14), (x + 40, top + 14), (x + 40, floor - 18), (x, floor - 18)], wall, 1.1, dk(d), amp=.3, step=20)
-    c.flat([(0, top - 8), (W, top - 8), (W, top + 4), (0, top + 4)], WHITE)
-    c.line([(0, top - 8), (W, top - 8)], 2, amp=.6); c.line([(0, top + 4), (W, top + 4)], 1.6, amp=.6)
+    c.flat([(XL, top - 8), (XR, top - 8), (XR, top + 4), (XL, top + 4)], WHITE)
+    c.line([(XL, top - 8), (XR, top - 8)], 2, amp=.6); c.line([(XL, top + 4), (XR, top + 4)], 1.6, amp=.6)
     # floor boards with seams and knots
-    c.flat([(0, floor), (W, floor), (W, H), (0, H)], TONE1)
-    c.flat([(0, floor), (W, floor), (W, floor + 16), (0, floor + 16)], dk(TONE1), .6)
+    c.flat([(XL, floor), (XR, floor), (XR, YB), (XL, YB)], TONE1)
+    c.flat([(XL, floor), (XR, floor), (XR, floor + 16), (XL, floor + 16)], dk(TONE1), .6)
     if planks:
         for i in range(-6, 18):
             x = 512 + (i - 6) * 95
-            a, b = (512 + (x - 512) * .82, floor + 2), (512 + (x - 512) * 1.5, H)
+            a, b = (512 + (x - 512) * .82, floor + 2), (512 + (x - 512) * 1.5 + (x - 512) * .68 * (YB - H) / (H - floor), YB)
             c.line([a, b], 1.5, WOOD, amp=.6)
             for t in (c.r.uniform(.15, .45), c.r.uniform(.55, .9)):
                 px, py = a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t
                 c.line([(px, py), (px + 60 + t * 50, py)], 1.1, WOOD, amp=.3)
                 c.oval(px + 30, py + 12 + t * 10, 3, 1.6, dk(TONE1), .8, WOOD, amp=.1)
-    c.flat([(0, floor - 8), (W, floor - 8), (W, floor + 2), (0, floor + 2)], WOOD_DARK)
-    c.line([(0, floor - 8), (W, floor - 8)], 2, amp=.8); c.line([(0, floor + 2), (W, floor + 2)], 2.6, amp=.8)
+    c.flat([(XL, floor - 8), (XR, floor - 8), (XR, floor + 2), (XL, floor + 2)], WOOD_DARK)
+    c.line([(XL, floor - 8), (XR, floor - 8)], 2, amp=.8); c.line([(XL, floor + 2), (XR, floor + 2)], 2.6, amp=.8)
     return c, floor
 
 
@@ -256,7 +273,7 @@ def farm():
     c.cart(960, H - 18); c.bush(1004, H - 66, 18, RED)
 
     # the shelter on the left where six animals wait in three rows: plank wall, straw floor and a shingled roof
-    x0, x1, top, bot = -6, 226, 60, 374
+    x0, x1, top, bot = XL - 2, 226, 60, 380
     c.shadow([(x0, bot + 6), (x1 + 16, bot + 6), (x1 + 4, bot - 8), (x0, bot - 8)])
     wall = [(x0, top + 8), (x1, top + 8), (x1, bot - 26), (x0, bot - 26)]
     def boards():
@@ -266,7 +283,7 @@ def farm():
     c.two(wall, WOOD, 2.6, 5, 0, inner=boards)
     straw = [(x0, bot - 30), (x1 + 6, bot - 30), (x1 + 18, bot), (x0, bot)]
     c.two(straw, GOLD, 2.4, 3, 3, inner=lambda: c.hatch(x0, bot - 28, x1 + 10, bot, gap=9, w=1.2, color=PAL['gold']))
-    for rail in (156, 265):                                                                                                   # rails between the rows
+    for rail in (148, 255):                                                                                                   # rails between the rows
         c.line([(x0, rail), (x1, rail)], 3.2, amp=.5); c.line([(x0, rail), (x1, rail)], 1.4, WOOD_DARK, amp=.5)
     for px in (4, 112, 220):
         c.two([(px - 5, bot - 2), (px - 5, top + 6), (px + 5, top + 6), (px + 5, bot - 2)], WOOD_DARK, 2, 2, 0, amp=.3)
@@ -278,8 +295,8 @@ def farm():
             for j in range(3):
                 c.line([(x0 + i * 10 + (j % 2) * 5, top - 22 + j * 11), (x0 + i * 10 + (j % 2) * 5 + 2, top - 11 + j * 11)], 1, dk(RED), amp=0)
     c.two(roof, RED, 2.6, 3, 4, inner=tiles)
-    c.hen(60, bot + 30, 1.2); c.hen(104, bot + 44, 1, PAL['wood']); c.barrel(262, bot + 20, 1.1); c.tree(262, hz + 60, 20)
-    c.fence(-6, H - 14, 150, H - 30, 6)
+    c.hen(60, bot + 32, 1.2); c.hen(104, bot + 44, 1, PAL['wood']); c.barrel(262, bot + 20, 1.1); c.tree(262, hz + 60, 20)
+    c.fence(XL, H - 6, 150, H - 22, 6)
     out(c, BG, 'scene_Farm', (2048, 960))
 
 
@@ -373,19 +390,21 @@ def memory():
 def numbers():
     c, fl = indoor(26)
     # ticket board along the wall
-    c.two([(350, 30), (674, 30), (674, 116), (350, 116)], WOOD, 2.8, 4, 4, amp=.8)
+    by = 52 if kit.PIX else 0          # in the pixel picture the task card hangs above the board
+    c.two([(350, 30 + by), (674, 30 + by), (674, 116 + by), (350, 116 + by)], WOOD, 2.8, 4, 4, amp=.8)
     for i, n in enumerate(('1', '2', '3', '4', '5')):
         x = 371 + i * 58
-        c.two([(x, 50), (x + 46, 48), (x + 46, 98), (x, 100)], GOLD if i == 2 else WHITE, 2, 2, 3, amp=.5, step=12)
-        c.dotc(x + 23, 54, 2.4, RED)
-        text(c, n, x + 13, 88, 28)
+        c.two([(x, 50 + by), (x + 46, 48 + by), (x + 46, 98 + by), (x, 100 + by)], GOLD if i == 2 else WHITE, 2, 2, 3, amp=.5, step=12)
+        c.dotc(x + 23, 54 + by, 2.4, RED)
+        text(c, n, x + 13, 88 + by, 28)
     # wall clock, scales and an abacus
-    c.two(c.ring(150, 80, 36, 36), WHITE, 2.8, 4, 4, amp=.5, step=8); c.line([(150, 80), (150, 56)], 2.4, amp=.2); c.line([(150, 80), (168, 90)], 2.4, RED, amp=.2)
+    ky = 80 + (38 if kit.PIX else 0)
+    c.two(c.ring(150, ky, 36, 36), WHITE, 2.8, 4, 4, amp=.5, step=8); c.line([(150, ky), (150, ky - 24)], 2.4, amp=.2); c.line([(150, ky), (168, ky + 10)], 2.4, RED, amp=.2)
     for k in range(12):
         a = k * math.pi / 6
-        c.line([(150 + math.cos(a) * 28, 80 + math.sin(a) * 28), (150 + math.cos(a) * 33, 80 + math.sin(a) * 33)], 1.5, amp=0)
-    shelf(c, 800, 84, 150, 5, pot=True)
-    ax, ay = 250, 120
+        c.line([(150 + math.cos(a) * 28, ky + math.sin(a) * 28), (150 + math.cos(a) * 33, ky + math.sin(a) * 33)], 1.5, amp=0)
+    shelf(c, 800, 84 + (36 if kit.PIX else 0), 150, 5, pot=True)
+    ax, ay = 250, 120 + (50 if kit.PIX else 0)
     c.shape([(ax, ay - 60), (ax + 64, ay - 60), (ax + 64, ay), (ax, ay)], None, 3, amp=.3)
     for j in range(4):
         yy = ay - 50 + j * 13
@@ -687,6 +706,25 @@ def shop():
     c.two([(mx - 70, pt - 34), (mx + 70, pt - 38), (mx + 70, pt + 22), (mx - 70, pt + 26)], PAL['ice'], 2.8, 4, 0)     # clip
     c.oval(mx, pt - 6, 12, 12, PAPER, 2)
     out(c, BG, 'sprite_shop_clean', (1920, 1080))
+    if kit.PIX:
+        basket_front(body, cl)
+
+
+FRONT = (452, 300, 600, 356)        # the basket's front in the 640 x 360 picture: left, top, right, bottom
+
+
+def basket_front(*shapes):
+    """The front of the shop basket as a picture of its own, cut out of the finished backdrop. The game draws it over
+    the products that were picked, so they sit inside the basket at their full size instead of being shrunk."""
+    from PIL import Image, ImageDraw
+    im = Image.open(str((PREVIEW or BG) / 'sprite_shop_clean.png')).convert('RGBA')
+    mask = Image.new('L', im.size, 0); d = ImageDraw.Draw(mask)
+    for pts in shapes:
+        d.polygon([(x / 3, y / 3) for x, y in pts], fill=255)
+    front = Image.new('RGBA', im.size, (0, 0, 0, 0)); front.paste(im, (0, 0), mask)
+    folder = PREVIEW or ROOT / 'Assets/Lemko/Resources/Shop'
+    folder.mkdir(parents=True, exist_ok=True)
+    front.crop(FRONT).save(str(folder / 'basket_front.png'))
 
 
 # --- house rooms (stretched by the game to the 8 x 3.6 placement area) -------------------
@@ -738,7 +776,11 @@ def room(name, seed, kitchen):
     out(c, ROOMS, name, (1280, 720))
 
 
-for f in (farm, family, weather, house, memory, numbers, alphabet, shop):
-    f()
-room('sprite_empty_room_bedroom', 41, False)
-room('sprite_empty_room_kitchen', 42, True)
+if __name__ == '__main__':
+    only = sys.argv[2:]          # optional scene names after the preview folder
+    for f in (farm, family, weather, house, memory, numbers, alphabet, shop):
+        if not only or f.__name__ in only:
+            f()
+    if not only:
+        room('sprite_empty_room_bedroom', 41, False)
+        room('sprite_empty_room_kitchen', 42, True)
