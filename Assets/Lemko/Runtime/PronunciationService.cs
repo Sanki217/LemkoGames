@@ -6,6 +6,7 @@ namespace Lemko
     {
         AudioSource source;
         AudioSource Source => source ? source : (source = GetComponent<AudioSource>());
+        public bool IsSpeaking => !Source.mute && Source.isPlaying;
         public void SetMuted(bool muted) { Source.mute = muted; if (muted) Stop(); }
         public void Play(AudioClip clip) { Stop(); if (clip) { Source.clip = clip; Source.Play(); } }
         public void Stop() => Source.Stop();

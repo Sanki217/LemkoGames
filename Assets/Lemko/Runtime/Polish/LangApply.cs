@@ -18,6 +18,7 @@ namespace Lemko
             bool switched=polish!=Lang.Polish; polish=Lang.Polish;
             foreach(var text in FindObjectsByType<TMP_Text>(FindObjectsSortMode.None)) {
                 if(!seen.TryGetValue(text,out var entry)) {
+                    if(ScenePolish.ActiveFont) text.font=ScenePolish.ActiveFont;
                     // What the player types into a search box is never translated.
                     var field=text.GetComponentInParent<TMP_InputField>();
                     entry=new Seen{ typed=field && field.textComponent==text }; seen[text]=entry;

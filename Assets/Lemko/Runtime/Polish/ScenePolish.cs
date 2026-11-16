@@ -101,6 +101,7 @@ namespace Lemko
         // Assets/Lemko/Resources/Fonts/Game.ttf and every text in the game uses it (with the old font as a fallback
         // for any missing letter); without that file the game keeps its current font.
         static TMP_FontAsset gameFont; static bool fontTried;
+        internal static TMP_FontAsset ActiveFont => gameFont;
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)] static void ResetFont() { gameFont=null; fontTried=false; }
         TMP_FontAsset GameFont(TMP_FontAsset current)
         {
@@ -188,7 +189,7 @@ namespace Lemko
             int lives=session.Practice ? -1 : session.Lives;
             int total=0, filled=0, points=0, multiplier=1;
             if(Activity && Activity.Running) {
-                if(Activity is MemoryController memory) { total=Activity.definition.pairs; filled=memory.PairsFound; if(memory.AssociationActive || memory.AssociationPending) filled=total; }
+                if(Activity is MemoryController memory) { total=memory.PairCount; filled=memory.PairsFound; if(memory.AssociationActive || memory.AssociationPending) filled=total; }
                 else { total=Activity.SessionTaskCount; filled=Activity.Correct; }
                 points=Activity.Points; multiplier=Activity.Multiplier;
             } else if(Shop && Shop.HasRound) { total=Shop.TargetCount; filled=Mathf.Min(total,Shop.BasketCount); points=Shop.Points; multiplier=Shop.NextMultiplier; }
@@ -256,7 +257,7 @@ namespace Lemko
                 headlineCard=Picture(rect.parent,"Prompt card",Look.Button,Look.Paper,rect.anchoredPosition,rect.sizeDelta,true);
                 headlineCard.rectTransform.SetSiblingIndex(rect.GetSiblingIndex());
             }
-            if(Activity && !(Activity is MemoryController) && Activity.speak) {
+            if(Activity && Activity.speak) {
                 // Listen and hint are two round badges side by side, a loudspeaker and a light bulb, with no words on them.
                 var speak=(RectTransform)Activity.speak.transform; float left=speak.anchoredPosition.x-speak.sizeDelta.x*.5f;
                 speak.sizeDelta=new Vector2(Badge,Badge); speak.anchoredPosition=new Vector2(left+Badge*.5f,speak.anchoredPosition.y);
@@ -269,6 +270,7 @@ namespace Lemko
         void ShowHint()
         {
             if(!Activity || !Activity.prompt) return;
+            if(Activity is MemoryController memory) { memory.Peek(); return; }
             session.HintNow(this,Juice.UiToScreen(Activity.prompt.rectTransform)-new Vector2(0,Screen.height*.2f));
             StopCoroutine(nameof(HideHint)); StartCoroutine(nameof(HideHint));
         }
@@ -286,7 +288,10 @@ namespace Lemko
                 }
             }
             if(hintButton) {
-                bool show=Activity.Running && !Activity.Locked && Activity.Current!=null; if(hintButton.gameObject.activeSelf!=show) hintButton.gameObject.SetActive(show);
+                var memory=Activity as MemoryController;
+                bool show=Activity.Running && !Activity.Locked && (memory ? !memory.AssociationActive && !memory.AssociationPending : Activity.Current!=null);
+                if(hintButton.gameObject.activeSelf!=show) hintButton.gameObject.SetActive(show);
+                hintButton.interactable=!memory || memory.CanPeek;
                 // The bulb stays beside the loudspeaker wherever an activity puts it.
                 var speak=(RectTransform)Activity.speak.transform; ((RectTransform)hintButton.transform).anchoredPosition=speak.anchoredPosition+new Vector2(Badge+8,0);
             }

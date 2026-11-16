@@ -104,7 +104,7 @@ namespace Lemko
         protected void ContinueSoon(float seconds=1.15f) { if(isActiveAndEnabled) StartCoroutine(ContinueAfter(seconds)); }
         System.Collections.IEnumerator ContinueAfter(float seconds) {
             yield return new WaitForSecondsRealtime(seconds);
-            while(Running && Session && ((Session.menu && Session.menu.IsOpen) || (Session.introduction && Session.introduction.IsOpen))) yield return null;
+            while(Running && Session && ((Session.menu && Session.menu.IsOpen) || (Session.introduction && Session.introduction.IsOpen) || Session.audioService.IsSpeaking)) yield return null;
             if(Running) Advance();
         }
         public virtual void Advance() { if(!Running || !Locked) return; if(Correct>=Total) Session.FinishActivity(true); else StartTask(); }

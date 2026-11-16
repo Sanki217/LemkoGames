@@ -24,6 +24,8 @@ namespace Lemko
         bool evaluating;
         int pairsFound;
         public int PairsFound=>pairsFound;
+        public int PairCount=>boardWords.Count;
+        public bool CanPeek=>Ready && !boardFinished && !AssociationActive && !evaluating && pairsFound<PairCount;
         public bool Evaluating=>evaluating;
         protected override int Total => 1;
         protected override void BuildTask()
@@ -39,16 +41,55 @@ namespace Lemko
             // Several words share a painted picture (sun, sunny, bright); a board never holds two of them.
             var pictures=new HashSet<Sprite>(); candidates=candidates.Where(w=>!w.sprite || pictures.Add(w.sprite)).ToList();
             var subjects=new HashSet<string>();
-            pool=candidates.Where(w=>subjects.Add(w.tags?.FirstOrDefault() ?? "")).Take(definition.pairs).ToList();
-            if(pool.Count<definition.pairs)
-                pool.AddRange(candidates.Except(pool).Take(definition.pairs-pool.Count).ToList());
+            int completed=Session.Progress.activities.Find(r=>r.id=="Memory")?.completions ?? 0;
+            int target=Mathf.Min(8,definition.pairs+2*Mathf.Clamp(completed,0,3));
+            pool=candidates.Where(w=>subjects.Add(w.tags?.FirstOrDefault() ?? "")).Take(target).ToList();
+            if(pool.Count<target)
+                pool.AddRange(candidates.Except(pool).Take(target-pool.Count).ToList());
             boardWords.Clear(); boardWords.AddRange(pool); checkWords.Clear(); checkWords.AddRange(pool.Take(Mathf.Clamp(associationChecks,0,2)));
             var cards=pool.SelectMany(w=>new[]{(w,true),(w,false)}).ToList(); Shuffle(cards);
+            var tray=new GameObject("Matched pairs tray",typeof(SpriteRenderer));
+            tray.transform.SetParent(taskRoot,false); tray.transform.localPosition=new Vector2(0,-2.55f);
+            var surface=tray.GetComponent<SpriteRenderer>();
+            Pixels.Card(surface,new Vector2(PairCount*1.65f+.3f,1.05f),Look.Panel);
+            surface.color=Look.Sage; surface.sortingOrder=-1;
+            float spacing=Mathf.Min(3.5f,14f/PairCount);
             for(int i=0;i<cards.Count;i++) {
-                var card=cards[i]; var token=Token(card.w,new Vector2(-5.4f+(i%4)*3.5f,1f-(i/4)*1.85f),"card_"+i,Choose);
+                var card=cards[i]; float x=(i%PairCount-(PairCount-1)*.5f)*spacing;
+                var token=Token(card.w,new Vector2(x,1f-(i/PairCount)*1.85f),"card_"+i,Choose);
+                if(PairCount>6) token.transform.localScale=Vector3.one*.86f;
                 picture[token]=card.Item2; token.Face(false,card.Item2,card.w.lemko);
             }
             feedback.text="Turn over two cards.";
+        }
+        public void Peek()
+        {
+            if(!CanPeek) return;
+            var hidden=picture.Keys.Where(t=>t!=first && !matched.Contains(t) && !t.FaceUp).ToList();
+            if(hidden.Count==0) return;
+            var card=first ? hidden.Find(t=>t.view.Entry==first.view.Entry) : null;
+            if(!card) card=hidden[Random.Range(0,hidden.Count)];
+            evaluating=true;
+            Session.RegisterHint(card.view.Entry);
+            StartCoroutine(PeekCard(card));
+        }
+        IEnumerator PeekCard(ActivityToken card)
+        {
+            card.Face(true,picture[card],card.view.Entry.lemko);
+            card.GetComponent<HintPointer>().enabled=false;
+            yield return new WaitForSecondsRealtime(1f);
+            card.Face(false,picture[card],card.view.Entry.lemko);
+            evaluating=false;
+        }
+        void Collect(ActivityToken card)
+        {
+            Vector3 from=card.transform.position;
+            foreach(var hit in card.GetComponentsInChildren<Collider2D>(true)) hit.enabled=false;
+            Juice.Calm(card.transform); Juice.Hover(card.transform,false);
+            float slot=(pairsFound-(PairCount-1)*.5f)*1.65f;
+            card.transform.localPosition=new Vector2(slot+(picture[card] ? -.40f : .40f),-2.55f);
+            card.transform.localScale=Vector3.one*.43f;
+            Juice.TravelFrom(card.transform,from);
         }
         public void Choose(ActivityToken card)
         {
@@ -66,9 +107,10 @@ namespace Lemko
                 matched.Add(a); matched.Add(b);
                 a.Face(true,picture[a],a.view.Entry.lemko); b.Face(true,picture[b],b.view.Entry.lemko);
                 a.backing.color=b.backing.color=Look.GoodSoft;
-                Juice.Hop(a.transform,.35f); Juice.Hop(b.transform,.35f,.08f); Juice.Sparkle(Juice.WorldToScreen(a.transform.position),8); Juice.Sparkle(Juice.WorldToScreen(b.transform.position),8); Juice.Sound("match",1+pairsFound*.08f);
-                Session.audioService.Play(a.view.Entry.pronunciation); pairsFound++; feedback.text="Pair found! "+pairsFound+"/"+definition.pairs; Session.PresentFeedback(true);
-                if(pairsFound==definition.pairs) {
+                Juice.Sparkle(Juice.WorldToScreen(a.transform.position),8); Juice.Sparkle(Juice.WorldToScreen(b.transform.position),8); Juice.Sound("match",1+pairsFound*.08f);
+                Collect(a); Collect(b);
+                Session.audioService.Play(a.view.Entry.pronunciation); pairsFound++; feedback.text="Pair found! "+pairsFound+"/"+PairCount; Session.PresentFeedback(true);
+                if(pairsFound==PairCount) {
                     if(checkWords.Count==0) Answer(true,"complete","All pairs found.");
                     else { boardFinished=true; feedback.text="All pairs found! Now "+checkWords.Count+" quick word checks."; ContinueSoon(1.7f); }
                 }

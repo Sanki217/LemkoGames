@@ -160,7 +160,7 @@ namespace Lemko
         // Results open by themselves after a short celebration.
         System.Collections.IEnumerator FinishSoon() {
             yield return new WaitForSecondsRealtime(1.7f);
-            while(session && session.menu && session.menu.IsOpen) yield return null;
+            while(session && ((session.menu && session.menu.IsOpen) || session.audioService.IsSpeaking)) yield return null;
             if(session && round!=null && round.Complete) session.Finish(true);
         }
         public void Complete() { if(round!=null && session && round.Complete) session.Finish(true); }

@@ -94,7 +94,6 @@ namespace Lemko
         }
         public void Remove(int index) { if(!Ready || !used.TryGetValue(index,out int tile)) return; used.Remove(index); filled[index]=""; slots[index].caption.text="_"; tiles[tile].Available(true); }
         public override void Submit() { if(!Ready) return; bool correct=AnswerText==string.Concat(spelling);
-            if(correct) Session.audioService.Play(Current.word.pronunciation);
             if(!Answer(correct,string.Join("|",filled),correct ? "Label ready: "+Current.word.lemko : "Not quite. Check each letter.")) return;
             // Right: the letters do a little wave. Wrong: the whole label shakes (no letter is singled out).
             for(int i=0;i<slots.Count;i++) if(slots[i]) { if(correct) Juice.Hop(slots[i].transform,.28f,i*.05f); else Juice.Shake(slots[i].transform,.08f); } }
