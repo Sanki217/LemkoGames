@@ -57,5 +57,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5bb4b06d00a660f4992d6de58109f97f, type: 2}
   taskCount: 5
   startingLives: 5
-  displayedProductCount: 8
+  displayedProductCount: 12
   shoppingListTitle: "\u0428\u0442\u043E \u0442\u0440\u0435\u0431\u0430 \u043A\u0443\u043F\u0438\u0442\u0438:"

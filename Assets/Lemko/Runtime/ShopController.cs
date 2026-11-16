@@ -84,7 +84,9 @@ namespace Lemko
             var products = new List<VocabularyEntry>(definition.products);
             Shuffle(products);
             products=PracticeSelection.Order(products,w=>w,session,definition.taskCount);
-            products = products.Take(definition.displayedProductCount).ToList();
+            // Every place on the shelves holds something: as many products as there are slots in the scene.
+            int shown=worldRoot && productSlots!=null ? Mathf.Max(definition.displayedProductCount,productSlots.Count(s=>s)) : definition.displayedProductCount;
+            products = products.Take(Mathf.Min(shown,worldRoot && productSlots!=null ? productSlots.Length : shown)).ToList();
             targets = products.Take(definition.taskCount).ToList();
             round = new ShopBasket(targets.Select(w => w.id), products.Select(w => w.id));
             Shuffle(products); active = true;
