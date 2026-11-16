@@ -25,6 +25,7 @@ namespace Lemko
             yield return null;
             if(!session || !session.hud || session.Progress==null) yield break;
             root=(RectTransform)session.hud.canvas.rootCanvas.transform; font=session.hud.font;
+            font=GameFont(font);
             Theme(); BuildHud(); BuildFlow();
             if(InVillage) BuildVillage();
             foreach(var button in root.GetComponentsInChildren<Button>(true)) if(!button.GetComponent<JuicyButton>()) button.gameObject.AddComponent<JuicyButton>();
@@ -93,6 +94,23 @@ namespace Lemko
                 if(rect.anchorMin==rect.anchorMax && image.type==Image.Type.Sliced) rect.sizeDelta=new Vector2(Mathf.Max(Pixels.Ui,Pixels.SnapUi(rect.sizeDelta.x)),Mathf.Max(Pixels.Ui,Pixels.SnapUi(rect.sizeDelta.y)));
                 Pixels.Seat(rect);
             }
+        }
+
+        // ---------- font ----------
+        // A rounder, friendlier typeface suits the painted pictures. Put any TrueType font at
+        // Assets/Lemko/Resources/Fonts/Game.ttf and every text in the game uses it (with the old font as a fallback
+        // for any missing letter); without that file the game keeps its current font.
+        static TMP_FontAsset gameFont; static bool fontTried;
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)] static void ResetFont() { gameFont=null; fontTried=false; }
+        TMP_FontAsset GameFont(TMP_FontAsset current)
+        {
+            if(!fontTried) {
+                fontTried=true; var source=Resources.Load<Font>("Fonts/Game");
+                if(source) { gameFont=TMP_FontAsset.CreateFontAsset(source); if(gameFont) { gameFont.name="Game font"; if(current) gameFont.fallbackFontAssetTable=new List<TMP_FontAsset>{current}; } }
+            }
+            if(!gameFont) return current;
+            foreach(var text in FindObjectsByType<TMP_Text>(FindObjectsInactive.Include,FindObjectsSortMode.None)) text.font=gameFont;
+            return gameFont;
         }
 
         // ---------- theme ----------

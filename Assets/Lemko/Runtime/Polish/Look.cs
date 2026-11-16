@@ -83,24 +83,42 @@ namespace Lemko
         }
 
         // ---------- cards ----------
-        // A white card with round corners, as a nine-slice: tint it with any palette colour. With a lip, its lower
-        // edge is a slightly darker band that follows the curve of the corners, like a thick painted sticker.
-        static Sprite Card(string key,int size,int border,float radius,bool outline,float lip)
+        // A card with round corners in the painted sticker style, as a nine-slice: tint it with any palette colour.
+        // It has the dark outline of the pictures, a soft painted shade (lighter at the top), a thin light line along
+        // its upper edge, a fine inner rule like a printed label, and a soft shadow just below. With a lip, its lower
+        // edge is a darker band that follows the curve of the corners, like a thick button.
+        static readonly Color Shade=new Color(.9f,.88f,.84f,1), Rule=new Color(.8f,.74f,.66f,1);
+        static Sprite Card(string key,int size,int border,float radius,bool outline,float lip,bool rule=false)
             => Make(key,size,size,(x,y)=> {
-                var p=new Vector2(x,y); var c=new Vector2(size*.5f,size*.5f); var half=c-new Vector2(.25f,.25f);
+                var p=new Vector2(x,y); const float drop=1.4f;
+                if(!outline) return Over(Color.clear,Color.white,Cover(Box(p,new Vector2(size*.5f,size*.5f),new Vector2(size*.5f-.25f,size*.5f-.25f),radius)));
+                // The card sits a little above the bottom of the picture so its shadow fits underneath.
+                var c=new Vector2(size*.5f,size*.5f+drop*.5f); var half=new Vector2(size*.5f-.3f,size*.5f-.3f-drop*.5f);
                 float d=Box(p,c,half,radius);
-                if(!outline) return Over(Color.clear,Color.white,Cover(d));
-                var col=Outlined(d,Lip);
-                if(lip>0) { float top=Box(p,c+new Vector2(0,lip*.5f),half-new Vector2(0,lip*.5f),radius); col=Over(col,Color.white,Cover(Mathf.Max(top,d+1.3f))); }
-                else col=Over(col,Color.white,Cover(d+1.3f));
+                float soft=Box(p,c-new Vector2(0,drop),half,radius);
+                var col=new Color(Line.r,Line.g,Line.b,.26f*Mathf.Clamp01(.5f-soft/1.4f));
+                col=Over(col,Line,Cover(d));
+                float inside=d+1.3f;
+                // Painted shade: lighter at the top, a touch darker at the bottom.
+                float k=Mathf.Clamp01((y-(c.y-half.y))/(half.y*2));
+                var fill=Color.Lerp(Shade,Color.white,Mathf.SmoothStep(0,1,k));
+                if(lip>0) {
+                    float top=Box(p,c+new Vector2(0,lip*.5f),half-new Vector2(0,lip*.5f),radius);
+                    col=Over(col,Lip,Cover(inside)); col=Over(col,fill,Cover(Mathf.Max(top,inside)));
+                } else col=Over(col,fill,Cover(inside));
+                // A light catch along the upper edge.
+                float ir=Mathf.Max(.5f,radius-2f); var ih=half-new Vector2(2f,2f);
+                float catchLight=Cover(Box(p,c,ih,ir))*(1-Cover(Box(p,c-new Vector2(0,1f),ih,ir)));
+                col=Over(col,Color.white,catchLight*.6f);
+                if(rule) { float r=Mathf.Abs(Box(p,c+new Vector2(0,lip*.5f),half-new Vector2(3.2f,3.2f+lip*.5f),Mathf.Max(.8f,radius-3.2f)))-.35f; col=Over(col,Rule,Cover(r)*.9f); }
                 return col;
             },new Vector4(border,border,border,border));
-        // Dark outline, white fill.
-        public static Sprite Panel=>Card("lemko_panel",16,6,5,true,0);
+        // Dark outline, painted fill and a fine inner rule: panels, cards and the results sheet.
+        public static Sprite Panel=>Card("lemko_panel",20,8,5.5f,true,0,true);
         // The same with a darker lower lip: buttons and the cards the game pieces lie on.
-        public static Sprite Button=>Card("lemko_button",16,6,5,true,1.6f);
-        // A small outlined tag for the score row.
-        public static Sprite Chip=>Card("lemko_chip",12,5,4.5f,true,0);
+        public static Sprite Button=>Card("lemko_button",18,7,5.5f,true,2f);
+        // A small outlined tag for the score row and the name tags.
+        public static Sprite Chip=>Card("lemko_chip",14,6,5f,true,0);
         // Plain white with round ends, no outline: slider tracks and other quiet fills.
         public static Sprite Pill=>Card("lemko_pill",8,3,3,false,0);
         public static Sprite Square=>Make("lemko_square",2,2,(x,y)=>Color.white);

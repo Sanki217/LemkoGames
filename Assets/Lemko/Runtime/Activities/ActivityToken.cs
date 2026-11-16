@@ -22,7 +22,7 @@ namespace Lemko
             FaceUp=visible; view.worldPicture.gameObject.SetActive(visible && picture);
             caption.gameObject.SetActive(!visible || !picture); caption.text=visible ? text : "?"; caption.color=visible ? Look.Ink : Look.Paper;
             var hint=GetComponent<HintPointer>(); hint.enabled=visible;
-            if(view.worldSpeaker) view.worldSpeaker.SetActive(visible && view.Entry && view.Entry.pronunciation);
+            if(view.worldSpeaker) view.worldSpeaker.SetActive(false);
             backing.color=visible ? Look.Paper : Look.Brick;
         }
         public void Click() => clicked?.Invoke(this);

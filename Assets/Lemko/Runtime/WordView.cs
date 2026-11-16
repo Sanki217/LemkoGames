@@ -59,7 +59,7 @@ namespace Lemko
             }
             if(selectButton) { selectButton.interactable = word; selectButton.image.color = Look.Paper; }
             if(audioButton) audioButton.interactable = word && word.pronunciation;
-            if(worldSpeaker) worldSpeaker.SetActive(word && word.pronunciation);
+            if(worldSpeaker) worldSpeaker.SetActive(false);   // the word is heard with the right mouse button now
             SpeakerIcon();
         }
         // The speaker used to be the word "Play"; it is a small loudspeaker badge in the same place.
