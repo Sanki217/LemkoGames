@@ -68,8 +68,42 @@ namespace Lemko
         // ---------- village ----------
         readonly Dictionary<VillageHotspot,SpriteRenderer[]> houseStars=new Dictionary<VillageHotspot,SpriteRenderer[]>();
         TMP_Text journalLabel; int shownWords=-1; VillageHotspot bobbing;
+        // Where each place stands on the painted village map (world units; the map fills the 16 x 9 view): the middle
+        // and size of the building, which is what the player clicks, and the patch of bare ground in front of it,
+        // which carries the name tag, the stars and the highlight. The finished gift stands beside the tag.
+        static readonly Dictionary<string,(Vector2 at,Vector2 size,Vector2 tag)> Places=new Dictionary<string,(Vector2,Vector2,Vector2)> {
+            {"Shop",(new Vector2(-4.94f,1.82f),new Vector2(2.2f,1.5f),new Vector2(-4.84f,.91f))},
+            {"FamilyTree",(new Vector2(-1.4f,2.9f),new Vector2(2.8f,2.3f),new Vector2(-1.01f,1.49f))},
+            {"Weather",(new Vector2(4.63f,2.8f),new Vector2(1.6f,1.7f),new Vector2(4.54f,1.8f))},
+            {"Memory",(new Vector2(.04f,.08f),new Vector2(3.6f,1.8f),new Vector2(.04f,-1.14f))},
+            {"Farm",(new Vector2(5.35f,.15f),new Vector2(3.1f,1.6f),new Vector2(5.49f,-1.03f))},
+            {"Alphabet",(new Vector2(-5.37f,-.62f),new Vector2(1.9f,1.6f),new Vector2(-5.13f,-1.76f))},
+            {"Numbers",(new Vector2(-2.93f,-2.58f),new Vector2(3f,1.3f),new Vector2(-3.12f,-3.66f))},
+            {"House",(new Vector2(2.75f,-2.34f),new Vector2(3.6f,1.6f),new Vector2(2.67f,-3.44f))},
+        };
+        void PlaceVillage()
+        {
+            var gifts=new Dictionary<string,Transform>();
+            foreach(var r in FindObjectsByType<SpriteRenderer>(FindObjectsInactive.Include,FindObjectsSortMode.None))
+                if(r.name.StartsWith("Contribution ")) gifts[r.name.Substring(13)]=r.transform;
+            foreach(var spot in session.storyView.worldLocations ?? new VillageHotspot[0]) {
+                if(!spot || !Places.TryGetValue(spot.activityId,out var place)) continue;
+                var t=spot.transform; t.position=new Vector3(place.at.x,place.at.y,t.position.z); t.localScale=Vector3.one; t.localRotation=Quaternion.identity;
+                if(spot.TryGetComponent<BoxCollider2D>(out var box)) { box.offset=Vector2.zero; box.size=place.size; }
+                var tag=place.tag-place.at;
+                if(spot.label) spot.label.transform.localPosition=new Vector3(tag.x,tag.y,spot.label.transform.localPosition.z);
+                if(spot.highlight) {
+                    // A soft ring on the ground around the name tag.
+                    spot.highlight.sprite=Look.Ring; var one=Look.Ring.bounds.size;
+                    spot.highlight.transform.localPosition=new Vector3(tag.x,tag.y-.12f,spot.highlight.transform.localPosition.z);
+                    spot.highlight.transform.localScale=new Vector3(2.7f/one.x,1.05f/one.y,1); spot.highlight.transform.localRotation=Quaternion.identity;
+                }
+                if(gifts.TryGetValue(spot.activityId,out var gift)) { gift.position=new Vector3(place.tag.x+1.3f,place.tag.y+.15f,gift.position.z); gift.localScale=Vector3.one; }
+            }
+        }
         void BuildVillage()
         {
+            PlaceVillage();
             foreach(var spot in session.storyView.worldLocations ?? new VillageHotspot[0]) {
                 if(!spot || !spot.label) continue;
                 // One small name tag under each building, and up to three stars earned there this session.
