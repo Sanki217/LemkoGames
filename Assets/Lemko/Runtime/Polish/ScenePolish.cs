@@ -29,6 +29,7 @@ namespace Lemko
             if(InVillage) BuildVillage();
             foreach(var button in root.GetComponentsInChildren<Button>(true)) if(!button.GetComponent<JuicyButton>()) button.gameObject.AddComponent<JuicyButton>();
             Crisp();
+            Juice.Motes(true);
             built=true;
             if(pendingResult!=null) { var r=pendingResult; pendingResult=null; ShowResult(r); }
         }
@@ -178,10 +179,13 @@ namespace Lemko
             if(!InVillage) total=0;
             total=Mathf.Min(total,pips.Count);
             if(force || lives!=shownLives) {
-                if(!force && lives>=0 && lives<shownLives && lives<hearts.Count) { Juice.Shake(heartsPill.transform,8); Juice.Sound("heart"); }
+                if(!force && lives>=0 && lives<shownLives && lives<hearts.Count) { Juice.Shake(heartsPill.transform,8); Juice.Sound("heart"); Juice.Dust(Juice.UiToScreen(hearts[lives].rectTransform)); Juice.Squash(hearts[lives].transform,.4f); }
                 shownLives=lives; heartsPill.gameObject.SetActive(lives>=0);
                 for(int i=0;i<hearts.Count;i++) { hearts[i].color=i<lives ? Look.Brick : Look.Empty; hearts[i].rectTransform.anchoredPosition=new Vector2((i-(hearts.Count-1)*.5f)*28,0); }
                 heartsPill.rectTransform.sizeDelta=new Vector2(hearts.Count*28+24,40);
+                // The last heart beats quietly, so the player sees it is the last one.
+                for(int i=0;i<hearts.Count;i++) Juice.Calm(hearts[i].transform);
+                if(lives==1 && hearts.Count>0) Juice.Breathe(hearts[0].transform,.14f,.9f);
             }
             if(force || total!=shownPips || filled!=shownFilled) {
                 bool lantern=InVillage;
@@ -280,17 +284,30 @@ namespace Lemko
         {
             if(!token) return;
             if(Time.frameCount!=spawnFrame) { spawnFrame=Time.frameCount; spawnIndex=0; }
-            Juice.Pop(token.transform,Mathf.Min(spawnIndex++,14)*.03f);
+            Juice.Pop(token.transform,Mathf.Min(spawnIndex++,14)*.035f);
+            // Every piece sways a little while it waits, lifts under the pointer and casts a soft shadow.
+            Juice.Idle(token.transform); TokenFeel.Attach(token);
+        }
+        static ActivityToken TokenAt(Vector2 screen)
+        {
+            if(!Camera.main) return null;
+            foreach(var hit in Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(screen))) { var token=hit.GetComponentInParent<ActivityToken>(); if(token) return token; }
+            return null;
         }
         void TaskStarted() { if(built && headline) Juice.Punch(headline.transform,.05f,.25f); }
         void Answered(bool correct,int awarded,int streak)
         {
             if(!built) return;
             var at=Juice.PointerScreen;
-            if(!correct) { if(headlineCard) Juice.Shake(headlineCard.transform,9); if(headline) Juice.Shake(headline.transform,9); Juice.Sound("wrong"); return; }
+            if(!correct) {
+                if(headlineCard) Juice.Shake(headlineCard.transform,9); if(headline) Juice.Shake(headline.transform,9); Juice.Sound("wrong");
+                // The piece that was chosen shakes its head.
+                var wrong=TokenAt(at); if(wrong) Juice.Wobble(wrong.transform,12);
+                return; }
             Juice.Sparkle(at,14); Juice.Sound("correct",1+Mathf.Min(streak,8)*.06f);
             if(awarded>0 && scorePill.gameObject.activeInHierarchy)
                 Juice.FloatText("+"+awarded,at,Look.Honey,font,Juice.UiToScreen(scorePill.rectTransform),()=> { if(scorePill) Juice.Punch(scorePill.transform,.22f,.25f); });
+            var right=TokenAt(at); if(right) Juice.Punch(right.transform,.18f,.35f);
             if(streak==5) Juice.FloatText("On a roll!",new Vector2(Screen.width*.5f,Screen.height*.6f),Look.Paper,font);
         }
     }

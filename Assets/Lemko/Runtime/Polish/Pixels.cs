@@ -2,9 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace Lemko
 {
-    // The whole game is pixel art on one grid: the 16 x 9 world is 640 x 360 picture pixels, 40 to a world unit, and
-    // every picture is shown at exactly that size, never enlarged or shrunk on its own. The interface is laid out on
-    // a 1280 x 720 canvas, so there one picture pixel is two interface units.
+    // Sizes on the game's grid: 40 design pixels to a world unit, and two interface units to a design pixel on the
+    // 1280 x 720 canvas. The art is now painted and drawn smooth (see Docs/ART_STYLE.md); these helpers still place
+    // layouts on tidy whole numbers and size pictures by their own pixels per unit.
     public static class Pixels
     {
         public const int PerUnit=40;            // picture pixels per world unit
