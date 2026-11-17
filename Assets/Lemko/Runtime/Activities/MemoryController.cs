@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 namespace Lemko
 {
     public sealed class MemoryController : LearningActivity
@@ -53,6 +54,10 @@ namespace Lemko
             var surface=tray.GetComponent<SpriteRenderer>();
             Pixels.Card(surface,new Vector2(PairCount*1.65f+.3f,1.05f),Look.Panel);
             surface.color=Look.Sage; surface.sortingOrder=-1;
+            tray.AddComponent<BoxCollider2D>().size=surface.size;
+            var tap=new EventTrigger.Entry { eventID=EventTriggerType.PointerClick };
+            tap.callback.AddListener(e=> { if(((PointerEventData)e).button==PointerEventData.InputButton.Left) Peek(); });
+            tray.AddComponent<EventTrigger>().triggers.Add(tap);
             float spacing=Mathf.Min(3.5f,14f/PairCount);
             for(int i=0;i<cards.Count;i++) {
                 var card=cards[i]; float x=(i%PairCount-(PairCount-1)*.5f)*spacing;
@@ -60,7 +65,7 @@ namespace Lemko
                 if(PairCount>6) token.transform.localScale=Vector3.one*.86f;
                 picture[token]=card.Item2; token.Face(false,card.Item2,card.w.lemko);
             }
-            feedback.text="Turn over two cards.";
+            feedback.text="Tap the tray to peek at one card.";
         }
         public void Peek()
         {

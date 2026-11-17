@@ -10,7 +10,7 @@ namespace Lemko
     public sealed partial class ScenePolish
     {
         static string Pretty(string activity)=>activity=="FamilyTree" ? "Family Tree" : activity;
-        int LanternCount=>SessionStats.Goal>0 ? Mathf.Min(SessionStats.Goal,8) : 8;
+        const int LanternCount=SessionStats.Places;
 
         // ---------- results card ----------
         RoundResult pendingResult; RectTransform resultCard;
@@ -132,7 +132,7 @@ namespace Lemko
             int lit=Mathf.Min(LanternCount,session.Progress.story.contributions.Count);
             if(lit>SessionStats.LanternsShown) StartCoroutine(LightLanterns(SessionStats.LanternsShown,lit));
             SessionStats.LanternsShown=lit;
-            if(SessionStats.Goal==0) ShowTitle();
+            if(!SessionStats.VisitStarted) ShowTitle();
             else if(SessionStats.GoalReached(session.Progress) && !SessionStats.FinaleShown) StartCoroutine(FinaleSoon());
             else if(SessionStats.FinaleShown) Festival();
         }
@@ -184,21 +184,25 @@ namespace Lemko
             Label(content,"Subtitle","Learn Lemko words while the village gets ready for its gathering.",24,Look.Muted,new Vector2(0,118),new Vector2(1000,40),false);
             var row=Box(content,"Places",new Vector2(0,20),new Vector2(900,90));
             var contributions=session.story ? session.story.contributions : null; int shown=0;
-            if(contributions!=null) foreach(var c in contributions) if(c!=null && c.illustration && shown<8) {
-                var icon=Picture(row,"Place",c.illustration,Color.white,new Vector2((shown-3.5f)*104,0),Pixels.UiSize(c.illustration)); Juice.Pop(icon.transform,.3f+shown*.06f); shown++;
+            if(contributions!=null) foreach(var c in contributions) if(c!=null && shown<LanternCount) {
+                var position=new Vector2((shown-3.5f)*104,0);
+                var icon=c.illustration ? Picture(row,"Place",c.illustration,Color.white,position,Pixels.UiSize(c.illustration))
+                    : Picture(row,"Place",Look.Button,Look.Paper,position,new Vector2(76,80),true);
+                if(!c.illustration) Label(icon.transform,"Letter","А",44,Look.Ink,Vector2.zero,new Vector2(70,74));
+                Juice.Pop(icon.transform,.3f+shown*.06f); shown++;
             }
-            Choice(content,"Quick visit","3 places  ·  about 10 minutes",new Vector2(-190,-130),Look.Paper,3);
-            Choice(content,"The gathering","all 8 places  ·  about 30 minutes",new Vector2(190,-130),Look.Honey,8);
-            Label(content,"Note","Nothing is saved: every visit starts fresh.",17,Look.Muted,new Vector2(0,-250),new Vector2(900,28),false);
+            Choice(content,"Learning challenge","8 places · limited hearts",new Vector2(-190,-130),Look.Honey,true);
+            Choice(content,"Relaxed experience","8 places · unlimited tries",new Vector2(190,-130),Look.Paper,false);
             // The language can be chosen before anything else; the same switch is in the menu.
             Button language=null;
             language=PushButton(content,LanguageName(),new Vector2(430,-270),new Vector2(250,48),Look.Paper,()=> { session.ToggleLanguage(); language.GetComponentInChildren<TMP_Text>().text=LanguageName(); },18);
         }
         string LanguageName()=>session.Progress.english ? "Language: English" : "Language: Polish";
-        void Choice(RectTransform content,string name,string detail,Vector2 position,Color color,int goal)
+        void Choice(RectTransform content,string name,string detail,Vector2 position,Color color,bool challenge)
         {
             var button=PushButton(content,name,position,new Vector2(340,110),color,()=> {
-                SessionStats.Goal=goal; SessionStats.StartedAt=Time.realtimeSinceStartup; Juice.Sound("fanfare");
+                session.SetChallengeMode(challenge);
+                SessionStats.VisitStarted=true; SessionStats.StartedAt=Time.realtimeSinceStartup; Juice.Sound("fanfare");
                 Destroy(content.parent.gameObject); RefreshHud(true);
             },30);
             button.GetComponentInChildren<TMP_Text>().rectTransform.anchoredPosition=new Vector2(0,18);

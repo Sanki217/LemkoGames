@@ -36,7 +36,7 @@ namespace Lemko
         readonly List<PlacedItem> placed=new List<PlacedItem>();
         readonly List<VocabularyEntry> bar=new List<VocabularyEntry>();
         int room, nextId;
-        SpriteRenderer backdrop, shelf; Image roomCard; bool arranged; Vector3 laidOut;
+        SpriteRenderer backdrop, shelf; Image roomCard; bool arranged; Vector2 laidOut;
         public int RoomIndex => room;
         public int PlacedCount => placed.Count;
         public Vector2[] Positions => placed.Where(p=>p.room==room).Select(p=>p.position).ToArray();
@@ -158,18 +158,17 @@ namespace Lemko
         {
             if(!Running || !arranged) return;
             if(submit.gameObject.activeSelf) submit.gameObject.SetActive(false);   // pieces are judged as they are set down
-            // "Place X" and "in Z" sit side by side along the top, followed by the loudspeaker and the light bulb.
+            // Center the two parts of the request together.
             float first=prompt.preferredWidth, second=requestedRoomLabel.preferredWidth;
-            var a=prompt.rectTransform; var b=requestedRoomLabel.rectTransform; var listen=(RectTransform)speak.transform;
+            var a=prompt.rectTransform; var b=requestedRoomLabel.rectTransform;
             if(roomCard && roomCard.sprite!=Look.Button) { roomCard.sprite=Look.Button; roomCard.type=Image.Type.Sliced; }
             // Only when the words change, so a shake or a pulse on the task is left alone in between.
-            var words=new Vector3(first,second,listen.sizeDelta.x); if(words==laidOut) return; laidOut=words;
+            var words=new Vector2(first,second); if(words==laidOut) return; laidOut=words;
             a.sizeDelta=new Vector2(Mathf.Max(first+24,180),56); b.sizeDelta=new Vector2(second+24,56);
             // Whole pixels throughout, so the cards keep crisp edges.
-            float w1=Pixels.EvenUi(Mathf.Max(220,first+64)), w2=Pixels.EvenUi(Mathf.Max(150,second+56)), tail=14+listen.sizeDelta.x+8+52;
-            float x=Pixels.SnapUi(-(w1+10+w2+tail)*.5f);
+            float w1=Pixels.EvenUi(Mathf.Max(220,first+64)), w2=Pixels.EvenUi(Mathf.Max(150,second+56));
+            float x=Pixels.SnapUi(-(w1+10+w2)*.5f);
             a.anchoredPosition=new Vector2(x+w1*.5f,HeaderY); b.anchoredPosition=new Vector2(x+w1+10+w2*.5f,HeaderY);
-            listen.anchoredPosition=new Vector2(x+w1+10+w2+14+listen.sizeDelta.x*.5f,HeaderY);
             if(roomCard) {
                 roomCard.color=Look.Paper; roomCard.rectTransform.anchoredPosition=b.anchoredPosition;
                 roomCard.rectTransform.sizeDelta=new Vector2(w2,Pixels.EvenUi(Mathf.Clamp(prompt.preferredHeight+20,54,130)));

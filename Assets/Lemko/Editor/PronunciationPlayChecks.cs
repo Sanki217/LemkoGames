@@ -16,6 +16,7 @@ namespace Lemko.Editor
         static int index;
         static int memoryStep;
         static ActivityToken[] pair;
+        static GameSession challengeVisit;
         static PronunciationPlayChecks() => EditorApplication.update += Tick;
 
         public static void Run()
@@ -47,6 +48,30 @@ namespace Lemko.Editor
                 if (UnityEngine.Object.FindObjectsByType<AudioListener>(FindObjectsSortMode.None).Count(l => l.isActiveAndEnabled) != 1)
                     throw new Exception("Expected one active listener in " + scenes[index]);
                 var source = session.audioService.GetComponent<AudioSource>();
+                if (scenes[index] == "Village")
+                {
+                    if (challengeVisit == session) return;
+                    var title = GameObject.Find("Title screen/Content");
+                    if (!title) return;
+                    if (title.transform.Find("Places").childCount != 8 || title.transform.Find("Note"))
+                        throw new Exception("Unexpected welcome screen places or footer");
+                    bool challenge = ReferenceEquals(challengeVisit, null);
+                    title.transform.Find(challenge ? "Learning challenge" : "Relaxed experience")
+                        .GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
+                    if (!SessionStats.VisitStarted || session.Practice == challenge || session.Progress.challengeMode != challenge)
+                        throw new Exception("Welcome selection did not apply the mode");
+                    var progress = new ProgressData();
+                    foreach (var place in VillageStoryProgress.Activities)
+                    {
+                        VillageStoryProgress.Contribute(progress, place);
+                        if (SessionStats.GoalReached(progress) != (progress.story.contributions.Count == 8))
+                            throw new Exception("Finale must require all eight places");
+                    }
+                    Debug.Log("Welcome passed for " + (challenge ? "learning challenge" : "relaxed experience"));
+                    if (challenge) { challengeVisit = session; session.NewSession(); return; }
+                }
+                if (session.activity && (session.activity.speak.gameObject.activeInHierarchy || session.activity.speak.transform.parent.Find("Hint")))
+                    throw new Exception("Speaker or lightbulb shown in " + scenes[index]);
                 if (scenes[index] == "Shop")
                 {
                     var view = session.shopController.worldRoot.GetComponentsInChildren<WordView>().First(v => v.Entry);
@@ -67,7 +92,7 @@ namespace Lemko.Editor
                     if (activity.speak.interactable != (clip != null)) throw new Exception("Speaker state differs from clip availability");
                     if (clip)
                     {
-                        activity.speak.onClick.Invoke();
+                        activity.Speak();
                         if (source.clip != clip || clip.samples <= 0) throw new Exception("Incorrect activity recording");
                     }
                 }
@@ -95,9 +120,8 @@ namespace Lemko.Editor
                     if (cards.Length != 2 * (4 + round * 2) || cards.GroupBy(t => t.view.Entry).Any(g => g.Count() != 2))
                         throw new Exception("Invalid board for Memory round " + (round + 1));
                 }
-                var hint = memory.speak.transform.parent.Find("Hint").GetComponent<UnityEngine.UI.Button>();
-                if (!hint.isActiveAndEnabled || !hint.interactable) throw new Exception("Memory hint is unavailable");
-                hint.onClick.Invoke();
+                var trayTap = memory.taskRoot.GetComponentsInChildren<EventTrigger>().Single(t => t.name == "Matched pairs tray");
+                ExecuteEvents.Execute(trayTap.gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerClickHandler);
                 if (cards.Count(t => t.FaceUp) != 1 || memory.Hints != 1) throw new Exception("Peek did not expose exactly one card");
                 memoryStep++;
                 return false;

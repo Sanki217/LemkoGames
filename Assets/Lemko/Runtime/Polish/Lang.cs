@@ -32,8 +32,8 @@ namespace Lemko
             {"Explore eight places to learn Lemko","Odwiedź osiem miejsc i ucz się łemkowskiego"},{"A small place to learn - development milestone 1","Małe miejsce do nauki"},
             {"Click or tap anywhere to play","Kliknij lub dotknij, aby zagrać"},{"Your next adventure","Twoja następna przygoda"},
             {"Learn Lemko words while the village gets ready for its gathering.","Ucz się łemkowskich słów, a wioska przygotuje się do spotkania."},
-            {"Quick visit","Krótka wizyta"},{"The gathering","Spotkanie"},{"3 places  ·  about 10 minutes","3 miejsca  ·  około 10 minut"},{"all 8 places  ·  about 30 minutes","wszystkie 8 miejsc  ·  około 30 minut"},
-            {"Nothing is saved: every visit starts fresh.","Nic się nie zapisuje: każda wizyta zaczyna się od nowa."},
+            {"Learning challenge","Wyzwanie językowe"},{"Relaxed experience","Spokojna nauka"},
+            {"8 places · limited hearts","8 miejsc · ograniczona liczba serc"},{"8 places · unlimited tries","8 miejsc · dowolna liczba prób"},
             {"Our neighbours are preparing a gathering. Help at any of the eight places.","Sąsiedzi przygotowują spotkanie. Pomóż w dowolnym z ośmiu miejsc."},
             {"The gathering is ready. Choose a keepsake colour, or revisit any place.","Spotkanie jest gotowe. Wybierz kolor na pamiątkę albo odwiedź dowolne miejsce."},
             {"The gathering is ready!","Spotkanie jest gotowe!"},{"Your village gathering is ready!","Spotkanie w wiosce jest gotowe!"},{"Choose a colour below.","Wybierz kolor poniżej."},
@@ -53,7 +53,8 @@ namespace Lemko
             {"Your gathering preparations are ready. Revisit any place whenever you like.","Przygotowania są gotowe. Wracaj do dowolnego miejsca, kiedy chcesz."},
             {"Choose another activity whenever you are ready.","Wybierz kolejne miejsce, kiedy zechcesz."},
             // introductions
-            {"Stuck? Right-click a word or picture, or tap the lightbulb, to see what it means.","Nie wiesz? Kliknij słowo lub obrazek prawym przyciskiem albo dotknij żarówki, aby zobaczyć znaczenie."},
+            {"Right-click or press and hold a word or picture to see its meaning.","Kliknij słowo lub obrazek prawym przyciskiem albo przytrzymaj palec, aby zobaczyć znaczenie."},
+            {"Tap the tray to peek at one card.","Dotknij tacki, aby podejrzeć jedną kartę."},
             {"Finish the labels","Dokończ etykiety"},{"Some labels still need to be written or repaired. Help spell the words in Lemko.","Niektóre etykiety trzeba jeszcze napisać lub poprawić. Pomóż zapisać słowa po łemkowsku."},
             {"1. Look at the picture and its meaning. Right-click either for the Lemko spelling.","1. Spójrz na obrazek i jego znaczenie. Kliknij prawym przyciskiem, aby zobaczyć łemkowską pisownię."},
             {"2. Click or drag letters into the slots. Tap a filled slot to return its letter.","2. Klikaj lub przeciągaj litery na pola. Dotknij zajętego pola, aby oddać literę."},
@@ -131,7 +132,7 @@ namespace Lemko
         // Phrases that may be added to the end of a line.
         static readonly string[,] Closers=
         {
-            {" Right-click a word, or tap the lightbulb, for help."," Kliknij słowo prawym przyciskiem albo dotknij żarówki, aby zobaczyć podpowiedź."},
+            {" Right-click or press and hold a word for help."," Kliknij słowo prawym przyciskiem albo przytrzymaj palec, aby zobaczyć podpowiedź."},
         };
         static readonly string[] Dividers={ "\n","  •  ","   ·   ","  |  "," | " };
         static readonly Regex Bonus=new Regex(@"^(.*?)  Bonus \+(\d+)!$",RegexOptions.Singleline);

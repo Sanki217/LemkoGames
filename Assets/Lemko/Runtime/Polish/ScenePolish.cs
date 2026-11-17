@@ -247,8 +247,7 @@ namespace Lemko
         }
 
         // ---------- task flow ----------
-        TMP_Text headline; Image headlineCard; Button hintButton; bool submitLive;
-        const float Badge=52;
+        TMP_Text headline; Image headlineCard; bool submitLive;
         void BuildFlow()
         {
             headline=Activity ? Activity.prompt : Shop ? Shop.feedback : null;
@@ -257,22 +256,6 @@ namespace Lemko
                 headlineCard=Picture(rect.parent,"Prompt card",Look.Button,Look.Paper,rect.anchoredPosition,rect.sizeDelta,true);
                 headlineCard.rectTransform.SetSiblingIndex(rect.GetSiblingIndex());
             }
-            if(Activity && Activity.speak) {
-                // Listen and hint are two round badges side by side, a loudspeaker and a light bulb, with no words on them.
-                var speak=(RectTransform)Activity.speak.transform; float left=speak.anchoredPosition.x-speak.sizeDelta.x*.5f;
-                speak.sizeDelta=new Vector2(Badge,Badge); speak.anchoredPosition=new Vector2(left+Badge*.5f,speak.anchoredPosition.y);
-                var face=Activity.speak.image; if(face) { face.sprite=Look.Speaker; face.type=Image.Type.Simple; face.color=Color.white; }
-                foreach(var text in speak.GetComponentsInChildren<TMP_Text>(true)) text.color=Color.clear;
-                var bulb=Picture(speak.parent,"Hint",Look.HintBadge,Color.white,speak.anchoredPosition+new Vector2(Badge+8,0),new Vector2(Badge,Badge)); bulb.raycastTarget=true;
-                hintButton=bulb.gameObject.AddComponent<Button>(); hintButton.targetGraphic=bulb; Tint(hintButton); hintButton.onClick.AddListener(ShowHint);
-            }
-        }
-        void ShowHint()
-        {
-            if(!Activity || !Activity.prompt) return;
-            if(Activity is MemoryController memory) { memory.Peek(); return; }
-            session.HintNow(this,Juice.UiToScreen(Activity.prompt.rectTransform)-new Vector2(0,Screen.height*.2f));
-            StopCoroutine(nameof(HideHint)); StartCoroutine(nameof(HideHint));
         }
         IEnumerator HideHint() { yield return new WaitForSecondsRealtime(2.8f); if(session && session.tooltip) session.tooltip.Hide(this); }
         void RefreshFlow()
@@ -286,14 +269,6 @@ namespace Lemko
                     headlineCard.rectTransform.sizeDelta=Pixels.EvenUi(new Vector2(Mathf.Clamp(headline.preferredWidth+64,220,box.x+40),Mathf.Clamp(headline.preferredHeight+20,54,130)));
                     headlineCard.rectTransform.anchoredPosition=Pixels.SnapUi(headline.rectTransform.anchoredPosition);
                 }
-            }
-            if(hintButton) {
-                var memory=Activity as MemoryController;
-                bool show=Activity.Running && !Activity.Locked && (memory ? !memory.AssociationActive && !memory.AssociationPending : Activity.Current!=null);
-                if(hintButton.gameObject.activeSelf!=show) hintButton.gameObject.SetActive(show);
-                hintButton.interactable=!memory || memory.CanPeek;
-                // The bulb stays beside the loudspeaker wherever an activity puts it.
-                var speak=(RectTransform)Activity.speak.transform; ((RectTransform)hintButton.transform).anchoredPosition=speak.anchoredPosition+new Vector2(Badge+8,0);
             }
             // The Check button breathes gently once there is something to check.
             var submit=Activity ? Activity.submit : Shop ? Shop.finishButton : null;

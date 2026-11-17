@@ -89,12 +89,13 @@ namespace Lemko
             if(activity) hud.text+="\n"+activity.Points+" points   •   ×"+activity.Multiplier+"   •   "+activity.Hints+" hints";
         }
         void RefreshModeControls() {
-            if(modeButton) modeButton.GetComponentInChildren<TMP_Text>().text=Practice ? "Start challenge" : "Switch to learning";
+            if(modeButton) modeButton.GetComponentInChildren<TMP_Text>().text=Practice ? "Learning challenge" : "Relaxed experience";
             if(modeDescription) modeDescription.text=Practice ? "Learning: mistakes never block play." : "Challenge: "+Lives+" shared lives. Hints and rewards stay available.";
         }
-        public void ToggleLearningMode() {
+        public void ToggleLearningMode() => SetChallengeMode(Practice);
+        public void SetChallengeMode(bool challenge) {
             if(SceneManager.GetActiveScene().name!="Village" || Progress==null) return;
-            sharedPractice=!sharedPractice;
+            sharedPractice=!challenge;
             if(!sharedPractice) sharedLives=shop.startingLives;
             Progress.challengeMode=!sharedPractice; RefreshHud();
         }
