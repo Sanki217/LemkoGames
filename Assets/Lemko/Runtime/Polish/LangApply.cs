@@ -9,30 +9,36 @@ namespace Lemko
     [DefaultExecutionOrder(10000)]
     public sealed class LangApply : MonoBehaviour
     {
-        sealed class Seen { public string source, shown; public bool typed; }
-        readonly Dictionary<TMP_Text,Seen> seen=new Dictionary<TMP_Text,Seen>();
-        readonly List<TMP_Text> gone=new List<TMP_Text>();
-        bool polish; int sweep;
+        sealed class Seen { public TMP_Text label; public string source, shown; public bool typed, polish; }
+        readonly HashSet<TMP_Text> known=new HashSet<TMP_Text>();
+        readonly List<Seen> labels=new List<Seen>();
+        void OnEnable()
+        {
+            TMPro_EventManager.TEXT_CHANGED_EVENT.Add(Track);
+            foreach(var label in FindObjectsByType<TMP_Text>(FindObjectsInactive.Include,FindObjectsSortMode.None)) Track(label);
+        }
+        void OnDisable() => TMPro_EventManager.TEXT_CHANGED_EVENT.Remove(Track);
+        void Track(Object changed)
+        {
+            if(!(changed is TMP_Text label) || !label || !known.Add(label)) return;
+            var field=label.GetComponentInParent<TMP_InputField>();
+            labels.Add(new Seen { label=label, typed=field && field.textComponent==label });
+        }
         void LateUpdate()
         {
-            bool switched=polish!=Lang.Polish; polish=Lang.Polish;
-            foreach(var text in FindObjectsByType<TMP_Text>(FindObjectsSortMode.None)) {
-                if(!seen.TryGetValue(text,out var entry)) {
-                    if(ScenePolish.ActiveFont) text.font=ScenePolish.ActiveFont;
-                    // What the player types into a search box is never translated.
-                    var field=text.GetComponentInParent<TMP_InputField>();
-                    entry=new Seen{ typed=field && field.textComponent==text }; seen[text]=entry;
-                }
+            for(int i=labels.Count-1;i>=0;i--) {
+                var entry=labels[i]; var text=entry.label;
+                if(!text) { known.Remove(text); labels.RemoveAt(i); continue; }
+                if(!text.isActiveAndEnabled) continue;
+                if(ScenePolish.ActiveFont && text.font!=ScenePolish.ActiveFont) text.font=ScenePolish.ActiveFont;
                 if(entry.typed) continue;
                 string now=text.text;
-                if(entry.shown!=null && now==entry.shown) { if(!switched) continue; }
+                if(entry.shown!=null && now==entry.shown) { if(entry.polish==Lang.Polish) continue; }
                 else entry.source=now;
+                entry.polish=Lang.Polish;
                 entry.shown=Lang.T(entry.source);
                 if(entry.shown!=now) text.text=entry.shown;
             }
-            if(++sweep<600) return;
-            sweep=0; gone.Clear(); foreach(var text in seen.Keys) if(!text) gone.Add(text);
-            foreach(var text in gone) seen.Remove(text);
         }
     }
 }

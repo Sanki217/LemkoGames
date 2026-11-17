@@ -161,6 +161,8 @@ namespace Lemko
         // ---------- icon HUD ----------
         RectTransform hudRow; readonly List<Image> hearts=new List<Image>(), pips=new List<Image>();
         Image heartsPill, pipsPill, scorePill, streakPill, bonusRing, goldenPill; TextMeshProUGUI scoreText, streakText;
+        Image[] hudPills;
+        int displayedPoints=int.MinValue;
         int shownLives=-1, shownPips=-1, shownFilled=-1, shownStreak=-1; float shownScore; int targetScore;
         void BuildHud()
         {
@@ -180,6 +182,7 @@ namespace Lemko
             streakText=Label(streakPill.transform,"Multiplier","x2",17,Look.Ink,new Vector2(0,1),new Vector2(48,24));
             goldenPill=Picture(hudRow,"Golden word",Look.Chip,Look.Honey,Vector2.zero,new Vector2(108,40),true);
             Label(goldenPill.transform,"Label","Golden x2",17,Look.Ink,new Vector2(0,1),new Vector2(100,34));
+            hudPills=new[]{heartsPill,pipsPill,scorePill,goldenPill};
             RefreshHud(true);
         }
         void RefreshHud(bool force=false)
@@ -230,7 +233,7 @@ namespace Lemko
             bool golden=Activity && Activity.GoldenTask && !Activity.Locked; if(golden!=goldenPill.gameObject.activeSelf) { goldenPill.gameObject.SetActive(golden); if(golden) Juice.Pop(goldenPill.transform); }
             // Lay the visible pills out from the left edge.
             float x=-624;
-            foreach(var pill in new[]{heartsPill,pipsPill,scorePill,goldenPill}) {
+            foreach(var pill in hudPills) {
                 if(!pill.gameObject.activeSelf) continue;
                 float w=pill.rectTransform.sizeDelta.x+(pill==scorePill && bonusRing.gameObject.activeSelf ? 32 : 0);
                 pill.rectTransform.anchoredPosition=new Vector2(x+pill.rectTransform.sizeDelta.x*.5f,0); x+=w+8;
@@ -241,7 +244,8 @@ namespace Lemko
             if(!built || !session || session.Progress==null) return;
             RefreshHud();
             if(!Mathf.Approximately(shownScore,targetScore)) shownScore=GameSession.ReducedMotion ? targetScore : Mathf.MoveTowards(shownScore,targetScore,Mathf.Max(60,Mathf.Abs(targetScore-shownScore)*6)*Time.unscaledDeltaTime);
-            string score=Mathf.RoundToInt(shownScore).ToString(); if(scoreText.text!=score) scoreText.text=score;
+            int points=Mathf.RoundToInt(shownScore);
+            if(displayedPoints!=points) { displayedPoints=points; scoreText.text=points.ToString(); }
             RefreshFlow();
             if(InVillage) RefreshVillage();
         }

@@ -148,20 +148,17 @@ namespace Lemko
         public static Sprite Heart=>Make("lemko_heart",12,12,(x,y)=> Outlined(HeartShape(new Vector2((x-6)/8.6f,(y-1.2f)/8.6f))*8.6f,Color.white,1.2f));
         public static Sprite Star=>StarOf(14);
         // A plump star with round points, worked out at any size.
-        public static Sprite StarOf(int size)=>Make("lemko_star_"+size,size,size,(x,y)=> {
-            float round=size*.06f;
-            float d=StarDistance(x-size*.5f,y-size*.47f,size*.5f-.4f-round,size*.23f)-round;
-            return Outlined(d,Color.white,Mathf.Max(1.2f,size*.06f)); });
-        static float StarDistance(float x,float y,float outer,float inner)
+        public static Sprite StarOf(int size)
         {
-            // Signed distance to a five-point star, evaluated against its ten edges.
-            float best=float.MaxValue; bool inside=false; var p=new Vector2(x,y);
-            for(int i=0;i<10;i++) {
-                var a=Corner(i,outer,inner); var b=Corner(i+1,outer,inner);
-                best=Mathf.Min(best,Segment(p,a,b));
-                if((a.y>y)!=(b.y>y) && x<(b.x-a.x)*(y-a.y)/(b.y-a.y)+a.x) inside=!inside;
-            }
-            return inside ? -best : best;
+            string key="lemko_star_"+size;
+            if(cache.TryGetValue(key,out var existing) && existing) return existing;
+            float round=size*.06f;
+            var corners=new Vector2[10];
+            for(int i=0;i<corners.Length;i++) corners[i]=Corner(i,size*.5f-.4f-round,size*.23f);
+            return Make(key,size,size,(x,y)=> {
+                float d=Polygon(new Vector2(x-size*.5f,y-size*.47f),corners)-round;
+                return Outlined(d,Color.white,Mathf.Max(1.2f,size*.06f));
+            });
         }
         static Vector2 Corner(int i,float outer,float inner) { float angle=Mathf.PI/2+i*Mathf.PI/5; float r=i%2==0 ? outer : inner; return new Vector2(Mathf.Cos(angle),Mathf.Sin(angle))*r; }
         // A round paper lantern with a dark cap and foot.
@@ -186,12 +183,13 @@ namespace Lemko
                 var c=Outlined(d,Paper,Mathf.Max(1,size*.05f));
                 c=Over(c,Lip,Cover(d+Mathf.Max(1,size*.05f))*Cover(p.y+size*.3f)*.8f);   // a shaded lower rim
                 return glyph(p*(26f/size),c); });
+        static readonly Vector2[] Cone={new Vector2(-6.5f,-2.2f),new Vector2(-2.6f,-2.2f),new Vector2(1.6f,-6f),new Vector2(1.6f,6f),new Vector2(-2.6f,2.2f),new Vector2(-6.5f,2.2f)};
+        static readonly float[] SoundArcs={3.6f,6.6f};
         static Color Loudspeaker(Vector2 p,Color c)
         {
-            var cone=new[]{ new Vector2(-6.5f,-2.2f),new Vector2(-2.6f,-2.2f),new Vector2(1.6f,-6f),new Vector2(1.6f,6f),new Vector2(-2.6f,2.2f),new Vector2(-6.5f,2.2f) };
-            c=Over(c,Line,Cover(Polygon(p,cone)-.5f));
+            c=Over(c,Line,Cover(Polygon(p,Cone)-.5f));
             float angle=Mathf.Abs(Mathf.Atan2(p.y,p.x-1.6f));
-            if(angle<.9f) foreach(float r in new[]{3.6f,6.6f}) c=Over(c,Line,Cover(Mathf.Abs((p-new Vector2(1.6f,0)).magnitude-r)-.75f));
+            if(angle<.9f) foreach(float r in SoundArcs) c=Over(c,Line,Cover(Mathf.Abs((p-new Vector2(1.6f,0)).magnitude-r)-.75f));
             return c;
         }
         // The "hear this word" button beside a task.

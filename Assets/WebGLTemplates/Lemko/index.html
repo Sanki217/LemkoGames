@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Łemkowska Wioska</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #2a2233; color: #fbf5d8; font: 1rem system-ui, sans-serif; }
+    main { height: 100vh; height: 100dvh; display: grid; place-items: center; }
+    canvas { display: block; width: min(100vw, 177.7778vh); width: min(100vw, 177.7778dvh);
+      aspect-ratio: 16 / 9; height: auto; outline: none; touch-action: none; }
+    #loading { position: absolute; text-align: center; padding: 1rem; }
+    progress { display: block; width: 14rem; margin: .75rem auto; accent-color: #ecc25c; }
+    button { position: fixed; right: max(.5rem, env(safe-area-inset-right)); bottom: max(.5rem, env(safe-area-inset-bottom));
+      background: #2a2233; color: #fbf5d8; border: 1px solid #a59988; border-radius: .4rem; padding: .4rem; cursor: pointer; }
+    :fullscreen button { display: none; }
+  </style>
+</head>
+<body>
+  <main>
+    <canvas id="game" tabindex="0" aria-label="Łemkowska Wioska"></canvas>
+    <div id="loading" role="status">Ładowanie gry…<progress max="1"></progress></div>
+    <button id="fullscreen" hidden aria-label="Pełny ekran" title="Pełny ekran">⛶</button>
+  </main>
+  <script src="Build/{{{ LOADER_FILENAME }}}"></script>
+  <script>
+    const canvas = document.getElementById("game");
+    const loading = document.getElementById("loading");
+    const progress = loading.querySelector("progress");
+    function resize() {
+      const bounds = canvas.getBoundingClientRect();
+      if (!bounds.width || !bounds.height) return;
+      // Keep the UI sharp on smaller screens and bound the GPU work on high-DPI displays.
+      const scale = Math.min(window.devicePixelRatio || 1, 1.5, 1920 / bounds.width, 1080 / bounds.height);
+      const width = Math.max(1, Math.round(bounds.width * scale));
+      const height = Math.max(1, Math.round(bounds.height * scale));
+      if (canvas.width !== width) canvas.width = width;
+      if (canvas.height !== height) canvas.height = height;
+    }
+    resize();
+    new ResizeObserver(resize).observe(canvas);
+    window.addEventListener("resize", resize);
+    const config = {
+      dataUrl: "Build/{{{ DATA_FILENAME }}}",
+      frameworkUrl: "Build/{{{ FRAMEWORK_FILENAME }}}",
+#if USE_WASM
+      codeUrl: "Build/{{{ CODE_FILENAME }}}",
+#endif
+#if USE_THREADS
+      workerUrl: "Build/{{{ WORKER_FILENAME }}}",
+#endif
+#if SYMBOLS_FILENAME
+      symbolsUrl: "Build/{{{ SYMBOLS_FILENAME }}}",
+#endif
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
+      productName: {{{ JSON.stringify(PRODUCT_NAME) }}},
+      productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}},
+      matchWebGLToCanvasSize: false
+    };
+    createUnityInstance(canvas, config, value => { progress.value = value; }).then(() => {
+      loading.hidden = true;
+      const button = document.getElementById("fullscreen");
+      button.hidden = !document.fullscreenEnabled;
+      button.onclick = () => document.documentElement.requestFullscreen().then(() => canvas.focus());
+    }).catch(error => { loading.textContent = String(error); });
+  </script>
+</body>
+</html>
