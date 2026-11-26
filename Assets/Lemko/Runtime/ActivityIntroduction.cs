@@ -29,8 +29,20 @@ namespace Lemko {
             if(repeatButton) { repeatButton.onClick.RemoveListener(ToggleRepeat); repeatButton.onClick.AddListener(ToggleRepeat); RefreshRepeat(); }
             if(EventSystem.current) EventSystem.current.SetSelectedGameObject(null);
             title.text=definition.title; story.text=definition.story;
+            bool help=onContinue==null;
+            var card=title.transform.parent;
+            card.Find("Eyebrow").gameObject.SetActive(false);
+            card.Find("Continue cue").gameObject.SetActive(false);
+            instructions.gameObject.SetActive(help);
+            support.gameObject.SetActive(help && definition.activityId!="Memory");
+            illustration.rectTransform.anchoredPosition=help ? new Vector2(-405,-25) : new Vector2(0,-55);
+            if(repeatButton) {
+                var label=repeatButton.GetComponentInChildren<TMP_Text>(true);
+                label.enableAutoSizing=true; label.fontSizeMin=12; label.fontSizeMax=16;
+                label.margin=new Vector4(12,2,12,2);
+            }
             instructions.text=definition.activityId=="Farm" && !session.FarmQuantitiesUnlocked && !string.IsNullOrWhiteSpace(definition.beforeNumbers) ? definition.beforeNumbers : definition.instructions;
-            support.text=definition.activityId=="Memory" ? "Tap the tray to peek at one card." : "Right-click or press and hold a word or picture to see its meaning.";
+            support.text="Right-click or press and hold a word or picture to see its meaning.";
             illustration.sprite=definition.illustration; illustration.enabled=definition.illustration; Pixels.Native(illustration);
             session.tooltip.Hide(); session.audioService.Stop();
             panel.SetActive(true); transform.SetAsLastSibling(); opened=Time.unscaledTime;

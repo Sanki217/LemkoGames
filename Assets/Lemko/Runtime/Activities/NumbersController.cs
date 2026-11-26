@@ -23,7 +23,7 @@ namespace Lemko
         }
         protected override void BuildTask()
         {
-            submit.gameObject.SetActive(false); prompt.text="Find the ticket "+Look.Word(Current.word.lemko);
+            submit.gameObject.SetActive(false); prompt.text="Find the number "+Look.Word(Current.word.lemko);
             var options=AvailableTasks().Select(t=>t.quantity).Distinct().Where(n=>n!=Current.quantity).ToList(); Shuffle(options);
             options=options.Take(3).ToList(); options.Add(Current.quantity); Shuffle(options); Options=options.ToArray();
             for(int i=0;i<Options.Length;i++) {
@@ -45,7 +45,7 @@ namespace Lemko
             if(!Ready || Options==null || !Options.Contains(number)) return;
             bool correct=number==Current.quantity;
             var ticket=tokens.Find(t=>t && t.Key==number.ToString());
-            if(!Answer(correct,number.ToString(),correct ? "Ticket "+number+" is ready!" : "That ticket shows a different number.")) return;
+            if(!Answer(correct,number.ToString(),correct ? "Number "+number+" is ready!" : "That is a different number.")) return;
             if(!correct) { if(ticket) Juice.Shake(ticket.transform,.14f); return; }
             {
                 issued.Add(number);

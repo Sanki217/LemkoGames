@@ -44,7 +44,7 @@ namespace Lemko
                 for(int i=0;i<count;i++) Add(Current.word);
                 if(variant==2) { var other=shelter.FirstOrDefault(w=>w!=Current.word); if(other) Add(other); }
             }
-            feedback.text=!QuantityTasks ? "Put the animal in the pasture." : IsRepairTask ? "Something is wrong in this pen." : "Drag or tap animals into the pen. Tap one to remove it.";
+            feedback.text=!QuantityTasks ? "" : IsRepairTask ? "Something is wrong in this pen." : "Drag or tap animals into the pen. Tap one to remove it.";
         }
         public bool Add(VocabularyEntry word)=>Add(word,null);
         public bool Add(VocabularyEntry word,Vector2? at)

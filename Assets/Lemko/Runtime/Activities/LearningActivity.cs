@@ -25,9 +25,7 @@ namespace Lemko
         public int Streak => score.Streak;
         [Header("Challenge mode extras")]
         [Min(1)] public float quickBonusSeconds=8;
-        int goldenIndex=-1; float taskStarted;
-        // One surprise task per round is worth double in Challenge mode.
-        public bool GoldenTask => Running && Session && !Session.Practice && Total>=3 && Correct==goldenIndex;
+        float taskStarted;
         // 1 at the start of a task, falling to 0; only meaningful in Challenge mode and never ends a task.
         public float QuickBonus => Running && !Locked && Session && !Session.Practice && Session.CanAnswer ? Mathf.Clamp01(1-(Time.unscaledTime-taskStarted)/quickBonusSeconds) : 0;
         protected virtual bool HasAnswer => true;
@@ -59,7 +57,7 @@ namespace Lemko
             string error=ValidateContent();
             if(error!=null) { prompt.text="Content needs attention"; feedback.text=error; Debug.LogError(error,this); return; }
             order=AvailableTasks(); Shuffle(order);
-            order=PracticeSelection.Order(order,t=>t.word,session,Total); Running=true; goldenIndex=Random.Range(0,Mathf.Max(1,Total)); worldRoot.gameObject.SetActive(true);
+            order=PracticeSelection.Order(order,t=>t.word,session,Total); Running=true; worldRoot.gameObject.SetActive(true);
             // Pixel art is never scaled, so the scene's content scale is not used: every game lays its pieces out at full size.
             taskRoot.localPosition=Pixels.Snap((Vector3)contentOffset); taskRoot.localScale=Vector3.one;
             submit.onClick.RemoveListener(Submit); submit.onClick.AddListener(Submit);
@@ -89,9 +87,9 @@ namespace Lemko
             if(!Ready || (!correct && rejected==signature)) return false;
             if(Current!=null && definition.kind!=ActivityKind.Memory) Session.RecordAnswer(Current.word,correct);
             if(correct) {
-                bool golden=GoldenTask; float quick=QuickBonus;
+                float quick=QuickBonus;
                 Correct++; Locked=true; int awarded=score.Apply(SelectionResult.Correct); int bonus=0;
-                if(!Session.Practice) { bonus=(golden ? awarded : 0)+Mathf.RoundToInt(awarded*.5f*quick/10f)*10; score.Bonus(bonus); }
+                if(!Session.Practice) { bonus=Mathf.RoundToInt(awarded*.5f*quick/10f)*10; score.Bonus(bonus); }
                 feedback.text=explanation+(bonus>0 ? "  Bonus +"+bonus+"!" : ""); Session.PresentFeedback(true);
                 submit.gameObject.SetActive(false); next.gameObject.SetActive(false);
                 SessionStats.BestStreak=Mathf.Max(SessionStats.BestStreak,score.Streak);

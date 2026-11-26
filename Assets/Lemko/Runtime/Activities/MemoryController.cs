@@ -65,7 +65,6 @@ namespace Lemko
                 if(PairCount>6) token.transform.localScale=Vector3.one*.86f;
                 picture[token]=card.Item2; token.Face(false,card.Item2,card.w.lemko);
             }
-            feedback.text="Tap the tray to peek at one card.";
         }
         public void Peek()
         {

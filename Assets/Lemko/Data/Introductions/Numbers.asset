@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Numbers
   m_EditorClassIdentifier: Assembly-CSharp::Lemko.ActivityIntroductionDefinition
   activityId: Numbers
-  title: Prepare the tickets
-  story: The gathering needs numbered tickets. Read or listen to each request and
+  title: Recognise the numbers
+  story: Read or listen to each request and
     choose the right number.
   instructions: '1. Read the Lemko number, or play its recording when available.
 
     2.
-    Select the matching numeral to issue a ticket.
+    Select the matching number.
 
     3. Finish the session to
     unlock animal quantities at the Farm.'

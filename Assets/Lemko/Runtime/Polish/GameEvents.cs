@@ -26,12 +26,12 @@ namespace Lemko
     {
         public static readonly Dictionary<string,int> Stars=new Dictionary<string,int>();
         public const int Places = 8;
-        public static int BestStreak, LanternsShown;
+        public static int BestStreak;
         public static bool VisitStarted;
         public static bool FinaleShown;
         public static float StartedAt;
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        public static void Reset() { Stars.Clear(); BestStreak=0; VisitStarted=false; LanternsShown=0; FinaleShown=false; StartedAt=0; }
+        public static void Reset() { Stars.Clear(); BestStreak=0; VisitStarted=false; FinaleShown=false; StartedAt=0; }
         public static int TotalStars { get { int n=0; foreach(var s in Stars.Values) n+=s; return n; } }
         public static int StarsFor(string activity)=>Stars.TryGetValue(activity,out int s) ? s : 0;
         public static int Rate(bool complete,int mistakes,int hints)=>!complete ? 0 : 1+(mistakes<=1 ? 1 : 0)+(hints==0 ? 1 : 0);

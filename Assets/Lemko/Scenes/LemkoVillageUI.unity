@@ -4381,7 +4381,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 398408610}
         m_TargetAssemblyTypeName: Lemko.GameSession, Assembly-CSharp
-        m_MethodName: StartPractice
+        m_MethodName: Village
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

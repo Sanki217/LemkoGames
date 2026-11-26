@@ -31,12 +31,12 @@ namespace Lemko.Editor
                     foreach(var button in session.exhaustedPanel.GetComponentsInChildren<Button>(true)) {
                         for(int i=0;i<button.onClick.GetPersistentEventCount();i++) {
                             string method=button.onClick.GetPersistentMethodName(i);
-                            if(method=="FreshAttempt") button.GetComponentInChildren<TMP_Text>(true).text="Fresh challenge";
-                            if(method=="StartPractice") button.GetComponentInChildren<TMP_Text>(true).text="Continue learning";
+                            if(method=="FreshAttempt") button.GetComponentInChildren<TMP_Text>(true).text="Start again";
+                            if(method=="Village") button.GetComponentInChildren<TMP_Text>(true).text="Return to village";
                         }
                     }
                     foreach(var text in session.exhaustedPanel.GetComponentsInChildren<TMP_Text>(true))
-                        if(!text.GetComponentInParent<Button>()) text.text="Challenge lives used up.\nStart a fresh challenge or continue learning without a life limit.";
+                        if(!text.GetComponentInParent<Button>()) text.text="Out of hearts!\nTake a breath, then carry on.";
                 }
                 if(session.activity is WeatherController weather && !weather.outingIllustration) {
                     var entry=AssetDatabase.LoadAssetAtPath<VocabularyEntry>("Assets/Lemko/Data/Vocabulary/food_apples.asset");

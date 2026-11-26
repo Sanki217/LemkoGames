@@ -29,7 +29,6 @@ namespace Lemko
             var icon=new GameObject("Outing supplies",typeof(SpriteRenderer)); icon.transform.SetParent(preview.transform,false); supplies=icon.GetComponent<SpriteRenderer>(); supplies.sprite=outingIllustration; supplies.sortingOrder=2;
             icon.transform.localPosition=new Vector3(0,.45f,0);   // at its own size, standing on the blanket
             icon.SetActive(false);
-            feedback.text="Pick the weather and set "+Current.minTemperature+" to "+Current.maxTemperature+" °C.";
         }
         protected override bool HasAnswer => selected;
         void TemperatureChanged(float value) {

@@ -89,12 +89,12 @@ namespace Lemko
             if(activity) hud.text+="\n"+activity.Points+" points   •   ×"+activity.Multiplier+"   •   "+activity.Hints+" hints";
         }
         void RefreshModeControls() {
-            if(modeButton) modeButton.GetComponentInChildren<TMP_Text>().text=Practice ? "Learning challenge" : "Relaxed experience";
+            if(modeButton) modeButton.GetComponentInChildren<TMP_Text>(true).text=Practice ? "Learning challenge" : "Relaxed experience";
             if(modeDescription) modeDescription.text=Practice ? "Learning: mistakes never block play." : "Challenge: "+Lives+" shared lives. Hints and rewards stay available.";
         }
         public void ToggleLearningMode() => SetChallengeMode(Practice);
         public void SetChallengeMode(bool challenge) {
-            if(SceneManager.GetActiveScene().name!="Village" || Progress==null) return;
+            if(SceneManager.GetActiveScene().name!="Village" || Progress==null || SessionStats.VisitStarted) return;
             sharedPractice=!challenge;
             if(!sharedPractice) sharedLives=shop.startingLives;
             Progress.challengeMode=!sharedPractice; RefreshHud();
@@ -204,6 +204,7 @@ namespace Lemko
         }
         public void Village()
         {
+            if(!Practice && Lives==0) sharedLives=shop.startingLives;
             if(useSeparateScenes && SceneManager.GetActiveScene().name!="Village") { Navigate("Village"); return; }
             ShowVillageOrPlaceholder();
         }
@@ -266,8 +267,11 @@ namespace Lemko
             if(result.revisit.Count==0) result.revisit.AddRange(sessionWords.Take(3));
             GameEvents.Finished(result);
         }
-        public void FreshAttempt() { sharedLives=shop.startingLives; sharedPractice=false; Progress.challengeMode=true; RestartActivity(); }
-        public void StartPractice() { sharedPractice=true; Progress.challengeMode=false; RestartActivity(); }
+        public void FreshAttempt() {
+            if(!SessionStats.VisitStarted) { sharedPractice=false; Progress.challengeMode=true; }
+            sharedLives=shop.startingLives; RestartActivity();
+        }
+        public void StartPractice() { if(SessionStats.VisitStarted) return; sharedPractice=true; Progress.challengeMode=false; RestartActivity(); }
         void OnDestroy() { if(tooltip) { tooltip.Revealed-=RecordHint; tooltip.Hide(); } if(audioService) audioService.Stop(); }
     }
 }

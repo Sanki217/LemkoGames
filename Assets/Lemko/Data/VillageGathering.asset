@@ -43,9 +43,9 @@ MonoBehaviour:
     success: The packing checklist is ready.
     illustration: {fileID: 21300000, guid: 7b60beb34b641c1458a1262e0fe556c7, type: 3}
   - activityId: Numbers
-    title: Prepare tickets
-    request: Choose the requested numbers for the tickets.
-    success: The tickets are ready.
+    title: Prepare numbers
+    request: Choose the requested numbers.
+    success: The numbers are ready.
     illustration: {fileID: 21300000, guid: 1ca5ff0453f14764d958adc0a18d319d, type: 3}
   - activityId: Alphabet
     title: Prepare the labels

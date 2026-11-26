@@ -22,7 +22,8 @@ namespace Lemko
             if(session.results) session.results.color=Color.clear;
             if(session.wordRecap) session.wordRecap.color=Color.clear;
             if(resultCard) Destroy(resultCard.gameObject);
-            resultCard=Box(panel.transform,"Result card",new Vector2(110,40),new Vector2(780,400));
+            if(session.contributionReward) session.contributionReward.gameObject.SetActive(false);
+            resultCard=Box(panel.transform,"Result card",new Vector2(0,20),new Vector2(780,400));
             Label(resultCard,"Title",result.complete ? Pretty(result.activity)+" complete!" : "Good try!",40,Look.Ink,new Vector2(0,170),new Vector2(760,56));
             for(int i=0;i<3;i++) {
                 bool earned=i<result.stars;
@@ -35,20 +36,12 @@ namespace Lemko
             string stats=result.correct+" correct   ·   "+result.mistakes+(result.mistakes==1 ? " mistake" : " mistakes")+"   ·   "+result.hints+(result.hints==1 ? " hint" : " hints")
                 ;
             Label(resultCard,"Stats",stats,18,Look.Muted,new Vector2(0,-42),new Vector2(770,26),false);
-            string note=(result.contribution??"").Split('\n')[0];
-            if(note.Length>0) Label(resultCard,"Contribution",note,19,Look.Good,new Vector2(0,-74),new Vector2(770,28));
-            if(result.revisit.Count>0) {
-                Label(resultCard,"Revisit label","Practise next:",18,Look.Ink,new Vector2(-300,-118),new Vector2(160,30));
-                for(int i=0;i<result.revisit.Count;i++) {
-                    var word=result.revisit[i]; Button chip=null;
-                    chip=PushButton(resultCard,word.lemko,new Vector2(-110+i*200,-118),new Vector2(186,44),Look.Peach,()=> {
-                        session.audioService.Play(word.pronunciation);
-                        session.tooltip.RevealNow(this,word,Juice.UiToScreen((RectTransform)chip.transform)); StopCoroutine(nameof(HideHint)); StartCoroutine(nameof(HideHint));
-                    },20);
-                    var label=chip.GetComponentInChildren<TMP_Text>(); label.enableAutoSizing=true; label.fontSizeMin=12; label.fontSizeMax=20;
-                    Juice.Pop(chip.transform,1.3f+i*.1f);
-                }
-            }
+            var again=panel.transform.Find(result.activity=="Shop" ? "Shop again" : "Play again") as RectTransform;
+            var village=panel.transform.Find("Village") as RectTransform;
+            bool hasNext=session.nextPlaceButton && session.nextPlaceButton.gameObject.activeSelf;
+            if(again) again.anchoredPosition=new Vector2(hasNext ? -275 : -140,-170);
+            if(village) village.anchoredPosition=new Vector2(hasNext ? 0 : 140,-170);
+            if(hasNext) ((RectTransform)session.nextPlaceButton.transform).anchoredPosition=new Vector2(275,-170);
             // Existing buttons: the suggested next place becomes the obvious next step.
             if(session.nextPlaceButton && session.nextPlaceButton.gameObject.activeSelf) Juice.Breathe(session.nextPlaceButton.transform,.05f,1.2f);
             if(result.complete) { Juice.Confetti(); Juice.Sound("fanfare"); }
@@ -69,17 +62,17 @@ namespace Lemko
         readonly Dictionary<VillageHotspot,SpriteRenderer[]> houseStars=new Dictionary<VillageHotspot,SpriteRenderer[]>();
         TMP_Text journalLabel; int shownWords=-1; VillageHotspot bobbing;
         // Where each place stands on the painted village map (world units; the map fills the 16 x 9 view): the middle
-        // and size of the building, which is what the player clicks, and the patch of bare ground in front of it,
+        // of the building and the patch of bare ground in front of it,
         // which carries the name tag, the stars and the highlight. The finished gift stands beside the tag.
-        static readonly Dictionary<string,(Vector2 at,Vector2 size,Vector2 tag)> Places=new Dictionary<string,(Vector2,Vector2,Vector2)> {
-            {"Shop",(new Vector2(-4.94f,1.82f),new Vector2(2.2f,1.5f),new Vector2(-4.84f,.91f))},
-            {"FamilyTree",(new Vector2(-1.4f,2.9f),new Vector2(2.8f,2.3f),new Vector2(-1.01f,1.49f))},
-            {"Weather",(new Vector2(4.63f,2.8f),new Vector2(1.6f,1.7f),new Vector2(4.54f,1.8f))},
-            {"Memory",(new Vector2(.04f,.08f),new Vector2(3.6f,1.8f),new Vector2(.04f,-1.14f))},
-            {"Farm",(new Vector2(5.35f,.15f),new Vector2(3.1f,1.6f),new Vector2(5.49f,-1.03f))},
-            {"Alphabet",(new Vector2(-5.37f,-.62f),new Vector2(1.9f,1.6f),new Vector2(-5.13f,-1.76f))},
-            {"Numbers",(new Vector2(-2.93f,-2.58f),new Vector2(3f,1.3f),new Vector2(-3.12f,-3.66f))},
-            {"House",(new Vector2(2.75f,-2.34f),new Vector2(3.6f,1.6f),new Vector2(2.67f,-3.44f))},
+        static readonly Dictionary<string,(Vector2 at,Vector2 tag)> Places=new Dictionary<string,(Vector2,Vector2)> {
+            {"Shop",(new Vector2(-4.94f,1.82f),new Vector2(-4.84f,.91f))},
+            {"FamilyTree",(new Vector2(-1.4f,2.9f),new Vector2(-1.01f,1.49f))},
+            {"Weather",(new Vector2(4.63f,2.8f),new Vector2(4.54f,1.8f))},
+            {"Memory",(new Vector2(.04f,.08f),new Vector2(.04f,-1.14f))},
+            {"Farm",(new Vector2(5.35f,.15f),new Vector2(5.49f,-1.03f))},
+            {"Alphabet",(new Vector2(-5.37f,-.62f),new Vector2(-5.13f,-1.76f))},
+            {"Numbers",(new Vector2(-2.93f,-2.58f),new Vector2(-3.12f,-3.66f))},
+            {"House",(new Vector2(2.75f,-2.34f),new Vector2(2.67f,-3.44f))},
         };
         void PlaceVillage()
         {
@@ -89,7 +82,6 @@ namespace Lemko
             foreach(var spot in session.storyView.worldLocations ?? new VillageHotspot[0]) {
                 if(!spot || !Places.TryGetValue(spot.activityId,out var place)) continue;
                 var t=spot.transform; t.position=new Vector3(place.at.x,place.at.y,t.position.z); t.localScale=Vector3.one; t.localRotation=Quaternion.identity;
-                if(spot.TryGetComponent<BoxCollider2D>(out var box)) { box.offset=Vector2.zero; box.size=place.size; }
                 var tag=place.tag-place.at;
                 if(spot.label) spot.label.transform.localPosition=new Vector3(tag.x,tag.y,spot.label.transform.localPosition.z);
                 if(spot.highlight) {
@@ -112,6 +104,10 @@ namespace Lemko
                 var sign=new GameObject("Name tag",typeof(SpriteRenderer)).GetComponent<SpriteRenderer>(); sign.transform.SetParent(label.transform.parent,false);
                 sign.transform.localPosition=Pixels.Snap(label.transform.localPosition+new Vector3(0,0,.01f));
                 Pixels.Card(sign,new Vector2(wanted.x+.5f,Mathf.Max(.5f,wanted.y+.2f)),Look.Chip); sign.color=Look.Paper; sign.sortingOrder=-1;
+                if(spot.TryGetComponent<BoxCollider2D>(out var box)) {
+                    box.offset=spot.transform.InverseTransformPoint(sign.bounds.center);
+                    box.size=sign.size;
+                }
                 var stars=new SpriteRenderer[3]; int earned=SessionStats.StarsFor(spot.activityId);
                 for(int i=0;i<3;i++) {
                     var star=new GameObject("House star",typeof(SpriteRenderer)).GetComponent<SpriteRenderer>(); star.transform.SetParent(spot.transform,false);
@@ -124,14 +120,12 @@ namespace Lemko
             var view=session.storyView;
             foreach(var text in new[]{view.title,view.introduction,view.status,session.modeDescription,session.villageStatus}) if(text) text.gameObject.SetActive(false);
             foreach(var button in root.GetComponentsInChildren<Button>(true)) if(button.name=="Village") button.gameObject.SetActive(false);
-            if(session.modeButton) Corner((RectTransform)session.modeButton.transform,new Vector2(516,-318));
+            if(session.modeButton) session.modeButton.gameObject.SetActive(false);
+            if(root.Find("Menu") is RectTransform menu) menu.anchoredPosition=new Vector2(640-16-menu.sizeDelta.x*.5f,320);
             if(session.villagePanel) {
                 var journal=session.villagePanel.transform.Find("Word journal");
                 if(journal) { journalLabel=journal.GetComponentInChildren<TMP_Text>(true); Corner((RectTransform)journal,new Vector2(-516,-318)); }
             }
-            int lit=Mathf.Min(LanternCount,session.Progress.story.contributions.Count);
-            if(lit>SessionStats.LanternsShown) StartCoroutine(LightLanterns(SessionStats.LanternsShown,lit));
-            SessionStats.LanternsShown=lit;
             if(!SessionStats.VisitStarted) ShowTitle();
             else if(SessionStats.GoalReached(session.Progress) && !SessionStats.FinaleShown) StartCoroutine(FinaleSoon());
             else if(SessionStats.FinaleShown) Festival();
@@ -141,15 +135,6 @@ namespace Lemko
             rect.anchorMin=rect.anchorMax=rect.pivot=new Vector2(.5f,.5f); rect.sizeDelta=new Vector2(216,52);
             rect.position=rect.GetComponentInParent<Canvas>().rootCanvas.transform.TransformPoint(position);
             var label=rect.GetComponentInChildren<TMP_Text>(true); if(label) { label.enableAutoSizing=true; label.fontSizeMin=12; label.fontSizeMax=20; label.textWrappingMode=TextWrappingModes.NoWrap; }
-        }
-        IEnumerator LightLanterns(int from,int to)
-        {
-            yield return new WaitForSecondsRealtime(.7f);
-            for(int i=from;i<to && i<pips.Count;i++) {
-                if(!pips[i]) yield break;
-                Juice.Punch(pips[i].transform,1.1f,.5f); Juice.Sparkle(Juice.UiToScreen(pips[i].rectTransform),10); Juice.Sound("star",1+i*.06f);
-                yield return new WaitForSecondsRealtime(.3f);
-            }
         }
         void RefreshVillage()
         {
@@ -181,7 +166,6 @@ namespace Lemko
         {
             var content=Overlay("Title screen");
             var title=Label(content,"Title","Lemko Village",76,Look.Ink,new Vector2(0,190),new Vector2(1100,100)); Juice.Pop(title.transform,.15f);
-            Label(content,"Subtitle","Learn Lemko words while the village gets ready for its gathering.",24,Look.Muted,new Vector2(0,118),new Vector2(1000,40),false);
             var row=Box(content,"Places",new Vector2(0,20),new Vector2(900,90));
             var contributions=session.story ? session.story.contributions : null; int shown=0;
             if(contributions!=null) foreach(var c in contributions) if(c!=null && shown<LanternCount) {

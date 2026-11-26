@@ -29,11 +29,6 @@ namespace Lemko
             data.story.contributions.Add(activity); return true;
         }
         public static bool Complete(ProgressData data) => Activities.All(data.story.contributions.Contains);
-        public static bool ChooseDecoration(ProgressData data,string choice)
-        {
-            if(!Complete(data) || (choice!="gold" && choice!="blue")) return false;
-            data.story.decoration=choice; return true;
-        }
     }
     [Serializable] public sealed class WordLearningRecord
     {

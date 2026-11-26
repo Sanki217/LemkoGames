@@ -58,7 +58,7 @@ namespace Lemko.Editor
                     Check(journal.VisibleCount>0 && journal.Selected,"Unicode search");
                     journal.search.text="NO_MATCH_987"; Check(journal.VisibleCount==0,"search excludes");
                     journal.search.text=""; journal.ToggleReview(); Check(journal.VisibleCount==15,"unanswered review pool"); journal.ToggleReview();
-                    session.ToggleLanguage(); Check(journal.detail.text.Contains(journal.Selected.Translation(session.Progress.english)),"language refresh");
+                    session.ToggleLanguage(); Check(journal.rows[0].meaning.text==journal.Selected.Translation(session.Progress.english) && !journal.detail.gameObject.activeSelf,"translated row without a duplicate footer");
                     Check(session.Progress.words.Count==0,"journal gives no recall credit");
                 } else if(step==2) {
                     Capture("Journal-populated"); session.Village(); Check(!journal.IsOpen,"village closes journal");

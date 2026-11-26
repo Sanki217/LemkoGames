@@ -12,6 +12,7 @@ namespace Lemko
 
         static readonly Dictionary<string,string> Exact=new Dictionary<string,string>
         {
+            {"Start again","Zacznij od nowa"},{"Return to village","Wróć do wioski"},
             // places
             {"Shop","Sklep"},{"Farm","Gospodarstwo"},{"House","Dom"},{"Memory","Memory"},{"Numbers","Liczby"},{"Alphabet","Alfabet"},{"Weather","Pogoda"},
             {"Family Tree","Drzewo rodziny"},{"FamilyTree","Drzewo rodziny"},{"Family tree","Drzewo rodziny"},{"Village","Wioska"},
@@ -45,7 +46,7 @@ namespace Lemko
             {"Prepare the animals","Przygotuj zwierzęta"},{"Help finish the animal pens before the gathering.","Pomóż dokończyć zagrody przed spotkaniem."},{"The animal pens are ready.","Zagrody są gotowe."},
             {"Prepare the room","Przygotuj pokój"},{"Prepare furniture in the requested room.","Ustaw meble we wskazanym pokoju."},{"The room is ready.","Pokój jest gotowy."},
             {"Pack the checklist","Spakuj rzeczy z listy"},{"Match the packing checklist pictures and words.","Dopasuj obrazki z listy do słów."},{"The packing checklist is ready.","Lista rzeczy jest gotowa."},
-            {"Prepare tickets","Przygotuj bilety"},{"Choose the requested numbers for the tickets.","Wybierz właściwe numery biletów."},{"The tickets are ready.","Bilety są gotowe."},
+            {"Prepare numbers","Przygotuj numery"},{"Choose the requested numbers.","Wybierz właściwe numery."},{"The numbers are ready.","Numery są gotowe."},
             {"Prepare the labels","Przygotuj etykiety"},{"Check the spelling for our preparations.","Sprawdź pisownię na etykietach."},{"The spelling preparations are ready.","Etykiety są gotowe."},
             {"Plan the weather","Zaplanuj pogodę"},{"Set the requested weather and temperature for our planned day.","Ustaw pogodę i temperaturę na zaplanowany dzień."},{"The weather plan is ready.","Plan pogody jest gotowy."},
             {"Contribution ready","Gotowe"},{"Contribution complete.","Gotowe."},{"Practice complete","Ćwiczenie skończone"},
@@ -76,8 +77,8 @@ namespace Lemko
             {"1. Turn over two cards: match a picture with its Lemko word.","1. Odkryj dwie karty: dopasuj obrazek do łemkowskiego słowa."},
             {"2. Keep matching until the board is cleared. Mismatches do not cost lives.","2. Dopasowuj, aż znikną wszystkie karty. Pomyłki nie zabierają żyć."},
             {"3. Finish the short picture-to-word checks afterwards.","3. Na koniec rozwiąż krótkie zadania: obrazek i słowo."},
-            {"Prepare the tickets","Przygotuj bilety"},{"The gathering needs numbered tickets. Read or listen to each request and choose the right number.","Na spotkanie potrzebne są numerowane bilety. Przeczytaj lub posłuchaj i wybierz właściwą liczbę."},
-            {"1. Read the Lemko number, or play its recording when available.","1. Przeczytaj łemkowską liczbę albo posłuchaj nagrania."},{"2. Select the matching numeral to issue a ticket.","2. Wybierz pasującą cyfrę, aby wydać bilet."},
+            {"Recognise the numbers","Rozpoznaj numery"},{"Read or listen to each request and choose the right number.","Przeczytaj lub posłuchaj i wybierz właściwy numer."},
+            {"1. Read the Lemko number, or play its recording when available.","1. Przeczytaj łemkowską liczbę albo posłuchaj nagrania."},{"2. Select the matching number.","2. Wybierz pasujący numer."},
             {"3. Finish the session to unlock animal quantities at the Farm.","3. Ukończ grę, aby odblokować ilości zwierząt w Gospodarstwie."},
             {"Gather the supplies","Zbierz zapasy"},{"The village is preparing a shared meal. Help collect everything on the shopping list.","Wioska szykuje wspólny posiłek. Pomóż zebrać wszystko z listy zakupów."},
             {"1. Read the Lemko shopping list.","1. Przeczytaj łemkowską listę zakupów."},{"2. Click or tap products to add them to your basket. Tap again to remove.","2. Kliknij produkt z listy, a trafi do koszyka."},
@@ -93,10 +94,10 @@ namespace Lemko
             {"Start from YOU and follow the lines.","Zacznij od TY i idź po liniach."},{"Invitation delivered!","Zaproszenie doręczone!"},{"Not this relative. Follow the lines from YOU.","To nie ten krewny. Idź po liniach od TY."},{"YOU","TY"},
             {"Put the animal in the pasture.","Postaw zwierzę na pastwisku."},{"Something is wrong in this pen.","W tej zagrodzie coś się nie zgadza."},{"Drag or tap animals into the pen. Tap one to remove it.","Przeciągnij lub dotknij zwierzęta, aby trafiły do zagrody. Dotknij, aby zabrać."},
             {"That is a different animal.","To inne zwierzę."},{"Just right!","W sam raz!"},{"Right piece, but this is another room.","Dobry przedmiot, ale to inny pokój."},{"That is not the piece we need.","To nie ten przedmiot."},
-            {"The piece is still waiting in the bar.","Przedmiot wciąż czeka na pasku."},{"That ticket shows a different number.","Na tym bilecie jest inna liczba."},
+            {"The piece is still waiting in the bar.","Przedmiot wciąż czeka na pasku."},{"That is a different number.","To inny numer."},
             {"Tap or drag letters. Tap a slot to undo.","Dotykaj lub przeciągaj litery. Dotknij pola, aby cofnąć."},{"One letter added for you.","Dodano jedną literę."},{"Not quite. Check each letter.","Jeszcze nie. Sprawdź każdą literę."},
             {"Pick a weather picture.","Wybierz obrazek pogody."},{"That is different weather.","To inna pogoda."},{"Too cold.","Za zimno."},{"Too warm.","Za ciepło."},{"A perfect day for it!","Idealny dzień!"},
-            {"On a roll!","Świetna passa!"},{"Good try!","Dobra próba!"},{"Golden x2","Złote x2"},{"Practise next:","Do powtórki:"},
+            {"On a roll!","Świetna passa!"},{"Good try!","Dobra próba!"},{"Practise next:","Do powtórki:"},
             {"Out of hearts!\nTake a breath, then carry on.","Koniec serc!\nOdetchnij i graj dalej."},{"No lives left","Koniec żyć"},{"Challenge lives used up.","Życia w wyzwaniu się skończyły."},
             {"Session complete!","Gra ukończona!"},{"Shopping complete!","Zakupy zrobione!"},{"Attempt finished","Koniec próby"},{"Learning session","Tryb nauki"},{"Learning","Nauka"},{"Challenge","Wyzwanie"},
             {"These checks are supported practice, not independent recall.","Te zadania to ćwiczenie z pomocą, a nie samodzielne przypominanie."},
@@ -113,7 +114,7 @@ namespace Lemko
         {
             {"{0} more things.","Jeszcze {0}."},{"Pair found! {0}/{1}","Para! {0}/{1}"},{"All pairs found! Now {0} quick word checks.","Wszystkie pary znalezione! Teraz {0} krótkie zadania ze słowami."},
             {"Word check {0}/{1}: which word is this?","Zadanie {0}/{1}: które to słowo?"},{"Pick the weather and set {0} to {1} °C.","Wybierz pogodę i ustaw od {0} do {1} °C."},
-            {"Ticket {0} is ready!","Bilet {0} jest gotowy!"},{"{0} complete!","{0}: ukończono!"},{"{0} points","{0} pkt"},{"{0} correct","dobrze: {0}"},{"{0} mistake","błędy: {0}"},{"{0} mistakes","błędy: {0}"},
+            {"Number {0} is ready!","Numer {0} jest gotowy!"},{"{0} complete!","{0}: ukończono!"},{"{0} points","{0} pkt"},{"{0} correct","dobrze: {0}"},{"{0} mistake","błędy: {0}"},{"{0} mistakes","błędy: {0}"},
             {"{0} hint","podpowiedzi: {0}"},{"{0} hints","podpowiedzi: {0}"},{"{0} hearts left","zostało serc: {0}"},{"best this session {0}","najlepszy wynik {0}"},
             {"Journal · {0} word","Dziennik · {0} słowo"},{"Journal · {0} words","Dziennik · słowa: {0}"},{"Word journal - {0} encountered words","Dziennik słów - poznane słowa: {0}"},
             {"Gathering preparations: {0} / 8","Przygotowania do spotkania: {0} / 8"},{"Invited: {0} / {1}","Zaproszeni: {0} / {1}"},{"Challenge: {0} shared lives. Hints and rewards stay available.","Wyzwanie: {0} wspólnych żyć. Podpowiedzi i nagrody zostają."},
@@ -123,8 +124,8 @@ namespace Lemko
         static readonly string[,] Openers=
         {
             {"Deliver an invitation to ","Zanieś zaproszenie: "},{"Fix the label: ","Popraw etykietę: "},{"Spell in Lemko: ","Zapisz po łemkowsku: "},{"Fix the pen: ","Popraw zagrodę: "},{"Fill the pen: ","Zapełnij zagrodę: "},
-            {"Find the ticket ","Znajdź bilet "},{"Find ","Znajdź: "},{"Place ","Postaw: "},{"Label ready: ","Etykieta gotowa: "},{"Yes: ","Tak: "},{"Try another: ","Spróbuj inne: "},{"Next: ","Dalej: "},
-            {"Village gathering: ","Spotkanie w wiosce: "},{"Practise next: ","Do powtórki: "},{"Words practised: ","Ćwiczone słowa: "},{"Add the missing letters. ","Dodaj brakujące litery. "},
+            {"Find the number ","Znajdź numer "},{"Find ","Znajdź: "},{"Place ","Postaw: "},{"Label ready: ","Etykieta gotowa: "},{"Yes: ","Tak: "},{"Try another: ","Spróbuj inne: "},{"Next: ","Dalej: "},
+            {"Village gathering: ","Spotkanie w wiosce: "},{"Practise next: ","Do powtórki: "},{"Words practised: ","Ćwiczone słowa: "},{"Add the missing letters.","Dodaj brakujące litery."},
             {"That is not on the list. Look for: ","Tego nie ma na liście. Szukaj: "},{"Points: ","Punkty: "},{"Best: ","Rekord: "},{"Correct: ","Dobrze: "},{"Mistakes: ","Błędy: "},{"Hints used: ","Podpowiedzi: "},
             {"Challenge lives remaining: ","Zostało żyć: "},{"Independent: ","Samodzielnie: "},{"Supported: ","Z pomocą: "},{"Words repaired: ","Poprawione słowa: "},{"Pairs: ","Pary: "},{"Association checks: ","Zadania ze słowami: "},
             {"Check mistakes: ","Błędy w zadaniach: "},{"Without help: ","Bez pomocy: "},{"With support: ","Z pomocą: "},{"Recording not supplied","Brak nagrania"},{"Shop completed: ","Sklep ukończony: "},{"Shopping list: ","Lista zakupów: "},

@@ -58,7 +58,7 @@ namespace Lemko.Editor
                 session.resultsPanel=Panel(canvas,"Results",new Color(.2f,.33f,.28f)); session.results=Text(session.resultsPanel.transform,"Result text","",new Vector2(1100,280),new Vector2(0,55),32);
                 Button(session.resultsPanel.transform,"Play again",new Vector2(250,60),new Vector2(-160,-170),session.RestartActivity); Button(session.resultsPanel.transform,"Village",new Vector2(250,60),new Vector2(160,-170),session.Village);
                 session.exhaustedPanel=Panel(canvas,"Zero lives",new Color(.3f,.2f,.2f)); Text(session.exhaustedPanel.transform,"Message","No lives left. Start fresh or keep learning in practice.",new Vector2(1100,180),new Vector2(0,80),30);
-                Button(session.exhaustedPanel.transform,"Fresh attempt",new Vector2(300,60),new Vector2(-180,-100),session.FreshAttempt); Button(session.exhaustedPanel.transform,"Unlimited practice",new Vector2(300,60),new Vector2(180,-100),session.StartPractice);
+                Button(session.exhaustedPanel.transform,"Fresh attempt",new Vector2(300,60),new Vector2(-180,-100),session.FreshAttempt); Button(session.exhaustedPanel.transform,"Unlimited practice",new Vector2(300,60),new Vector2(180,-100),session.Village);
                 session.resultsPanel.SetActive(false); session.exhaustedPanel.SetActive(false); session.tooltip.box.SetAsLastSibling();
                 EditorSceneManager.SaveScene(scene,path);
             }

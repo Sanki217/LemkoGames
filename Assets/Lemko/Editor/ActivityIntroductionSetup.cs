@@ -16,14 +16,14 @@ namespace Lemko.Editor {
             if(!Application.isBatchMode && !EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
             Directory.CreateDirectory(Folder); AssetDatabase.Refresh();
             if(!File.Exists(Prefab)) MakePrefab();
-            string[] titles={"Gather the supplies","Invite the family","Look after the animals","Make the house welcoming","Pack for the gathering","Prepare the tickets","Finish the labels","Plan a day together"};
+            string[] titles={"Gather the supplies","Invite the family","Look after the animals","Make the house welcoming","Pack for the gathering","Recognise the numbers","Finish the labels","Plan a day together"};
             string[] stories={
                 "The village is preparing a shared meal. Help collect everything on the shopping list.",
                 "A gathering feels better with family around. Work out who is being invited, using the person marked 'you' as your reference.",
                 "Before the neighbours meet, the farm animals need your attention. Help prepare their pens.",
                 "Our neighbours are making space for the gathering. Put the requested furniture in the right room.",
                 "We have pictures and Lemko words for the supplies. Pair them up to help everyone pack.",
-                "The gathering needs numbered tickets. Read or listen to each request and choose the right number.",
+                "Read or listen to each request and choose the right number.",
                 "Some labels still need to be written or repaired. Help spell the words in Lemko.",
                 "Our neighbours have a day out in mind. Match the weather and temperature to each request."};
             string[] instructions={
@@ -32,7 +32,7 @@ namespace Lemko.Editor {
                 "1. Read the requested animal and quantity.\n2. Drag animals into the pen, or tap to add them. Tap placed animals to remove them.\n3. Repair the pen if needed, then choose Check answer.",
                 "1. Read the furniture and room request. Use the arrows to change rooms.\n2. Drag furniture into the room. Drag to move it; tap to remove it.\n3. Choose Check answer from any room — the saved placement is what matters.",
                 "1. Turn over two cards: match a picture with its Lemko word.\n2. Keep matching until the board is cleared. Mismatches do not cost lives.\n3. Finish the short picture-to-word checks afterwards.",
-                "1. Read the Lemko number, or play its recording when available.\n2. Select the matching numeral to issue a ticket.\n3. Finish the session to unlock animal quantities at the Farm.",
+                "1. Read the Lemko number, or play its recording when available.\n2. Select the matching number.\n3. Finish the session to unlock animal quantities at the Farm.",
                 "1. Look at the picture and its meaning. Hold either for the Lemko spelling.\n2. Click or drag letters into the slots. Tap a filled slot to return its letter.\n3. Finish or repair the word, then choose Check answer.",
                 "1. Read the weather request.\n2. Select the weather and move the temperature slider.\n3. Choose Check answer. Adjust your choices until the outing is ready."};
             foreach(var name in SeparateScenesSetup.Activities) {

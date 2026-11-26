@@ -17,18 +17,16 @@ namespace Lemko.Editor
         public static void Data()
         {
             var old=new ProgressData();
-            Check(!VillageStoryProgress.ChooseDecoration(old,"gold"),"reward unavailable before completing story");
             foreach(var id in VillageStoryProgress.Activities) { Check(VillageStoryProgress.Contribute(old,id),"first contribution "+id); Check(!VillageStoryProgress.Contribute(old,id),"duplicate contribution "+id); }
             Check(!VillageStoryProgress.Contribute(old,"Unknown"),"unknown contribution rejected");
-            Check(VillageStoryProgress.Complete(old) && VillageStoryProgress.ChooseDecoration(old,"blue"),"eight contributions unlock choice");
-            Check(!VillageStoryProgress.ChooseDecoration(old,"unknown"),"invalid reward rejected");
+            Check(VillageStoryProgress.Complete(old),"eight contributions complete the story");
             WordLearning.Record(old,"food_bread","Shop",false,false,"2026-10-26");
             WordLearning.Record(old,"food_bread","Shop",true,true,"2026-10-26");
             WordLearning.Record(old,"food_bread","Shop",true,false,"2026-10-26");
             Check(!old.words[0].rememberedOnLaterDay,"same day is not later recall");
             WordLearning.Record(old,"food_bread","Alphabet",true,false,"2026-10-27");
             var score=new ShopScore(); for(int i=0;i<12;i++) score.Apply(SelectionResult.Correct); Check(score.NextMultiplier==5,"multiplier cap");
-            Debug.Log("LEMKO_STORY_DATA_PASS: eight contributions, duplicates, reward choices, supported versus independent evidence, later-day recall, score cap.");
+            Debug.Log("LEMKO_STORY_DATA_PASS: eight contributions, duplicates, supported versus independent evidence, later-day recall, score cap.");
         }
         public static void SetupAndData() { VillageStorySetup.Apply(); Data(); }
         public static void RunPlay()
@@ -87,8 +85,8 @@ namespace Lemko.Editor
                     if(!session.storyView) return;
                     Check(session.Progress.story.contributions.Count==0,"unfinished activity gives no contribution");
                     foreach(var id in VillageStoryProgress.Activities) VillageStoryProgress.Contribute(session.Progress,id);
-                    session.storyView.Refresh(session); Check(session.storyView.goldChoice.gameObject.activeSelf,"completed chapter offers reward");
-                    session.storyView.Blue(); Check(session.Progress.story.decoration=="blue","reward choice saved");
+                    session.storyView.Refresh(session);
+                    Check(!session.storyView.goldChoice.gameObject.activeSelf && !session.storyView.blueChoice.gameObject.activeSelf && session.storyView.tablecloth.gameObject.activeSelf,"completed chapter shows the cloth automatically");
                     Check(session.storyView.contributions[6]==null,"Alphabet adds no visible signs");
                     stage=20; return; // Let Canvas rebuild changed button text before the capture.
                 }

@@ -74,11 +74,8 @@ namespace Lemko
         void ShowDetail()
         {
             pronunciation.interactable=selected && selected.pronunciation;
-            if(!selected) { detail.text=string.IsNullOrWhiteSpace(search.text)?"No words here yet. Play an activity to encounter vocabulary.":"No matching encountered words. Try another search."; return; }
-            var record=session.Progress.words.Find(w=>w.id==selected.id);
-            detail.text=selected.lemko+" - "+selected.Translation(session.Progress.english)+"\n"+
-                (record==null?"Encountered; no answer history yet.":"Without help: "+record.independent+" | With support: "+record.assisted+" | Mistakes: "+record.mistakes)+
-                (selected.pronunciation?"":" | Recording not supplied")+(selected.verified?"":"\nLanguage content awaiting review.");
+            detail.gameObject.SetActive(!selected);
+            if(!selected) detail.text=string.IsNullOrWhiteSpace(search.text)?"No words here yet. Play an activity to encounter vocabulary.":"No matching encountered words. Try another search.";
         }
         void OnDestroy() { if(search) search.onValueChanged.RemoveListener(SearchChanged); }
     }

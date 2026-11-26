@@ -17,6 +17,7 @@ namespace Lemko.Editor
         static int memoryStep;
         static ActivityToken[] pair;
         static GameSession challengeVisit;
+        static bool returningAfterZeroHearts;
         static PronunciationPlayChecks() => EditorApplication.update += Tick;
 
         public static void Run()
@@ -35,25 +36,55 @@ namespace Lemko.Editor
             {
                 if (EditorApplication.timeSinceStartup > SessionState.GetFloat(Running + ".deadline", 0))
                     throw new Exception("Timed out entering " + scenes[index]);
-                if (!EditorApplication.isPlaying || SceneManager.GetActiveScene().name != scenes[index]) return;
+                if (!EditorApplication.isPlaying) return;
+                string sceneName=SceneManager.GetActiveScene().name;
+                if (sceneName!=scenes[index] && !(index==0 && sceneName=="Shop")) return;
                 var session = UnityEngine.Object.FindFirstObjectByType<GameSession>();
                 if (!session || session.Progress == null) return;
                 var cover = GameObject.Find("Scene cover");
                 if (cover && cover.GetComponent<UnityEngine.UI.Image>().raycastTarget) return;
                 if (session.introduction && session.introduction.IsOpen)
                 {
+                    if (session.introduction.instructions.gameObject.activeInHierarchy ||
+                        session.introduction.title.transform.parent.Find("Continue cue").gameObject.activeInHierarchy)
+                        throw new Exception("Activity introduction still displays the removed instructions");
                     session.introduction.OnPointerClick(new PointerEventData(EventSystem.current));
                     return;
                 }
                 if (UnityEngine.Object.FindObjectsByType<AudioListener>(FindObjectsSortMode.None).Count(l => l.isActiveAndEnabled) != 1)
                     throw new Exception("Expected one active listener in " + scenes[index]);
                 var source = session.audioService.GetComponent<AudioSource>();
+                if(index==0 && sceneName=="Shop") {
+                    if(returningAfterZeroHearts || !session.shopController.HasRound) return;
+                    for(int attempt=0;attempt<2;attempt++) {
+                        int lives=session.Lives;
+                        for(int i=0;i<lives;i++) session.Wrong();
+                        if(!session.exhaustedPanel.activeSelf || session.Lives!=0 || session.Practice)
+                            throw new Exception("Missing challenge recovery choices");
+                        var card=session.resultsPanel.transform.Find("Result card") as RectTransform;
+                        if(!card || card.anchoredPosition.x!=0 || session.contributionReward.gameObject.activeSelf)
+                            throw new Exception("Unexpected Shop results layout");
+                        string choice=attempt==0 ? "Fresh attempt" : "Unlimited practice";
+                        session.exhaustedPanel.transform.Find(choice).GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
+                        if(session.Lives!=session.shop.startingLives || session.Practice)
+                            throw new Exception("Recovery changed mode or failed to refill hearts");
+                    }
+                    returningAfterZeroHearts=true;
+                    return;
+                }
                 if (scenes[index] == "Village")
                 {
                     if (challengeVisit == session) return;
+                    if(returningAfterZeroHearts) {
+                        if(!SessionStats.VisitStarted || session.Practice) throw new Exception("Return to village lost challenge mode");
+                        returningAfterZeroHearts=false;
+                        session.NewSession();
+                        return;
+                    }
                     var title = GameObject.Find("Title screen/Content");
                     if (!title) return;
-                    if (title.transform.Find("Places").childCount != 8 || title.transform.Find("Note"))
+                    if (title.transform.Find("Places").childCount != 8 || title.transform.Find("Note") ||
+                        title.transform.Find("Subtitle") || session.modeButton.gameObject.activeSelf)
                         throw new Exception("Unexpected welcome screen places or footer");
                     bool challenge = ReferenceEquals(challengeVisit, null);
                     title.transform.Find(challenge ? "Learning challenge" : "Relaxed experience")
@@ -68,7 +99,12 @@ namespace Lemko.Editor
                             throw new Exception("Finale must require all eight places");
                     }
                     Debug.Log("Welcome passed for " + (challenge ? "learning challenge" : "relaxed experience"));
-                    if (challenge) { challengeVisit = session; session.NewSession(); return; }
+                    if (challenge) {
+                        challengeVisit = session;
+                        session.ToggleLearningMode();
+                        if(session.Practice) throw new Exception("Challenge mode changed after leaving the welcome screen");
+                        session.OpenShop(); return;
+                    }
                 }
                 if (session.activity && (session.activity.speak.gameObject.activeInHierarchy || session.activity.speak.transform.parent.Find("Hint")))
                     throw new Exception("Speaker or lightbulb shown in " + scenes[index]);
@@ -88,6 +124,8 @@ namespace Lemko.Editor
                 else if (session.activity && session.activity.Current != null)
                 {
                     var activity = session.activity;
+                    if(activity is FamilyTreeController family && (family.album.gameObject.activeSelf || family.feedback.gameObject.activeSelf))
+                        throw new Exception("Family Tree still displays overlapping invitation or feedback text");
                     var clip = activity.Current.word.pronunciation;
                     if (activity.speak.interactable != (clip != null)) throw new Exception("Speaker state differs from clip availability");
                     if (clip)

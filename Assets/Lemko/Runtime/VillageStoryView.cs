@@ -12,13 +12,12 @@ namespace Lemko
         public SpriteRenderer[] contributions;
         public SpriteRenderer tablecloth;
         public Button goldChoice, blueChoice;
-        GameSession session;
-        public void Refresh(GameSession owner)
+        public void Refresh(GameSession session)
         {
-            session=owner; if(!session.story) return;
+            if(!session.story) return;
             var state=session.Progress.story; title.text=session.story.title;
             bool complete=VillageStoryProgress.Complete(session.Progress);
-            introduction.text=complete ? "The gathering is ready. Choose a keepsake colour, or revisit any place." : session.story.introduction;
+            introduction.text=complete ? "The gathering is ready!" : session.story.introduction;
             for(int i=0;i<VillageStoryProgress.Activities.Length;i++) {
                 string id=VillageStoryProgress.Activities[i]; bool done=state.contributions.Contains(id);
                 var contribution=session.story.Find(id);
@@ -32,18 +31,10 @@ namespace Lemko
                 status.text+="\nNext: "+(next=="FamilyTree"?"Family Tree":next)+" — "+(session.story.Find(next)?.request??"Help prepare the gathering.");
                 foreach(var location in worldLocations) if(location) location.Recommend(location.activityId==next);
             }
-            else status.text+="\n"+(string.IsNullOrEmpty(state.decoration)?"Choose a colour below.":"Your village gathering is ready!");
-            goldChoice.gameObject.SetActive(complete); blueChoice.gameObject.SetActive(complete);
-            goldChoice.onClick.RemoveListener(Gold); goldChoice.onClick.AddListener(Gold);
-            blueChoice.onClick.RemoveListener(Blue); blueChoice.onClick.AddListener(Blue);
-            // The table cloth choice follows the two accents of the palette.
-            var goldLabel=goldChoice.GetComponentInChildren<TMPro.TMP_Text>(true); if(goldLabel) goldLabel.text="Gold cloth";
-            var redLabel=blueChoice.GetComponentInChildren<TMPro.TMP_Text>(true); if(redLabel) redLabel.text="Red cloth";
+            else status.text+="\nYour village gathering is ready!";
+            goldChoice.gameObject.SetActive(false);
+            blueChoice.gameObject.SetActive(false);
             if(tablecloth) { tablecloth.gameObject.SetActive(complete); tablecloth.color=state.decoration=="blue" ? Look.Brick : Look.Honey; }
         }
-        public void Gold()=>Choose("gold");
-        public void Blue()=>Choose("blue");
-        void Choose(string choice) { if(VillageStoryProgress.ChooseDecoration(session.Progress,choice)) { Refresh(session); } }
-        void OnDisable() { if(goldChoice) goldChoice.onClick.RemoveListener(Gold); if(blueChoice) blueChoice.onClick.RemoveListener(Blue); }
     }
 }

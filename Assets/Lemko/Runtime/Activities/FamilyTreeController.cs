@@ -28,7 +28,8 @@ namespace Lemko
                 if(!string.IsNullOrEmpty(p.parentId)) { var parent=definition.people.Find(x=>x.id==p.parentId); if(parent!=null) Link(parent.position,p.position,Look.Wood,-2); }
                 if(!string.IsNullOrEmpty(p.secondParentId)) { var parent=definition.people.Find(x=>x.id==p.secondParentId); if(parent!=null) Link(parent.position,p.position,Look.Wood,-2); }
             }
-            RefreshAlbum(); feedback.text="Start from YOU and follow the lines.";
+            if(album) album.gameObject.SetActive(false);
+            feedback.gameObject.SetActive(false);
         }
         // Every portrait card is 60 x 60 pixels.
         static readonly Vector2 Portrait=new Vector2(1.5f,1.5f);
@@ -52,7 +53,6 @@ namespace Lemko
             var r=go.GetComponent<SpriteRenderer>(); r.sprite=Look.Square; r.color=color; r.sortingOrder=order;
             var one=r.sprite.bounds.size; go.transform.localScale=new Vector3(width/one.x,height/one.y,1);
         }
-        void RefreshAlbum() { if(album) album.text="Invited: "+delivered.Count+" / "+definition.tasksPerSession+"\n"+string.Join("  •  ",delivered); }
         public void Choose(string person) {
             if(!Ready || !definition.people.Exists(p=>p.id==person)) return;
             bool correct=Array.IndexOf(Current.validPeople,person)>=0;
@@ -62,25 +62,6 @@ namespace Lemko
             {
                 invited.Add(person); delivered.Add(Current.word.lemko);
                 foreach(var token in tokens) if(token.Key==person) { token.backing.color=Look.GoodSoft; Juice.Hop(token.transform,.4f); }
-                HighlightPath(person); RefreshAlbum();
-            }
-        }
-        void HighlightPath(string target) {
-            var previous=new Dictionary<string,string>(); var queue=new Queue<string>();
-            previous[definition.referencePerson]=null; queue.Enqueue(definition.referencePerson);
-            while(queue.Count>0 && !previous.ContainsKey(target)) {
-                var id=queue.Dequeue();
-                foreach(var p in definition.people) {
-                    bool adjacent=p.parentId==id || p.secondParentId==id;
-                    var current=definition.people.Find(x=>x.id==id);
-                    adjacent|=current!=null && (current.parentId==p.id || current.secondParentId==p.id);
-                    if(adjacent && !previous.ContainsKey(p.id)) { previous[p.id]=id; queue.Enqueue(p.id); }
-                }
-            }
-            if(!previous.ContainsKey(target)) return;
-            for(string id=target; previous[id]!=null; id=previous[id]) {
-                var a=definition.people.Find(p=>p.id==id); var b=definition.people.Find(p=>p.id==previous[id]);
-                Link(a.position,b.position,Look.Brick,-1);
             }
         }
         public override void Close() { base.Close(); invited.Clear(); delivered.Clear(); if(album) album.text=""; }

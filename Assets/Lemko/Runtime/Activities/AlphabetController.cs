@@ -45,7 +45,7 @@ namespace Lemko
                 foreach(int index in positions.Skip(Mathf.Max(1,missingLetters))) FillCorrect(index);
                 if(used.Count>0) Session.MarkSupported(Current.word);
             }
-            feedback.text=(IsRepairTask ? "Add the missing letters. " : "")+"Tap or drag letters. Tap a slot to undo."; building=false;
+            feedback.text=IsRepairTask ? "Add the missing letters." : ""; building=false;
         }
         static readonly Vector2 BoardCentre=new Vector2(.6f,.42f);
         bool building;

@@ -148,8 +148,8 @@ namespace Lemko
             if(session.sessionProgress && session.sessionProgress.transform.parent!=root) session.sessionProgress.transform.parent.gameObject.SetActive(false);
             if(session.exhaustedPanel) {
                 Rename(session.exhaustedPanel.transform,"Message","Out of hearts!\nTake a breath, then carry on.");
-                Rename(session.exhaustedPanel.transform,"Fresh attempt","Restart with full hearts");
-                Rename(session.exhaustedPanel.transform,"Unlimited practice","Keep going in Learning mode");
+                Rename(session.exhaustedPanel.transform,"Fresh attempt","Start again");
+                Rename(session.exhaustedPanel.transform,"Unlimited practice","Return to village");
             }
         }
         static void Rename(Transform parent,string child,string text)
@@ -159,19 +159,17 @@ namespace Lemko
         }
 
         // ---------- icon HUD ----------
-        RectTransform hudRow; readonly List<Image> hearts=new List<Image>(), pips=new List<Image>();
-        Image heartsPill, pipsPill, scorePill, streakPill, bonusRing, goldenPill; TextMeshProUGUI scoreText, streakText;
+        RectTransform hudRow; readonly List<Image> hearts=new List<Image>();
+        Image heartsPill, scorePill, streakPill, bonusRing; TextMeshProUGUI scoreText, streakText;
         Image[] hudPills;
         int displayedPoints=int.MinValue;
-        int shownLives=-1, shownPips=-1, shownFilled=-1, shownStreak=-1; float shownScore; int targetScore;
+        int shownLives=-1, shownStreak=-1; float shownScore; int targetScore;
         void BuildHud()
         {
             hudRow=Box(root,"Icon HUD",new Vector2(0,320),new Vector2(1280,60)); hudRow.SetSiblingIndex(session.hud.transform.GetSiblingIndex()+1);
             // Every icon is shown at its own size (two interface units per pixel) and every tag has even sides.
             heartsPill=Picture(hudRow,"Hearts",Look.Chip,Look.Paper,Vector2.zero,new Vector2(160,40),true);
             for(int i=0;i<Mathf.Min(8,session.shop ? session.shop.startingLives : 5);i++) hearts.Add(Picture(heartsPill.transform,"Heart",Look.Heart,Look.Brick,Vector2.zero,Pixels.UiSize(Look.Heart)));
-            pipsPill=Picture(hudRow,"Progress",Look.Chip,Look.Paper,Vector2.zero,new Vector2(160,40),true);
-            for(int i=0;i<12;i++) pips.Add(Picture(pipsPill.transform,"Pip",Look.Dot,Look.Empty,Vector2.zero,Pixels.UiSize(Look.Dot)));
             scorePill=Picture(hudRow,"Score",Look.Chip,Look.Paper,Vector2.zero,new Vector2(140,40),true);
             Picture(scorePill.transform,"Star",Look.Star,Look.Honey,new Vector2(-46,0),Pixels.UiSize(Look.Star));
             scoreText=Label(scorePill.transform,"Points","0",22,Look.Ink,new Vector2(14,1),new Vector2(96,34));
@@ -180,9 +178,7 @@ namespace Lemko
             // The multiplier is written inside the score tag, after the points, instead of on a tag of its own.
             streakPill=Picture(scorePill.transform,"Streak",Look.Chip,Look.Honey,new Vector2(54,0),new Vector2(52,28),true);
             streakText=Label(streakPill.transform,"Multiplier","x2",17,Look.Ink,new Vector2(0,1),new Vector2(48,24));
-            goldenPill=Picture(hudRow,"Golden word",Look.Chip,Look.Honey,Vector2.zero,new Vector2(108,40),true);
-            Label(goldenPill.transform,"Label","Golden x2",17,Look.Ink,new Vector2(0,1),new Vector2(100,34));
-            hudPills=new[]{heartsPill,pipsPill,scorePill,goldenPill};
+            hudPills=new[]{heartsPill,scorePill};
             RefreshHud(true);
         }
         void RefreshHud(bool force=false)
@@ -190,16 +186,10 @@ namespace Lemko
             if(!hudRow) return;
             bool playing=Activity ? Activity.Running : Shop && Shop.HasRound;
             int lives=session.Practice ? -1 : session.Lives;
-            int total=0, filled=0, points=0, multiplier=1;
-            if(Activity && Activity.Running) {
-                if(Activity is MemoryController memory) { total=memory.PairCount; filled=memory.PairsFound; if(memory.AssociationActive || memory.AssociationPending) filled=total; }
-                else { total=Activity.SessionTaskCount; filled=Activity.Correct; }
-                points=Activity.Points; multiplier=Activity.Multiplier;
-            } else if(Shop && Shop.HasRound) { total=Shop.TargetCount; filled=Mathf.Min(total,Shop.BasketCount); points=Shop.Points; multiplier=Shop.NextMultiplier; }
-            else if(InVillage) { total=LanternCount; filled=Mathf.Min(total,session.Progress.story.contributions.Count); points=SessionStats.TotalStars; }
-            // Task dots are gone from the games; only the village keeps its row of lanterns.
-            if(!InVillage) total=0;
-            total=Mathf.Min(total,pips.Count);
+            int points=0, multiplier=1;
+            if(Activity && Activity.Running) { points=Activity.Points; multiplier=Activity.Multiplier; }
+            else if(Shop && Shop.HasRound) { points=Shop.Points; multiplier=Shop.NextMultiplier; }
+            else if(InVillage) points=SessionStats.TotalStars;
             if(force || lives!=shownLives) {
                 if(!force && lives>=0 && lives<shownLives && lives<hearts.Count) { Juice.Shake(heartsPill.transform,8); Juice.Sound("heart"); Juice.Dust(Juice.UiToScreen(hearts[lives].rectTransform)); Juice.Squash(hearts[lives].transform,.4f); }
                 shownLives=lives; heartsPill.gameObject.SetActive(lives>=0);
@@ -208,16 +198,6 @@ namespace Lemko
                 // The last heart beats quietly, so the player sees it is the last one.
                 for(int i=0;i<hearts.Count;i++) Juice.Calm(hearts[i].transform);
                 if(lives==1 && hearts.Count>0) Juice.Breathe(hearts[0].transform,.14f,.9f);
-            }
-            if(force || total!=shownPips || filled!=shownFilled) {
-                bool lantern=InVillage;
-                for(int i=0;i<pips.Count;i++) {
-                    pips[i].gameObject.SetActive(i<total); if(i>=total) continue;
-                    pips[i].sprite=lantern ? Look.Lantern : Look.Dot; pips[i].rectTransform.sizeDelta=Pixels.UiSize(pips[i].sprite);
-                    pips[i].color=i<filled ? (lantern ? Look.Honey : Look.Good) : Look.Empty; pips[i].rectTransform.anchoredPosition=new Vector2((i-(total-1)*.5f)*24,0);
-                    if(!force && i<filled && i>=shownFilled) Juice.Punch(pips[i].transform,.6f,.35f);
-                }
-                shownPips=total; shownFilled=filled; pipsPill.gameObject.SetActive(total>0); pipsPill.rectTransform.sizeDelta=new Vector2(total*24+28,40);
             }
             targetScore=points; if(force || !playing) shownScore=points;
             scorePill.gameObject.SetActive(playing || InVillage);
@@ -230,7 +210,6 @@ namespace Lemko
                 streakPill.rectTransform.anchoredPosition=new Vector2(64,0); bonusRing.rectTransform.anchoredPosition=new Vector2(streak ? 116 : 88,0);
             }
             float bonus=Activity ? Activity.QuickBonus : 0; bonusRing.gameObject.SetActive(bonus>0); bonusRing.fillAmount=bonus;
-            bool golden=Activity && Activity.GoldenTask && !Activity.Locked; if(golden!=goldenPill.gameObject.activeSelf) { goldenPill.gameObject.SetActive(golden); if(golden) Juice.Pop(goldenPill.transform); }
             // Lay the visible pills out from the left edge.
             float x=-624;
             foreach(var pill in hudPills) {
@@ -261,7 +240,6 @@ namespace Lemko
                 headlineCard.rectTransform.SetSiblingIndex(rect.GetSiblingIndex());
             }
         }
-        IEnumerator HideHint() { yield return new WaitForSecondsRealtime(2.8f); if(session && session.tooltip) session.tooltip.Hide(this); }
         void RefreshFlow()
         {
             if(headlineCard) {

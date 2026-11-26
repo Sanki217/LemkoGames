@@ -108,7 +108,7 @@ namespace Lemko.Editor
             session.exhaustedPanel = Panel(root,"Zero lives",new Color(.27f,.18f,.18f));
             Text(session.exhaustedPanel.transform,"Message","No lives left\nKeep learning in practice, or start a fresh attempt.",new Vector2(1100,200),new Vector2(0,90),32);
             Button(session.exhaustedPanel.transform,"Fresh attempt",new Vector2(300,70),new Vector2(-180,-100),session.FreshAttempt);
-            Button(session.exhaustedPanel.transform,"Unlimited practice",new Vector2(300,70),new Vector2(180,-100),session.StartPractice);
+            Button(session.exhaustedPanel.transform,"Unlimited practice",new Vector2(300,70),new Vector2(180,-100),session.Village);
             var tip = Rect(root,"Translation tooltip",new Vector2(340,90),Vector2.zero);
             tip.gameObject.AddComponent<Image>().color = new Color(.08f,.12f,.1f,.98f);
             session.tooltip.box = tip; session.tooltip.group = tip.gameObject.AddComponent<CanvasGroup>();
