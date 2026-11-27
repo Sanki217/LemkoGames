@@ -15,65 +15,469 @@ MonoBehaviour:
   kind: 2
   tasksPerSession: 5
   pool:
-  - {fileID: 11400000, guid: bb2f760b9f245df44a5a3c5424e4faab, type: 2}
-  - {fileID: 11400000, guid: 0549c55bba8b71e44afcd2721ff8a4a8, type: 2}
-  - {fileID: 11400000, guid: bb461b385668d2d479b70214ea7fced0, type: 2}
-  - {fileID: 11400000, guid: bbc44a6af1c9f124686e2243735ec8fb, type: 2}
+  - {fileID: 11400000, guid: d5d4d56be8bbfad46a12c5b00687efa8, type: 2}
   - {fileID: 11400000, guid: 86f0de69e71cfa14bb526eb2c8d9e81c, type: 2}
+  - {fileID: 11400000, guid: d73f718b19d20d942aeac2aac1d880c4, type: 2}
+  - {fileID: 11400000, guid: eab7a722c4c2e0440b521b40d7716fa7, type: 2}
+  - {fileID: 11400000, guid: 9e321cd43a07e3f40b7e0516b5a1dfc1, type: 2}
+  - {fileID: 11400000, guid: 0549c55bba8b71e44afcd2721ff8a4a8, type: 2}
+  - {fileID: 11400000, guid: 49a6da0b1a16d4d42a0205e9bee7abf7, type: 2}
+  - {fileID: 11400000, guid: 42d719ac60c9f064590dccb910054505, type: 2}
+  - {fileID: 11400000, guid: bbc44a6af1c9f124686e2243735ec8fb, type: 2}
+  - {fileID: 11400000, guid: bb461b385668d2d479b70214ea7fced0, type: 2}
+  - {fileID: 11400000, guid: 0aafc0dd243bc4343a5e66b9a240e4f0, type: 2}
+  - {fileID: 11400000, guid: d15bde6f3223cba429dbde8786c6a8ca, type: 2}
+  - {fileID: 11400000, guid: 3954f5d33a9d41e4ea176751af93830c, type: 2}
+  - {fileID: 11400000, guid: bb2f760b9f245df44a5a3c5424e4faab, type: 2}
   - {fileID: 11400000, guid: 5e331e944af1e0c4c9bac5f26e0421f8, type: 2}
+  - {fileID: 11400000, guid: 2027ffeb2ec34f246bfb25ff229604d9, type: 2}
+  - {fileID: 11400000, guid: 987e62be66534674295cd5f6b4789268, type: 2}
+  - {fileID: 11400000, guid: 30ff65e2e1ba7df40a3781c4f22b4f50, type: 2}
   tasks:
-  - id: mother
-    word: {fileID: 11400000, guid: bb2f760b9f245df44a5a3c5424e4faab, type: 2}
-    context: {fileID: 0}
-    quantity: 1
-    minTemperature: 0
-    maxTemperature: 20
-    request: 
+  - id: grandmother_son
+    word: {fileID: 11400000, guid: 30ff65e2e1ba7df40a3781c4f22b4f50, type: 2}
+    referencePerson: grandmother
+    validPeople:
+    - uncle
+  - id: grandmother_daughter
+    word: {fileID: 11400000, guid: 9e321cd43a07e3f40b7e0516b5a1dfc1, type: 2}
+    referencePerson: grandmother
     validPeople:
     - mother
-  - id: father
-    word: {fileID: 11400000, guid: 0549c55bba8b71e44afcd2721ff8a4a8, type: 2}
-    context: {fileID: 0}
-    quantity: 1
-    minTemperature: 0
-    maxTemperature: 20
-    request: 
+  - id: grandmother_grandson
+    word: {fileID: 11400000, guid: 0aafc0dd243bc4343a5e66b9a240e4f0, type: 2}
+    referencePerson: grandmother
+    validPeople:
+    - male_cousin
+    - brother
+    - you
+  - id: grandmother_granddaughter
+    word: {fileID: 11400000, guid: 42d719ac60c9f064590dccb910054505, type: 2}
+    referencePerson: grandmother
+    validPeople:
+    - sister
+  - id: maternal_grandfather_son
+    word: {fileID: 11400000, guid: 30ff65e2e1ba7df40a3781c4f22b4f50, type: 2}
+    referencePerson: maternal_grandfather
+    validPeople:
+    - uncle
+  - id: maternal_grandfather_daughter
+    word: {fileID: 11400000, guid: 9e321cd43a07e3f40b7e0516b5a1dfc1, type: 2}
+    referencePerson: maternal_grandfather
+    validPeople:
+    - mother
+  - id: maternal_grandfather_grandson
+    word: {fileID: 11400000, guid: 0aafc0dd243bc4343a5e66b9a240e4f0, type: 2}
+    referencePerson: maternal_grandfather
+    validPeople:
+    - male_cousin
+    - brother
+    - you
+  - id: maternal_grandfather_granddaughter
+    word: {fileID: 11400000, guid: 42d719ac60c9f064590dccb910054505, type: 2}
+    referencePerson: maternal_grandfather
+    validPeople:
+    - sister
+  - id: paternal_grandmother_son
+    word: {fileID: 11400000, guid: 30ff65e2e1ba7df40a3781c4f22b4f50, type: 2}
+    referencePerson: paternal_grandmother
     validPeople:
     - father
-  - id: grandmother
-    word: {fileID: 11400000, guid: bb461b385668d2d479b70214ea7fced0, type: 2}
-    context: {fileID: 0}
-    quantity: 1
-    minTemperature: 0
-    maxTemperature: 20
-    request: 
+  - id: paternal_grandmother_daughter
+    word: {fileID: 11400000, guid: 9e321cd43a07e3f40b7e0516b5a1dfc1, type: 2}
+    referencePerson: paternal_grandmother
     validPeople:
-    - grandmother
-  - id: grandfather
-    word: {fileID: 11400000, guid: bbc44a6af1c9f124686e2243735ec8fb, type: 2}
-    context: {fileID: 0}
-    quantity: 1
-    minTemperature: 0
-    maxTemperature: 20
-    request: 
-    validPeople:
-    - grandfather
-  - id: brother
-    word: {fileID: 11400000, guid: 86f0de69e71cfa14bb526eb2c8d9e81c, type: 2}
-    context: {fileID: 0}
-    quantity: 1
-    minTemperature: 0
-    maxTemperature: 20
-    request: 
+    - aunt
+  - id: paternal_grandmother_grandson
+    word: {fileID: 11400000, guid: 0aafc0dd243bc4343a5e66b9a240e4f0, type: 2}
+    referencePerson: paternal_grandmother
     validPeople:
     - brother
-  - id: sister
+    - you
+  - id: paternal_grandmother_granddaughter
+    word: {fileID: 11400000, guid: 42d719ac60c9f064590dccb910054505, type: 2}
+    referencePerson: paternal_grandmother
+    validPeople:
+    - sister
+    - female_cousin
+  - id: grandfather_son
+    word: {fileID: 11400000, guid: 30ff65e2e1ba7df40a3781c4f22b4f50, type: 2}
+    referencePerson: grandfather
+    validPeople:
+    - father
+  - id: grandfather_daughter
+    word: {fileID: 11400000, guid: 9e321cd43a07e3f40b7e0516b5a1dfc1, type: 2}
+    referencePerson: grandfather
+    validPeople:
+    - aunt
+  - id: grandfather_grandson
+    word: {fileID: 11400000, guid: 0aafc0dd243bc4343a5e66b9a240e4f0, type: 2}
+    referencePerson: grandfather
+    validPeople:
+    - brother
+    - you
+  - id: grandfather_granddaughter
+    word: {fileID: 11400000, guid: 42d719ac60c9f064590dccb910054505, type: 2}
+    referencePerson: grandfather
+    validPeople:
+    - sister
+    - female_cousin
+  - id: uncle_mother
+    word: {fileID: 11400000, guid: bb2f760b9f245df44a5a3c5424e4faab, type: 2}
+    referencePerson: uncle
+    validPeople:
+    - grandmother
+  - id: uncle_father
+    word: {fileID: 11400000, guid: 0549c55bba8b71e44afcd2721ff8a4a8, type: 2}
+    referencePerson: uncle
+    validPeople:
+    - maternal_grandfather
+  - id: uncle_sister
     word: {fileID: 11400000, guid: 5e331e944af1e0c4c9bac5f26e0421f8, type: 2}
-    context: {fileID: 0}
-    quantity: 1
-    minTemperature: 0
-    maxTemperature: 20
-    request: 
+    referencePerson: uncle
+    validPeople:
+    - mother
+  - id: uncle_son
+    word: {fileID: 11400000, guid: 30ff65e2e1ba7df40a3781c4f22b4f50, type: 2}
+    referencePerson: uncle
+    validPeople:
+    - male_cousin
+  - id: uncle_sisters_son
+    word: {fileID: 11400000, guid: 987e62be66534674295cd5f6b4789268, type: 2}
+    referencePerson: uncle
+    validPeople:
+    - brother
+    - you
+  - id: uncle_sisters_daughter
+    word: {fileID: 11400000, guid: 2027ffeb2ec34f246bfb25ff229604d9, type: 2}
+    referencePerson: uncle
+    validPeople:
+    - sister
+  - id: uncles_wife_son
+    word: {fileID: 11400000, guid: 30ff65e2e1ba7df40a3781c4f22b4f50, type: 2}
+    referencePerson: uncles_wife
+    validPeople:
+    - male_cousin
+  - id: mother_mother
+    word: {fileID: 11400000, guid: bb2f760b9f245df44a5a3c5424e4faab, type: 2}
+    referencePerson: mother
+    validPeople:
+    - grandmother
+  - id: mother_father
+    word: {fileID: 11400000, guid: 0549c55bba8b71e44afcd2721ff8a4a8, type: 2}
+    referencePerson: mother
+    validPeople:
+    - maternal_grandfather
+  - id: mother_brother
+    word: {fileID: 11400000, guid: 86f0de69e71cfa14bb526eb2c8d9e81c, type: 2}
+    referencePerson: mother
+    validPeople:
+    - uncle
+  - id: mother_brothers_son
+    word: {fileID: 11400000, guid: eab7a722c4c2e0440b521b40d7716fa7, type: 2}
+    referencePerson: mother
+    validPeople:
+    - male_cousin
+  - id: mother_son
+    word: {fileID: 11400000, guid: 30ff65e2e1ba7df40a3781c4f22b4f50, type: 2}
+    referencePerson: mother
+    validPeople:
+    - brother
+    - you
+  - id: mother_daughter
+    word: {fileID: 11400000, guid: 9e321cd43a07e3f40b7e0516b5a1dfc1, type: 2}
+    referencePerson: mother
+    validPeople:
+    - sister
+  - id: father_mother
+    word: {fileID: 11400000, guid: bb2f760b9f245df44a5a3c5424e4faab, type: 2}
+    referencePerson: father
+    validPeople:
+    - paternal_grandmother
+  - id: father_father
+    word: {fileID: 11400000, guid: 0549c55bba8b71e44afcd2721ff8a4a8, type: 2}
+    referencePerson: father
+    validPeople:
+    - grandfather
+  - id: father_sister
+    word: {fileID: 11400000, guid: 5e331e944af1e0c4c9bac5f26e0421f8, type: 2}
+    referencePerson: father
+    validPeople:
+    - aunt
+  - id: father_son
+    word: {fileID: 11400000, guid: 30ff65e2e1ba7df40a3781c4f22b4f50, type: 2}
+    referencePerson: father
+    validPeople:
+    - brother
+    - you
+  - id: father_daughter
+    word: {fileID: 11400000, guid: 9e321cd43a07e3f40b7e0516b5a1dfc1, type: 2}
+    referencePerson: father
+    validPeople:
+    - sister
+  - id: father_sisters_daughter
+    word: {fileID: 11400000, guid: 2027ffeb2ec34f246bfb25ff229604d9, type: 2}
+    referencePerson: father
+    validPeople:
+    - female_cousin
+  - id: aunt_mother
+    word: {fileID: 11400000, guid: bb2f760b9f245df44a5a3c5424e4faab, type: 2}
+    referencePerson: aunt
+    validPeople:
+    - paternal_grandmother
+  - id: aunt_father
+    word: {fileID: 11400000, guid: 0549c55bba8b71e44afcd2721ff8a4a8, type: 2}
+    referencePerson: aunt
+    validPeople:
+    - grandfather
+  - id: aunt_brother
+    word: {fileID: 11400000, guid: 86f0de69e71cfa14bb526eb2c8d9e81c, type: 2}
+    referencePerson: aunt
+    validPeople:
+    - father
+  - id: aunt_brothers_son
+    word: {fileID: 11400000, guid: eab7a722c4c2e0440b521b40d7716fa7, type: 2}
+    referencePerson: aunt
+    validPeople:
+    - brother
+    - you
+  - id: aunt_brothers_daughter
+    word: {fileID: 11400000, guid: d73f718b19d20d942aeac2aac1d880c4, type: 2}
+    referencePerson: aunt
+    validPeople:
+    - sister
+  - id: aunt_daughter
+    word: {fileID: 11400000, guid: 9e321cd43a07e3f40b7e0516b5a1dfc1, type: 2}
+    referencePerson: aunt
+    validPeople:
+    - female_cousin
+  - id: aunts_husband_daughter
+    word: {fileID: 11400000, guid: 9e321cd43a07e3f40b7e0516b5a1dfc1, type: 2}
+    referencePerson: aunts_husband
+    validPeople:
+    - female_cousin
+  - id: male_cousin_grandmother
+    word: {fileID: 11400000, guid: bb461b385668d2d479b70214ea7fced0, type: 2}
+    referencePerson: male_cousin
+    validPeople:
+    - grandmother
+  - id: male_cousin_grandfather
+    word: {fileID: 11400000, guid: bbc44a6af1c9f124686e2243735ec8fb, type: 2}
+    referencePerson: male_cousin
+    validPeople:
+    - maternal_grandfather
+  - id: male_cousin_father
+    word: {fileID: 11400000, guid: 0549c55bba8b71e44afcd2721ff8a4a8, type: 2}
+    referencePerson: male_cousin
+    validPeople:
+    - uncle
+  - id: male_cousin_mother
+    word: {fileID: 11400000, guid: bb2f760b9f245df44a5a3c5424e4faab, type: 2}
+    referencePerson: male_cousin
+    validPeople:
+    - uncles_wife
+  - id: male_cousin_aunt
+    word: {fileID: 11400000, guid: d5d4d56be8bbfad46a12c5b00687efa8, type: 2}
+    referencePerson: male_cousin
+    validPeople:
+    - mother
+  - id: male_cousin_male_cousin
+    word: {fileID: 11400000, guid: d15bde6f3223cba429dbde8786c6a8ca, type: 2}
+    referencePerson: male_cousin
+    validPeople:
+    - brother
+    - you
+  - id: male_cousin_female_cousin
+    word: {fileID: 11400000, guid: 49a6da0b1a16d4d42a0205e9bee7abf7, type: 2}
+    referencePerson: male_cousin
+    validPeople:
+    - sister
+  - id: brother_grandmother
+    word: {fileID: 11400000, guid: bb461b385668d2d479b70214ea7fced0, type: 2}
+    referencePerson: brother
+    validPeople:
+    - grandmother
+    - paternal_grandmother
+  - id: brother_grandfather
+    word: {fileID: 11400000, guid: bbc44a6af1c9f124686e2243735ec8fb, type: 2}
+    referencePerson: brother
+    validPeople:
+    - maternal_grandfather
+    - grandfather
+  - id: brother_maternal_uncle
+    word: {fileID: 11400000, guid: 3954f5d33a9d41e4ea176751af93830c, type: 2}
+    referencePerson: brother
+    validPeople:
+    - uncle
+  - id: brother_mother
+    word: {fileID: 11400000, guid: bb2f760b9f245df44a5a3c5424e4faab, type: 2}
+    referencePerson: brother
+    validPeople:
+    - mother
+  - id: brother_father
+    word: {fileID: 11400000, guid: 0549c55bba8b71e44afcd2721ff8a4a8, type: 2}
+    referencePerson: brother
+    validPeople:
+    - father
+  - id: brother_aunt
+    word: {fileID: 11400000, guid: d5d4d56be8bbfad46a12c5b00687efa8, type: 2}
+    referencePerson: brother
+    validPeople:
+    - aunt
+  - id: brother_male_cousin
+    word: {fileID: 11400000, guid: d15bde6f3223cba429dbde8786c6a8ca, type: 2}
+    referencePerson: brother
+    validPeople:
+    - male_cousin
+  - id: brother_brother
+    word: {fileID: 11400000, guid: 86f0de69e71cfa14bb526eb2c8d9e81c, type: 2}
+    referencePerson: brother
+    validPeople:
+    - you
+  - id: brother_sister
+    word: {fileID: 11400000, guid: 5e331e944af1e0c4c9bac5f26e0421f8, type: 2}
+    referencePerson: brother
+    validPeople:
+    - sister
+  - id: brother_female_cousin
+    word: {fileID: 11400000, guid: 49a6da0b1a16d4d42a0205e9bee7abf7, type: 2}
+    referencePerson: brother
+    validPeople:
+    - female_cousin
+  - id: you_grandmother
+    word: {fileID: 11400000, guid: bb461b385668d2d479b70214ea7fced0, type: 2}
+    referencePerson: you
+    validPeople:
+    - grandmother
+    - paternal_grandmother
+  - id: you_grandfather
+    word: {fileID: 11400000, guid: bbc44a6af1c9f124686e2243735ec8fb, type: 2}
+    referencePerson: you
+    validPeople:
+    - maternal_grandfather
+    - grandfather
+  - id: you_maternal_uncle
+    word: {fileID: 11400000, guid: 3954f5d33a9d41e4ea176751af93830c, type: 2}
+    referencePerson: you
+    validPeople:
+    - uncle
+  - id: you_mother
+    word: {fileID: 11400000, guid: bb2f760b9f245df44a5a3c5424e4faab, type: 2}
+    referencePerson: you
+    validPeople:
+    - mother
+  - id: you_father
+    word: {fileID: 11400000, guid: 0549c55bba8b71e44afcd2721ff8a4a8, type: 2}
+    referencePerson: you
+    validPeople:
+    - father
+  - id: you_aunt
+    word: {fileID: 11400000, guid: d5d4d56be8bbfad46a12c5b00687efa8, type: 2}
+    referencePerson: you
+    validPeople:
+    - aunt
+  - id: you_male_cousin
+    word: {fileID: 11400000, guid: d15bde6f3223cba429dbde8786c6a8ca, type: 2}
+    referencePerson: you
+    validPeople:
+    - male_cousin
+  - id: you_brother
+    word: {fileID: 11400000, guid: 86f0de69e71cfa14bb526eb2c8d9e81c, type: 2}
+    referencePerson: you
+    validPeople:
+    - brother
+  - id: you_sister
+    word: {fileID: 11400000, guid: 5e331e944af1e0c4c9bac5f26e0421f8, type: 2}
+    referencePerson: you
+    validPeople:
+    - sister
+  - id: you_female_cousin
+    word: {fileID: 11400000, guid: 49a6da0b1a16d4d42a0205e9bee7abf7, type: 2}
+    referencePerson: you
+    validPeople:
+    - female_cousin
+  - id: sister_grandmother
+    word: {fileID: 11400000, guid: bb461b385668d2d479b70214ea7fced0, type: 2}
+    referencePerson: sister
+    validPeople:
+    - grandmother
+    - paternal_grandmother
+  - id: sister_grandfather
+    word: {fileID: 11400000, guid: bbc44a6af1c9f124686e2243735ec8fb, type: 2}
+    referencePerson: sister
+    validPeople:
+    - maternal_grandfather
+    - grandfather
+  - id: sister_maternal_uncle
+    word: {fileID: 11400000, guid: 3954f5d33a9d41e4ea176751af93830c, type: 2}
+    referencePerson: sister
+    validPeople:
+    - uncle
+  - id: sister_mother
+    word: {fileID: 11400000, guid: bb2f760b9f245df44a5a3c5424e4faab, type: 2}
+    referencePerson: sister
+    validPeople:
+    - mother
+  - id: sister_father
+    word: {fileID: 11400000, guid: 0549c55bba8b71e44afcd2721ff8a4a8, type: 2}
+    referencePerson: sister
+    validPeople:
+    - father
+  - id: sister_aunt
+    word: {fileID: 11400000, guid: d5d4d56be8bbfad46a12c5b00687efa8, type: 2}
+    referencePerson: sister
+    validPeople:
+    - aunt
+  - id: sister_male_cousin
+    word: {fileID: 11400000, guid: d15bde6f3223cba429dbde8786c6a8ca, type: 2}
+    referencePerson: sister
+    validPeople:
+    - male_cousin
+  - id: sister_brother
+    word: {fileID: 11400000, guid: 86f0de69e71cfa14bb526eb2c8d9e81c, type: 2}
+    referencePerson: sister
+    validPeople:
+    - brother
+    - you
+  - id: sister_female_cousin
+    word: {fileID: 11400000, guid: 49a6da0b1a16d4d42a0205e9bee7abf7, type: 2}
+    referencePerson: sister
+    validPeople:
+    - female_cousin
+  - id: female_cousin_grandmother
+    word: {fileID: 11400000, guid: bb461b385668d2d479b70214ea7fced0, type: 2}
+    referencePerson: female_cousin
+    validPeople:
+    - paternal_grandmother
+  - id: female_cousin_grandfather
+    word: {fileID: 11400000, guid: bbc44a6af1c9f124686e2243735ec8fb, type: 2}
+    referencePerson: female_cousin
+    validPeople:
+    - grandfather
+  - id: female_cousin_maternal_uncle
+    word: {fileID: 11400000, guid: 3954f5d33a9d41e4ea176751af93830c, type: 2}
+    referencePerson: female_cousin
+    validPeople:
+    - father
+  - id: female_cousin_mother
+    word: {fileID: 11400000, guid: bb2f760b9f245df44a5a3c5424e4faab, type: 2}
+    referencePerson: female_cousin
+    validPeople:
+    - aunt
+  - id: female_cousin_father
+    word: {fileID: 11400000, guid: 0549c55bba8b71e44afcd2721ff8a4a8, type: 2}
+    referencePerson: female_cousin
+    validPeople:
+    - aunts_husband
+  - id: female_cousin_male_cousin
+    word: {fileID: 11400000, guid: d15bde6f3223cba429dbde8786c6a8ca, type: 2}
+    referencePerson: female_cousin
+    validPeople:
+    - brother
+    - you
+  - id: female_cousin_female_cousin
+    word: {fileID: 11400000, guid: 49a6da0b1a16d4d42a0205e9bee7abf7, type: 2}
+    referencePerson: female_cousin
     validPeople:
     - sister
   rooms: []
@@ -81,41 +485,81 @@ MonoBehaviour:
   people:
   - id: grandmother
     appearance: {fileID: 11400000, guid: bb461b385668d2d479b70214ea7fced0, type: 2}
-    position: {x: -4, y: 0.9}
-    parentId: 
-    secondParentId: 
+    position: {x: -4, y: 1.1}
+    parentId:
+    secondParentId:
+  - id: maternal_grandfather
+    appearance: {fileID: 11400000, guid: bbc44a6af1c9f124686e2243735ec8fb, type: 2}
+    position: {x: -2, y: 1.1}
+    parentId:
+    secondParentId:
+  - id: paternal_grandmother
+    appearance: {fileID: 11400000, guid: bb461b385668d2d479b70214ea7fced0, type: 2}
+    position: {x: 2, y: 1.1}
+    parentId:
+    secondParentId:
   - id: grandfather
     appearance: {fileID: 11400000, guid: bbc44a6af1c9f124686e2243735ec8fb, type: 2}
-    position: {x: 0, y: 0.9}
-    parentId: 
-    secondParentId: 
+    position: {x: 4, y: 1.1}
+    parentId:
+    secondParentId:
+  - id: uncle
+    appearance: {fileID: 11400000, guid: 3954f5d33a9d41e4ea176751af93830c, type: 2}
+    position: {x: -6, y: -0.9}
+    parentId: grandmother
+    secondParentId: maternal_grandfather
+  - id: uncles_wife
+    appearance: {fileID: 11400000, guid: 478d62b7a6e98bb46a613b6d088b8ec8, type: 2}
+    position: {x: -4, y: -0.9}
+    parentId:
+    secondParentId:
   - id: mother
     appearance: {fileID: 11400000, guid: bb2f760b9f245df44a5a3c5424e4faab, type: 2}
-    position: {x: -2, y: -0.75}
+    position: {x: -1, y: -0.9}
     parentId: grandmother
-    secondParentId: 
+    secondParentId: maternal_grandfather
   - id: father
     appearance: {fileID: 11400000, guid: 0549c55bba8b71e44afcd2721ff8a4a8, type: 2}
-    position: {x: 3, y: -0.75}
-    parentId: grandfather
-    secondParentId: 
-  - id: you
-    appearance: {fileID: 11400000, guid: 61f2d7fc377beb24082ebd5d0575889f, type: 2}
-    position: {x: 0, y: -2.4}
-    parentId: mother
-    secondParentId: father
+    position: {x: 1, y: -0.9}
+    parentId: paternal_grandmother
+    secondParentId: grandfather
+  - id: aunt
+    appearance: {fileID: 11400000, guid: d5d4d56be8bbfad46a12c5b00687efa8, type: 2}
+    position: {x: 4, y: -0.9}
+    parentId: paternal_grandmother
+    secondParentId: grandfather
+  - id: aunts_husband
+    appearance: {fileID: 11400000, guid: 9484964470848e34b947a03dd667846b, type: 2}
+    position: {x: 6, y: -0.9}
+    parentId:
+    secondParentId:
+  - id: male_cousin
+    appearance: {fileID: 11400000, guid: d15bde6f3223cba429dbde8786c6a8ca, type: 2}
+    position: {x: -5, y: -2.9}
+    parentId: uncles_wife
+    secondParentId: uncle
   - id: brother
     appearance: {fileID: 11400000, guid: 86f0de69e71cfa14bb526eb2c8d9e81c, type: 2}
-    position: {x: -4, y: -2.4}
+    position: {x: -2, y: -2.9}
+    parentId: mother
+    secondParentId: father
+  - id: you
+    appearance: {fileID: 11400000, guid: 30ff65e2e1ba7df40a3781c4f22b4f50, type: 2}
+    position: {x: 0, y: -2.9}
     parentId: mother
     secondParentId: father
   - id: sister
     appearance: {fileID: 11400000, guid: 5e331e944af1e0c4c9bac5f26e0421f8, type: 2}
-    position: {x: 4, y: -2.4}
-    parentId: father
-    secondParentId: mother
+    position: {x: 2, y: -2.9}
+    parentId: mother
+    secondParentId: father
+  - id: female_cousin
+    appearance: {fileID: 11400000, guid: 49a6da0b1a16d4d42a0205e9bee7abf7, type: 2}
+    position: {x: 5, y: -2.9}
+    parentId: aunt
+    secondParentId: aunts_husband
   pairs: 4
   revealSeconds: 1
   maxLetters: 10
-  extraLetters: 
+  extraLetters:
   alphabetLetters: []

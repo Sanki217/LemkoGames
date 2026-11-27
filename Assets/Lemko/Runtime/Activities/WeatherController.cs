@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -8,55 +10,134 @@ namespace Lemko
     {
         public Slider temperature;
         public TMP_Text temperatureLabel;
-        [Header("Outing preview (presentation only)")]
-        public Sprite outingIllustration;
-        public Vector2 previewPosition=new Vector2(-5.5f,-1.35f);
-        SpriteRenderer blanket, supplies;
+        // Retained for existing scene and setup references.
+        [HideInInspector] public Sprite outingIllustration;
+        [HideInInspector] public Vector2 previewPosition=new Vector2(-5.5f,-1.35f);
         VocabularyEntry selected;
-        SpriteRenderer weatherPreview;
+        bool temperatureAnimating;
+        readonly List<VocabularyEntry> options=new List<VocabularyEntry>();
         public VocabularyEntry Selected=>selected;
+        public int ObservedTemperature {get;private set;}
+        public bool TemperatureStage {get;private set;}
+        protected override VocabularyEntry AnswerWord=>TemperatureStage ? Current.context : Current.word;
+
         protected override void BuildTask()
         {
-            selected=null; weatherPreview=null;
-            prompt.text=string.IsNullOrWhiteSpace(Current.request) ? Look.Word(Current.word.lemko) : Current.request;
-            Token(Current.context ? Current.context : Current.word,new Vector2(-5.5f,.5f),"character",t=>Speak());
+            selected=null; TemperatureStage=false;
+            prompt.text="What is the weather?";
+            prompt.GetComponent<HintPointer>().Bind(null,Session.tooltip);
+            speak.interactable=false;
+            // Use plausible temperatures from the condition's configured range.
+            int first=Mathf.CeilToInt(Current.minTemperature/5f);
+            int last=Mathf.FloorToInt(Current.maxTemperature/5f);
+            ObservedTemperature=first<=last ? Random.Range(first,last+1)*5 : Current.minTemperature;
+            WeatherAmbience.Show(taskRoot,Current.word);
+            var weatherCard=new GameObject("Weather observation card",typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
+            weatherCard.transform.SetParent(taskRoot,false);
+            weatherCard.transform.localPosition=new Vector3(-5,.2f,0);
+            Pixels.Card(weatherCard,new Vector2(2.8f,2.4f),Look.Panel);
+            weatherCard.color=Look.Paper; weatherCard.sortingOrder=1;
+            var observation=new GameObject("Observed weather",typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
+            observation.transform.SetParent(taskRoot,false);
+            observation.transform.localPosition=new Vector3(-5,.2f,0);
+            observation.sprite=Current.word.sprite;
+            observation.sortingOrder=2;
+            Pixels.Native(observation.transform);
+
             temperature.onValueChanged.RemoveListener(TemperatureChanged);
-            temperature.minValue=-30; temperature.maxValue=50; temperature.wholeNumbers=true; temperature.value=10; temperature.interactable=true;
-            temperature.onValueChanged.AddListener(TemperatureChanged); TemperatureChanged(temperature.value);
-            for(int i=0;i<definition.pool.Count;i++) { var word=definition.pool[i]; Token(word,new Vector2(-1.8f+(i%3)*2.5f,.8f-(i/3)*2),"weather",t=>Choose(word)); }
-            var preview=new GameObject("Outing blanket",typeof(SpriteRenderer)); preview.transform.SetParent(taskRoot,false); preview.transform.localPosition=previewPosition;
-            blanket=preview.GetComponent<SpriteRenderer>(); Pixels.Card(blanket,new Vector2(2.4f,.85f)); blanket.color=Look.Sage; blanket.sortingOrder=-1;
-            var icon=new GameObject("Outing supplies",typeof(SpriteRenderer)); icon.transform.SetParent(preview.transform,false); supplies=icon.GetComponent<SpriteRenderer>(); supplies.sprite=outingIllustration; supplies.sortingOrder=2;
-            icon.transform.localPosition=new Vector3(0,.45f,0);   // at its own size, standing on the blanket
-            icon.SetActive(false);
+            temperature.minValue=-30; temperature.maxValue=50;
+            temperature.wholeNumbers=true; temperature.interactable=false;
+            temperature.transition=Selectable.Transition.None;
+            temperature.gameObject.SetActive(false);
+            temperatureLabel.gameObject.SetActive(false);
+            ShowOptions();
         }
-        protected override bool HasAnswer => selected;
-        void TemperatureChanged(float value) {
-            if(temperatureLabel) temperatureLabel.text=value.ToString("0")+" °C";
-            // The slider reads like a thermometer: cold blue rising to warm brick.
-            float t=Mathf.InverseLerp(temperature.minValue,temperature.maxValue,value); var warm=Color.Lerp(Look.Water,Look.Brick,t);
-            if(temperature.fillRect && temperature.fillRect.TryGetComponent<UnityEngine.UI.Graphic>(out var fill)) fill.color=warm;
-            if(temperature.handleRect && temperature.handleRect.TryGetComponent<UnityEngine.UI.Graphic>(out var handle)) handle.color=warm;
+        static int WeatherGroup(VocabularyEntry word)
+        {
+            if(word.id=="weather_wind") return 2;
+            if(word.id=="weather_sunny" || word.id=="weather_rainbow") return 1;
+            return 0;
         }
-        public void Choose(VocabularyEntry word) { if(!Ready || !definition.pool.Contains(word)) return; selected=word;
-            if(!weatherPreview) { var go=new GameObject("Selected weather preview",typeof(SpriteRenderer)); go.transform.SetParent(taskRoot,false); go.transform.localPosition=new Vector3(-5.5f,2.05f,0); weatherPreview=go.GetComponent<SpriteRenderer>(); weatherPreview.sortingOrder=3; }
-            weatherPreview.sprite=word.sprite;
-            PresentationMotion.Pulse(weatherPreview.transform,Session);
-            WeatherAmbience.Show(taskRoot,word);
-            foreach(var t in tokens) if(t.Key=="weather") { t.backing.color=t.view.Entry==word ? Look.Honey : Look.Paper; if(t.view.Entry==word) Juice.Punch(t.transform,.12f); } }
-        public override void Submit() {
-            if(!Ready) return;
-            var problems=new List<string>();
-            if(!selected) problems.Add("Pick a weather picture.");
-            else if(selected!=Current.word) problems.Add("That is different weather.");
-            if(temperature.value<Current.minTemperature) problems.Add("Too cold.");
-            else if(temperature.value>Current.maxTemperature) problems.Add("Too warm.");
-            bool correct=problems.Count==0;
-            if(Answer(correct,(selected?selected.id:"")+":"+temperature.value.ToString("0"),correct ? "A perfect day for it!" : string.Join(" ",problems)) && correct) {
-                blanket.color=Look.GoodSoft; supplies.gameObject.SetActive(outingIllustration); temperature.interactable=false;
-                foreach(var token in tokens) if(token.Key=="character") { token.backing.color=Look.GoodSoft; PresentationMotion.Pulse(token.view.worldPicture.transform,Session); }
+        void ShowOptions()
+        {
+            foreach(var token in tokens) { token.gameObject.SetActive(false); Destroy(token.gameObject); }
+            tokens.Clear(); selected=null;
+            options.Clear();
+            var candidates=TemperatureStage ? definition.tasks.Select(t=>t.context).Where(w=>w).Distinct().ToList() : definition.pool.Distinct().ToList();
+            Shuffle(candidates);
+            options.Add(AnswerWord);
+            foreach(var word in candidates) {
+                if(options.Contains(word)) continue;
+                if(!TemperatureStage && options.Any(w=>WeatherGroup(w)==WeatherGroup(word))) continue;
+                options.Add(word);
+                if(options.Count==3) break;
+            }
+            Shuffle(options);
+            for(int i=0;i<options.Count;i++) {
+                var word=options[i];
+                float x=options.Count>3 ? .9f+(i%2)*3.8f : 2.8f;
+                float y=1.3f-(options.Count>3 ? i/2 : i)*1.15f;
+                var token=Token(word,new Vector2(x,y),"weather",t=>Choose(word),word.lemko,false);
+                var size=new Vector2(options.Count>3 ? 3.6f : 5f,.9f);
+                Pixels.Card(token.backing,size);
+                token.GetComponent<BoxCollider2D>().size=size;
+                token.caption.rectTransform.sizeDelta=size-new Vector2(.25f,.12f);
+                token.caption.enableAutoSizing=true;
+                token.caption.fontSizeMin=2;
+                token.caption.fontSizeMax=5;
             }
         }
-        public override void Close() { if(temperature) temperature.onValueChanged.RemoveListener(TemperatureChanged); base.Close(); selected=null; blanket=null; supplies=null; }
+        protected override bool HasAnswer=>selected && !temperatureAnimating;
+
+        IEnumerator ShowTemperature()
+        {
+            temperatureAnimating=true;
+            float start=temperature.value;
+            if(!GameSession.ReducedMotion) {
+                for(float elapsed=0;elapsed<.7f;elapsed+=Time.unscaledDeltaTime) {
+                    float progress=Mathf.SmoothStep(0,1,elapsed/.7f);
+                    temperature.SetValueWithoutNotify(Mathf.Lerp(start,ObservedTemperature,progress));
+                    TemperatureChanged(temperature.value);
+                    yield return null;
+                }
+            }
+            temperature.SetValueWithoutNotify(ObservedTemperature);
+            TemperatureChanged(ObservedTemperature);
+            temperatureAnimating=false;
+        }
+        void TemperatureChanged(float value)
+        {
+            if(temperatureLabel) temperatureLabel.text=value.ToString("0")+" °C";
+        }
+        public void Choose(VocabularyEntry word)
+        {
+            if(!Ready || temperatureAnimating || !options.Contains(word)) return;
+            selected=word;
+            foreach(var token in tokens) if(token.Key=="weather")
+                token.backing.color=token.view.Entry==word ? Look.Honey : Look.Paper;
+        }
+        public override void Submit()
+        {
+            if(!Ready || temperatureAnimating) return;
+            if(!selected) return;
+            bool correct=selected==AnswerWord;
+            if(!TemperatureStage && correct) {
+                Session.RecordAnswer(Current.word,true);
+                Session.PresentFeedback(true);
+                TemperatureStage=true;
+                prompt.text="What is the temperature?";
+                temperature.gameObject.SetActive(true);
+                temperatureLabel.gameObject.SetActive(true);
+                ShowOptions();
+                StartCoroutine(ShowTemperature());
+                return;
+            }
+            Answer(correct,(TemperatureStage ? "temperature:" : "weather:")+selected.id,"");
+        }
+        public override void Close()
+        {
+            if(temperature) temperature.onValueChanged.RemoveListener(TemperatureChanged);
+            base.Close(); selected=null; TemperatureStage=false; temperatureAnimating=false; options.Clear();
+        }
     }
 }

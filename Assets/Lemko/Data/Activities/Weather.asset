@@ -18,49 +18,65 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e57b0247dd4b47a4aa34fbe006d27ed6, type: 2}
   - {fileID: 11400000, guid: 79834fb0f83b25646ad2a8cc91821881, type: 2}
   - {fileID: 11400000, guid: 13bd9484e6e178b4981ce499e020f23d, type: 2}
+  - {fileID: 11400000, guid: 62e80dadbb3f8464881c16a5133fe585, type: 2}
+  - {fileID: 11400000, guid: 2770028d19ffb4040834f317992399f2, type: 2}
+  - {fileID: 11400000, guid: 2bd93b184b223f844a4902d7d4f03e50, type: 2}
+  - {fileID: 11400000, guid: 1425cf4b412ebdd4b9610c88ef5f9676, type: 2}
+  - {fileID: 11400000, guid: 6de71b42234dfbd479045e139a226e17, type: 2}
   tasks:
-  - id: warm_sun
+  - id: observe_sunny_warm
     word: {fileID: 11400000, guid: e57b0247dd4b47a4aa34fbe006d27ed6, type: 2}
-    context: {fileID: 11400000, guid: 61f2d7fc377beb24082ebd5d0575889f, type: 2}
-    quantity: 1
-    minTemperature: 18
-    maxTemperature: 27
-    request: "\u0441\u043E\u043D\u0446\u0435 \u0441\u044C\u0432\u0456\u0442\u0438\u0442
-      (18\u201327 \xB0C)"
+    context: {fileID: 11400000, guid: a17638e08e6f42d42a7be8f186a797f3, type: 2}
+    minTemperature: 15
+    maxTemperature: 25
     validPeople: []
-  - id: cool_rain
+  - id: observe_rainy_cool
     word: {fileID: 11400000, guid: 79834fb0f83b25646ad2a8cc91821881, type: 2}
-    context: {fileID: 11400000, guid: bb2f760b9f245df44a5a3c5424e4faab, type: 2}
-    quantity: 1
+    context: {fileID: 11400000, guid: a3238baae53909242914a6249941d2a9, type: 2}
     minTemperature: 5
-    maxTemperature: 14
-    request: "\u043B\u0456\u0454 \u0434\u043E\u0439\u0434\u0436 (5\u201314 \xB0C)"
+    maxTemperature: 10
     validPeople: []
-  - id: cold_snow
+  - id: observe_snowy_frost
     word: {fileID: 11400000, guid: 13bd9484e6e178b4981ce499e020f23d, type: 2}
-    context: {fileID: 11400000, guid: 86f0de69e71cfa14bb526eb2c8d9e81c, type: 2}
-    quantity: 1
-    minTemperature: -12
-    maxTemperature: 0
-    request: "\u043A\u0443\u0440\u0438\u0442 \u0441\u044C\u043D\u0456\u0433 (-12\u20130
-      \xB0C)"
+    context: {fileID: 11400000, guid: 2fdb3dce0ce58b3488a2a37f4aeb6068, type: 2}
+    minTemperature: -15
+    maxTemperature: -5
     validPeople: []
-  - id: mild_sun
+  - id: observe_clouds_cool
+    word: {fileID: 11400000, guid: 62e80dadbb3f8464881c16a5133fe585, type: 2}
+    context: {fileID: 11400000, guid: a3238baae53909242914a6249941d2a9, type: 2}
+    minTemperature: 5
+    maxTemperature: 10
+    validPeople: []
+  - id: observe_fog_cool
+    word: {fileID: 11400000, guid: 2770028d19ffb4040834f317992399f2, type: 2}
+    context: {fileID: 11400000, guid: a3238baae53909242914a6249941d2a9, type: 2}
+    minTemperature: 5
+    maxTemperature: 10
+    validPeople: []
+  - id: observe_wind_cool
+    word: {fileID: 11400000, guid: 2bd93b184b223f844a4902d7d4f03e50, type: 2}
+    context: {fileID: 11400000, guid: a3238baae53909242914a6249941d2a9, type: 2}
+    minTemperature: 5
+    maxTemperature: 10
+    validPeople: []
+  - id: observe_storm_warm
+    word: {fileID: 11400000, guid: 1425cf4b412ebdd4b9610c88ef5f9676, type: 2}
+    context: {fileID: 11400000, guid: a17638e08e6f42d42a7be8f186a797f3, type: 2}
+    minTemperature: 15
+    maxTemperature: 25
+    validPeople: []
+  - id: observe_rainbow_warm
+    word: {fileID: 11400000, guid: 6de71b42234dfbd479045e139a226e17, type: 2}
+    context: {fileID: 11400000, guid: a17638e08e6f42d42a7be8f186a797f3, type: 2}
+    minTemperature: 15
+    maxTemperature: 25
+    validPeople: []
+  - id: observe_sunny_hot
     word: {fileID: 11400000, guid: e57b0247dd4b47a4aa34fbe006d27ed6, type: 2}
-    context: {fileID: 11400000, guid: 5e331e944af1e0c4c9bac5f26e0421f8, type: 2}
-    quantity: 1
-    minTemperature: 12
-    maxTemperature: 20
-    request: "\u0441\u043E\u043D\u0446\u0435 \u0441\u044C\u0432\u0456\u0442\u0438\u0442
-      (12\u201320 \xB0C)"
-    validPeople: []
-  - id: rain_walk
-    word: {fileID: 11400000, guid: 79834fb0f83b25646ad2a8cc91821881, type: 2}
-    context: {fileID: 11400000, guid: 0549c55bba8b71e44afcd2721ff8a4a8, type: 2}
-    quantity: 1
-    minTemperature: 10
-    maxTemperature: 18
-    request: "\u043B\u0456\u0454 \u0434\u043E\u0439\u0434\u0436 (10\u201318 \xB0C)"
+    context: {fileID: 11400000, guid: 29f6e9fdc215dc649afb712f708ee0c6, type: 2}
+    minTemperature: 30
+    maxTemperature: 40
     validPeople: []
   rooms: []
   referencePerson: you

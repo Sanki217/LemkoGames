@@ -104,7 +104,7 @@ namespace Lemko
                 foreach(var control in row.GetComponentsInChildren<HoldTranslationHint>()) control.Bind(word,session.tooltip);
                 listRows.Add(row);
             }
-            feedback.text = "Find everything on the list.";
+            feedback.text = ""; feedback.gameObject.SetActive(false);
             if(finishButton) finishButton.gameObject.SetActive(false); GameEvents.Started(); UpdateBasket(); UpdateList();
         }
         static void Shuffle<T>(List<T> items)

@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Lemko.ActivityIntroductionDefinition
   activityId: FamilyTree
   title: Invite the family
-  story: A gathering feels better with family around. Work out who is being invited,
-    using the person marked 'you' as your reference.
+  story: "The person marked 'YOU' changes each question. Follow the family tree and find their requested relative."
   instructions: '1. Find the person marked ''you''.
 
     2. Read the requested relative

@@ -13,15 +13,12 @@ MonoBehaviour:
   m_Name: Weather
   m_EditorClassIdentifier: Assembly-CSharp::Lemko.ActivityIntroductionDefinition
   activityId: Weather
-  title: Plan a day together
-  story: Our neighbours have a day out in mind. Match the weather and temperature
-    to each request.
-  instructions: '1. Read the weather request.
+  title: Describe the weather
+  story: First describe the weather. Then read the automatic temperature indicator and choose its description.
+  instructions: '1. Observe the weather and choose its description.
 
-    2. Select the weather and move
-    the temperature slider.
+    2. After the correct answer, describe the displayed temperature.
 
-    3. Choose Check answer. Adjust your choices until
-    the outing is ready.'
+    3. Choose Check to confirm your observation.'
   beforeNumbers: 
   illustration: {fileID: 21300000, guid: 3c4734eee3266494f8cb87af424925b8, type: 3}

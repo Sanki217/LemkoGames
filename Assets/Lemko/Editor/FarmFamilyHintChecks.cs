@@ -58,8 +58,8 @@ namespace Lemko.Editor
                     farm.Advance(); Check(session.resultsPanel.activeSelf,"six tasks complete"); session.OpenActivity("FamilyTree");
                 } else if(step==7) {
                     var family=(FamilyTreeController)session.activity; session.FreshAttempt();
-                    Check(family.InvitationsDelivered==0 && family.prompt.text.Contains("invitation"),"invitation context and clean album");
-                    int lives=session.Lives; family.Choose("you"); family.Choose("you"); Check(session.Lives==lives-1 && family.InvitationsDelivered==0,"incorrect invitation not delivered");
+                    Check(family.InvitationsDelivered==0 && family.prompt.text.Contains("YOU"),"relative question and clean album");
+                    int lives=session.Lives; family.Choose(family.ReferencePerson); family.Choose(family.ReferencePerson); Check(session.Lives==lives-1 && family.InvitationsDelivered==0,"incorrect invitation not delivered");
                     family.Choose(family.Current.validPeople.Last()); family.Choose(family.Current.validPeople.Last());
                     Check(family.InvitationsDelivered==1 && family.Correct==1 && !family.album.gameObject.activeSelf,"valid answer delivered once without displaying the album");
                 } else if(step==8) {

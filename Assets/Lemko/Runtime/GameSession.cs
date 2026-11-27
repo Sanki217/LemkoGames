@@ -139,6 +139,7 @@ namespace Lemko
         public void RecordAnswer(VocabularyEntry word,bool correct)
         {
             if(!word) return;
+            Encounter(word);
             if(correct && word.pronunciation) audioService.Play(word.pronunciation);
             if(!sessionWords.Any(w=>w.id==word.id)) sessionWords.Add(word);
             bool support=supportedWords.Contains(word.id) || correctedWords.Contains(word.id);

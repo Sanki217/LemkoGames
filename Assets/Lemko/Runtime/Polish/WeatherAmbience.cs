@@ -1,7 +1,7 @@
 using UnityEngine;
 namespace Lemko
 {
-    // Presentation only: the sky answers the weather picture the player picks.
+    // Presentation only: the sky shows the observed conditions for the current question.
     public sealed class WeatherAmbience : MonoBehaviour
     {
         enum Mood { Clear, Sun, Rain, Snow, Dark }

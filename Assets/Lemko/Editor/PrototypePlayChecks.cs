@@ -94,8 +94,12 @@ namespace Lemko.Editor
                 m.Choose(cards[0]); m.Choose(cards.First(t=>t.view.Entry!=cards[0].view.Entry)); Check(m.Evaluating,"pair evaluation lock");
                 var hidden=cards.First(t=>!t.FaceUp); m.Choose(hidden); Check(!hidden.FaceUp,"third card blocked"); Check(session.Lives==lives,"mismatch no life cost"); return;
             }
-            if(a is FamilyTreeController family) { family.Choose("you"); family.Choose("you"); }
+            if(a is FamilyTreeController family) { family.Choose(family.ReferencePerson); family.Choose(family.ReferencePerson); }
             else if(a is NumbersController numbers) { int wrong=numbers.Options.First(n=>n!=a.Current.quantity); numbers.Choose(wrong); numbers.Choose(wrong); }
+            else if(a is WeatherController weather) {
+                var wrong=a.taskRoot.GetComponentsInChildren<ActivityToken>().First(t=>t.view.Entry!=a.Current.word);
+                weather.Choose(wrong.view.Entry); weather.Submit(); weather.Submit();
+            }
             else { a.Submit(); a.Submit(); }
             Check(session.Lives==lives-1 && a.Mistakes==1,"wrong answer costs exactly one life: "+a.definition.kind);
             if(a is FarmController farm) {
@@ -119,7 +123,13 @@ namespace Lemko.Editor
                 var tiles=a.taskRoot.GetComponentsInChildren<ActivityToken>().Where(t=>t.GetComponent<WorldDrag>()).ToList(); var used=new HashSet<string>(); var letters=SpellingRules.Elements(a.Current.word.lemko);
                 for(int i=0;i<letters.Count;i++) { if(SpellingRules.Fixed(letters[i])) continue; var tile=tiles.First(t=>t.caption.text==letters[i] && !used.Contains(t.Key)); Check(alphabet.Place(int.Parse(tile.Key),i),"letter placement"); alphabet.Remove(i); Check(alphabet.Place(int.Parse(tile.Key),i),"returned tile can be reused"); used.Add(tile.Key); }
                 alphabet.Submit();
-            } else if(a is WeatherController weather) { weather.Choose(a.Current.word); weather.temperature.value=a.Current.minTemperature; weather.Submit(); }
+            } else if(a is WeatherController weather) {
+                var session=a.Session;
+                bool reduced=session.Progress.reducedMotion; session.Progress.reducedMotion=true;
+                weather.Choose(a.Current.word); weather.Submit();
+                weather.Choose(a.Current.context); weather.Submit();
+                session.Progress.reducedMotion=reduced;
+            }
         }
     }
 }

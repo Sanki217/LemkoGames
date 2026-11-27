@@ -14,6 +14,19 @@ namespace Lemko
         {
             {"Start again","Zacznij od nowa"},{"Return to village","Wróć do wioski"},
             // places
+            {"Describe the weather","Opisz pogodę"},
+            {"First describe the weather. Then read the automatic temperature indicator and choose its description.","Najpierw opisz pogodę. Następnie odczytaj automatyczny wskaźnik temperatury i wybierz jej opis."},
+            {"1. Observe the weather and choose its description.","1. Obserwuj pogodę i wybierz jej opis."},
+            {"2. After the correct answer, describe the displayed temperature.","2. Po poprawnej odpowiedzi opisz wyświetloną temperaturę."},
+            {"3. Choose Check to confirm your observation.","3. Wybierz Sprawdź, aby potwierdzić odpowiedź."},
+            {"Observe the current weather and choose its description.","Obserwuj obecną pogodę i wybierz jej opis."},
+            {"The weather report is ready.","Opis pogody jest gotowy."},
+            {"What is the weather?","Jaka jest pogoda?"},
+            {"What is the temperature?","Jaka jest temperatura?"},
+            {"Choose the weather description.","Wybierz opis pogody."},
+            {"Look at the weather again.","Przyjrzyj się pogodzie jeszcze raz."},
+            {"Read the thermometer again.","Odczytaj termometr jeszcze raz."},
+            {"Weather described correctly!","Pogoda opisana poprawnie!"},
             {"Shop","Sklep"},{"Farm","Gospodarstwo"},{"House","Dom"},{"Memory","Memory"},{"Numbers","Liczby"},{"Alphabet","Alfabet"},{"Weather","Pogoda"},
             {"Family Tree","Drzewo rodziny"},{"FamilyTree","Drzewo rodziny"},{"Family tree","Drzewo rodziny"},{"Village","Wioska"},
             // buttons and menu
@@ -60,7 +73,7 @@ namespace Lemko
             {"1. Look at the picture and its meaning. Right-click either for the Lemko spelling.","1. Spójrz na obrazek i jego znaczenie. Kliknij prawym przyciskiem, aby zobaczyć łemkowską pisownię."},
             {"2. Click or drag letters into the slots. Tap a filled slot to return its letter.","2. Klikaj lub przeciągaj litery na pola. Dotknij zajętego pola, aby oddać literę."},
             {"3. Finish or repair the word, then choose Check answer.","3. Dokończ lub popraw słowo, a potem wybierz Sprawdź."},
-            {"Invite the family","Zaproś rodzinę"},{"A gathering feels better with family around. Work out who is being invited, using the person marked 'you' as your reference.","Spotkanie jest lepsze z rodziną. Ustal, kogo zaprosić, zaczynając od osoby oznaczonej jako TY."},
+            {"Invite the family","Zaproś rodzinę"},{"The person marked 'YOU' changes each question. Follow the family tree and find their requested relative.","Osoba oznaczona jako TY zmienia się w każdym pytaniu. Podążaj po drzewie rodziny i znajdź jej wskazanego krewnego."},
             {"1. Find the person marked 'you'.","1. Znajdź osobę oznaczoną jako TY."},{"2. Read the requested relative in Lemko.","2. Przeczytaj po łemkowsku, kogo szukasz."},
             {"3. Select a matching person. Some questions accept more than one person.","3. Wybierz pasującą osobę. Czasem pasuje więcej niż jedna."},
             {"Look after the animals","Zajmij się zwierzętami"},{"Before the neighbours meet, the farm animals need your attention. Help prepare their pens.","Zanim sąsiedzi się spotkają, trzeba zająć się zwierzętami. Pomóż przygotować zagrody."},
@@ -103,7 +116,7 @@ namespace Lemko
             {"These checks are supported practice, not independent recall.","Te zadania to ćwiczenie z pomocą, a nie samodzielne przypominanie."},
             {"Animal quantity tasks are now available at Farm!","W Gospodarstwie są teraz zadania z liczeniem zwierząt!"},
             // journal
-            {"Encountered","Poznane"},{"Recalled on a later day","Przypomniane innego dnia"},{"Answered without help","Odpowiedź bez pomocy"},{"Practising with support","Ćwiczone z pomocą"},
+            {"Seen","Widziane"},{"Practised","Przećwiczone"},{"Encountered","Poznane"},{"Recalled on a later day","Przypomniane innego dnia"},{"Answered without help","Odpowiedź bez pomocy"},{"Practising with support","Ćwiczone z pomocą"},
             {"No words here yet. Play an activity to encounter vocabulary.","Nie ma tu jeszcze słów. Zagraj, aby je poznać."},{"No matching encountered words. Try another search.","Brak pasujących słów. Spróbuj wyszukać inaczej."},
             {"Encountered; no answer history yet.","Poznane; jeszcze bez odpowiedzi."},{"Language content awaiting review.","Treść językowa czeka na sprawdzenie."},{"Missing word","Brak słowa"},
             {"stars","gwiazdki"},{"word met","poznane słowo"},{"words met","poznane słowa"},{"best streak","najlepsza passa"},{"minute","minuta"},{"minutes","minuty"},{"Content needs attention","Treść wymaga poprawy"},
@@ -124,7 +137,7 @@ namespace Lemko
         static readonly string[,] Openers=
         {
             {"Deliver an invitation to ","Zanieś zaproszenie: "},{"Fix the label: ","Popraw etykietę: "},{"Spell in Lemko: ","Zapisz po łemkowsku: "},{"Fix the pen: ","Popraw zagrodę: "},{"Fill the pen: ","Zapełnij zagrodę: "},
-            {"Find the number ","Znajdź numer "},{"Find ","Znajdź: "},{"Place ","Postaw: "},{"Label ready: ","Etykieta gotowa: "},{"Yes: ","Tak: "},{"Try another: ","Spróbuj inne: "},{"Next: ","Dalej: "},
+            {"Find a relative of YOU: ","Znajdź krewnego osoby TY: "},{"in ","w "},{"Find the number ","Znajdź numer "},{"Find ","Znajdź: "},{"Place ","Postaw: "},{"Label ready: ","Etykieta gotowa: "},{"Yes: ","Tak: "},{"Try another: ","Spróbuj inne: "},{"Next: ","Dalej: "},
             {"Village gathering: ","Spotkanie w wiosce: "},{"Practise next: ","Do powtórki: "},{"Words practised: ","Ćwiczone słowa: "},{"Add the missing letters.","Dodaj brakujące litery."},
             {"That is not on the list. Look for: ","Tego nie ma na liście. Szukaj: "},{"Points: ","Punkty: "},{"Best: ","Rekord: "},{"Correct: ","Dobrze: "},{"Mistakes: ","Błędy: "},{"Hints used: ","Podpowiedzi: "},
             {"Challenge lives remaining: ","Zostało żyć: "},{"Independent: ","Samodzielnie: "},{"Supported: ","Z pomocą: "},{"Words repaired: ","Poprawione słowa: "},{"Pairs: ","Pary: "},{"Association checks: ","Zadania ze słowami: "},

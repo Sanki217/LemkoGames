@@ -59,7 +59,9 @@ namespace Lemko
                 if(index>=filtered.Count) continue;
                 var word=filtered[index]; row.word.text=word.lemko; row.meaning.text=word.Translation(session.Progress.english);
                 var record=session.Progress.words.Find(w=>w.id==word.id);
-                row.state.text=record==null?"Encountered":record.rememberedOnLaterDay?"Recalled on a later day":record.independent>0?"Answered without help":"Practising with support";
+                row.state.text=record==null || record.correct==0 ? "Seen" :
+                    record.rememberedOnLaterDay ? "Recalled on a later day" :
+                    record.independent>0 ? "Answered without help" : "Practised";
                 // The rows are too low for a picture at the game's pixel size, and pictures are never shrunk.
                 row.picture.sprite=word.sprite; row.picture.enabled=false;
             }

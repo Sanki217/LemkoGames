@@ -23,9 +23,9 @@ namespace Lemko.Editor
             var story=AssetDatabase.LoadAssetAtPath<VillageStoryDefinition>(StoryPath);
             if(!story) {
                 story=ScriptableObject.CreateInstance<VillageStoryDefinition>();
-                string[] titles={"Gather supplies","Deliver invitations","Prepare the animals","Prepare the room","Pack the checklist","Prepare numbers","Prepare the labels","Plan the weather"};
-                string[] requests={"Collect supplies for the shared table.","Invite the relatives shown in the family tree.","Help finish the animal pens before the gathering.","Prepare furniture in the requested room.","Match the packing checklist pictures and words.","Choose the requested numbers.","Check the spelling for our preparations.","Set the requested weather and temperature for our planned day."};
-                string[] successes={"The supplies are ready.","The invitations are ready.","The animal pens are ready.","The room is ready.","The packing checklist is ready.","The numbers are ready.","The spelling preparations are ready.","The weather plan is ready."};
+                string[] titles={"Gather supplies","Deliver invitations","Prepare the animals","Prepare the room","Pack the checklist","Prepare numbers","Prepare the labels","Describe the weather"};
+                string[] requests={"Collect supplies for the shared table.","Invite the relatives shown in the family tree.","Help finish the animal pens before the gathering.","Prepare furniture in the requested room.","Match the packing checklist pictures and words.","Choose the requested numbers.","Check the spelling for our preparations.","Observe the current weather and choose its description."};
+                string[] successes={"The supplies are ready.","The invitations are ready.","The animal pens are ready.","The room is ready.","The packing checklist is ready.","The numbers are ready.","The spelling preparations are ready.","The weather report is ready."};
                 string[] words={"food_bread","family_mother","animal_cow","furniture_table","food_apples","number_3","","weather_sunny"};
                 story.contributions=new VillageContribution[8];
                 for(int i=0;i<8;i++) story.contributions[i]=new VillageContribution{activityId=VillageStoryProgress.Activities[i],title=titles[i],request=requests[i],success=successes[i],illustration=string.IsNullOrEmpty(words[i])?null:AssetDatabase.LoadAssetAtPath<VocabularyEntry>(VocabularyImporter.Root+"/Vocabulary/"+words[i]+".asset").sprite};

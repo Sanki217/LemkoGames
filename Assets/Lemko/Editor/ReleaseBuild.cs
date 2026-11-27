@@ -37,8 +37,8 @@ namespace Lemko.Editor
                 var path = AssetDatabase.GUIDToAssetPath(guid);
                 var activity = AssetDatabase.LoadAssetAtPath<ActivityDefinition>(path);
                 if (activity.Validate() != null) throw new BuildFailedException(path + ": " + activity.Validate());
-                if (activity.kind == ActivityKind.Memory && !new System.Collections.Generic.HashSet<VocabularyEntry>(activity.pool).SetEquals(database.entries))
-                    throw new BuildFailedException("Memory must include every word in the master vocabulary.");
+                if (activity.kind == ActivityKind.Memory && !new System.Collections.Generic.HashSet<VocabularyEntry>(activity.pool).SetEquals(database.entries.Where(MemoryController.IsEligibleWord)))
+                    throw new BuildFailedException("Memory must include the non-family words in the master vocabulary.");
                 if (activity.kind == ActivityKind.Alphabet)
                 {
                     var letters = rows.Where(AlphabetMasterImporter.IsLetter).ToDictionary(r => r["id"]);

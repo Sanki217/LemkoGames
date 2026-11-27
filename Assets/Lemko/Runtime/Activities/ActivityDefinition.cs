@@ -12,6 +12,7 @@ namespace Lemko
         public int quantity=1;
         public int minTemperature, maxTemperature=20;
         public string request;
+        public string referencePerson;
         public string[] validPeople=Array.Empty<string>();
     }
     [Serializable] public sealed class FamilyPerson
@@ -53,8 +54,8 @@ namespace Lemko
         {
             if(tasksPerSession<1 || tasksPerSession>20) return "Session must contain 1–20 tasks.";
             if(pool.Exists(w=>!w) || rooms.Exists(w=>!w)) return "Null vocabulary reference.";
-            if(kind==ActivityKind.Weather && pool.Count>6) return "This prototype supports at most six weather options.";
-            if(kind==ActivityKind.Memory) return pairs<2 || pairs>8 || new HashSet<VocabularyEntry>(pool).Count<pairs ? "Memory needs 2–8 pairs and enough distinct words." : null;
+            if(kind==ActivityKind.Weather && new HashSet<VocabularyEntry>(pool).Count<2) return "Weather needs at least two distinct descriptions.";
+            if(kind==ActivityKind.Memory) return pairs<2 || pairs>8 || new HashSet<VocabularyEntry>(pool.FindAll(MemoryController.IsEligibleWord)).Count<pairs ? "Memory needs 2–8 pairs and enough distinct non-family words." : null;
             if(kind==ActivityKind.Alphabet && alphabetLetters!=null) {
                 var letterIds=new HashSet<string>(); var lower=new HashSet<string>();
                 foreach(var letter in alphabetLetters) if(letter==null || string.IsNullOrWhiteSpace(letter.id) || !letterIds.Add(letter.id) ||
@@ -69,9 +70,12 @@ namespace Lemko
                 if(kind==ActivityKind.Farm && (t.quantity<1 || t.quantity>12 || !pool.Contains(t.word))) return "Farm requires quantity 1–12 and an available animal.";
                 if(kind==ActivityKind.House && (!rooms.Contains(t.context) || !pool.Contains(t.word))) return "House item/room is unavailable.";
                 if(kind==ActivityKind.Numbers && (t.quantity<1 || t.quantity>99)) return "Numeral outside 1–99.";
-                if(kind==ActivityKind.Weather && (t.minTemperature>t.maxTemperature || t.minTemperature< -30 || t.maxTemperature>50 || !pool.Contains(t.word))) return "Invalid weather or temperature range (-30..50).";
+                if(kind==ActivityKind.Weather && (!t.context || t.minTemperature>t.maxTemperature || t.minTemperature< -30 || t.maxTemperature>50 || !pool.Contains(t.word))) return "Invalid weather or temperature range (-30..50).";
                 if(kind==ActivityKind.Alphabet && (SpellingRules.Letters(t.word.lemko).Count==0 || SpellingRules.Letters(t.word.lemko).Count>maxLetters || SpellingRules.Elements(t.word.lemko).Count>12)) return "Alphabet word exceeds configured tile/slot limit (12 total slots).";
                 if(kind==ActivityKind.FamilyTree && (t.validPeople==null || t.validPeople.Length==0 || Array.Exists(t.validPeople,p=>!people.Exists(x=>x.id==p)))) return "Unknown family answer person.";
+                if(kind==ActivityKind.FamilyTree && !string.IsNullOrEmpty(t.referencePerson) &&
+                    (!people.Exists(p=>p.id==t.referencePerson) || Array.IndexOf(t.validPeople,t.referencePerson)>=0))
+                    return "Invalid family task reference person.";
             }
             if(kind==ActivityKind.FamilyTree && (!people.Exists(p=>p.id==referencePerson) || new HashSet<string>(people.ConvertAll(p=>p.id)).Count!=people.Count)) return "Invalid family reference/duplicate person.";
             if(kind==ActivityKind.FamilyTree && people.Exists(p=>!p.appearance || (!string.IsNullOrEmpty(p.parentId) && !people.Exists(x=>x.id==p.parentId)) || (!string.IsNullOrEmpty(p.secondParentId) && !people.Exists(x=>x.id==p.secondParentId)))) return "Family appearance or parent reference missing.";

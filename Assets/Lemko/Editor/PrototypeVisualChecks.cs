@@ -41,7 +41,7 @@ namespace Lemko.Editor
         }
         public static void Capture(string name,int width,int height)
         {
-            var camera=Camera.main; var canvas=UnityEngine.Object.FindFirstObjectByType<Canvas>();
+            var camera=Camera.main; var canvas=UnityEngine.Object.FindFirstObjectByType<GameSession>().hud.canvas.rootCanvas;
             var mode=canvas.renderMode; var oldCamera=canvas.worldCamera; float distance=canvas.planeDistance;
             var rt=new RenderTexture(width,height,24); rt.Create(); camera.targetTexture=rt; camera.aspect=(float)width/height; camera.orthographicSize=4.5f;
             canvas.renderMode=RenderMode.ScreenSpaceCamera; canvas.worldCamera=camera; canvas.planeDistance=1; Canvas.ForceUpdateCanvases();

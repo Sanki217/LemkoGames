@@ -62,6 +62,6 @@ namespace Lemko
         protected override bool HasAnswer => placed.Count>0;
         void Arrange() { if(counter) { counter.text=placed.Count.ToString(); Juice.Punch(counter.transform.parent,.25f,.25f); }
         }
-        public override void Submit() => Answer(placed.Count==(QuantityTasks ? Current.quantity : 1) && placed.All(t=>t.view.Entry==Current.word),string.Join("|",placed.Select(t=>t.view.Entry.id).OrderBy(s=>s)),placed.Count==(QuantityTasks ? Current.quantity : 1) && placed.All(t=>t.view.Entry==Current.word) ? "The pen is ready!" : QuantityTasks ? (placed.Any(t=>t.view.Entry!=Current.word) ? "One animal is a different kind." : "You have "+placed.Count+", not "+Current.quantity+".") : "That is a different animal.");
+        public override void Submit() => Answer(placed.Count==(QuantityTasks ? Current.quantity : 1) && placed.All(t=>t.view.Entry==Current.word),string.Join("|",placed.Select(t=>t.view.Entry.id).OrderBy(s=>s)),placed.Count==(QuantityTasks ? Current.quantity : 1) && placed.All(t=>t.view.Entry==Current.word) ? "" : QuantityTasks ? (placed.Any(t=>t.view.Entry!=Current.word) ? "One animal is a different kind." : "You have "+placed.Count+", not "+Current.quantity+".") : "That is a different animal.");
     }
 }

@@ -57,7 +57,7 @@ namespace Lemko
             string error=ValidateContent();
             if(error!=null) { prompt.text="Content needs attention"; feedback.text=error; Debug.LogError(error,this); return; }
             order=AvailableTasks(); Shuffle(order);
-            order=PracticeSelection.Order(order,t=>t.word,session,Total); Running=true; worldRoot.gameObject.SetActive(true);
+            order=PracticeSelection.Order(order,t=>t.word,session,Total); ArrangeTasks(order); Running=true; worldRoot.gameObject.SetActive(true);
             // Pixel art is never scaled, so the scene's content scale is not used: every game lays its pieces out at full size.
             taskRoot.localPosition=Pixels.Snap((Vector3)contentOffset); taskRoot.localScale=Vector3.one;
             submit.onClick.RemoveListener(Submit); submit.onClick.AddListener(Submit);
@@ -73,24 +73,27 @@ namespace Lemko
             if(hintControl) { hintControl.gameObject.SetActive(false); hintControl.Bind(Current?.word,Session.tooltip); }
             speak.interactable=Current!=null && Current.word.pronunciation;
             BuildTask();
+            feedback.gameObject.SetActive(false);
             speak.gameObject.SetActive(false);
             var check=submit.GetComponentInChildren<TMP_Text>(true); if(check) check.text="Check";
             Session.RefreshHud(); GameEvents.Started();
         }
         protected virtual string ValidateContent()=>definition.Validate();
         protected virtual List<LearningTask> AvailableTasks()=>new List<LearningTask>(definition.tasks);
+        protected virtual void ArrangeTasks(List<LearningTask> tasks) { }
         protected abstract void BuildTask();
         public abstract void Submit();
         protected bool Ready => Running && !Locked && Session.CanAnswer;
+        protected virtual VocabularyEntry AnswerWord=>Current?.word;
         protected bool Answer(bool correct,string signature,string explanation)
         {
             if(!Ready || (!correct && rejected==signature)) return false;
-            if(Current!=null && definition.kind!=ActivityKind.Memory) Session.RecordAnswer(Current.word,correct);
+            if(AnswerWord && definition.kind!=ActivityKind.Memory) Session.RecordAnswer(AnswerWord,correct);
             if(correct) {
                 float quick=QuickBonus;
                 Correct++; Locked=true; int awarded=score.Apply(SelectionResult.Correct); int bonus=0;
                 if(!Session.Practice) { bonus=Mathf.RoundToInt(awarded*.5f*quick/10f)*10; score.Bonus(bonus); }
-                feedback.text=explanation+(bonus>0 ? "  Bonus +"+bonus+"!" : ""); Session.PresentFeedback(true);
+                feedback.text=string.IsNullOrEmpty(explanation) ? "" : explanation+(bonus>0 ? "  Bonus +"+bonus+"!" : ""); Session.PresentFeedback(true);
                 submit.gameObject.SetActive(false); next.gameObject.SetActive(false);
                 SessionStats.BestStreak=Mathf.Max(SessionStats.BestStreak,score.Streak);
                 GameEvents.Answer(true,awarded+bonus,score.Streak); ContinueSoon();
@@ -108,12 +111,12 @@ namespace Lemko
         public virtual void Advance() { if(!Running || !Locked) return; if(Correct>=Total) Session.FinishActivity(true); else StartTask(); }
         public void RecordHint() { if(Running) { Hints++; Session.RefreshHud(); } }
         public void Speak() { if(Current!=null) Session.audioService.Play(Current.word.pronunciation); }
-        protected ActivityToken Token(VocabularyEntry word,Vector2 position,string key,System.Action<ActivityToken> click,string text=null,bool picture=true,bool draggable=false)
+        protected ActivityToken Token(VocabularyEntry word,Vector2 position,string key,System.Action<ActivityToken> click,string text=null,bool picture=true,bool draggable=false,bool encounter=true)
         {
             var token=Instantiate(tokenPrefab,taskRoot); token.transform.localPosition=Pixels.Snap((Vector3)position);
             token.Bind(word,Session,key,click,text,picture); tokens.Add(token); token.backing.color=Look.Paper; Pixels.Card(token.backing,CardSize);
             if(draggable) { var drag=token.gameObject.AddComponent<WorldDrag>(); drag.token=token; }
-            if(word) Session.Encounter(word); if(!quietSpawn) GameEvents.Spawned(token); return token;
+            if(word && encounter) Session.Encounter(word); if(!quietSpawn) GameEvents.Spawned(token); return token;
         }
         // The card a picture or a word lies on: 72 x 66 pixels.
         public static readonly Vector2 CardSize=new Vector2(1.8f,1.65f);

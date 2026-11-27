@@ -33,7 +33,7 @@ namespace Lemko.Editor
                         var pair=memory.taskRoot.GetComponentsInChildren<ActivityToken>().Where(t=>!t.FaceUp).GroupBy(t=>t.view.Entry).First().ToArray();
                         Check(pair.All(t=>!t.GetComponent<HintPointer>().enabled),"hidden card hints disabled"); memory.Choose(pair[0]); memory.Choose(pair[1]); next=EditorApplication.timeSinceStartup+1.4; return;
                     }
-                    Check(!memory.Locked && session.IndependentAnswers==0 && session.SupportedAnswers==0,"matching alone is not recall or completed session"); memory.Advance();
+                    Check(!memory.Locked && session.IndependentAnswers==0 && session.SupportedAnswers==memory.PairCount,"matching is recorded as supported practice"); memory.Advance();
                 } else if(step==2) {
                     var memory=(MemoryController)session.activity; Check(memory.AssociationActive,"association phase");
                     var options=memory.taskRoot.GetComponentsInChildren<ActivityToken>().Where(t=>t.Key=="association_option").ToArray();
@@ -43,10 +43,10 @@ namespace Lemko.Editor
                 } else if(step==3) {
                     Capture("Memory-association"); var memory=(MemoryController)session.activity;
                     memory.ChooseAssociation(memory.AssociationWord); memory.ChooseAssociation(memory.AssociationWord);
-                    Check(memory.AssociationsCorrect==1 && session.SupportedAnswers==1 && session.IndependentAnswers==0,"association practice supported once"); memory.Advance();
+                    Check(memory.AssociationsCorrect==1 && session.SupportedAnswers==memory.PairCount+1 && session.IndependentAnswers==0,"association practice supported once"); memory.Advance();
                 } else if(step==4) {
                     var memory=(MemoryController)session.activity; memory.ChooseAssociation(memory.AssociationWord);
-                    Check(memory.Locked && memory.AssociationsCorrect==2 && session.SupportedAnswers==2,"both checks required"); memory.Advance();
+                    Check(memory.Locked && memory.AssociationsCorrect==2 && session.SupportedAnswers==memory.PairCount+2,"both checks required"); memory.Advance();
                     Check(session.resultsPanel.activeSelf && session.results.text.Contains("Association checks: 2"),"association results survive cleanup");
                     session.RestartActivity(); Check(!memory.AssociationActive && !memory.AssociationPending && memory.AssociationsCorrect==0,"association reset"); session.OpenActivity("Numbers");
                 } else if(step==5) {

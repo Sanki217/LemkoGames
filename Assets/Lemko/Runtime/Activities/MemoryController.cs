@@ -28,12 +28,15 @@ namespace Lemko
         public int PairCount=>boardWords.Count;
         public bool CanPeek=>Ready && !boardFinished && !AssociationActive && !evaluating && pairsFound<PairCount;
         public bool Evaluating=>evaluating;
+        public static bool IsEligibleWord(VocabularyEntry word)=>word &&
+            !word.id.StartsWith("family_",System.StringComparison.Ordinal) &&
+            !(word.tags?.Contains("family") ?? false);
         protected override int Total => 1;
         protected override void BuildTask()
         {
             submit.gameObject.SetActive(false); speak.interactable=false; prompt.text="Match pictures and words";
             picture.Clear(); matched.Clear(); first=null; evaluating=false; pairsFound=0;
-            var pool=definition.pool.Distinct().ToList(); Shuffle(pool);
+            var pool=definition.pool.Where(IsEligibleWord).Distinct().ToList(); Shuffle(pool);
             // Mix subjects so closely related concepts seldom compete on the same board.
             // Rotate in unseen words while keeping a familiar item for review.
             var encountered=new HashSet<string>(Session.Progress.encountered);
@@ -61,7 +64,7 @@ namespace Lemko
             float spacing=Mathf.Min(3.5f,14f/PairCount);
             for(int i=0;i<cards.Count;i++) {
                 var card=cards[i]; float x=(i%PairCount-(PairCount-1)*.5f)*spacing;
-                var token=Token(card.w,new Vector2(x,1f-(i/PairCount)*1.85f),"card_"+i,Choose);
+                var token=Token(card.w,new Vector2(x,1f-(i/PairCount)*1.85f),"card_"+i,Choose,encounter:false);
                 if(PairCount>6) token.transform.localScale=Vector3.one*.86f;
                 picture[token]=card.Item2; token.Face(false,card.Item2,card.w.lemko);
             }
@@ -80,6 +83,7 @@ namespace Lemko
         IEnumerator PeekCard(ActivityToken card)
         {
             card.Face(true,picture[card],card.view.Entry.lemko);
+            Session.Encounter(card.view.Entry);
             card.GetComponent<HintPointer>().enabled=false;
             yield return new WaitForSecondsRealtime(1f);
             card.Face(false,picture[card],card.view.Entry.lemko);
@@ -98,7 +102,10 @@ namespace Lemko
         public void Choose(ActivityToken card)
         {
             if(AssociationActive || boardFinished || !Ready || evaluating || !picture.ContainsKey(card) || matched.Contains(card) || first==card) return;
-            bool showPicture=picture[card]; Juice.Flip(card.transform,()=>card.Face(true,showPicture,card.view.Entry.lemko)); Juice.Sound("flip");
+            bool showPicture=picture[card]; Juice.Flip(card.transform,()=> {
+                card.Face(true,showPicture,card.view.Entry.lemko);
+                Session.Encounter(card.view.Entry);
+            }); Juice.Sound("flip");
             if(!first) { first=card; return; }
             evaluating=true; StartCoroutine(Evaluate(first,card));
         }
@@ -113,7 +120,9 @@ namespace Lemko
                 a.backing.color=b.backing.color=Look.GoodSoft;
                 Juice.Sparkle(Juice.WorldToScreen(a.transform.position),8); Juice.Sparkle(Juice.WorldToScreen(b.transform.position),8); Juice.Sound("match",1+pairsFound*.08f);
                 Collect(a); Collect(b);
-                Session.audioService.Play(a.view.Entry.pronunciation); pairsFound++; feedback.text="Pair found! "+pairsFound+"/"+PairCount; Session.PresentFeedback(true);
+                Session.MarkSupported(a.view.Entry);
+                Session.RecordAnswer(a.view.Entry,true);
+                pairsFound++; feedback.text="Pair found! "+pairsFound+"/"+PairCount; Session.PresentFeedback(true);
                 if(pairsFound==PairCount) {
                     if(checkWords.Count==0) Answer(true,"complete","All pairs found.");
                     else { boardFinished=true; feedback.text="All pairs found! Now "+checkWords.Count+" quick word checks."; ContinueSoon(1.7f); }
